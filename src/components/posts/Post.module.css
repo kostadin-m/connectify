@@ -1,5 +1,4 @@
 /*Post Box */
-
 @keyframes changeOpacity {
     from {
         filter: blur(13px);
@@ -40,34 +39,26 @@
 
 .user {
     display: flex;
-    align-items: center;
+    vertical-align: top;
 }
 
-.user a {
+.userInfo a {
     color: inherit;
     font-size: 0.9em;
     padding-left: 4px;
     text-decoration: none;
     font-weight: bold;
-    margin-bottom: 18px;
 }
 
-.user a:hover {
-    text-decoration: underline;
-}
-
-
-.location {
+.timeAndLocation {
     height: 5px;
     display: flex;
     align-items: center;
 }
 
 .userInfo {
-    align-items: center;
-    transform: translateY(-50%);
-    display: flex;
-    margin-left: 45px;
+    text-align: left;
+    margin-bottom: auto;
     padding-bottom: 20px;
 }
 
@@ -76,14 +67,19 @@
     font-size: 0.7em;
 }
 
-.location img {
+.timeAndLocation {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.timeAndLocation img {
     padding-left: 4px;
     filter: invert(65%);
     width: 13px;
     height: 13px;
 }
 
-.location p {
+.timeAndLocation p {
     color: lightgray;
 }
 
@@ -95,11 +91,11 @@
 }
 
 /*Theme Mode for Form Top */
-.user.dark>a {
+.user.dark>.userInfo>a {
     color: lightgray;
 }
 
-.user.light>a {
+.user.light>.userInfo>a {
     color: black;
 }
 
@@ -112,10 +108,6 @@
     width: 100%;
 }
 
-.postMiddle {
-    position: relative;
-}
-
 /*Theme mode for middle form */
 .postText.dark {
     color: lightgray;
@@ -126,15 +118,7 @@
 }
 
 /*Post Bottom*/
-
-
 .postBottom {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
     margin-top: 5px;
     display: flex;
     align-items: center;
@@ -310,25 +294,6 @@
     display: flex;
 }
 
-.commentsInput {
-    position: relative;
-    line-height: 20px;
-    min-height: 40px;
-    width: 510px;
-    margin-top: 5px;
-    padding-left: 5px;
-    resize: none;
-    outline: none;
-    font-size: 1em;
-    border: none;
-    font-family: Poppins, sans-serif;
-    transition: all 0.4s ease;
-}
-
-.commentsInput:focus {
-    outline: none;
-}
-
 /*Theme mode for comments and input*/
 
 .dark>.btn:hover,
@@ -346,11 +311,6 @@
 .light>.btn {
     color: black;
     background-color: rgb(225, 223, 223);
-}
-
-.dark>.commentsInput {
-    background: rgb(40, 40, 40);
-    color: lightgray
 }
 
 .dark>p {

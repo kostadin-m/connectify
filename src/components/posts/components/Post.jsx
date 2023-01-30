@@ -41,13 +41,13 @@ export default function Post() {
             <div className={styles.postTop}>
                 <div className={`${styles.user} ${styles[theme]}`}>
                     <img className='profile-image' src={Test} alt='' />
-                    <Link to='/' >Kostadasdsaasddadasddin</Link>
-                </div>
-                <div className={styles.userInfo}>
-                    <p className={styles.timestamp}>22h ago</p>
-                    <div className={styles.location}>
-                        <img src={Location} alt='location icon' />
-                        <p>Sofia, Bulgaria</p>
+                    <div className={styles.userInfo}>
+                        <Link to='/' >Kostadasdsaasddadasddin</Link>
+                        <div className={styles.timeAndLocation}>
+                            <p className={styles.timestamp}>22h ago</p>
+                            <img src={Location} alt='location icon' />
+                            <p>Sofia, Bulgaria</p>
+                        </div>
                     </div>
                 </div>
             </div>

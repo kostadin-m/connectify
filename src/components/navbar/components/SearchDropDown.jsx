@@ -1,5 +1,5 @@
 
-export default function MobileDropDown() {
+export default function SearchDropDown() {
     return (
         <div>MobileDropDown</div>
     )

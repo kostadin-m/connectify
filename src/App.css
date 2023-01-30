@@ -63,8 +63,6 @@ body {
   padding: 10px;
 }
 
-
-
 /*Feed Layout*/
 @keyframes slideFromBelow {
   from {
@@ -89,7 +87,7 @@ body {
   overflow-y: auto;
 }
 
-/* layout for pages with form*/
+/* layout for login,signup,edit box*/
 @keyframes changeOpacity {
   from {
     opacity: 0;
@@ -122,7 +120,7 @@ body {
   z-index: 1;
 }
 
-/*theme mode for form box*/
+/*theme mode for login/signup/edit box*/
 .form-box.dark {
   background-color: rgb(40, 40, 40);
 }
@@ -130,7 +128,6 @@ body {
 .form-box.light {
   background-color: white;
 }
-
 
 .form-box h2 {
   color: aqua;
@@ -341,9 +338,7 @@ body {
 
 .profile-image {
   width: 43px !important;
-  max-width: 43px !important;
   height: 43px !important;
-  max-height: 43px !important;
   border-radius: 50%;
 }
 

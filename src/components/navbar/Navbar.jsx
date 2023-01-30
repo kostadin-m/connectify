@@ -1,9 +1,9 @@
 import { useThemeContext } from '../../hooks/useThemeContext'
 import { useAuthContext } from '../../hooks/useAuthContext'
+
 import { Link } from 'react-router-dom'
 //icons
 import LightMode from '../../assets/light_mode_icon.svg'
-import SearchIcon from '../../assets/search_icon.svg'
 
 //styles
 import './Navbar.css'

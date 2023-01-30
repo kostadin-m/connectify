@@ -1,0 +1,492 @@
+body::-webkit-scrollbar {
+  display: none;
+}
+
+form {
+  text-align: center;
+}
+
+input,
+label {
+  display: block;
+}
+
+
+body {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-y: auto;
+  position: relative;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/*App Layout*/
+.App {
+  z-index: 1;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-align: center;
+  transition: all 0.4s ease;
+  min-height: 100vh;
+}
+
+/*App theme modes*/
+.App.light {
+  background-color: rgb(237, 237, 237);
+}
+
+.App.dark {
+  background-color: rgba(40, 43, 54, 1) !important
+}
+
+.profile-page-item {
+  min-width: 400px;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+/*Page and page item layout*/
+.page {
+  padding-top: 90px;
+  text-align: center;
+  display: flex;
+  margin-left: 100px;
+}
+
+.page-item {
+  min-width: 400px;
+  margin-right: 0;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+
+
+/*Feed Layout*/
+@keyframes slideFromBelow {
+  from {
+    filter: blur(13px);
+    opacity: 0;
+    transform: translateY(1%);
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+
+.feed {
+  animation-name: slideFromBelow;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* layout for pages with form*/
+@keyframes changeOpacity {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-5%);
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+.form-box {
+  animation-name: changeOpacity;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  overflow: hidden;
+  margin-top: 120px;
+  top: 10%;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  margin-left: 34%;
+  border-radius: 15px;
+  min-height: 300px;
+  max-height: 850px;
+  width: 600px;
+  z-index: 1;
+}
+
+/*theme mode for form box*/
+.form-box.dark {
+  background-color: rgb(40, 40, 40);
+}
+
+.form-box.light {
+  background-color: white;
+}
+
+
+.form-box h2 {
+  color: aqua;
+  margin-top: 20px;
+  font-size: 2em;
+}
+
+/*Form input*/
+.input {
+  margin-left: 16%;
+  text-align: center;
+  margin-top: 15px;
+}
+
+
+.form-btn {
+  cursor: pointer;
+  position: relative;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid aqua;
+  background: none;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 70px;
+  width: 240px;
+  overflow: hidden;
+}
+
+.form-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: aqua;
+  transition: all 0.5s;
+  z-index: -1;
+}
+
+.form-btn:hover:before {
+  width: 100%;
+}
+
+.dark>form>.form-btn {
+  color: white;
+}
+
+
+.input label {
+  font-weight: bold;
+  text-align: left;
+}
+
+
+.input input {
+  border-radius: 10px;
+  font-size: 1.2em;
+  border: 1px solid aqua;
+  margin-top: 5px;
+  width: 400px;
+  height: 45px;
+}
+
+/*Form Input themes*/
+.dark input {
+  color: lightgray;
+  background: rgb(70, 70, 70);
+}
+
+.dark label {
+  color: lightgray;
+}
+
+
+/*Modals*/
+.modal,
+.overlay {
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.btnModal {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+  overflow: hidden;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.0;
+  padding: 14px 28px;
+  border-radius: 15px;
+  width: 500px;
+  max-height: 350px;
+}
+
+.close-modal {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+
+.modal-content>h2 {
+  width: 470px;
+  margin-right: 7px;
+}
+
+/*Modal themes*/
+.modal-content.dark>h2 {
+  color: lightgray;
+}
+
+.modal-content.light>h2 {
+  color: black;
+}
+
+.close-modal.dark {
+  filter: invert(100%);
+}
+
+.modal-content.light {
+  background: white;
+}
+
+.modal-content.light h2 {
+  color: rgb(55, 54, 54);
+}
+
+.modal-content.dark {
+  background-color: rgb(40, 40, 40);
+}
+
+/*Post and Comments text area*/
+.textarea {
+  resize: none;
+  font-family: Poppins, sans-serif;
+  outline: none;
+  font-size: 0.9em;
+  padding-left: 5px;
+  width: 85%;
+  border: none;
+  transition: all 0.4s ease;
+}
+
+.textarea.dark {
+  color: white;
+  background-color: rgb(24 24 24)
+}
+
+/*Post and comments button*/
+.btn {
+  position: relative;
+  border: 1px solid aqua;
+  background: none;
+  color: black;
+  margin-left: auto;
+  font-weight: bold;
+  width: 82px;
+  height: 35px;
+  border-radius: 8px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.btn:before {
+  border-radius: 7px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: aqua;
+  transition: all 0.5s;
+  z-index: -1;
+}
+
+.btn:hover:before {
+  width: 100%;
+}
+
+.btn.dark {
+  color: white;
+}
+
+.profile-image {
+  width: 43px !important;
+  max-width: 43px !important;
+  height: 43px !important;
+  max-height: 43px !important;
+  border-radius: 50%;
+}
+
+@media (max-width:800px) {
+  .profile-page-item {
+    margin-right: 0px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .form-box {
+    margin-top: 80px;
+    width: 95vw;
+    min-height: 300px;
+    max-height: 800px;
+    margin-left: 2%;
+  }
+
+  .input {
+    margin-left: 4%;
+  }
+
+  .input input {
+    height: 50px;
+    width: 95%;
+    margin-left: 0px;
+  }
+
+  .modal-content {
+    max-width: 80vw;
+  }
+
+  .modal-content h2 {
+    width: 90% !important
+  }
+
+  .App {
+    height: 100%;
+    width: 100%;
+  }
+
+  .btn {
+    width: 75px !important;
+  }
+}
+
+@media (max-width:800px) {
+  .btn span {
+    font-size: 0.8em;
+  }
+
+  .profile-page-item {
+    margin-left: 4px;
+  }
+
+  .page-item:nth-child(1),
+  .page-item:nth-child(3) {
+    display: none;
+  }
+
+
+  .page-item {
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+  .page {
+    display: block;
+    overflow-x: hidden;
+    margin-left: 0px;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+@media (min-width:580px) and (max-width:800px) {
+
+  .page-item:nth-child(1),
+  .page-item:nth-child(3) {
+    display: none;
+  }
+
+  .page-item {
+    margin-left: 0px;
+    padding: 0px;
+  }
+
+  .page {
+    margin-left: 0px;
+    text-align: left;
+    width: 100vw;
+  }
+}
+
+@media (min-width:800px) and (max-width:1250px) {
+  .profile-page-item {
+    min-width: 34vw;
+  }
+
+  .page-item {
+    min-width: 34vw
+  }
+
+  .form-box {
+    margin-left: 15%;
+    width: 70vw;
+  }
+
+  .input {
+    margin-left: 20px;
+  }
+
+  .input input {
+    height: 50px;
+    width: 95%;
+  }
+
+
+  .page-item:nth-child(1) {
+    margin-left: 10px;
+  }
+
+  .page-item:nth-child(3) {
+    display: none;
+  }
+
+  .page {
+    margin-left: 0px;
+    text-align: center;
+    width: 100vw;
+  }
+}
+
+@media (min-width:1250px) and (max-width:1850px) {
+  .profile-page-item {
+    padding: 0;
+    min-width: 36vw;
+  }
+
+  .page {
+    margin-right: 20px;
+    margin-left: 0px !important;
+    text-align: center;
+    width: 100vw;
+  }
+}

@@ -1,0 +1,182 @@
+/*Modals Search and Data*/
+
+.searchInputs {
+    margin-top: 30px;
+    display: flex;
+}
+
+.search input {
+    margin-left: 10px;
+    margin-top: 30px;
+    border: 0;
+    border-radius: 15px;
+    font-size: 18px;
+    padding: 15px;
+    height: 15px;
+    width: 70%;
+}
+
+.search.dark input {
+    background-color: rgb(16, 16, 16);
+    color: white;
+}
+
+.search.light input {
+    color: black;
+    background-color: lightgray;
+}
+
+input:focus {
+    outline: none;
+}
+
+.searchIcon svg {
+    font-size: 35px;
+}
+
+@keyframes animationHeight {
+    from {
+        filter: blur(10px);
+        opacity: 0;
+    }
+
+    to {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.dataResult {
+    animation-name: animationHeight;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    padding-right: 5px;
+    border-radius: 4px;
+    margin-top: 10px;
+    width: 500px;
+    height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.dataResult.dark {
+    background-color: rgb(40, 40, 40);
+}
+
+.dataResult.light {
+    background-color: white;
+}
+
+@keyframes SlideFromLeft {
+    from {
+        transform: translateX(-5%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.dataResult .dataItem {
+    animation-name: SlideFromLeft;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+
+.loading {
+    font-size: 1.5em;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+}
+
+.dark>.loading {
+    color: white;
+}
+
+.dataItem img {
+    width: 25px;
+    height: 25px;
+}
+
+.dataItem.dark img {
+    filter: invert(65%);
+}
+
+.dataItem span {
+    color: white;
+    margin-left: 10px;
+}
+
+.dataItem {
+    text-decoration: none;
+}
+
+.searchHr {
+    width: 500px;
+    height: 2px;
+    border: none;
+}
+
+/*Theme modes for Search and Data*/
+
+.searchHr.dark {
+    background-color: rgb(64, 63, 63);
+}
+
+.searchHr.light {
+    background-color: rgb(193, 190, 190);
+}
+
+.dataItem.dark span {
+    color: white
+}
+
+.dataItem.light span {
+    color: black;
+}
+
+.dataItem.light:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.dataItem.dark:hover {
+    cursor: pointer;
+    background-color: rgb(57, 56, 56);
+}
+
+@media (max-width:580px) {
+
+    .search input {
+        margin-left: 0px
+    }
+
+    .dataResult {
+        width: 300px !important;
+        height: 300px !important;
+    }
+
+    .dataItem {
+        height: 50px !important;
+        transform: translateX(-1%);
+        top: 0px;
+        width: 100%
+    }
+
+    .dataItem img {
+        height: 20px;
+        width: 20px;
+    }
+
+    .searchHr {
+        width: 90%;
+    }
+}

@@ -1,0 +1,44 @@
+.buttonsContainer {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 230px;
+}
+
+.warning {
+    margin-top: 10px;
+}
+
+.button {
+    font-size: 0.9em;
+    margin-left: 5px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+    height: 50px;
+    width: 140px;
+}
+
+.button.dark:hover,
+.button.light:hover {
+    background: rgb(130, 129, 129);
+    cursor: pointer;
+}
+
+.button.dark {
+    background: rgb(82, 80, 80);
+    color: lightgray;
+}
+
+.button.light {
+    background: rgb(199, 194, 194);
+    color: black;
+}
+
+.warning.dark {
+    color: rgb(129, 122, 122);
+}
+
+.warning.light {
+    color: rgb(114, 111, 111);
+}

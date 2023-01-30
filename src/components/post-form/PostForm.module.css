@@ -1,0 +1,240 @@
+/*Form Box*/
+
+@keyframes changeOpacity {
+    from {
+        opacity: 0;
+        filter: blur(13px);
+        transform: translateX(-5%);
+    }
+
+    to {
+        filter: blur(0);
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.postForm {
+    position: relative;
+    z-index: 1;
+    animation-name: changeOpacity;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    width: 795px;
+    min-height: 130px;
+    transition: all 0.4s ease;
+}
+
+.formWrapper {
+    padding-top: 10px;
+}
+
+.formHr {
+    width: 95%;
+    height: 2px;
+    border: none;
+}
+
+/*Theme classes for form box*/
+.postForm.light {
+    background-color: white;
+}
+
+.postForm.dark {
+    background-color: rgb(24 24 24)
+}
+
+.dark>.formHr {
+    background-color: rgb(64, 63, 63);
+}
+
+.light>.formHr {
+    background-color: rgb(237, 237, 237);
+}
+
+/* Image preview */
+
+.imagePreview {
+    padding-bottom: 5px;
+    height: 580px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.remove {
+    transition: all 0.6s ease;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: rgba(47, 49, 47, 0.6);
+    margin-top: 5px;
+    margin-left: 5px;
+    position: absolute;
+}
+
+.remove:hover {
+    scale: 1.2;
+}
+
+.dark>.remove {
+    filter: invert(100%);
+}
+
+
+.title {
+    text-align: left;
+    padding-left: 25px;
+    padding-bottom: 5px;
+    font-size: 1em;
+}
+
+.dark {
+    color: lightgray;
+}
+
+.light {
+    color: black;
+}
+
+/* Form Top*/
+
+
+.formTop {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.textarea {
+    resize: none;
+    font-family: Poppins, sans-serif;
+    outline: none;
+    font-size: 0.9em;
+    padding-left: 5px;
+    width: 600px;
+    border: none;
+    transition: all 0.4s ease;
+}
+
+
+/* Theme Classes for Form Top */
+
+.formTop.light {
+    color: black;
+}
+
+/* Form Bottom */
+.formBottom {
+    padding-top: 3px;
+    align-items: center;
+}
+
+.formOptions {
+    width: 98%;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.formOption {
+    align-items: center;
+    position: relative;
+    margin-left: 25px;
+    display: flex;
+}
+
+.formOption:hover {
+    filter: invert(70%);
+    cursor: pointer;
+}
+
+.optionPicture {
+    height: 30px;
+    width: 30px;
+}
+
+
+.formOption span {
+    white-space: nowrap;
+    max-width: 16vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 3px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+
+/* Theme classes for form bottom*/
+.postBtn.light:hover,
+.postBtn.dark:hover {
+    cursor: pointer;
+    background-color: rgb(110, 109, 109);
+}
+
+.formOption.dark span {
+    color: lightgray
+}
+
+.formOption.light {
+    color: rgb(31, 31, 31)
+}
+
+.postBtn.dark {
+    color: lightgray;
+    background-color: rgb(65, 64, 64);
+}
+
+.postBtn.light {
+    color: black;
+    background-color: rgb(225, 223, 223);
+}
+
+.light>.optionPicture {
+    filter: invert(25%);
+}
+
+.dark>.optionPicture {
+    filter: invert(75%);
+}
+
+@media (max-width:800px) {
+    .formOption span {
+        max-width: 25vw !important;
+    }
+
+    .postForm {
+        margin-right: 5px;
+        margin-left: 5px;
+        max-width: 97vw;
+        padding: 0px;
+    }
+
+    .imagePreview {
+        width: 100% !important;
+    }
+
+    .formOptions {
+        max-width: 98%;
+    }
+
+    .formOption {
+        margin-left: 5px !important;
+    }
+
+    .formTop textarea {
+        width: 90% !important;
+    }
+}
+
+@media (min-width: 800px) and (max-width:1250px) {
+    .postForm {
+        max-width: 58vw;
+    }
+
+    .formOption span {
+        max-width: 24vw !important;
+    }
+}

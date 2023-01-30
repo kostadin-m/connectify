@@ -1,0 +1,47 @@
+form {
+    text-align: center;
+}
+
+input,
+label {
+    display: block;
+}
+
+.img {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.chooseImg {
+    width: 40px !important;
+    height: 40px !important;
+    position: absolute;
+    top: 175px;
+    bottom: 5px;
+    left: 52%;
+}
+
+
+.image:hover,
+.chooseImg:hover {
+    cursor: pointer;
+}
+
+.image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+@media (max-width:580px) {
+    .image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .chooseImg {
+        top: 140px;
+        height: 35px;
+        width: 35px;
+    }
+}

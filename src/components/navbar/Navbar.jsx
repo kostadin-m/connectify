@@ -9,9 +9,12 @@ import SearchIcon from '../../assets/search_icon.svg'
 import './Navbar.css'
 import GuestNavbar from './components/GuestNavbar'
 import UserNavbar from './components/UserNavbar'
+import { useState } from 'react'
 
 
 export default function Navbar() {
+    const [focusedSearch, setFocusedSearch] = useState(false)
+
     const { theme, toggleTheme } = useThemeContext()
     const { user } = useAuthContext()
     return (
@@ -21,9 +24,12 @@ export default function Navbar() {
                     <Link to='/' >
                         <h2>mySocialMedia</h2>
                     </Link>
-                    <div className='input-wrapper'>
-                        <input className='nav-input' type='text' placeholder='Search Users' />
-                        <img className='search-icon' src={SearchIcon} alt='search-icon' />
+                    <div className={`input-wrapper ${focusedSearch ? 'focused' : ''}`}>
+                        <input
+                            className='nav-input' type='text' placeholder='Search Users'
+                            onFocus={() => setFocusedSearch(true)}
+                            onBlur={() => setFocusedSearch(false)}
+                        />
                     </div>
                 </li>
                 <li>

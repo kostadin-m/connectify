@@ -81,18 +81,45 @@
 .input-wrapper {
     border-radius: 15px;
     margin-left: 35px;
-    width: 280px;
-    height: 30px;
+    width: 300px;
+    height: 35px;
+}
+
+.input-wrapper.focused {
+    background-color: rgb(24 24 24) !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    vertical-align: top;
+    margin-top: 295px;
+    height: 350px;
+    width: 320px;
+}
+
+.input-wrapper.focused>.nav-input {
+    background-color: rgb(255, 255, 255) !important;
+    margin-top: 8px;
+}
+
+.dark>.navbar-content>.title>.input-wrapper {
     background-color: rgb(70, 70, 70);
 }
 
+.dark>.navbar-content>.title>.input-wrapper>.nav-input {
+    filter: invert(70%);
+}
+
+.light>.navbar-content>.title>.input-wrapper {
+    background-color: lightgray;
+}
+
 .nav-input {
+    color: black !important;
+    font-size: 0.9em;
     background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left !important;
     background-size: 20px !important;
     padding-left: 25px;
     margin-left: 5px;
     width: 280px;
-    height: 30px;
+    height: 35px;
     border-radius: 15px;
     border: none;
 }

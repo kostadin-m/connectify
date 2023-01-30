@@ -237,8 +237,62 @@
     background: rgb(60, 60, 60);
 }
 
+@media (max-width:399px) {
+    .input-wrapper.focused {
+        left: -1px;
+        position: absolute;
+        z-index: 2;
+        width: 68vw !important;
+    }
+
+    .input-wrapper.focused>.nav-input {
+        padding-left: 35px;
+        width: 75%;
+    }
+
+    .input-wrapper {
+        background: inherit !important;
+        margin-left: 5px;
+        width: 35px !important;
+    }
+
+    .nav-input {
+        background-size: 25px !important;
+        overflow: hidden;
+        width: 0px;
+    }
+}
+
+@media (min-width:400px) and (max-width:600px) {
+    .input-wrapper.focused {
+        position: absolute;
+        left: 160px;
+        width: 57vw !important;
+        z-index: 2;
+    }
+
+    .input-wrapper.focused>.nav-input {
+        width: 85% !important;
+    }
+
+    .input-wrapper {
+        margin-right: auto;
+        margin-left: 5px;
+        width: 30vw !important;
+    }
+
+    .nav-input {
+        width: 19vw !important;
+    }
+}
+
 
 @media (max-width:800px) {
+    .navbar img {
+        width: 20px;
+        height: 20px;
+    }
+
     .mobile {
         display: block !important;
     }

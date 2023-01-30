@@ -86,7 +86,6 @@
 }
 
 .input-wrapper.focused {
-    background-color: rgb(24 24 24) !important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     vertical-align: top;
     margin-top: 295px;
@@ -94,9 +93,24 @@
     width: 320px;
 }
 
+.dark>.navbar-content>.title>.input-wrapper.focused {
+    background-color: rgb(24 24 24) !important;
+}
+
+.light>.navbar-content>.title>.input-wrapper.focused {
+    background-color: white;
+}
+
 .input-wrapper.focused>.nav-input {
-    background-color: rgb(255, 255, 255) !important;
     margin-top: 8px;
+}
+
+.dark>.navbar-content>.title>.input-wrapper.focused>.nav-input {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.light>.navbar-content>.title>.input-wrapper.focused>.nav-input {
+    background-color: lightgray !important;
 }
 
 .dark>.navbar-content>.title>.input-wrapper {
@@ -112,7 +126,6 @@
 }
 
 .nav-input {
-    color: black !important;
     font-size: 0.9em;
     background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left !important;
     background-size: 20px !important;

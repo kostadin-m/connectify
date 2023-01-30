@@ -1,3 +1,4 @@
+/*NavBar Layout*/
 .navbar {
     position: fixed;
     text-align: center;
@@ -14,11 +15,11 @@
     display: none !important;
 }
 
-
 .navbar a {
     text-decoration: none;
 }
 
+/*Navbar themes*/
 .navbar.light {
     background-color: white;
 }
@@ -27,26 +28,28 @@
     background-color: rgb(24 24 24)
 }
 
-.navbar .navbar-content {
+/*Navbar Content*/
+
+.navbar-content {
     margin-right: 15px;
     height: 25px;
     display: flex;
     align-items: center;
 }
 
-.navbar .nav-item {
+.nav-item {
     position: relative;
     text-align: center;
     display: flex;
     padding: 15px;
 }
 
-.navbar .nav-item:hover {
+.nav-item:hover {
     cursor: pointer;
     filter: invert(40%);
 }
 
-.navbar .title {
+.title {
     padding-left: 15px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -55,33 +58,29 @@
     margin-right: auto;
 }
 
-.navbar .title h2 {
+.title h2 {
     color: aqua;
 }
-
 
 .navbar img {
     width: 25px;
     height: 25px;
 }
 
-.navbar.dark>.navbar-content>.nav-item img {
+/*Nav Content Themes*/
+.dark>.navbar-content>.nav-item img {
     filter: invert(60%);
-}
-
-.search-icon {
-    position: absolute;
-    left: 170px;
 }
 
 .dark>.navbar-content>.title>.search-icon {
     filter: invert(60%);
 }
 
+/*Search Users Input*/
 .input-wrapper {
     border-radius: 15px;
     margin-left: 35px;
-    width: 300px;
+    width: 320px;
     height: 35px;
 }
 
@@ -105,6 +104,19 @@
     margin-top: 8px;
 }
 
+.nav-input {
+    font-size: 0.9em;
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left !important;
+    background-size: 20px !important;
+    padding-left: 25px;
+    margin-left: 5px;
+    width: 280px;
+    height: 35px;
+    border-radius: 15px;
+    border: none;
+}
+
+/*Themes for user Search*/
 .dark>.navbar-content>.title>.input-wrapper.focused>.nav-input {
     background-color: rgb(255, 255, 255) !important;
 }
@@ -125,19 +137,8 @@
     background-color: lightgray;
 }
 
-.nav-input {
-    font-size: 0.9em;
-    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left !important;
-    background-size: 20px !important;
-    padding-left: 25px;
-    margin-left: 5px;
-    width: 280px;
-    height: 35px;
-    border-radius: 15px;
-    border: none;
-}
 
-.navbar .nav-item p {
+.nav-item p {
     font-size: 0.9em;
     font-weight: bold;
     padding: 3px;
@@ -146,7 +147,7 @@
     margin-right: 20px;
 }
 
-.navbar.light .nav-item p {
+.light .nav-item p {
     color: rgb(53, 52, 52);
 }
 
@@ -154,15 +155,40 @@
     display: flex;
 }
 
-.navbar .name {
+.name {
     margin-right: 12px;
 }
 
-.navbar .title h2:hover {
+.title h2:hover {
     color: aquamarine;
 }
 
 /*Nav Friends for mobile devices*/
+
+
+.nav-friends.show {
+    animation-name: showFriends;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+}
+
+.nav-friends.hide {
+    animation-name: hideFriends;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+}
+
+.nav-friends {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    opacity: 1;
+    border-radius: 15px;
+    top: 80px;
+    left: 42%;
+    background-color: white;
+    position: absolute;
+    height: 350px;
+    width: 55vw;
+}
 
 @keyframes showFriends {
     from {
@@ -188,36 +214,12 @@
     }
 }
 
-.nav-friends.show {
-    animation-name: showFriends;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-out;
-}
-
-.nav-friends.hide {
-    animation-name: hideFriends;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-out;
-}
-
-.nav-friends {
-    border: 1px solid black;
-    opacity: 1;
-    border-radius: 15px;
-    top: 80px;
-    left: 42%;
-    background-color: white;
-    position: absolute;
-    height: 350px;
-    width: 55vw;
-}
-
+/*Theme for nav friends*/
 .dark>.navbar-content>.nav-friends {
     background-color: rgb(24 24 24);
 }
 
-
-
+/*User dropdown button*/
 .user-dropdown-button {
     font-weight: bold;
     text-align: center;
@@ -227,6 +229,7 @@
     width: 75px;
 }
 
+/*Themes for user dropdown button*/
 .user-dropdown-button.light {
     color: black;
     background: rgb(237, 237, 237);
@@ -237,21 +240,20 @@
     background: rgb(60, 60, 60);
 }
 
-@media (max-width:399px) {
+@media (max-width:600px) {
     .input-wrapper.focused {
         left: -1px;
         position: absolute;
         z-index: 2;
-        width: 68vw !important;
+        width: 72vw !important;
     }
 
     .input-wrapper.focused>.nav-input {
         padding-left: 35px;
-        width: 75%;
+        width: 80%;
     }
 
     .input-wrapper {
-        background: inherit !important;
         margin-left: 5px;
         width: 35px !important;
     }
@@ -262,30 +264,6 @@
         width: 0px;
     }
 }
-
-@media (min-width:400px) and (max-width:600px) {
-    .input-wrapper.focused {
-        position: absolute;
-        left: 160px;
-        width: 57vw !important;
-        z-index: 2;
-    }
-
-    .input-wrapper.focused>.nav-input {
-        width: 85% !important;
-    }
-
-    .input-wrapper {
-        margin-right: auto;
-        margin-left: 5px;
-        width: 30vw !important;
-    }
-
-    .nav-input {
-        width: 19vw !important;
-    }
-}
-
 
 @media (max-width:800px) {
     .navbar img {

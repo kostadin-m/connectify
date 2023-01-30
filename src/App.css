@@ -1,4 +1,6 @@
-
+body::-webkit-scrollbar {
+  display: none;
+}
 
 form {
   text-align: center;

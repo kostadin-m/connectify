@@ -68,7 +68,21 @@
 .navbar.dark>.navbar-content>.nav-item img {
     filter: invert(60%);
 }
-
+.search-icon{
+    position: absolute;
+    left: 170px;
+}
+.dark > .navbar-content >.title >.search-icon{
+    filter: invert(60%);
+}
+.nav-input{
+    padding-left: 25px;
+    margin-left: 15px;
+    width: 280px;
+    height: 25px;
+    border-radius: 15px;
+    border: none;
+}
 .navbar .nav-item p {
     font-size: 0.9em;
     font-weight: bold;

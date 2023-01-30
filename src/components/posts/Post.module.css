@@ -345,7 +345,7 @@
     color: black
 }
 
-@media (max-width:800px) {
+@media (max-width:799px) {
     .post {
         min-height: 500px !important;
         margin-left: 5px;
@@ -358,21 +358,13 @@
         max-height: 400px !important;
     }
 
-    .commentsInput {
-        width: 70% !important;
-    }
-
-    .commentContent {
-        width: 85% !important;
-    }
-
     .comment {
         margin-left: 5px !important;
     }
 
 }
 
-@media (min-width:800px) and (max-width:1250px) {
+@media (min-width:800px) and (max-width:1400px) {
     .post {
         max-width: 58vw;
     }

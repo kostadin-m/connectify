@@ -229,7 +229,7 @@
     }
 }
 
-@media (min-width: 800px) and (max-width:1250px) {
+@media (min-width: 800px) and (max-width:1400px) {
     .postForm {
         max-width: 58vw;
     }

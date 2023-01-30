@@ -385,7 +385,7 @@ body {
   }
 }
 
-@media (max-width:800px) {
+@media (max-width:799px) {
   .btn span {
     font-size: 0.8em;
   }
@@ -414,7 +414,7 @@ body {
   }
 }
 
-@media (min-width:580px) and (max-width:800px) {
+@media (min-width:580px) and (max-width:799px) {
 
   .page-item:nth-child(1),
   .page-item:nth-child(3) {
@@ -473,9 +473,16 @@ body {
 }
 
 @media (min-width:1250px) and (max-width:1850px) {
+  .page:nth-child(1) {
+    min-width: 33vw !important;
+  }
+
+  .page:nth-child(2) {
+    min-width: 36vw;
+  }
+
   .profile-page-item {
     padding: 0;
-    min-width: 36vw;
   }
 
   .page {

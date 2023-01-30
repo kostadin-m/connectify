@@ -21,8 +21,10 @@ export default function Navbar() {
                     <Link to='/' >
                         <h2>mySocialMedia</h2>
                     </Link>
-                    <input className ='nav-input' type='text' placeholder='Search Users' />
-                    <img className='search-icon' src={SearchIcon} alt='search-icon' />
+                    <div className='input-wrapper'>
+                        <input className='nav-input' type='text' placeholder='Search Users' />
+                        <img className='search-icon' src={SearchIcon} alt='search-icon' />
+                    </div>
                 </li>
                 <li>
                 </li>

@@ -68,21 +68,35 @@
 .navbar.dark>.navbar-content>.nav-item img {
     filter: invert(60%);
 }
-.search-icon{
+
+.search-icon {
     position: absolute;
     left: 170px;
 }
-.dark > .navbar-content >.title >.search-icon{
+
+.dark>.navbar-content>.title>.search-icon {
     filter: invert(60%);
 }
-.nav-input{
-    padding-left: 25px;
-    margin-left: 15px;
+
+.input-wrapper {
+    border-radius: 15px;
+    margin-left: 35px;
     width: 280px;
-    height: 25px;
+    height: 30px;
+    background-color: rgb(70, 70, 70);
+}
+
+.nav-input {
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left !important;
+    background-size: 20px !important;
+    padding-left: 25px;
+    margin-left: 5px;
+    width: 280px;
+    height: 30px;
     border-radius: 15px;
     border: none;
 }
+
 .navbar .nav-item p {
     font-size: 0.9em;
     font-weight: bold;

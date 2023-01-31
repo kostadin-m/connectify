@@ -14,7 +14,7 @@
 }
 
 .friends {
-    overflow-y: scroll;
+    overflow-y: hidden;
     text-align: left;
     animation-name: changeOpacity;
     animation-duration: 0.5s;
@@ -23,7 +23,7 @@
     margin-top: 240px;
     border-radius: 15px;
     width: 400px;
-    max-height: 300px;
+    max-height: 400px;
     transition: all 0.4s ease;
 }
 
@@ -44,12 +44,13 @@
     font-size: 1.3em;
     font-weight: bold;
 }
+
 .listFriends {
     text-align: left;
     overflow: hidden;
     overflow-y: auto;
     width: 100%;
-    height: 100%;
+    height: 360px;
 }
 
 .friend {
@@ -102,6 +103,7 @@
 .light>.title {
     color: black;
 }
+
 @media (max-width:800px) {
     .friends {
         margin-bottom: 10px;

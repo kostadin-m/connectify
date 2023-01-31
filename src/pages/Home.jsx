@@ -14,6 +14,9 @@ export default function Home() {
             </div>
             <div className='page-item'>
                 <PostForm />
+                <div className='mobile-people'>
+                    <FollowPeople/>
+                </div>
                 <Feed />
             </div>
             <FollowPeople />

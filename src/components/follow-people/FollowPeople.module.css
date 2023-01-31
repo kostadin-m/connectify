@@ -13,10 +13,11 @@
     overflow-y: hidden;
     text-align: left;
     border-radius: 15px;
-    max-height: 400px;
+    max-height: 350px;
     width: 21vw;
     background: white;
     margin-left: 15px;
+    margin-top: 10px;
 }
 
 .box.dark {

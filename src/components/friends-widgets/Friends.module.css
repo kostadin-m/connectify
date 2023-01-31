@@ -5,6 +5,7 @@
     text-decoration: none;
 }
 
+
 /*Box for Friends request*/
 @keyframes changeOpacity {
     from {
@@ -30,7 +31,7 @@
     margin-top: 240px;
     border-radius: 15px;
     width: 400px;
-    max-height: 320px;
+    max-height: 380px;
     transition: all 0.4s ease;
 }
 
@@ -58,7 +59,7 @@
     overflow: hidden;
     overflow-y: auto;
     width: 100%;
-    height: 360px;
+    height: 290px;
 }
 
 .friend {
@@ -74,6 +75,12 @@
     margin-top: 10px;
 }
 
+.friend.dark:hover{
+    background-color: rgb(52, 51, 51);
+}
+.friend.light:hover{
+    background-color: rgb(179, 170, 170);
+}
 .friend img {
     margin-left: 10px;
 }

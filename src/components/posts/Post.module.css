@@ -14,7 +14,10 @@
 }
 
 .post {
+    z-index: 1;
+    position: relative;
     margin-bottom: 15px;
+    margin-left: 50px;
     border-radius: 15px;
     width: 795px;
     min-height: 650px;
@@ -364,8 +367,8 @@
 
 }
 
-@media (min-width:800px) and (max-width:1400px) {
+@media (min-width:800px) and (max-width:1850px) {
     .post {
-        max-width: 58vw;
+        max-width: 86%;
     }
 }

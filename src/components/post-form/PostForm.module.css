@@ -21,6 +21,7 @@
     animation-duration: 0.5s;
     animation-timing-function: ease-out;
     margin-bottom: 15px;
+    margin-left: 50px;
     border-radius: 15px;
     width: 795px;
     min-height: 130px;
@@ -229,9 +230,9 @@
     }
 }
 
-@media (min-width: 800px) and (max-width:1400px) {
+@media (min-width: 800px) and (max-width:1850px) {
     .postForm {
-        max-width: 58vw;
+        max-width: 86%;
     }
 
     .formOption span {

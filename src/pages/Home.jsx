@@ -3,6 +3,7 @@ import FriendRequests from '../components/friends-widgets/Friends'
 import PostForm from '../components/post-form/PostForm'
 import UserWidget from '../components/user-widget/UserWidget'
 import Feed from '../components/posts/Feed'
+import FollowPeople from '../components/follow-people/FollowPeople'
 
 export default function Home() {
     return (
@@ -15,6 +16,7 @@ export default function Home() {
                 <PostForm />
                 <Feed />
             </div>
+            <FollowPeople />
         </div>
     )
 }

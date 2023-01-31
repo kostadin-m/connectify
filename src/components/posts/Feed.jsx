@@ -1,6 +1,3 @@
-import { useThemeContext } from '../../hooks/useThemeContext'
-import { useState } from 'react'
-
 //components
 import Post from './components/Post'
 

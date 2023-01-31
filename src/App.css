@@ -57,7 +57,8 @@ body {
 }
 
 .page-item {
-  min-width: 400px;
+  text-align: center;
+  min-width: 330px;
   margin-right: 0;
   margin-left: 10px;
   padding: 10px;

@@ -4,8 +4,25 @@ import PostForm from '../components/post-form/PostForm'
 import UserWidget from '../components/user-widget/UserWidget'
 import Feed from '../components/posts/Feed'
 import FollowPeople from '../components/follow-people/FollowPeople'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 export default function Home() {
+    const [isMobile, setIsMobile] = useState(false)
+
+    // checking the current window size so we can conditionally render "FollowPeople" Component
+    const handleResize = () => {
+        if (window.innerWidth < 1250) {
+            setIsMobile(true)
+        } else {
+            setIsMobile(false)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize)
+    })
+
     return (
         <div className="page">
             <div className='page-item'>
@@ -14,12 +31,10 @@ export default function Home() {
             </div>
             <div className='page-item'>
                 <PostForm />
-                <div className='mobile-people'>
-                    <FollowPeople/>
-                </div>
+                {isMobile && <FollowPeople />}
                 <Feed />
             </div>
-            <FollowPeople />
+            {!isMobile && <FollowPeople />}
         </div>
     )
 }

@@ -1,9 +1,22 @@
 .box{
+    text-align: left;
+    border-radius: 15px;
     height: 600px;
     width: 21vw;
     background: white;
     margin-left: 15px;
 }
+.box.dark {
+    background-color: rgb(24 24 24)
+}
+
+.box.light {
+    background-color: white;
+}
+.dark  > h3{
+    color: white;
+}
+
 @media (min-width:1250px) and (max-width:1500px){
     .box{
         width: 36vw;

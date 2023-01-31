@@ -16,7 +16,6 @@ export default function FriendRequests() {
     return (
         <div className={`${styles.friends} ${styles[theme]}`}>
             <h2 className={styles.title}>Friend List</h2>
-            <hr className={styles.friendsHr} />
             <FriendList theme={theme} />
         </div>
     )

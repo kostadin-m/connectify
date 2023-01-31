@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import Add from '../../../assets/add_friends.svg'
 import Accept from "../../../assets/accept_request.svg";
 import Deny from "../../../assets/close_icon.svg";
 import Test from "../../../assets/test.jpg";
@@ -35,8 +36,7 @@ export default function FriendList({ theme }) {
         <img className="profile-image" src={Test} alt="profile picture" />
         <p className={styles.name}>Kostadin Atanasov Majerski</p>
         <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+          <button className={`btn ${theme}`}>Add friend</button>
         </div>
       </div>
       <div className={`${styles.friend} ${styles[theme]}`}>

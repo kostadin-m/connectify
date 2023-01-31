@@ -9,6 +9,7 @@
 }
 
 .box {
+    display: block;
     overflow-x: hidden;
     overflow-y: hidden;
     text-align: left;
@@ -33,6 +34,10 @@
 }
 
 @media (max-width:1250px) {
+    .box h2 {
+        text-align: center;
+    }
+
     .box {
         display: block;
         height: 260px;
@@ -51,8 +56,6 @@
 
 @media (min-width:800px) and (max-width: 1250px) {
     .box {
-        height: 260px;
-        display: block;
         margin-left: 5px;
         margin-right: 5px;
         width: 86%;

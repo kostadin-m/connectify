@@ -132,12 +132,7 @@
 
 @media (max-width:1250px) {
 
-    /*Styles for "People you may know" component on mobile devices*/
-    .box h2 {
-        text-align: center;
-    }
-
-    /*Making the scroll horizontal*/
+    /*Styles for "People you may know" component on smaller devices*/
     .box>.listFriends {
         overflow-y: hidden;
         overflow-x: auto;

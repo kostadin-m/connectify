@@ -16,7 +16,8 @@
     "react-chat-engine-pretty": "^0.1.8",
     "react-dom": "^18.2.0",
     "react-places-autocomplete": "^7.3.0",
-    "react-router-dom": "^6.6.1"
+    "react-router-dom": "^6.6.1",
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

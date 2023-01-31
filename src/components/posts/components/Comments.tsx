@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import React from 'react'
 
 import Test from '../../../assets/test.jpg'
 //styles

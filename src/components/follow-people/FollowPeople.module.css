@@ -1,7 +1,19 @@
+.box > h2{
+    position: sticky;
+    background-color: inherit;
+    width:100%;
+    height: 35px;
+    font-size: 1.3em;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
 .box{
+    overflow-x: hidden;
+    overflow-y: hidden;
     text-align: left;
     border-radius: 15px;
-    height: 600px;
+    max-height: 450px;
     width: 21vw;
     background: white;
     margin-left: 15px;
@@ -13,13 +25,13 @@
 .box.light {
     background-color: white;
 }
-.dark  > h3{
+.dark  > h2{
     color: white;
 }
 
 @media (min-width:1250px) and (max-width:1500px){
     .box{
-        width: 36vw;
+        width: 40vw;
         transform: translateX(-10%);
     }
 }

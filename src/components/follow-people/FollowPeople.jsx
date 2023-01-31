@@ -11,7 +11,7 @@ export default function FollowPeople() {
 
   return (
     <div className={`${styles.box} ${styles[theme]}`}>
-        <h3>People you may know</h3>
+        <h2>People you may know</h2>
         <FriendList theme={theme}/>
     </div>
   )

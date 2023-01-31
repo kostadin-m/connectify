@@ -278,6 +278,7 @@
 
 @media (max-width:1439px) {
     .nav-item {
+        margin-top: 0px;
         margin-right: 10px;
         padding: 0px !important;
     }

@@ -1,5 +1,5 @@
-.friend > a{
-    position:absolute;
+.friend>a {
+    position: absolute;
     min-height: 60px;
     width: 20vw;
     text-decoration: none;
@@ -31,7 +31,7 @@
     margin-top: 240px;
     border-radius: 15px;
     width: 400px;
-    
+
     max-height: 380px;
     transition: all 0.4s ease;
 }
@@ -47,7 +47,7 @@
 }
 
 /*Friend List data and text*/
-.title {
+.friends>h2 {
     margin-left: 10px;
     margin-top: 10px;
     font-size: 1.3em;
@@ -76,12 +76,14 @@
     margin-top: 10px;
 }
 
-.friend.dark:hover{
+.friend.dark:hover {
     background-color: rgb(52, 51, 51);
 }
-.friend.light:hover{
+
+.friend.light:hover {
     background-color: rgb(179, 170, 170);
 }
+
 .friend img {
     margin-left: 10px;
 }
@@ -92,7 +94,7 @@
 }
 
 .buttons {
-    position:relative;
+    position: relative;
     display: flex;
     margin-left: auto;
     margin-right: 12px;
@@ -120,11 +122,11 @@
     filter: invert(65%);
 }
 
-.dark>.title {
+.dark>h2 {
     color: white;
 }
 
-.light>.title {
+.light>h2 {
     color: black;
 }
 
@@ -151,8 +153,8 @@
     }
 }
 
-@media (1250px <= width <= 1400px){
-    .friend> a{
+@media (1250px <=width <=1400px) {
+    .friend>a {
         width: 28vw;
     }
 }

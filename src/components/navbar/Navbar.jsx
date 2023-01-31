@@ -37,7 +37,7 @@ export default function Navbar() {
                 <li className='nav-item'>
                     <img className='light-mode' onClick={toggleTheme} src={LightMode} alt='light mode icon' />
                 </li>
-                {!user ? <UserNavbar theme={theme} /> : <GuestNavbar />}
+                {user ? <UserNavbar theme={theme} /> : <GuestNavbar />}
             </ul>
         </nav>
     )

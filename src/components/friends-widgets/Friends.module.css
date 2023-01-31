@@ -62,7 +62,7 @@
 
 .friend {
     border-radius: 10px;
-    width: 95%;
+    width: 100%;
     align-items: center;
     display: flex;
     min-height: 60px;
@@ -85,7 +85,8 @@
 
 .buttons {
     display: flex;
-    margin-left: auto
+    margin-left: auto;
+    margin-right: 12px;
 }
 
 .button {

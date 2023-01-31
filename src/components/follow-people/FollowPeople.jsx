@@ -4,15 +4,16 @@ import { useThemeContext } from '../../hooks/useThemeContext'
 import FriendList from '../friends-widgets/components/FriendList'
 
 //styles
-import styles from './FollowPeople.module.css'
+import './FollowPeople.css'
+import '../friends-widgets/Friends.css'
 
 export default function FollowPeople() {
-    const {theme} = useThemeContext()
+  const { theme } = useThemeContext()
 
   return (
-    <div className={`${styles.box} ${styles[theme]}`}>
-        <h2>People you may know</h2>
-        <FriendList theme={theme}/>
+    <div className={`box ${theme}`}>
+      <h2>People you may know</h2>
+      <FriendList theme={theme} />
     </div>
   )
 }

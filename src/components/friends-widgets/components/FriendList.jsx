@@ -5,88 +5,98 @@ import Accept from "../../../assets/accept_request.svg";
 import Deny from "../../../assets/close_icon.svg";
 import Test from "../../../assets/test.jpg";
 
-import styles from "../Friends.module.css";
-
 export default function FriendList({ theme }) {
   return (
-    <div className={styles.listFriends}>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+    <div className='listFriends'>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-          <Link onClick={() => console.log("redirected")} to="/" />
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img
-            className={styles.button}
-            onClick={() => console.log("clicked")}
-            src={Accept}
-            alt="accept icon"
-          />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <button className={`btn ${theme}`}>Add friend</button>
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
-      <div className={`${styles.friend} ${styles[theme]}`}>
+      <div className={`friend ${theme}`}>
         <img className="profile-image" src={Test} alt="profile picture" />
-        <p className={styles.name}>Kostadin Atanasov Majerski</p>
-        <div className={`${styles.buttons} ${styles[theme]}`}>
-          <img className={styles.button} src={Accept} alt="accept icon" />
-          <img className={styles.button} src={Deny} alt="accept icon" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
         </div>
       </div>
+      <div className={`friend ${theme}`}>
+        <img className="profile-image" src={Test} alt="profile picture" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
+        </div>
+      </div>
+      <div className={`friend ${theme}`}>
+        <img className="profile-image" src={Test} alt="profile picture" />
+        <p className='name'>Kostadin Atanasov Majerski</p>
+        <Link onClick={() => console.log("redirected")} to="/" />
+        <div className={`buttons ${theme}`}>
+          <button className={`btn ${theme}`}>Add Friend</button>
+        </div>
+      </div>
+
     </div>
   );
 }

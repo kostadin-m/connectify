@@ -46,9 +46,10 @@ body {
 
 /*Page and page item layout*/
 
-.mobile-people{
+.mobile-people {
   display: none;
 }
+
 .page {
   padding-top: 90px;
   text-align: center;
@@ -240,7 +241,7 @@ body {
   padding: 14px 28px;
   border-radius: 15px;
   width: 500px;
-  max-height: 350px;
+  min-height: 350px;
 }
 
 .close-modal {
@@ -433,11 +434,13 @@ body {
     width: 100vw;
   }
 }
+
 @media (max-width:1250px) {
-  .mobile-people{
+  .mobile-people {
     display: flex !important;
   }
 }
+
 @media (min-width:800px) and (max-width:1250px) {
   .profile-page-item {
     min-width: 34vw;

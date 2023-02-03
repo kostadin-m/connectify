@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import React from 'react'
-
 import Test from '../../../assets/test.jpg'
 //styles
 import styles from '../Post.module.css'
@@ -10,7 +8,12 @@ import styles from '../Post.module.css'
 import Button from '../../common/Button'
 import TextArea from '../../common/TextArea'
 
-export default function Comments({ theme, classname }) {
+interface Props {
+    theme: string
+    classname: string
+}
+
+export default function Comments({ theme, classname }: Props) {
     const [comment, setComment] = useState('')
 
     return (
@@ -82,7 +85,7 @@ export default function Comments({ theme, classname }) {
             <div className={`${styles.inputContainer} ${styles[theme]}`}>
                 <img className='profile-image' src={Test} alt='current user icon' />
                 <TextArea value={comment} setValue={setComment} placeholder='Write a comment' theme={theme} />
-                <Button theme={theme} text={"Post a comment"} />
+                <Button theme={theme} onClick={() => console.log('')} text={"Post a comment"} />
             </div>
         </div>
     )

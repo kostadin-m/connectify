@@ -19,6 +19,54 @@ body.active-modal {
   overflow-y: hidden;
 }
 
+form {
+  text-align: center;
+}
+
+input,
+label {
+  display: block;
+}
+
+.form-img {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.choose-img {
+  width: 40px !important;
+  height: 40px !important;
+  position: absolute;
+  top: 175px;
+  bottom: 5px;
+  left: 52%;
+}
+
+
+.image:hover,
+.choose-img:hover {
+  cursor: pointer;
+}
+
+.image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+@media (max-width:580px) {
+  .image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .choose-img {
+    top: 140px;
+    height: 35px;
+    width: 35px;
+  }
+}
+
 body {
   font-family: Poppins, sans-serif;
   margin: 0;
@@ -36,9 +84,11 @@ h4 {
   margin: 0;
   padding: 0;
 }
-html{
+
+html {
   overflow-x: hidden;
 }
+
 ul {
   list-style-type: none;
 }

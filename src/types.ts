@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import { ChatHeaderProps, ChatObject } from "react-chat-engine-advanced";
+import { ChatCardProps, ChatHeaderProps, ChatObject } from "react-chat-engine-advanced";
 
 //Context Provider
 export interface IContextProviderProps {
@@ -120,9 +120,15 @@ export type IDocumentAction =
 //3.Chat Engine Custom Interfaces
 
 
-interface CustomChatHeaderProps extends ChatHeaderProps {
+export interface CustomChatHeaderProps extends ChatHeaderProps {
     chat?: ChatObject;
     username: string;
     secret: string;
+}
+export interface CustomChatCardProps extends ChatCardProps {
+    username: string;
+    isActive: boolean;
+    onChatCardClick: (chatId: number) => void;
+    chat?: ChatObject;
 }
 

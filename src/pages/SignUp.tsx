@@ -1,8 +1,9 @@
-import React from 'react'
-import { useSignUp } from '../hooks/useSignUp'
 import { useState } from 'react'
-import { useThemeContext } from '../hooks/useThemeContext'
 import { useNavigate } from 'react-router-dom'
+
+//custom hooks
+import { useSignUp } from '../hooks/useSignUp'
+import { useThemeContext } from '../hooks/useThemeContext'
 
 //icons
 import NoImage from '../assets/no_image.jpg'

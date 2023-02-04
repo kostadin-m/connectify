@@ -15,7 +15,7 @@ import Comments from './Comments'
 //styles
 import styles from '../Post.module.css'
 import { useRef } from 'react'
-import { CSSClassesState } from 'src/types'
+import { CSSClassesState } from '../../../types'
 
 
 export default function Post() {

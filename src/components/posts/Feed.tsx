@@ -1,8 +1,11 @@
-import React from 'react'
 //components
 import Post from './components/Post'
 
-export default function Feed({ id }) {
+interface Props {
+    id?: string | null
+}
+
+export default function Feed({ id }: Props) {
     return (
         <div className='feed'>
             <Post />

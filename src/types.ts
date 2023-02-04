@@ -34,18 +34,20 @@ export interface IThemeContext {
 //User Data in the db
 
 export interface UserObject {
-    readonly online: boolean
-    readonly displayName: string | null
-    readonly friends: FriendsObject[]
-    readonly location: string
-    readonly sentFriendRequests: object[]
-    readonly receivedFriendRequests: object[]
-    readonly photoURL: string | null
+    email: string
+    online: boolean
+    displayName: string
+    friends: NonNullable<FriendsObject[]>
+    location: string
+    sentFriendRequests: NonNullable<FriendsObject[]>
+    receivedFriendRequests: NonNullable<FriendsObject[]>
+    photoURL: string
+    id: string
 }
 
 //User Data in the Auth
-export interface IAuthUserObject extends UserObject, User {
-
+export interface IAuthUserObject extends UserObject {
+    firebaseUser: User
 }
 //Auth Reducer State
 export interface IAuthState {
@@ -79,7 +81,7 @@ export interface IImageInput {
 //1. Collections
 
 //define all the types that a collection accepts
-export type CollectionType = FriendsObject
+export type CollectionType = FriendsObject | UserObject
 
 export interface ICollectionState<T extends CollectionType> {
     document: T[] | null
@@ -92,12 +94,13 @@ export type ICollectionAction<T extends CollectionType> =
     { type: "ADD_DOCUMENTS", payload: T[] | null } |
     { type: "ERROR", payload: string }
 
+type NonNullable<T> = Exclude<T, null | undefined>
 
 export interface FriendsObject {
     displayName: string
     photoURL: string
     id: string
-    friends: FriendsObject[]
+    friends: NonNullable<FriendsObject[]>
 }
 
 //2.Documents

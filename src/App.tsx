@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
 
 //custom hooks
 import { useAuthContext } from './hooks/useAuthContext'
 import { useThemeContext } from './hooks/useThemeContext'
-
-//firebase
-
 
 //components
 import Navbar from './components/navbar/Navbar'
@@ -16,16 +11,15 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import ProfilePage from './pages/ProfilePage'
 import Messages from './pages/Messages'
+import EditProfile from './pages/EditProfile'
 
 //styles
 import './App.css'
-import EditProfile from './pages/EditProfile'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
   const { theme } = useThemeContext()
-  console.log(user)
-
+  console.log(theme)
   return (
     <div className={`App ${theme}`}>
       {!authIsReady ? <div className='spinner'>Loading...</div> :

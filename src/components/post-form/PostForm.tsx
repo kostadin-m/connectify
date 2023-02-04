@@ -1,5 +1,5 @@
 import { useThemeContext } from '../../hooks/useThemeContext'
-import { SetStateAction, useState } from 'react'
+import { useState } from 'react'
 
 //components
 import LocationModal from '../modals/LocationModal/LocationModal'

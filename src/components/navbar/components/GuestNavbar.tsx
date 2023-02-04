@@ -1,5 +1,6 @@
-import React from "react"
 import { Link } from "react-router-dom"
+
+//components
 import SignIn from '../../../assets/sign_in_icon.svg'
 import Login from '../../../assets/login_icon.svg'
 

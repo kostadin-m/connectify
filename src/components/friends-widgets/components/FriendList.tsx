@@ -4,7 +4,7 @@ import Add from '../../../assets/add_friends.svg'
 import Accept from "../../../assets/accept_request.svg";
 import Deny from "../../../assets/close_icon.svg";
 import Test from "../../../assets/test.jpg";
-import { FriendsObject } from "src/types";
+import { FriendsObject } from "../../../types";
 
 interface Props {
   theme: string | null

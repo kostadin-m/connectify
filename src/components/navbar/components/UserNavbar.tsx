@@ -3,6 +3,8 @@ import { useLogout } from '../../../hooks/useLogout'
 import { useThemeContext } from '../../../hooks/useThemeContext'
 import { Link } from 'react-router-dom'
 
+import { CSSClassesState } from '../../../types'
+
 
 //icons
 import FriendsIcon from '../../../assets/friends.svg'
@@ -10,15 +12,19 @@ import Chat from '../../../assets/chat_icon.svg'
 
 //components
 import FriendList from '../../friends-widgets/components/FriendList'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
+interface NavFriendsProps {
+    friendsClass: CSSClassesState
+}
 
-const NavFriends = ({ friendsClass }) => {
+const NavFriends = ({ friendsClass }: NavFriendsProps) => {
     const { theme } = useThemeContext()
-
+    const { user } = useAuthContext()
     return (
         <>
             <div className={`nav-friends ${friendsClass}`}>
-                <FriendList theme={theme} />
+                <FriendList theme={theme} friends={user?.friends!} />
             </div>
         </>
     )

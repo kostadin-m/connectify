@@ -1,19 +1,17 @@
-import { useThemeContext } from '../../hooks/useThemeContext'
-
+//icons
 import Location from '../../assets/location_icon.svg'
 import Likes from '../../assets/liked_icon.svg'
 
-import Test from '../../assets/test.jpg'
-
-import styles from './UserWidget.module.css'
+//custom hooks
+import { useThemeContext } from '../../hooks/useThemeContext'
 import { useAuthContext } from '../../hooks/useAuthContext'
+
+//styles
+import styles from './UserWidget.module.css'
 
 export default function UserWidget() {
     const { theme } = useThemeContext()
     const { user } = useAuthContext()
-
-    console.log(user)
-
 
     return (
         <div className={`${styles.widgetBox} ${styles[theme]}`}>

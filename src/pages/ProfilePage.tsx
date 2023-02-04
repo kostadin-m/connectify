@@ -12,7 +12,7 @@ export default function ProfilePage() {
                 <FriendRequests />
             </div>
             <div className="profile-page-item">
-                <Feed />
+                <Feed id={null} />
             </div>
 
         </div >

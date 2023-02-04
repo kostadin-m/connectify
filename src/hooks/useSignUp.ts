@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { storage } from '../firebase/config'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 import { checkError } from "../helpers/checkError"
+import { IAuthUserObject } from "../types"
 
 export const useSignUp = () => {
     const [isCancelled, setIsCancelled] = useState<boolean>(false)
@@ -21,22 +22,24 @@ export const useSignUp = () => {
         try {
             setIsCancelled(false)
             const res = await createUserWithEmailAndPassword(auth, email, password)
+
+            const firebaseUser = res.user
             if (!res) {
                 throw new Error('Could not complete Sign Up')
             }
-
             //upload user thumbnail
-            const imageRef = ref(storage, `thumbnails/${res.user.uid}/${profileImg.name}`)
+            const imageRef = ref(storage, `thumbnails/${firebaseUser.uid}/${profileImg.name}`)
             await uploadBytes(imageRef, profileImg)
             const photoURL = await getDownloadURL(imageRef)
 
             const displayName = `${firstName} ${lastName}`
 
             // add Display Name to user
-            await updateProfile(res.user, { displayName, photoURL })
+            await updateProfile(firebaseUser, { displayName, photoURL })
 
             //create user schema
             const userData = {
+                email,
                 displayName,
                 photoURL,
                 online: true,
@@ -48,12 +51,11 @@ export const useSignUp = () => {
 
             const storageRef = doc(db, 'users', res.user.uid)
             //create a user document  with the user Schema
-            setDoc(storageRef, userData)
-
-            const userObject = { ...res.user, ...userData }
+            await setDoc(storageRef, userData)
+            const userObject = { firebaseUser, ...userData, id: firebaseUser.uid }
 
             //dispatch login action with the user auth object and user schema object
-            dispatch({ type: "LOGIN", payload: userObject })
+            dispatch({ type: "LOGIN", payload: userObject as unknown as IAuthUserObject })
 
             if (!isCancelled) {
                 setIsPending(false)

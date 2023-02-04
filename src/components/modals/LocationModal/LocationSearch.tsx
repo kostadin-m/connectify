@@ -20,6 +20,7 @@ interface LocationObject {
 interface GoogleAPIProps {
     getInputProps: ({ ...InputProps }: { placeholder: string }) => object
     suggestions: LocationObject[]
+    getSuggestionItemProps: (suggestion: LocationObject) => object
     loading: boolean
 }
 
@@ -33,9 +34,9 @@ export default function LocationSearch({ handleLocationSelect, theme }: Props) {
             < PlacesAutocomplete
                 value={adress}
                 onChange={setAdress}
-                onSelect={handleLocationSelect}
+                onSelect={(value: string) => handleLocationSelect(value)}
             >
-                {({ getInputProps, suggestions, loading }: GoogleAPIProps) => (
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }: GoogleAPIProps) => (
                     <div className={`${styles.search} ${styles[theme]}`}>
                         <input
                             {...getInputProps({ placeholder: 'Search Places ...', })} />
@@ -46,7 +47,8 @@ export default function LocationSearch({ handleLocationSelect, theme }: Props) {
                                 {suggestions.map(suggestion => {
                                     return (
                                         <>
-                                            <div className={`${styles.dataItem} ${styles[theme]}`}>
+                                            {console.log({ ...getSuggestionItemProps(suggestion) })}
+                                            <div {...getSuggestionItemProps(suggestion)} className={`${styles.dataItem} ${styles[theme]}`}>
                                                 <div>
                                                     <img src={Location} alt='location img '></img>
                                                     <span>{suggestion.description}</span>

@@ -1,8 +1,8 @@
 import { useState, useReducer, useEffect } from "react";
 import { db, timeStamp } from "../firebase/config";
-import { addDoc, deleteDoc, doc, collection, setDoc } from "firebase/firestore";
-import { IDocumentAction, IDocumentState, CollectionType } from "src/types";
-import { checkError } from "src/helpers/checkError";
+import { addDoc, deleteDoc, doc, collection, setDoc, updateDoc } from "firebase/firestore";
+import { IDocumentAction, IDocumentState, CollectionType } from "../types";
+import { checkError } from "../helpers/checkError";
 
 let initialState = {
     isPending: false,
@@ -27,7 +27,7 @@ const firestoreReducer = (state: IDocumentState, action: IDocumentAction) => {
     }
 }
 
-export const useFirestore = (_collection: string) => {
+export const useFirestore = <T extends CollectionType>(_collection: string) => {
     const [response, dispatch] = useReducer(firestoreReducer, initialState)
     const [isCancelled, setIsCancelled] = useState(false)
 
@@ -35,49 +35,45 @@ export const useFirestore = (_collection: string) => {
     const ref = collection(db, _collection)
 
 
-    const dispatchIfNotCancelled = (action: IDocumentAction) => {
-        if (!isCancelled) {
-            dispatch(action)
-        }
-    }
     //add a document 
-    const addDocument = async<T extends CollectionType>(doc: T) => {
-        dispatchIfNotCancelled({ type: 'IS_PENDING' })
+    const addDocument = async (doc: T) => {
+        dispatch({ type: 'IS_PENDING' })
         try {
             const createdAt = timeStamp.fromDate(new Date())
             await addDoc(ref, { ...doc, createdAt })
-            dispatchIfNotCancelled({ type: "ADD_DOCUMENT" })
+            dispatch({ type: "ADD_DOCUMENT" })
 
         } catch (error) {
             const message = checkError(error)
-            dispatchIfNotCancelled({ type: 'SET_ERROR', payload: message })
+            dispatch({ type: 'SET_ERROR', payload: message })
         }
     }
 
     // update existing document
-    const updateDocument = async <T extends CollectionType>(id: string, updates: T) => {
+    const updateDocument = async (id: string, updates: T) => {
         const documentRef = doc(ref, id)
-        dispatchIfNotCancelled({ type: 'IS_PENDING' })
+        dispatch({ type: 'IS_PENDING' })
+        debugger
         try {
             await setDoc(documentRef, updates)
-            dispatchIfNotCancelled({ type: "UPDATED_DOCUMENT" })
+            dispatch({ type: "UPDATED_DOCUMENT" })
         } catch (error) {
             const message = checkError(error)
-            dispatchIfNotCancelled({ type: 'SET_ERROR', payload: message })
+            dispatch({ type: 'SET_ERROR', payload: message })
         }
     }
 
     //delete document
     const deleteDocument = async (id: string) => {
         const documentRef = doc(ref, id)
-        dispatchIfNotCancelled({ type: 'IS_PENDING' })
+        dispatch({ type: 'IS_PENDING' })
         try {
             await deleteDoc(documentRef)
 
-            dispatchIfNotCancelled({ type: "DELETE" })
+            dispatch({ type: "DELETE" })
         } catch (error) {
             const message = checkError(error)
-            dispatchIfNotCancelled({ type: 'SET_ERROR', payload: message })
+            dispatch({ type: 'SET_ERROR', payload: message })
         }
     }
     useEffect(() => {

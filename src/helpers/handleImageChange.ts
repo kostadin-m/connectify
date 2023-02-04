@@ -1,4 +1,4 @@
-import { IImageInput } from "src/types"
+import { IImageInput } from "../types"
 
 export const handleFileChange =
     (setImage: IImageInput['setImage'], setImageError: IImageInput['setImageError'], selected: File) => {

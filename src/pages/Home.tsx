@@ -1,12 +1,12 @@
+import { useState, useEffect } from 'react'
+
 //components
 import FriendRequests from '../components/friends-widgets/Friends'
 import PostForm from '../components/post-form/PostForm'
 import UserWidget from '../components/user-widget/UserWidget'
 import Feed from '../components/posts/Feed'
 import FollowPeople from '../components/follow-people/FollowPeople'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import React from 'react'
+
 
 export default function Home() {
     const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -34,7 +34,7 @@ export default function Home() {
             <div className='page-item'>
                 <PostForm />
                 {isMobile && <FollowPeople />}
-                <Feed />
+                <Feed id={null} />
             </div>
             {!isMobile && <FollowPeople />}
         </div>

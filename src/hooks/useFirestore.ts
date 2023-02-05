@@ -11,6 +11,8 @@ let initialState = {
 }
 
 const firestoreReducer = (state: IDocumentState, action: IDocumentAction) => {
+
+    console.log('dipatched')
     switch (action.type) {
         case "IS_PENDING":
             return { isPending: true, success: false, error: null }
@@ -29,55 +31,60 @@ const firestoreReducer = (state: IDocumentState, action: IDocumentAction) => {
 
 export const useFirestore = <T extends CollectionType>(_collection: string) => {
     const [response, dispatch] = useReducer(firestoreReducer, initialState)
-    const [isCancelled, setIsCancelled] = useState(false)
+    let mounted = true
 
 
     const ref = collection(db, _collection)
 
+    const dispatchIfMounted = (action: IDocumentAction) => {
+        if (mounted) {
+            dispatch(action)
+        }
+    }
+
 
     //add a document 
     const addDocument = async (doc: T) => {
-        dispatch({ type: 'IS_PENDING' })
+        dispatchIfMounted({ type: 'IS_PENDING' })
         try {
             const createdAt = timeStamp.fromDate(new Date())
             await addDoc(ref, { ...doc, createdAt })
-            dispatch({ type: "ADD_DOCUMENT" })
+            dispatchIfMounted({ type: "ADD_DOCUMENT" })
 
         } catch (error) {
             const message = checkError(error)
-            dispatch({ type: 'SET_ERROR', payload: message })
+            dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }
     }
 
     // update existing document
     const updateDocument = async (id: string, updates: T) => {
         const documentRef = doc(ref, id)
-        dispatch({ type: 'IS_PENDING' })
-        debugger
+        dispatchIfMounted({ type: 'IS_PENDING' })
         try {
             await updateDoc(documentRef, { ...updates })
-            dispatch({ type: "UPDATED_DOCUMENT" })
+            dispatchIfMounted({ type: "UPDATED_DOCUMENT" })
         } catch (error) {
             const message = checkError(error)
-            dispatch({ type: 'SET_ERROR', payload: message })
+            dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }
     }
 
     //delete document
     const deleteDocument = async (id: string) => {
         const documentRef = doc(ref, id)
-        dispatch({ type: 'IS_PENDING' })
+        dispatchIfMounted({ type: 'IS_PENDING' })
         try {
             await deleteDoc(documentRef)
 
-            dispatch({ type: "DELETE" })
+            dispatchIfMounted({ type: "DELETE" })
         } catch (error) {
             const message = checkError(error)
-            dispatch({ type: 'SET_ERROR', payload: message })
+            dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }
     }
     useEffect(() => {
-        return () => setIsCancelled(true)
+        return () => { mounted = false }
     }, [])
 
     return { addDocument, updateDocument, deleteDocument, response }

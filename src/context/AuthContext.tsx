@@ -1,9 +1,8 @@
-
 import { createContext, useEffect, useReducer, useState } from "react";
 
 import { auth } from "../firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
-import { IContextProviderProps, IAuthState, IAuthActions, IAuthContext, IAuthUserObject } from "../types";
+import { IContextProviderProps, IAuthState, IAuthActions, IAuthContext, UserObject } from "../types";
 import { getCurrentUserData } from "../helpers/getCurrentUserData"
 
 
@@ -26,9 +25,9 @@ export const AuthContextProvider = ({ children }: IContextProviderProps) => {
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, async (user) => {
             const data = await getCurrentUserData(user)
-            const userData = user ? { firebaseUser: user, ...data, id: user?.uid } : { firebaseUser: user }
+            const userData = { firebaseUser: user, ...data, id: user?.uid }
             dispatch({
-                type: 'AUTH_IS_READY', payload: userData as IAuthUserObject
+                type: 'AUTH_IS_READY', payload: userData as UserObject
             })
         })
         unsub()

@@ -1,5 +1,6 @@
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
+import { UserObject } from "../types";
 
 
 export const useAuthContext = () => {
@@ -9,8 +10,5 @@ export const useAuthContext = () => {
     }
 
 
-
-    const { firebaseUser, ...user } = context?.user || {}
-
-    return { firebaseUser: context.user?.firebaseUser, user: { ...context.user }, dispatch: context.dispatch, authIsReady: context.authIsReady }
+    return context
 }

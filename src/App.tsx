@@ -13,14 +13,11 @@ import ProfilePage from './pages/ProfilePage'
 import Messages from './pages/Messages'
 import EditProfile from './pages/EditProfile'
 
-//helpers
-import { isUser } from './helpers/isUser'
-
 //styles
 import './App.css'
 
 function App() {
-  const { authIsReady, firebaseUser } = useAuthContext()
+  const { authIsReady, user } = useAuthContext()
   const { theme } = useThemeContext()
   return (
     <div className={`App ${theme}`}>
@@ -28,12 +25,12 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path='/' element={firebaseUser ? <Home /> : <Login />} />
-            <Route path='/signup' element={!firebaseUser ? <SignUp /> : <Home />} />
-            <Route path='/login' element={!firebaseUser ? <Login /> : <Home />} />
-            <Route path='/profile/:id' element={firebaseUser ? <ProfilePage /> : <Login />} />
-            <Route path='/messages' element={firebaseUser ? <Messages /> : <Login />} />
-            <Route path='/edit' element={firebaseUser ? <EditProfile /> : <Login />} />
+            <Route path='/' element={user?.firebaseUser ? <Home /> : <Login />} />
+            <Route path='/signup' element={!user?.firebaseUser ? <SignUp /> : <Home />} />
+            <Route path='/login' element={!user?.firebaseUser ? <Login /> : <Home />} />
+            <Route path='/profile/:id' element={user?.firebaseUser ? <ProfilePage /> : <Login />} />
+            <Route path='/messages' element={user?.firebaseUser ? <Messages /> : <Login />} />
+            <Route path='/edit' element={user?.firebaseUser ? <EditProfile /> : <Login />} />
           </Routes>
         </BrowserRouter>}
     </div>

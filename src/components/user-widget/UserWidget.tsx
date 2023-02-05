@@ -19,7 +19,7 @@ export default function UserWidget() {
                 <img src={user?.photoURL!} alt='profilepic' />
                 <div className={`${styles.name} ${styles[theme]}`}>
                     <h3>{user?.displayName}</h3>
-                    <p className={styles.friends}>{user?.friends.length} friends</p>
+                    <p className={styles.friends}>{user?.friends?.length || 0} friends</p>
                 </div>
             </div>
             <hr className={styles.hr} />

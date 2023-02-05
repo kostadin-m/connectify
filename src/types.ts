@@ -31,7 +31,7 @@ export interface IThemeContext {
 
 //Auth Context Interfaces
 
-//User Data in the db
+//User Data in the auth
 
 export interface UserObject {
     email: string
@@ -43,21 +43,19 @@ export interface UserObject {
     receivedFriendRequests: NonNullable<FriendsObject[]>
     photoURL: string
     id: string
-}
-
-//User Data in the Auth
-export interface IAuthUserObject extends UserObject {
     firebaseUser: User
 }
+export type UserDocument = Omit<UserObject, 'firebaseUser'>
+
 //Auth Reducer State
 export interface IAuthState {
-    user: IAuthUserObject | null,
+    user: UserObject | null,
     authIsReady: boolean
 }
 //Auth Reducer Actions
 export interface IAuthActions {
     type: 'LOGIN' | 'LOGOUT' | 'AUTH_IS_READY'
-    payload: IAuthUserObject | null
+    payload: UserObject | null
 }
 //AuthContext dipatch function
 export interface IAuthContext extends IAuthState {

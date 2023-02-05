@@ -55,7 +55,7 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
         dispatch({ type: 'IS_PENDING' })
         debugger
         try {
-            await setDoc(documentRef, updates)
+            await updateDoc(documentRef, { ...updates })
             dispatch({ type: "UPDATED_DOCUMENT" })
         } catch (error) {
             const message = checkError(error)

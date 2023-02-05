@@ -26,8 +26,9 @@ export const AuthContextProvider = ({ children }: IContextProviderProps) => {
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, async (user) => {
             const data = await getCurrentUserData(user)
+            const userData = user ? { firebaseUser: user, ...data, id: user?.uid } : { firebaseUser: user }
             dispatch({
-                type: 'AUTH_IS_READY', payload: { firebaseUser: user, ...data, id: user?.uid } as IAuthUserObject
+                type: 'AUTH_IS_READY', payload: userData as IAuthUserObject
             })
         })
         unsub()

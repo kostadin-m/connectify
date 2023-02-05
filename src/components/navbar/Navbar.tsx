@@ -14,12 +14,14 @@ import LightMode from '../../assets/light_mode_icon.svg'
 
 //styles
 import './Navbar.css'
+import { isUser } from '../../helpers/isUser'
 
 export default function Navbar() {
     const [focusedSearch, setFocusedSearch] = useState<boolean>(false)
 
     const { theme, toggleTheme } = useThemeContext()
-    const { user } = useAuthContext()
+    const { firebaseUser, user } = useAuthContext()
+
     return (
         <nav className={`navbar ${theme}`}>
             <ul className='navbar-content'>
@@ -40,7 +42,7 @@ export default function Navbar() {
                 <li className='nav-item'>
                     <img className='light-mode' onClick={toggleTheme} src={LightMode} alt='light mode icon' />
                 </li>
-                {user?.user ? <UserNavbar theme={theme} user={user} /> : <GuestNavbar />}
+                {firebaseUser ? <UserNavbar theme={theme} user={user} /> : <GuestNavbar />}
             </ul>
         </nav>
     )

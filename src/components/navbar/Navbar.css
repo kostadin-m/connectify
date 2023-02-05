@@ -80,8 +80,9 @@
 .input-wrapper {
     border-radius: 15px;
     margin-left: 35px;
-    width: 320px;
-    height: 35px;
+    width: 40px;
+    transition: width 0.2s ease;
+    height: 0;
 }
 
 .input-wrapper.focused {
@@ -102,18 +103,20 @@
 
 .input-wrapper.focused>.nav-input {
     margin-top: 8px;
+    width: 280px;
 }
 
 .nav-input {
     font-size: 0.9em;
     background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left !important;
-    background-size: 20px !important;
+    background-size: 30px !important;
     padding-left: 25px;
     margin-left: 5px;
-    width: 280px;
+    width: 1px;
     height: 35px;
     border-radius: 15px;
     border: none;
+    transition: width 0.2s ease;
 }
 
 /*Themes for user Search*/
@@ -244,6 +247,7 @@
     .input-wrapper.focused {
         left: -1px;
         position: absolute;
+        transition: width 0.2s;
         z-index: 2;
         width: 72vw !important;
     }

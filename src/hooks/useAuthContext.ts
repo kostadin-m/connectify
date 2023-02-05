@@ -1,7 +1,5 @@
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
-import { IAuthContext } from "../types";
-
 
 
 export const useAuthContext = () => {
@@ -10,6 +8,9 @@ export const useAuthContext = () => {
         throw new Error('Context must be used inside a Context Provider')
     }
 
-    const { firebaseUser, ...user } = context.user!
-    return { firebaseUser, user, dispatch: context.dispatch, authIsReady: context.authIsReady }
+
+
+    const { firebaseUser, ...user } = context?.user || {}
+
+    return { firebaseUser: context.user?.firebaseUser, user: { ...context.user }, dispatch: context.dispatch, authIsReady: context.authIsReady }
 }

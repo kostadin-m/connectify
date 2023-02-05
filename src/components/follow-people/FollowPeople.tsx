@@ -11,7 +11,7 @@ import './FollowPeople.css'
 
 
 //types
-import { FriendsObject } from 'src/types'
+import { FriendsObject } from '../..//types'
 
 export default function FollowPeople() {
   const { document, isPending, error } = useCollection<FriendsObject>('users')

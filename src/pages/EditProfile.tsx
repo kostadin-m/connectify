@@ -44,21 +44,22 @@ export default function EditProfile() {
     const submit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        let photoURL = user?.photoURL
+        const displayName = `${firstName} ${lastName}`
+        let photoURL;
         if (image) {
             const imageRef = ref(storage, `thumbnails/${user?.id}/${image.name}`)
             await uploadBytes(imageRef, image)
             photoURL = await getDownloadURL(imageRef)
         }
-        const displayName = `${firstName} ${lastName}`
+        const updatedObject = { displayName, photoURL: photoURL ? photoURL : user.photoURL, location } as UserObject
 
-        await updateDocument(user?.id!, { ...user, displayName, photoURL, location } as UserObject)
+        await updateDocument(user?.id!, updatedObject)
 
         if (user?.email !== email) {
-            await updateEmail(firebaseUser, email)
+            await updateEmail(firebaseUser!, email)
         }
         if (user?.displayName !== displayName || user?.photoURL !== photoURL) {
-            await updateProfile(firebaseUser, { displayName, photoURL })
+            await updateProfile(firebaseUser!, { displayName, photoURL })
         }
         if (!response.error) {
             dispatch({

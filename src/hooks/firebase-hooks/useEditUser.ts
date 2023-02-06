@@ -1,14 +1,14 @@
 //firebase
 import { deleteObject, uploadBytes, getDownloadURL, listAll, ref } from "firebase/storage"
-import { db, storage } from "../firebase/config"
+import { db, storage } from "../../firebase/config"
 import { updateEmail, updateProfile } from "firebase/auth"
 
 //types
-import { UserObject } from "../types"
+import { UserObject } from "../../types"
 import { useAuthContext } from "./useAuthContext"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { checkError } from "../helpers/checkError"
+import { checkError } from "../../helpers/checkError"
 import { collection, doc, updateDoc } from "firebase/firestore"
 
 type updateUserFile = {
@@ -49,22 +49,24 @@ export const useEditUser = (): editUserState => {
 
 
             if (updatedDocument.image) {
-                //delete the old picture from the storage
+                //Delete the old picture from Firebase Storage
                 listAll(ref(storage, `thumbnails/${user?.id}/`)).then((listResults) => {
                     const promises = listResults.items.map((item) => {
                         return deleteObject(item);
                     })
                     Promise.all(promises);
                 })
-                //add the new picture to the storage
+                //Updating the user pic in Firebase Storage
                 const imageRef = ref(storage, `thumbnails/${user?.id}/${updatedDocument.image.name}`)
                 await uploadBytes(imageRef, updatedDocument.image)
                 photoURL = await getDownloadURL(imageRef)
             }
 
+            //Updating the user in the DB
             const updatedObject = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location }
             await updateDoc(documentRef, { ...updatedObject })
 
+            //Updating the user in firebaseAuth
             if (user?.email !== updatedDocument.email) {
                 await updateEmail(user?.firebaseUser!, updatedDocument.email)
             }

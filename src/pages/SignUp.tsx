@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 //custom hooks
-import { useSignUp } from '../hooks/useSignUp'
-import { useThemeContext } from '../hooks/useThemeContext'
+import { useSignUp } from '../hooks/firebase-hooks/useSignUp'
+import { useThemeContext } from '../hooks/view-hooks/useThemeContext'
 
 //icons
 import NoImage from '../assets/no_image.jpg'

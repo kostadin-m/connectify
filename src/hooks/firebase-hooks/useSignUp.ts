@@ -1,13 +1,16 @@
-import { useState } from "react"
-import { db, auth } from "../firebase/config"
+import { useEffect, useState } from "react"
+
+//firebase
+import { db, auth } from "../../firebase/config"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { setDoc, doc } from "firebase/firestore"
-import { useAuthContext } from "./useAuthContext"
-import { useEffect } from "react"
-import { storage } from '../firebase/config'
+import { storage } from '../../firebase/config'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
-import { checkError } from "../helpers/checkError"
-import { IAuthUserObject } from "../types"
+
+//custom hooks and helpers
+import { useAuthContext } from "./useAuthContext"
+import { checkError } from "../../helpers/checkError"
+import { UserDocument, UserObject } from "../../types"
 
 export const useSignUp = () => {
     const [isCancelled, setIsCancelled] = useState<boolean>(false)
@@ -46,16 +49,17 @@ export const useSignUp = () => {
                 friends: [],
                 location,
                 sentFriendRequests: [],
-                receivedFriendRequests: []
-            }
+                receivedFriendRequests: [],
+                id: firebaseUser.uid
+            } as UserDocument
 
             const storageRef = doc(db, 'users', res.user.uid)
             //create a user document  with the user Schema
             await setDoc(storageRef, userData)
-            const userObject = { firebaseUser, ...userData, id: firebaseUser.uid }
+            const userObject = { firebaseUser, ...userData } as UserObject
 
             //dispatch login action with the user auth object and user schema object
-            dispatch({ type: "LOGIN", payload: userObject as unknown as IAuthUserObject })
+            dispatch({ type: "LOGIN", payload: userObject })
 
             if (!isCancelled) {
                 setIsPending(false)

@@ -1,4 +1,4 @@
-import { useThemeContext } from '../../hooks/useThemeContext'
+import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
 import { useState } from 'react'
 
 //components

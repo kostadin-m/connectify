@@ -1,4 +1,4 @@
-import { useThemeContext } from '../../hooks/useThemeContext'
+import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
 
 import Test from '../../assets/test.jpg'
 //icons
@@ -7,9 +7,9 @@ import Deny from '../../assets/close_icon.svg'
 
 //styles
 import './Friends.css'
-import FriendList from './components/FriendList'
+import FriendList from '../common/FriendList'
 
-import { useAuthContext } from '../..//hooks/useAuthContext'
+import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
 
 export default function FriendRequests() {
     const { theme } = useThemeContext()

@@ -110,11 +110,12 @@ body {
   animation-timing-function: ease-out;
   overflow: hidden;
   margin-top: 120px;
-  top: 10%;
   position: relative;
   align-items: center;
   text-align: center;
-  margin-left: 34%;
+  margin-left: auto;
+  margin-right: auto;
+
   border-radius: 15px;
   min-height: 300px;
   max-height: 850px;
@@ -344,7 +345,7 @@ body {
   border-radius: 50%;
 }
 
-@media (max-width:800px) {
+@media (max-width:799px) {
   .profile-page-item {
     margin-right: 0px;
     padding: 0px;
@@ -385,9 +386,7 @@ body {
   .btn {
     width: 75px !important;
   }
-}
 
-@media (max-width:799px) {
   .btn span {
     font-size: 0.8em;
   }
@@ -451,7 +450,6 @@ body {
   }
 
   .form-box {
-    margin-left: 15%;
     width: 70vw;
   }
 

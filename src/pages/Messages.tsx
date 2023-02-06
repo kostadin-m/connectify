@@ -1,5 +1,5 @@
 import { MultiChatSocket, MultiChatWindow, useMultiChatLogic } from 'react-chat-engine-advanced'
-import { useThemeContext } from '../hooks/useThemeContext'
+import { useThemeContext } from '../hooks/view-hooks/useThemeContext'
 
 //styles
 import '../chat.css'

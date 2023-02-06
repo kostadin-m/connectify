@@ -1,5 +1,5 @@
 //components
-import FriendRequests from "../components/friends-widgets/Friends"
+import FriendRequests from "../components/friends-widget/Friends"
 import UserWidget from "../components/user-widget/UserWidget"
 import Feed from "../components/posts/Feed"
 

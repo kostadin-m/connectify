@@ -1,73 +1,46 @@
-import { useState, useRef } from 'react'
-import { useLogout } from '../../../hooks/useLogout'
-import { useThemeContext } from '../../../hooks/useThemeContext'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
-import { CSSClassesState } from '../../../types'
+import { CSSClassesState, UserObject } from '../../../types'
 
 
 //icons
 import FriendsIcon from '../../../assets/friends.svg'
 import Chat from '../../../assets/chat_icon.svg'
 
+//custom hooks
+import { useLogout } from '../../../hooks/firebase-hooks/useLogout'
+import { useIsMobile } from '../../../hooks/view-hooks/useIsMobile'
+import { useDelayToUnmount } from '../../../hooks/view-hooks/useDelayToUnmount'
+
 //components
-import FriendList from '../../friends-widgets/components/FriendList'
-import { useAuthContext } from '../../../hooks/useAuthContext'
+import { NavFriends } from './NavFriends'
 
-interface NavFriendsProps {
-    friendsClass: CSSClassesState
-}
 
-const NavFriends = ({ friendsClass }: NavFriendsProps) => {
-    const { theme } = useThemeContext()
-    const { user } = useAuthContext()
-    return (
-        <>
-            <div className={`nav-friends ${friendsClass}`}>
-                <FriendList theme={theme} friends={user?.friends!} />
-            </div>
-        </>
-    )
+type UserNavbarProps = { theme: string, user: UserObject }
 
-}
-
-export default function UserNavbar({ theme, user }) {
-    const [friendsClass, setFriendsClass] = useState('hide')
-
+export default function UserNavbar({ theme, user }: UserNavbarProps) {
+    const [friendsClass, setFriendsClass] = useState<CSSClassesState>('hidden')
     const [showFriends, setShowFriends] = useState(false)
 
+    const [isMobile] = useIsMobile()
     const { logout, error, isPending } = useLogout()
-
-    const timeoutRef = useRef()
-
-    //Using timeout so we can apply wait for the animation to end and then we remove the element from the dom
-    const toggleShowFriends = () => {
-        if (friendsClass == 'show') {
-            setFriendsClass('hide')
-            timeoutRef.current = setTimeout(() => setShowFriends(false), 680)
-        } else {
-            setFriendsClass('show')
-            setShowFriends(true)
-            clearTimeout(timeoutRef.current)
-        }
-    }
+    const { toggleMount } = useDelayToUnmount(friendsClass, setShowFriends, setFriendsClass)
 
     if (error) return <div>{error}</div>
     if (isPending) return <div>Loading...</div>
 
     return (
         <>
-            <li className='mobile nav-item'>
-                <img onClick={toggleShowFriends} src={FriendsIcon} alt='chat icon' />
-            </li>
+            {isMobile &&
+                <li className='mobile nav-item'>
+                    <img onClick={toggleMount} src={FriendsIcon} alt='chat icon' />
+                </li>}
             {showFriends && < NavFriends friendsClass={friendsClass} />}
             <li className='nav-item'>
-                <Link className='nav-item' to='/messages'>
-                    <img src={Chat} alt='chat icon' />
-                </Link>
+                <img src={Chat} className='nav-img' alt='chat icon' />
             </li>
             <li className='nav-item'>
-                <button onClick={logout} className={`user-dropdown-button ${theme}`}>Logout</button>
+                <img onClick={logout} src={user.photoURL || ''} className={`user-dropdown-button ${theme}`} />
             </li>
         </>
     )

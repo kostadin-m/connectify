@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 //custom hooks
-import { useAuthContext } from './hooks/useAuthContext'
-import { useThemeContext } from './hooks/useThemeContext'
+import { useAuthContext } from './hooks/firebase-hooks/useAuthContext'
+import { useThemeContext } from './hooks/view-hooks/useThemeContext'
 
 //components
 import Navbar from './components/navbar/Navbar'

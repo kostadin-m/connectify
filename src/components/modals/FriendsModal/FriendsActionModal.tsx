@@ -1,5 +1,5 @@
 //icons
-import { FriendsObject } from "src/types";
+import { FriendsObject } from "../../../types";
 import Close from "../../../assets/close_icon.svg";
 import ModalWrapper from "../../common/ModalWrapper";
 

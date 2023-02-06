@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 //components
@@ -6,18 +5,17 @@ import GuestNavbar from './components/GuestNavbar'
 import UserNavbar from './components/UserNavbar'
 
 //custom hooks
-import { useThemeContext } from '../../hooks/useThemeContext'
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
+import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
 
 //icons
 import LightMode from '../../assets/light_mode_icon.svg'
 
 //styles
 import './Navbar.css'
+import UserSearch from './components/UserSearch'
 
 export default function Navbar() {
-    const [focusedSearch, setFocusedSearch] = useState<boolean>(false)
-
     const { theme, toggleTheme } = useThemeContext()
     const { user } = useAuthContext()
 
@@ -28,13 +26,7 @@ export default function Navbar() {
                     <Link to='/' >
                         <h2>mySocialMedia</h2>
                     </Link>
-                    <div className={`input-wrapper ${focusedSearch ? 'focused' : ''}`}>
-                        <input
-                            className='nav-input' type='text' placeholder='Search Users'
-                            onFocus={() => setFocusedSearch(true)}
-                            onBlur={() => setFocusedSearch(false)}
-                        />
-                    </div>
+                    <UserSearch />
                 </li>
                 <li>
                 </li>

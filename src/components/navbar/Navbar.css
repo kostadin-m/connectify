@@ -31,7 +31,6 @@
 /*Navbar Content*/
 
 .navbar-content {
-    margin-right: 15px;
     height: 25px;
     display: flex;
     align-items: center;
@@ -72,26 +71,27 @@
     filter: invert(60%);
 }
 
-.dark>.navbar-content>.title>.search-icon {
-    filter: invert(60%);
-}
 
 /*Search Users Input*/
 .input-wrapper {
+    position: absolute;
+    left: 200px;
     border-radius: 15px;
     margin-left: 35px;
     width: 40px;
     transition: width 0.2s ease;
-    height: 0;
+    background-color: transparent !important;
 }
 
 .input-wrapper.focused {
+    z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     vertical-align: top;
     margin-top: 295px;
     height: 350px;
-    width: 320px;
+    width: 420px;
 }
+
 
 .dark>.navbar-content>.title>.input-wrapper.focused {
     background-color: rgb(24 24 24) !important;
@@ -103,14 +103,15 @@
 
 .input-wrapper.focused>.nav-input {
     margin-top: 8px;
-    width: 280px;
+    width: 85%;
 }
 
 .nav-input {
-    font-size: 0.9em;
+    color: black !important;
+    font-size: 1.1em;
     background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left !important;
     background-size: 30px !important;
-    padding-left: 25px;
+    padding-left: 35px;
     margin-left: 5px;
     width: 1px;
     height: 35px;
@@ -119,10 +120,19 @@
     transition: width 0.2s ease;
 }
 
+.nav-input::placeholder {
+    color: transparent;
+}
+
+.nav-input:focus::placeholder {
+    color: black;
+}
+
 /*Themes for user Search*/
 .dark>.navbar-content>.title>.input-wrapper.focused>.nav-input {
     background-color: rgb(255, 255, 255) !important;
 }
+
 
 .light>.navbar-content>.title>.input-wrapper.focused>.nav-input {
     background-color: lightgray !important;
@@ -130,6 +140,10 @@
 
 .dark>.navbar-content>.title>.input-wrapper {
     background-color: rgb(70, 70, 70);
+}
+
+.light>.navbar-content>.title>.input-wrapper {
+    background-color: white !important;
 }
 
 .dark>.navbar-content>.title>.input-wrapper>.nav-input {
@@ -175,7 +189,7 @@
     animation-timing-function: ease-out;
 }
 
-.nav-friends.hide {
+.nav-friends.hidden {
     animation-name: hideFriends;
     animation-duration: 0.7s;
     animation-timing-function: ease-out;
@@ -186,11 +200,11 @@
     opacity: 1;
     border-radius: 15px;
     top: 80px;
-    left: 42%;
+    left: 10%;
     background-color: white;
     position: absolute;
     height: 370px;
-    width: 55vw;
+    width: 85vw;
 }
 
 @keyframes showFriends {
@@ -224,12 +238,11 @@
 
 /*User dropdown button*/
 .user-dropdown-button {
-    font-weight: bold;
-    text-align: center;
     cursor: pointer;
-    border: none;
-    height: 40px;
-    width: 75px;
+    border-radius: 50%;
+    height: 35px !important;
+    width: 35px !important;
+    filter: invert(0%) !important;
 }
 
 /*Themes for user dropdown button*/
@@ -244,55 +257,48 @@
 }
 
 @media (max-width:600px) {
-    .input-wrapper.focused {
-        left: -1px;
-        position: absolute;
-        transition: width 0.2s;
-        z-index: 2;
-        width: 72vw !important;
-    }
 
     .input-wrapper.focused>.nav-input {
-        padding-left: 35px;
-        width: 80%;
-    }
-
-    .input-wrapper {
-        margin-left: 5px;
-        width: 35px !important;
+        width: 75%;
     }
 
     .nav-input {
         background-size: 25px !important;
         overflow: hidden;
-        width: 0px;
+    }
+
+    .navbar .title h2 {
+        font-size: 0.7em
+    }
+
+    .input-wrapper {
+        left: 77px !important
     }
 }
 
 @media (max-width:800px) {
+    .input-wrapper.focused {
+        left: -28px !important;
+        position: absolute;
+        transition: all 0.2s;
+        z-index: 2;
+        width: 86vw !important;
+    }
+
     .navbar img {
         width: 20px;
         height: 20px;
     }
 
     .mobile {
-        display: block !important;
+        display: flex !important;
     }
 }
 
 @media (max-width:1439px) {
     .nav-item {
-        margin-top: 0px;
+        margin-top: 4px;
         margin-right: 10px;
         padding: 0px !important;
     }
-
-    .nav-item p {
-        display: none;
-    }
-
-    .navbar .title h2 {
-        font-size: 1em
-    }
-
 }

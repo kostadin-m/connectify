@@ -53,10 +53,9 @@ export interface IAuthState {
     authIsReady: boolean
 }
 //Auth Reducer Actions
-export interface IAuthActions {
-    type: 'LOGIN' | 'LOGOUT' | 'AUTH_IS_READY'
-    payload: UserObject | null
-}
+export type IAuthActions = { type: 'LOGIN' | 'AUTH_IS_READY', payload: UserObject | null } | { type: 'LOGOUT', payload?: null }
+
+
 //AuthContext dipatch function
 export interface IAuthContext extends IAuthState {
     dispatch: (action: IAuthActions) => void

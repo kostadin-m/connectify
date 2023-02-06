@@ -3,8 +3,8 @@ import Location from '../../assets/location_icon.svg'
 import Likes from '../../assets/liked_icon.svg'
 
 //custom hooks
-import { useThemeContext } from '../../hooks/useThemeContext'
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
+import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
 
 //styles
 import styles from './UserWidget.module.css'

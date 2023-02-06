@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { createContext, useReducer } from "react";
 
 //interfaces
@@ -8,7 +8,6 @@ import { IContextProviderProps, IThemeState, IThemeActions, IThemeContext } from
 export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
 
 export function themeReducer(state: IThemeState, action: IThemeActions) {
-    debugger
     switch (action.type) {
         case "TOGGLE_THEME":
             return { ...state, theme: action.payload }

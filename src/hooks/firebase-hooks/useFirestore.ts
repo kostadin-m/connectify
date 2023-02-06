@@ -1,8 +1,8 @@
-import { useState, useReducer, useEffect } from "react";
-import { db, timeStamp } from "../firebase/config";
+import { useReducer, useEffect } from "react";
+import { db, timeStamp } from "../../firebase/config";
 import { addDoc, deleteDoc, doc, collection, setDoc, updateDoc } from "firebase/firestore";
-import { IDocumentAction, IDocumentState, CollectionType } from "../types";
-import { checkError } from "../helpers/checkError";
+import { IDocumentAction, IDocumentState, CollectionType } from "../../types";
+import { checkError } from "../../helpers/checkError";
 
 let initialState = {
     isPending: false,
@@ -11,8 +11,6 @@ let initialState = {
 }
 
 const firestoreReducer = (state: IDocumentState, action: IDocumentAction) => {
-
-    console.log('dipatched')
     switch (action.type) {
         case "IS_PENDING":
             return { isPending: true, success: false, error: null }
@@ -31,9 +29,8 @@ const firestoreReducer = (state: IDocumentState, action: IDocumentAction) => {
 
 export const useFirestore = <T extends CollectionType>(_collection: string) => {
     const [response, dispatch] = useReducer(firestoreReducer, initialState)
+
     let mounted = true
-
-
     const ref = collection(db, _collection)
 
     const dispatchIfMounted = (action: IDocumentAction) => {
@@ -41,8 +38,6 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
             dispatch(action)
         }
     }
-
-
     //add a document 
     const addDocument = async (doc: T) => {
         dispatchIfMounted({ type: 'IS_PENDING' })
@@ -85,7 +80,7 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
     }
     useEffect(() => {
         return () => { mounted = false }
-    }, [])
+    }, [mounted])
 
     return { addDocument, updateDocument, deleteDocument, response }
 }

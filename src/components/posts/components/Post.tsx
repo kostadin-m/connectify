@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
-import { useThemeContext } from '../../../hooks/useThemeContext'
 import { useState } from 'react'
+
+
+import { useThemeContext } from '../../../hooks/view-hooks/useThemeContext'
+import { useDelayToUnmount } from '../../../hooks//view-hooks/useDelayToUnmount'
+
+import { CSSClassesState } from '../../../types'
 
 //icons
 import Location from '../../../assets/location_icon.svg'
@@ -14,32 +19,14 @@ import Comments from './Comments'
 
 //styles
 import styles from '../Post.module.css'
-import { useRef } from 'react'
-import { CSSClassesState } from '../../../types'
 
 
 export default function Post() {
     const [liked, setLiked] = useState(false)
-
-
     const [commentsClass, setCommentsClass] = useState<CSSClassesState>('hidden')
     const [showComments, setShowComments] = useState(false)
-    const refTimer = useRef<number | null>(null)
-
-    const toggleShowComments = () => {
-        if (commentsClass === 'show') {
-            refTimer.current = window.setTimeout(() => setShowComments(false), 580)
-            setCommentsClass('hidden')
-        } else {
-            setCommentsClass('show')
-            setShowComments(true)
-            if (refTimer.current !== null) {
-                window.clearTimeout(refTimer.current)
-            }
-
-        }
-    }
     const { theme } = useThemeContext()
+    const { toggleMount } = useDelayToUnmount(commentsClass, setShowComments, setCommentsClass)
 
     return (
         <div className={`${styles.post} ${styles[theme]}`}>
@@ -65,7 +52,7 @@ export default function Post() {
                     className={`${styles.postImages} ${liked ? styles.liked : undefined}`}
                     src={liked ? Liked : Like} alt='likes icon' />
                 <p className={styles.likesCount}>48</p>
-                <img onClick={toggleShowComments} className={styles.postImages} src={CommentsIcon} alt='comments icon' />
+                <img onClick={toggleMount} className={styles.postImages} src={CommentsIcon} alt='comments icon' />
                 <p className={styles.likesCount}>2 comments</p>
             </div>
             {showComments && <Comments classname={commentsClass} theme={theme} />}

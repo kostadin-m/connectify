@@ -4,7 +4,7 @@ import { Avatar, PersonObject } from "react-chat-engine-advanced";
 import { getOtherUser } from "../../helpers/getOtherChatUser";
 
 //custom hooks
-import { useThemeContext } from "../../hooks/useThemeContext";
+import { useThemeContext } from "../../hooks/view-hooks/useThemeContext";
 
 //types
 import { CustomChatHeaderProps } from "../../types";

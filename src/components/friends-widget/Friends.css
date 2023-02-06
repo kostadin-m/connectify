@@ -89,7 +89,9 @@
 }
 
 .name {
-    max-width: 330px;
+    overflow-wrap: break-word;
+    min-width: 40%;
+    max-width: 40%;
     margin-left: 10px;
 }
 
@@ -151,6 +153,15 @@
         max-width: 190px;
         height: 215px;
         display: inline;
+    }
+
+    .box>.listFriends>.friend>.name {
+        min-width: none;
+        max-width: none;
+        min-height: 42px;
+        max-height: 42px;
+        overflow-wrap: normal;
+
     }
 
     .box>.listFriends>.friend>img {

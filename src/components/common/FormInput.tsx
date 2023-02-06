@@ -1,6 +1,6 @@
 import React from "react"
 import { memo } from "react"
-import { useThemeContext } from "../../hooks/useThemeContext"
+import { useThemeContext } from "../../hooks/view-hooks/useThemeContext"
 
 
 

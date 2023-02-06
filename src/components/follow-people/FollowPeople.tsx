@@ -1,27 +1,27 @@
-import { useThemeContext } from '../../hooks/useThemeContext'
+import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
 
 //custom hooks
-import { useCollection } from '../../hooks/useCollection'
+import { useCollection } from '../../hooks/firebase-hooks/useCollection'
 
 //components
-import FriendList from '../friends-widgets/components/FriendList'
+import FriendList from '../common/FriendList'
 
 //styles
 import './FollowPeople.css'
 
 
 //types
-import { FriendsObject } from '../..//types'
+import { UserDocument } from '../..//types'
 
 export default function FollowPeople() {
-  const { document, isPending, error } = useCollection<FriendsObject>('users')
+  const { document, isPending, error } = useCollection<UserDocument>('users')
   const { theme } = useThemeContext()
 
 
   return (
     <div className={`box ${theme}`}>
       <h2>People you may know</h2>
-      {document && <FriendList theme={theme} friends={document} />}
+      {document && <FriendList friends={document} />}
     </div>
   )
 }

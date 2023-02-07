@@ -20,7 +20,7 @@ export default function FriendRequests() {
     return (
         <div className={`friends ${theme}`}>
             <h2>Friend List</h2>
-            <FriendList theme={theme} friends={user?.friends!} />
+            <FriendList friends={user?.friends!} />
         </div>
     )
 }

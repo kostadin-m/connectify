@@ -184,13 +184,13 @@
 
 
 .nav-friends.show {
-    animation-name: showFriends;
+    animation-name: showElement;
     animation-duration: 0.7s;
     animation-timing-function: ease-out;
 }
 
 .nav-friends.hidden {
-    animation-name: hideFriends;
+    animation-name: hideElement;
     animation-duration: 0.7s;
     animation-timing-function: ease-out;
 }
@@ -207,7 +207,11 @@
     width: 85vw;
 }
 
-@keyframes showFriends {
+.dark>.nav-friends {
+    background-color: rgb(24 24 24) !important;
+}
+
+@keyframes showElement {
     from {
         opacity: 0;
         transform: translateY(5%);
@@ -219,7 +223,7 @@
     }
 }
 
-@keyframes hideFriends {
+@keyframes hideElement {
     from {
         opacity: 1;
         transform: translateY(0);
@@ -236,8 +240,18 @@
     background-color: rgb(24 24 24);
 }
 
-/*User dropdown button*/
+/*User dropdown Menu*/
 .user-dropdown-button {
+    width: 45px;
+    align-items: center;
+    display: flex;
+}
+
+.user-dropdown-button p {
+    transition: all 0.4s ease;
+}
+
+.user-dropdown-image {
     cursor: pointer;
     border-radius: 50%;
     height: 35px !important;
@@ -245,15 +259,59 @@
     filter: invert(0%) !important;
 }
 
-/*Themes for user dropdown button*/
-.user-dropdown-button.light {
-    color: black;
-    background: rgb(237, 237, 237);
+.user-dropdown-menu {
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: absolute;
+    height: 200px;
+    width: 150px;
+    top: 80px;
+    left: calc(100vw - 160px);
 }
 
-.user-dropdown-button.dark {
+.user-dropdown-menu button,
+.user-dropdown-menu a {
+    align-items: center;
+    margin: auto;
+    display: grid;
+    width: 100%;
+    height: calc(200px / 3);
+    background-color: inherit;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-dropdown-menu button:hover,
+.user-dropdown-menu a:hover {
+    background-color: rgb(128, 123, 123);
+    color: aqua !important
+}
+
+.user-dropdown-menu.dark button,
+.user-dropdown-menu.dark a {
     color: white;
-    background: rgb(60, 60, 60);
+}
+
+.user-dropdown-menu.light {
+    background: white;
+}
+
+.user-dropdown-menu.dark {
+    background-color: rgb(24 24 24)
+}
+
+.user-dropdown-menu.show {
+    animation-name: showElement;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+}
+
+.user-dropdown-menu.hidden {
+    animation-name: hideElement;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
 }
 
 @media (max-width:600px) {
@@ -293,9 +351,12 @@
     .mobile {
         display: flex !important;
     }
+
+
 }
 
-@media (max-width:1439px) {
+@media(max-width:1450px) {
+
     .nav-item {
         margin-top: 4px;
         margin-right: 10px;

@@ -54,6 +54,7 @@ export default function EditProfile() {
                 <FormInput value={email} setValue={setEmail} label='Email' type='email' />
 
                 {error && <p>{error}</p>}
+                {isPending && <div className="loader"></div>}
 
                 <button className='form-btn'>{isPending ? 'Loading...' : 'Edit Profile'}</button>
             </form>

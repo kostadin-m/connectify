@@ -61,7 +61,7 @@ export default function SignUp() {
                 <FormInput value={password} setValue={setPassword} label='Password' type='password' />
 
                 {error && <p className='error'>{error}</p>}
-
+                {isPending && <div className='loader'></div>}
                 <button className='form-btn'>{isPending ? 'Loading...' : 'Sign Up'}</button>
             </form>
         </div>

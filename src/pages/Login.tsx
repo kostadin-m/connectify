@@ -27,6 +27,7 @@ export default function Login() {
                 <FormInput value={email} setValue={setEmail} label='Email' type='email' />
                 <FormInput value={password} setValue={setPassword} label='Password' type='password' />
                 {error && <p className="error">{error}</p>}
+                {isPending && <div className="loader"></div>}
                 <button className='form-btn form-btn1'>{isPending ? 'Loading...' : 'Login'}</button>
             </form>
         </div>

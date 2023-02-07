@@ -21,7 +21,7 @@ function App() {
   const { theme } = useThemeContext()
   return (
     <div className={`App ${theme}`}>
-      {!authIsReady ? <div className='spinner'>Loading...</div> :
+      {!authIsReady ? <div className='loader'></div> :
         <BrowserRouter>
           <Navbar />
           <Routes>

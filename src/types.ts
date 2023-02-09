@@ -37,10 +37,10 @@ export interface UserObject {
     email: string
     online: boolean
     displayName: string
-    friends: NonNullable<FriendsObject[]>
+    friends: NonNullable<string[]>
     location: string
-    sentFriendRequests: NonNullable<FriendsObject[]>
-    receivedFriendRequests: NonNullable<FriendsObject[]>
+    sentFriendRequests: NonNullable<string[]>
+    receivedFriendRequests: NonNullable<string[]>
     photoURL: string
     id: string
     firebaseUser: User
@@ -78,7 +78,7 @@ export interface IImageInput {
 //1. Collections
 
 //define all the types that a collection accepts
-export type CollectionType = FriendsObject | UserObject
+export type CollectionType = UserDocument | UserDocument
 
 export interface ICollectionState<T extends CollectionType> {
     document: T[] | null
@@ -92,14 +92,6 @@ export type ICollectionAction<T extends CollectionType> =
     { type: "ERROR", payload: string }
 
 type NonNullable<T> = Exclude<T, null | undefined>
-
-export interface FriendsObject {
-    displayName: string
-    photoURL: string
-    id: string
-    friends: NonNullable<FriendsObject[]>
-}
-
 //2.Documents
 
 export interface IDocumentState {

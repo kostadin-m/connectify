@@ -2,11 +2,10 @@ import { useEffect, useState } from "react"
 import { db } from "../../firebase/config"
 import { doc, onSnapshot } from "firebase/firestore"
 
-export const useDocument = <T>(collection: string, id: string) => {
+export function useDocument<T>(collection: string, id: string) {
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [document, setDocument] = useState<T>()
-
 
     useEffect(() => {
         const ref = doc(db, collection, id)

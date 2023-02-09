@@ -14,7 +14,7 @@ export const NavFriends = ({ friendsClass }: NavFriendsProps) => {
     return (
         <>
             <div className={`nav-friends ${friendsClass}`}>
-                {document && <FriendList friends={document} />}
+
             </div>
         </>
     )

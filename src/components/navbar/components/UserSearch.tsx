@@ -21,9 +21,7 @@ export default function UserSearch() {
       />
       {focusedSearch ?
         isPending && <p>Loading...</p>
-        || error && <p className='error'>{error}</p>
-        || document && <FriendList friends={document} />
-        : null}
+        || error && <p className='error'>{error}</p> : null}
     </div>
   )
 }

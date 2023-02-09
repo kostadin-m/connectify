@@ -19,15 +19,16 @@ const collectionReducer = <T extends CollectionType>(state: ICollectionState<T>,
     }
 }
 
-export const useCollection = <T extends CollectionType>(_collection: string): ICollectionState<T> => {
+export const useCollection = <T extends CollectionType>(_collection: string, _query?: any[]): ICollectionState<T> => {
     const [state, dispatch] = useReducer
         <React.Reducer<ICollectionState<T>, ICollectionAction<T>>>
         (collectionReducer, initialState)
 
-    const col = useRef(_collection).current
-
     useEffect(() => {
-        let ref: Query = collection(db, _collection)
+        let ref = collection(db, _collection)
+        if (_query) {
+            ref = collection(db, _collection), where(_query[0], _query[1], _query[2])
+        }
 
         const unsub = onSnapshot(ref, (snapshot) => {
             dispatch({ type: "IS_PENDING" })
@@ -48,6 +49,6 @@ export const useCollection = <T extends CollectionType>(_collection: string): IC
         })
 
         return () => unsub()
-    }, [col])
+    }, [_collection, _query])
     return { ...state }
 }

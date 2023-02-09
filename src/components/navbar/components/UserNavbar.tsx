@@ -28,6 +28,7 @@ export default function UserNavbar({ user }: UserNavbarProps) {
         isComponentVisible: showFriends,
         setIsComponentVisible: setShowFriends } = useComponentVisible(false, setFriendsClass)
 
+    //Showing the Components only when they are hidden because useComponentVisible takes care of the closing
     const toggleFriends = () => {
         if (!showFriends) {
             setShowFriends(true)
@@ -59,7 +60,7 @@ export default function UserNavbar({ user }: UserNavbarProps) {
             <li className='nav-item'>
                 <div onClick={toggleDropDown} className='user-dropdown-button'>
                     <img src={user.photoURL || ''} className='user-dropdown-image' />
-                    <p style={{ transform: showDropDown ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</p>
+                    <p style={{ transform: dropDownClass === 'show' ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</p>
                 </div>
             </li>
             {showDropDown && <div ref={DropDownRef}><UserDropDown dropDownClass={dropDownClass} /></div>}

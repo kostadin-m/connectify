@@ -30,5 +30,5 @@ export function useDocument<T>(collection: string, id: string) {
     }, [collection, id])
 
 
-    return [document, isPending, error] as const
+    return { document, isPending, error }
 }

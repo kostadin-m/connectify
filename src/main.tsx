@@ -10,9 +10,7 @@ import { ThemeContextProvider } from './context/ThemeContext'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <AuthContextProvider>
     <ThemeContextProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </ThemeContextProvider>
   </AuthContextProvider>,
 )

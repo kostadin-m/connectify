@@ -36,6 +36,8 @@ export default function FollowPeople() {
     filteredDocument.forEach((user) => usersWithMutualFriends.push(user.id))
   }
 
+  if (isPending) (<div className="loader"></div>)
+  if (error) (<p className="error">{error}</p>)
 
   return (
     <div className={`box ${theme}`}>

@@ -16,31 +16,65 @@ import styles from './PostForm.module.css'
 import Button from '../common/Button'
 import TextArea from '../common/TextArea'
 import ImageInput from '../common/ImageInput'
+import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
+import { doc } from 'firebase/firestore'
+import { db, storage, timeStamp } from '../../firebase/config'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { useFirestore } from '../../hooks/firebase-hooks/useFirestore'
+import { PostObject } from '../../types'
 
 
 export default function PostForm() {
     //Modal State
     const [showLocationModal, setShowLocationModal] = useState(false)
+    const { response, addDocument } = useFirestore<PostObject>('posts')
     //Form State
     const [text, setText] = useState<string>('')
     const [image, setImage] = useState<File | null>()
-    const [imageError, setImageError] = useState<string | null>()
+    const [formError, setFormError] = useState<string | null>()
     const [location, setLocation] = useState<string>('')
 
+    const { user } = useAuthContext()
     const { theme } = useThemeContext()
 
-    const handlePostSubmit = () => {
-        console.log('da')
+    const handlePostSubmit = async () => {
+        if (!image) {
+            setFormError('Please choose an image!')
+            return
+        }
+        const createdAt = timeStamp.fromDate(new Date())
+        const imageRef = ref(storage, `postPictures/${user?.id!}/${image.name}`)
+        await uploadBytes(imageRef, image)
+        const photoURL = await getDownloadURL(imageRef)
+        if (user) {
+            const postObject = {
+                postTitle: text,
+                photoURL,
+                location,
+                creatorID: user.id,
+                createdAt,
+                comments: [],
+                likes: []
+            } as PostObject
+            await addDocument(postObject)
+        }
+        if (response.success) {
+            setText('')
+            setImage(null)
+            setLocation('')
+        }
     }
+
+
     return (
         <div className={`${styles.postForm} ${styles[theme]}`}>
             <div className={`${styles.formWrapper} ${styles[theme]}`}>
                 <div className={`${styles.formTop} ${styles[theme]}`}>
-                    <img className='profile-image' src={TestPic} alt='no user icon'></img>
-                    <TextArea value={text} setValue={setText} placeholder="What's on your mind User?" theme={theme} />
+                    <img className='profile-image' src={user?.photoURL} alt='no user icon'></img>
+                    <TextArea value={text} setValue={setText} placeholder={`What's on your mind ${user?.displayName}?`} theme={theme} />
                 </div>
 
-                {imageError && <p className='error'>{imageError}</p>}
+                {formError && <p className='error'>{formError}</p>}
                 {image && <div className={styles[theme]}>
                     <img onClick={() => setImage(null)} className={styles.remove} src={Close} alt='close icon' />
                     <ImagePreview image={image} style={styles.imagePreview} />
@@ -50,7 +84,7 @@ export default function PostForm() {
                 <div className={`${styles.formBottom} ${styles[theme]}`}>
                     <div className={styles.formOptions}>
                         <label htmlFor='img' className={`${styles.formOption} ${styles[theme]}`}>
-                            <ImageInput setImage={setImage} setImageError={setImageError} />
+                            <ImageInput setImage={setImage} setImageError={setFormError} />
                             <img className={styles.optionPicture} src={AddImage} alt='add image picture'></img>
                             <span>Photo or Video</span>
                         </label>
@@ -61,7 +95,7 @@ export default function PostForm() {
                             </div>
                             {location && <img onClick={() => setLocation('')} className={styles.remove} src={Close} alt='close icon' />}
                         </div>
-                        <Button theme={theme} text={`Share a post`} onClick={() => console.log('clicked')} />
+                        <Button theme={theme} text={response.isPending ? 'Loading...' : `Share a post`} onClick={() => handlePostSubmit()} />
                     </div>
                 </div>
             </div>

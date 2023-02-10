@@ -1,4 +1,5 @@
 import { User } from "firebase/auth";
+import { Timestamp } from "firebase/firestore";
 import { ChatCardProps, ChatHeaderProps, ChatObject } from "react-chat-engine-advanced";
 
 //Context Provider
@@ -45,7 +46,8 @@ export interface UserObject {
     id: string
     firebaseUser: User
 }
-export type UserDocument = Omit<UserObject, 'firebaseUser'>
+
+
 
 //Auth Reducer State
 export interface IAuthState {
@@ -78,7 +80,29 @@ export interface IImageInput {
 //1. Collections
 
 //define all the types that a collection accepts
-export type CollectionType = UserDocument | UserDocument
+export type CollectionType = UserDocument | UserDocument | PostObject
+
+
+//Objects in the DB
+export type UserDocument = Omit<UserObject, 'firebaseUser'>
+
+export interface CommentObject {
+    creatorID: string
+    createdAt: Timestamp
+    commentContent: string
+}
+export interface PostObject {
+    postTitle: string,
+    photoURL: string,
+    creatorID: string,
+    location: string,
+    createdAt: Timestamp,
+    comments: CommentObject[],
+    likes: string[]
+}
+export interface PostDocument extends PostObject {
+    id: string
+}
 
 export interface ICollectionState<T extends CollectionType> {
     document: T[] | null

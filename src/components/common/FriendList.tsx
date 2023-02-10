@@ -6,18 +6,18 @@ import Deny from "../../../assets/close_icon.svg";
 import Test from "../../../assets/test.jpg";
 import { UserDocument } from "../../types";
 import { useThemeContext } from "../../hooks/view-hooks/useThemeContext";
-import { useMultipleDocuments } from "../../hooks/firebase-hooks/useMultipleDocuments";
+import { useCollection } from "../../hooks/firebase-hooks/useCollection";
+import { documentId } from "firebase/firestore";
+import { memo } from "react";
 
 interface Props {
   friendsIds: string[]
 }
 
-export default function FriendList({ friendsIds }: Props) {
-  const { theme } = useThemeContext()
+function FriendList({ friendsIds }: Props) {
   console.log(friendsIds)
-  const [document, isPending, error] = useMultipleDocuments<UserDocument>('users', friendsIds)
-
-  console.log(document)
+  const { theme } = useThemeContext()
+  const { document } = useCollection('users', [documentId(), 'in', friendsIds])
 
   return (
     <div className='listFriends'>
@@ -35,3 +35,4 @@ export default function FriendList({ friendsIds }: Props) {
     </div>
   );
 }
+export default memo(FriendList)

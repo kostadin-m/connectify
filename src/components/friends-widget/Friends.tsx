@@ -10,12 +10,14 @@ import './Friends.css'
 import FriendList from '../common/FriendList'
 
 import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
+import { UserDocument, UserObject } from '../../types'
 
-export default function FriendRequests() {
+interface FriendsProps {
+    user: UserDocument | UserObject
+}
+
+export default function FriendRequests({ user }: FriendsProps) {
     const { theme } = useThemeContext()
-    const { user } = useAuthContext()
-
-
 
     return (
         <div className={`friends ${theme}`}>

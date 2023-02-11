@@ -1,5 +1,5 @@
 //components
-import FriendRequests from '../components/friends-widget/Friends'
+import Friends from '../components/friends-widget/Friends'
 import PostForm from '../components/post-form/PostForm'
 import UserWidget from '../components/user-widget/UserWidget'
 import Feed from '../components/posts/Feed'
@@ -12,16 +12,18 @@ export default function Home() {
     const [isMobile] = useIsMobile()
     const { user } = useAuthContext()
 
+    const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
+
     return (
         <div className="page">
             <div className='page-item'>
                 <UserWidget user={user!} />
-                <FriendRequests user={user!} />
+                <Friends friends={friends!} />
             </div>
             <div className='page-item'>
                 <PostForm />
                 {isMobile && <FollowPeople />}
-                <Feed id={null} />
+                <Feed />
             </div>
             {!isMobile && <FollowPeople />}
         </div>

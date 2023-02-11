@@ -24,9 +24,9 @@ export default function Navbar() {
             <ul className='navbar-content'>
                 <li className='title'>
                     <Link to='/' >
-                        <h2>mySocialMedia</h2>
+                        <h2>connectify</h2>
                     </Link>
-                    <UserSearch />
+                    {user?.firebaseUser && <UserSearch />}
                 </li>
                 <li>
                 </li>

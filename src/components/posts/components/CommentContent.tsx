@@ -16,6 +16,8 @@ function CommentContent({ comment, theme }: CommentContentProps) {
 
     return (
         <>
+            {isPending && <div>Loading...</div>}
+            {error && <p className='error'>{error}</p>}
             {document && <div className={`${styles.comment} ${styles[theme]}`}>
                 <img className='profile-image' src={document.photoURL} alt='user icon' />
                 <div className={styles.commentContent}>

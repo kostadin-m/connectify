@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useCollection } from "../../../hooks/firebase-hooks/useCollection"
 import { UserDocument } from "../../../types"
-import FriendList from "../../common/FriendList"
+import FriendList from "../../common/UserList"
 import { documentId } from "firebase/firestore"
 import { useAuthContext } from "../../../hooks/firebase-hooks/useAuthContext"
 

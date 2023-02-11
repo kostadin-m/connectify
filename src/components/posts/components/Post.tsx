@@ -43,7 +43,7 @@ export default function Post({ post }: PostProps) {
     const { updateDocument, response } = useFirestore<PostDocument>('posts')
 
     useEffect(() => {
-        setLikedByCurrentUser(post.likes.includes(user?.id!) ? true : false)
+        setLikedByCurrentUser(post.likes.includes(user?.id!))
     }, [post])
 
     if (error) return <p className='error'>{error}</p>

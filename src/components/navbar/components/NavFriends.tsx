@@ -1,6 +1,6 @@
 import { useAuthContext } from "../../../hooks/firebase-hooks/useAuthContext"
 import { CSSClassesState, UserDocument } from "../../../types"
-import FriendList from "../../common/FriendList"
+import UserList from "../../common/UserList"
 
 interface NavFriendsProps {
     friendsClass: CSSClassesState
@@ -11,7 +11,7 @@ export const NavFriends = ({ friendsClass }: NavFriendsProps) => {
     return (
         <>
             <div className={`nav-friends ${friendsClass}`}>
-                <FriendList friendsIds={user?.friends!} />
+                <UserList friendsIds={user?.friends!} />
             </div>
         </>
     )

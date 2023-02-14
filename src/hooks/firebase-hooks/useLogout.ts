@@ -22,10 +22,10 @@ export const useLogout = (): useLogoutState => {
             const collectionRef = collection(db, 'users')
             const ref = doc(collectionRef, user?.id)
             //update online state
-            updateDoc(ref, { online: false })
+            await updateDoc(ref, { online: false })
 
             //sign out the user
-            signOut(auth)
+            await signOut(auth)
 
             //dispatch logout action
             dispatch({ type: "LOGOUT" })

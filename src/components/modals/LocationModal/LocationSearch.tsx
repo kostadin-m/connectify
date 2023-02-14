@@ -47,7 +47,6 @@ export default function LocationSearch({ handleLocationSelect, theme }: Props) {
                                 {suggestions.map(suggestion => {
                                     return (
                                         <>
-                                            {console.log({ ...getSuggestionItemProps(suggestion) })}
                                             <div {...getSuggestionItemProps(suggestion)} className={`${styles.dataItem} ${styles[theme]}`}>
                                                 <div>
                                                     <img src={Location} alt='location img '></img>

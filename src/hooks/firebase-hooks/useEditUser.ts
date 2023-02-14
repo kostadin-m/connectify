@@ -4,7 +4,6 @@ import { db, storage } from "../../firebase/config"
 import { updateEmail, updateProfile } from "firebase/auth"
 
 //types
-import { UserObject } from "../../types"
 import { useAuthContext } from "./useAuthContext"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -29,7 +28,7 @@ type editUserState = {
 export const useEditUser = (): editUserState => {
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState<string | null>(null)
-    const { user, dispatch } = useAuthContext()
+    const { user } = useAuthContext()
 
     let mounted = true
 
@@ -75,7 +74,6 @@ export const useEditUser = (): editUserState => {
             }
             if (mounted) {
                 setIsPending(false)
-                dispatch({ type: 'AUTH_IS_READY', payload: { ...user, ...updatedObject } as UserObject })
                 navigate('/')
             }
         } catch (error) {

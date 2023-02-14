@@ -17,7 +17,6 @@ export default function Login() {
     const submit = async (e: React.FormEvent) => {
         e.preventDefault()
         await login(email, password)
-        navigate('/')
     }
 
     return (

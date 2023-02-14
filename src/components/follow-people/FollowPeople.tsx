@@ -13,14 +13,15 @@ import './FollowPeople.css'
 //types
 import { UserDocument } from '../..//types'
 import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
+import { documentId } from 'firebase/firestore'
 
 export default function FollowPeople() {
-  const { document, isPending, error } = useCollection<UserDocument>('users')
   let usersWithMutualFriends = [] as string[]
 
   const { user } = useAuthContext()
   const { theme } = useThemeContext()
 
+  const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), '!=', user?.id!])
 
   if (document) {
     const notFriendsOfCurrentUser =
@@ -34,7 +35,7 @@ export default function FollowPeople() {
       !user?.sentFriendRequests.includes(userID) && !user?.receivedFriendRequests.includes(userID)
 
 
-    const filteredDocument = document.filter(userDoc => userDoc.id !== user?.id && notFriendsOfCurrentUser(userDoc.friends) && hasMutualFriends(userDoc.friends) && areNotInRequests(userDoc.id))
+    const filteredDocument = document.filter(userDoc => notFriendsOfCurrentUser(userDoc.friends) && hasMutualFriends(userDoc.friends) && areNotInRequests(userDoc.id))
     filteredDocument.forEach((user) => usersWithMutualFriends.push(user.id))
   }
 
@@ -46,6 +47,7 @@ export default function FollowPeople() {
     <div className={`box ${theme}`}>
       <h2>People you may know</h2>
       {usersWithMutualFriends.length > 0 && <UserList friendsIds={usersWithMutualFriends} />}
+      {usersWithMutualFriends.length === 0 && <h4 className='error'>No people with mutual friends!</h4>}
     </div>
   )
 }

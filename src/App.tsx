@@ -19,18 +19,19 @@ import './App.css'
 function App() {
   const { authIsReady, user } = useAuthContext()
   const { theme } = useThemeContext()
+
   return (
     <div className={`App ${theme}`}>
       {!authIsReady ? <div className='loader'></div> :
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path='/' element={user?.firebaseUser ? <Home /> : <Login />} />
-            <Route path='/signup' element={!user?.firebaseUser ? <SignUp /> : <Home />} />
-            <Route path='/login' element={!user?.firebaseUser ? <Login /> : <Home />} />
-            <Route path='/profile/:id' element={user?.firebaseUser ? <ProfilePage /> : <Login />} />
-            <Route path='/messages' element={user?.firebaseUser ? <Messages /> : <Login />} />
-            <Route path='/edit' element={user?.firebaseUser ? <EditProfile /> : <Login />} />
+            <Route path='/' element={user ? <Home /> : <Login />} />
+            <Route path='/signup' element={!user ? <SignUp /> : <Home />} />
+            <Route path='/login' element={!user ? <Login /> : <Home />} />
+            <Route path='/profile/:id' element={user ? <ProfilePage /> : <Login />} />
+            <Route path='/messages' element={user ? <Messages /> : <Login />} />
+            <Route path='/edit' element={user ? <EditProfile /> : <Login />} />
           </Routes>
         </BrowserRouter>}
     </div>

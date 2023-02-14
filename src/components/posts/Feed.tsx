@@ -9,9 +9,14 @@ interface Props {
 
 export default function Feed({ id }: Props) {
     const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null)
+
+    if (isPending) return (<div className='loader'></div>)
     return (
         <div className='feed'>
-            {posts && posts.length === 0 ? <h1 className='error'>This user has no posts</h1> : posts && posts.map(post => (<Post post={post} />))}
+            {error && <p className='error'>{error}</p>}
+            {posts && posts.length === 0 ?
+                <h1 className='error'>This user has no posts</h1> :
+                posts && posts.map(post => (<Post key={post.id} post={post} />))}
         </div>
     )
 }

@@ -1,23 +1,42 @@
 //icons
-import { FriendsObject } from "../../../types";
+import { UserDocument } from "../../../types";
 import Close from "../../../assets/close_icon.svg";
 import ModalWrapper from "../../common/ModalWrapper";
 
 //styles
 import styles from "./ActionModal.module.css";
+import { useAuthContext } from "../../../hooks/firebase-hooks/useAuthContext";
+import { useFirestore } from "../../../hooks/firebase-hooks/useFirestore";
 
 interface Props {
     setActionModal: React.Dispatch<React.SetStateAction<boolean>>
     theme: string
-    user: FriendsObject
+    friend: UserDocument
 }
 
-export default function FriendsActionModal({ setActionModal, theme, user }: Props) {
+export default function FriendsActionModal({ setActionModal, theme, friend }: Props) {
+    const { updateDocument, response } = useFirestore<UserDocument>('users')
+    const { user } = useAuthContext()
+
+
+
     const closeModal = () => setActionModal(false);
+    const removeFriend = async () => {
+
+        const currentUserUpdatedFriendList = user?.friends.filter(userID => userID !== friend.id)
+        const friendUpdatedFriendList = friend.friends.filter(userID => userID !== user?.id)
+
+        await updateDocument(friend.id, { friends: friendUpdatedFriendList } as UserDocument)
+        await updateDocument(user?.id!, { friends: currentUserUpdatedFriendList } as UserDocument)
+
+        closeModal()
+
+    }
 
 
     return (
         <ModalWrapper theme={theme}>
+            {response.isPending && <div className='spinner'></div>}
             <h2>
                 Are you sure you want to remove Udsadasdsadasdasdasdasdasdasdasser from
                 your friends list?
@@ -26,10 +45,12 @@ export default function FriendsActionModal({ setActionModal, theme, user }: Prop
                 If you remove your friend you can add them again!
             </p>
             <div className={styles.buttonsContainer}>
-                <button className={`${styles.button} ${styles[theme]}`}>Yes</button>
+                <button
+                    onClick={() => removeFriend()}
+                    className={`btn ${theme}`}>Remove Friend</button>
                 <button
                     onClick={closeModal}
-                    className={`${styles.button} ${styles[theme]}`}
+                    className={`btn ${theme}`}
                 >
                     No
                 </button>

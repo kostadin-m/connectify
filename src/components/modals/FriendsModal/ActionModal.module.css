@@ -1,22 +1,23 @@
 .buttonsContainer {
     display: flex;
-    margin-top: 40px;
-    margin-left: 230px;
+    margin-top: 80px;
+    align-items: center;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.buttonsContainer button {
+    height: 80px !important;
+    width: 200px !important;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px !important;
 }
 
 .warning {
     margin-top: 10px;
-}
-
-.button {
-    font-size: 0.9em;
-    margin-left: 5px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    font-weight: bold;
-    height: 50px;
-    width: 140px;
 }
 
 .button.dark:hover,

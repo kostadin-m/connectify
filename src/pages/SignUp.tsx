@@ -34,9 +34,6 @@ export default function SignUp() {
 
         await signUp(firstName, lastName, location, email, password, image)
 
-        if (!error) {
-            navigate('/')
-        }
     }
 
     return (

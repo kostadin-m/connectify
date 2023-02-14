@@ -1,6 +1,6 @@
 import { useReducer, useEffect, useRef } from "react"
 import { db } from "../../firebase/config"
-import { collection, onSnapshot, query, orderBy, where, Query } from "firebase/firestore"
+import { collection, onSnapshot, query, where } from "firebase/firestore"
 
 import { ICollectionState, ICollectionAction, CollectionType } from "../../types"
 
@@ -24,12 +24,18 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
         <React.Reducer<ICollectionState<T>, ICollectionAction<T>>>
         (collectionReducer, initialState)
 
-    const queryRef = useRef(_query).current
+    let queryRef = useRef(_query)
+
+    //comparing the two arrays so we can enter the useEffect if there is a change in the inside array when using the documentID query!
+    if (queryRef.current && _query && Array.isArray(queryRef.current[2]) && Array.isArray(_query[2])) {
+        if (queryRef.current[2].length !== _query[2].length) {
+            queryRef.current = _query
+        }
+    }
 
     useEffect(() => {
-        console.count('fetched')
-        let ref = queryRef ?
-            query(collection(db, _collection), where(queryRef[0], queryRef[1], queryRef[2])) :
+        let ref = queryRef.current ?
+            query(collection(db, _collection), where(queryRef.current[0], queryRef.current[1], queryRef.current[2])) :
             collection(db, _collection)
 
         const unsub = onSnapshot(ref, (snapshot) => {
@@ -40,7 +46,6 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
                 const id = doc.id
                 data.push({ ...doc.data(), id } as T)
             })
-
             //update state
             dispatch({ type: 'ADD_DOCUMENTS', payload: data })
 
@@ -51,6 +56,6 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
         })
 
         return () => unsub()
-    }, [_collection, queryRef])
+    }, [_collection, queryRef.current])
     return { ...state }
 }

@@ -8,10 +8,13 @@ interface NavFriendsProps {
 
 export const NavFriends = ({ friendsClass }: NavFriendsProps) => {
     const { user } = useAuthContext()
+
+    const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
+
     return (
         <>
             <div className={`nav-friends ${friendsClass}`}>
-                <UserList friendsIds={user?.friends!} />
+                {friends.length > 0 ? <UserList friendsIds={friends} /> : <h4 className="error">No Friends</h4>}
             </div>
         </>
     )

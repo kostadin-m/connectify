@@ -43,7 +43,7 @@ function Comments({ theme, classname, post }: Props) {
             <h2>Comments</h2>
             <hr className={`${styles.commentsHr} ${styles[theme]}`} />
             <div className={styles.comments}>
-                {post.comments.length > 0 && post.comments.map(comment => (<CommentContent comment={comment} theme={theme} />))}
+                {post.comments.length > 0 && post.comments.map(comment => (<CommentContent key={Math.random()} comment={comment} theme={theme} />))}
             </div>
 
             <hr className={`${styles.commentsHr} ${styles[theme]}`} />

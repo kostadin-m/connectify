@@ -26,7 +26,7 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const {
         ref: FriendsRef,
         isComponentVisible: showFriends,
-        setIsComponentVisible: setShowFriends } = useComponentVisible(false, setFriendsClass)
+        setIsComponentVisible: setShowFriends } = useComponentVisible(false, setFriendsClass, 580)
 
     //Showing the Components only when they are hidden because useComponentVisible takes care of the closing
     const toggleFriends = () => {
@@ -46,7 +46,7 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const {
         ref: DropDownRef,
         isComponentVisible: showDropDown,
-        setIsComponentVisible: setShowDropdown } = useComponentVisible(false, setDropDownClass)
+        setIsComponentVisible: setShowDropdown } = useComponentVisible(false, setDropDownClass, 580)
 
     return (
         <>

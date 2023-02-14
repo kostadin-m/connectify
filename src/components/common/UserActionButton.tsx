@@ -28,6 +28,28 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
         await updateDocument(user?.id!, { sentFriendRequests: [...user?.sentFriendRequests!, friend.id] } as UserDocument)
     };
 
+    const handleAcceptOrDenyActions = async (type: 'accept' | 'cancel') => {
+        const myUserUpdatedReceivedRequests: string[] = user?.receivedFriendRequests.filter(id => id !== friend.id)!
+        const OtherUserUpdatedSentRequests: string[] = friend.sentFriendRequests.filter(id => id !== user?.id)
+
+        await updateDocument(user?.id!, { receivedFriendRequests: myUserUpdatedReceivedRequests } as UserDocument)
+        await updateDocument(friend?.id!, { sentFriendRequests: OtherUserUpdatedSentRequests } as UserDocument)
+
+        if (type === 'accept') {
+            await updateDocument(friend.id, { friends: [...friend.friends, user?.id] } as UserDocument)
+            await updateDocument(user?.id!, { friends: [...user?.friends!, friend.id] } as UserDocument)
+        }
+
+    }
+
+    const handleCancelRequests = async () => {
+        const myUserUpdatedSentRequests: string[] = user?.sentFriendRequests.filter(id => id !== friend.id)!
+        const OtherUserUpdatedReceivedRequests: string[] = friend.receivedFriendRequests.filter(id => id !== user?.id)
+
+        await updateDocument(user?.id!, { sentFriendRequests: myUserUpdatedSentRequests } as UserDocument)
+        await updateDocument(friend?.id!, { receivedFriendRequests: OtherUserUpdatedReceivedRequests } as UserDocument)
+    }
+
 
     useEffect(() => {
         if (user?.friends.includes(friend.id)) setButton(
@@ -38,18 +60,31 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
 
         if (user?.receivedFriendRequests.includes(friend.id)) setButton(
             <>
-                <img className="button" src={Accept} alt='accept request icon' />
-                <img className="button" src={Deny} alt='accept request icon' />
+                <img
+                    onClick={() =>
+                        !response.isPending ? handleAcceptOrDenyActions('accept') : null}
+                    className="button" src={Accept} alt='accept request icon' />
+                <img
+                    onClick={() => !response.isPending ? handleAcceptOrDenyActions('cancel') : null}
+                    className="button" src={Deny} alt='accept request icon' />
             </>)
 
-        if (user?.sentFriendRequests.includes(friend.id)) setButton(<p>Pending...</p>)
+        if (user?.sentFriendRequests.includes(friend.id)) setButton(
+            <button
+                onClick={() => !response.isPending ? handleCancelRequests() : null}
+                className={`btn ${theme}`}>{!response.isPending ? 'Cancel Request' : "Loading..."}
+            </button>)
 
         if (!user?.friends.includes(friend.id)
             && !user?.sentFriendRequests.includes(friend.id)
             && !user?.receivedFriendRequests.includes(friend.id))
             setButton(
-                <button disabled={response.isPending} onClick={() => handleAddFriend()} className={`btn ${theme}`}>Add Friend</button>)
-    }, [user?.friends, user?.sentFriendRequests, user?.receivedFriendRequests])
+                <button disabled={response.isPending}
+                    onClick={() => handleAddFriend()}
+                    className={`btn ${theme}`}>{response.isPending ? 'Loading...' : `Add Friend`}
+                </button>)
+
+    }, [user?.friends, user?.sentFriendRequests, user?.receivedFriendRequests, response])
 
 
     return (

@@ -203,6 +203,15 @@
         padding-top: 5px;
     }
 
+    .name {
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+
+    .pending {
+        font-size: 0.7em;
+    }
+
 }
 
 @media (800px <=width <=1200px) {

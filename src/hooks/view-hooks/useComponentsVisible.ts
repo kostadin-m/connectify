@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef, SetStateAction } from 'react';
 import { CSSClassesState } from '../../types';
 
-export default function useComponentVisible(initialIsVisible: boolean, setClass: React.Dispatch<SetStateAction<CSSClassesState>>) {
+export default function useComponentVisible(
+    initialIsVisible: boolean,
+    setClass: React.Dispatch<SetStateAction<CSSClassesState>>,
+    timeout: number) {
     const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible);
     const ref = useRef<HTMLDivElement>(null);
     const timeoutRef = useRef<number | undefined>()
@@ -10,7 +13,8 @@ export default function useComponentVisible(initialIsVisible: boolean, setClass:
     const handleClickOutside = (event: MouseEvent) => {
         if (ref.current && !ref.current.contains(event!.target as Node)) {
             setClass('hidden')
-            timeoutRef.current = window.setTimeout(() => setIsComponentVisible(false), 580)
+            timeoutRef.current = window.setTimeout(() => setIsComponentVisible(false), timeout)
+
         }
     };
 

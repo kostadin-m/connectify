@@ -45,7 +45,6 @@ export interface UserObject {
     photoURL: string
     id: string
     firebaseUser: User
-    chatEngineId: number
 }
 
 

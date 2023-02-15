@@ -51,12 +51,10 @@ export const useSignUp = () => {
             formData.append("secret", firebaseUser.uid);
             formData.append("avatar", profileImg, profileImg.name);
 
-            let chatEngineId: number | null = null
 
             await axios
                 .post("https://api.chatengine.io/users/", formData,
                     { headers: { "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1' } })
-                .then((data) => chatEngineId = data.data.id)
                 .catch((e) => setError(e.data.details));
 
             const userData = {
@@ -69,7 +67,6 @@ export const useSignUp = () => {
                 sentFriendRequests: [],
                 receivedFriendRequests: [],
                 id: firebaseUser.uid,
-                chatEngineId: chatEngineId!
             } as UserDocument
 
             const storageRef = doc(db, 'users', res.user.uid)

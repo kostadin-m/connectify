@@ -70,8 +70,12 @@ export const useEditUser = (): editUserState => {
                 formData.append("avatar", updatedDocument.image, updatedDocument.image.name);
             }
 
-            await axios.patch(`https://api.chatengine.io/users/${user?.chatEngineId}/`, formData, {
-                headers: { "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1' }
+            await axios.patch(`https://api.chatengine.io/users/me/`, formData, {
+                headers: {
+                    "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1',
+                    'user-name': user?.displayName,
+                    'user-secret': user?.id
+                }
             }).catch((e) => setError(e))
 
 

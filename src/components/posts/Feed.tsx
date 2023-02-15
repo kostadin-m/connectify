@@ -15,7 +15,7 @@ export default function Feed({ id }: Props) {
         <div className='feed'>
             {error && <p className='error'>{error}</p>}
             {posts && posts.length === 0 ?
-                <h1 className='error'>This user has no posts</h1> :
+                <h1 className='error'>No posts here!</h1> :
                 posts && posts.map(post => (<Post key={post.id} post={post} />))}
         </div>
     )

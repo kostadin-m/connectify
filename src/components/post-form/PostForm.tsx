@@ -1,24 +1,26 @@
-import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
 import { useState } from 'react'
 
 //components
 import LocationModal from '../modals/LocationModal/LocationModal'
 import ImagePreview from '../common/ImagePreview'
+import Button from '../common/Button'
+import TextArea from '../common/TextArea'
+import ImageInput from '../common/ImageInput'
 
 //icons
 import Close from '../../assets/close_icon.svg'
 import Location from '../../assets/location_icon.svg'
 import AddImage from '../../assets/add_image.svg'
-import TestPic from '../../assets/test.jpg'
 
 //styles
 import styles from './PostForm.module.css'
-import Button from '../common/Button'
-import TextArea from '../common/TextArea'
-import ImageInput from '../common/ImageInput'
+
+//custom hooks
+import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
 import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
-import { doc } from 'firebase/firestore'
-import { db, storage, timeStamp } from '../../firebase/config'
+
+//firebase
+import { storage, timeStamp } from '../../firebase/config'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useFirestore } from '../../hooks/firebase-hooks/useFirestore'
 import { PostObject } from '../../types'
@@ -46,25 +48,25 @@ export default function PostForm() {
         const imageRef = ref(storage, `postPictures/${user?.id!}/${image.name}`)
         await uploadBytes(imageRef, image)
         const photoURL = await getDownloadURL(imageRef)
-        if (user) {
-            const postObject = {
-                postTitle: text,
-                photoURL,
-                location,
-                creatorID: user.id,
-                createdAt,
-                comments: [],
-                likes: []
-            } as PostObject
-            await addDocument(postObject)
-        }
-        if (response.success) {
+
+        const postObject = {
+            postTitle: text,
+            photoURL,
+            location,
+            creatorID: user?.id!,
+            createdAt,
+            comments: [],
+            likes: []
+        } as PostObject
+
+        await addDocument(postObject)
+
+        if (!response.error) {
             setText('')
             setImage(null)
             setLocation('')
         }
     }
-
 
     return (
         <div className={`${styles.postForm} ${styles[theme]}`}>
@@ -93,7 +95,7 @@ export default function PostForm() {
                                 <img className={styles.optionPicture} src={Location} alt='add image picture'></img>
                                 <span>{location ? location : "Location"}</span>
                             </div>
-                            {location && <img onClick={() => setLocation('')} className={styles.remove} src={Close} alt='close icon' />}
+                            {location && <img style={{ position: 'relative' }} onClick={() => setLocation('')} className={styles.remove} src={Close} alt='close icon' />}
                         </div>
                         <Button theme={theme} text={response.isPending ? 'Loading...' : `Share a post`} onClick={() => handlePostSubmit()} />
                     </div>

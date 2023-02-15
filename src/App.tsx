@@ -20,6 +20,7 @@ function App() {
   const { authIsReady, user } = useAuthContext()
   const { theme } = useThemeContext()
 
+
   return (
     <div className={`App ${theme}`}>
       {!authIsReady ? <div className='loader'></div> :

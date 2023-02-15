@@ -10,8 +10,6 @@ const CustomChatCard = (props: CustomChatCardProps) => {
     if (!props.chat) return <div />;
 
     const otherMember = getOtherUser(props.chat, props.username);
-    const firstName = otherMember ? otherMember.first_name : "";
-    const lastName = otherMember ? otherMember.last_name : "";
     const username = otherMember ? otherMember.username : "";
     const messageText = props.chat.last_message.text;
     console.log(props.chat)
@@ -20,7 +18,7 @@ const CustomChatCard = (props: CustomChatCardProps) => {
 
     return (
         <ChatCard
-            title={`${firstName} ${lastName}`}
+            title={`${username}`}
             description={
                 messageText === null || messageText.length === 0
                     ? "Say hello!"

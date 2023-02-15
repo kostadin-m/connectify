@@ -1,3 +1,5 @@
+import axios from "axios"
+
 //firebase
 import { deleteObject, uploadBytes, getDownloadURL, listAll, ref } from "firebase/storage"
 import { db, storage } from "../../firebase/config"
@@ -38,7 +40,6 @@ export const useEditUser = (): editUserState => {
     const navigate = useNavigate()
 
     const editUser = async (updatedDocument: updateUserFile) => {
-        debugger
         if (mounted) {
             setIsPending(true)
         }
@@ -61,9 +62,24 @@ export const useEditUser = (): editUserState => {
                 photoURL = await getDownloadURL(imageRef)
             }
 
+            //Updating the user in ChatEngine
+            let formData = new FormData()
+            formData.append("email", updatedDocument.email);
+            formData.append("username", displayName);
+            if (updatedDocument.image) {
+                formData.append("avatar", updatedDocument.image, updatedDocument.image.name);
+            }
+
+            await axios.patch(`https://api.chatengine.io/users/${user?.chatEngineId}/`, formData, {
+                headers: { "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1' }
+            }).catch((e) => setError(e))
+
+
             //Updating the user in the DB
             const updatedObject = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location }
             await updateDoc(documentRef, { ...updatedObject })
+
+
 
             //Updating the user in firebaseAuth
             if (user?.email !== updatedDocument.email) {
@@ -72,6 +88,8 @@ export const useEditUser = (): editUserState => {
             if (user?.displayName !== displayName || user.photoURL !== photoURL) {
                 await updateProfile(user?.firebaseUser!, { displayName, photoURL })
             }
+
+
             if (mounted) {
                 setIsPending(false)
                 navigate('/')

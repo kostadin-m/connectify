@@ -11,6 +11,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 import { useAuthContext } from "./useAuthContext"
 import { checkError } from "../../helpers/checkError"
 import { UserDocument, UserObject } from "../../types"
+import axios from "axios"
 
 export const useSignUp = () => {
     const [isCancelled, setIsCancelled] = useState<boolean>(false)
@@ -41,6 +42,23 @@ export const useSignUp = () => {
             await updateProfile(firebaseUser, { displayName, photoURL })
 
             //create user schema
+
+
+            //Creating user in chat engine
+            let formData = new FormData()
+            formData.append("email", email);
+            formData.append("username", displayName);
+            formData.append("secret", firebaseUser.uid);
+            formData.append("avatar", profileImg, profileImg.name);
+
+            let chatEngineId: number | null = null
+
+            await axios
+                .post("https://api.chatengine.io/users/", formData,
+                    { headers: { "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1' } })
+                .then((data) => chatEngineId = data.data.id)
+                .catch((e) => setError(e.data.details));
+
             const userData = {
                 email,
                 displayName,
@@ -50,7 +68,8 @@ export const useSignUp = () => {
                 location,
                 sentFriendRequests: [],
                 receivedFriendRequests: [],
-                id: firebaseUser.uid
+                id: firebaseUser.uid,
+                chatEngineId: chatEngineId!
             } as UserDocument
 
             const storageRef = doc(db, 'users', res.user.uid)

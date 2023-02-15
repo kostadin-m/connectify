@@ -39,7 +39,7 @@ export default function Post({ post }: PostProps) {
     const { theme } = useThemeContext()
     const { toggleMount } = useDelayToUnmount(commentsClass, setShowComments, setCommentsClass)
 
-    const { document: creatorData, error, isPending } = useDocument<UserDocument>('users', post.creatorID)
+    const { document: creatorData, error } = useDocument<UserDocument>('users', post.creatorID)
     const { updateDocument, response } = useFirestore<PostDocument>('posts')
 
     useEffect(() => {
@@ -64,7 +64,7 @@ export default function Post({ post }: PostProps) {
                         <div className={`${styles.user} ${styles[theme]}`}>
                             <img className='profile-image' src={creatorData.photoURL} alt='' />
                             <div className={styles.userInfo}>
-                                <Link to={`/${creatorData.id}`} >{creatorData.displayName}</Link>
+                                <Link to={`/profile/${creatorData.id}`} >{creatorData.displayName}</Link>
                                 <div className={styles.timeAndLocation}>
                                     <p className={styles.timestamp}>{formatDate(post.createdAt)}</p>
                                     <img src={Location} alt='location icon' />

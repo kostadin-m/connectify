@@ -1,5 +1,3 @@
-
-
 .messages-wrapper {
     font-family: Poppins, sans-serif !important;
     text-align: center;
@@ -10,6 +8,7 @@
 }
 
 .ce-chat-engine {
+    text-align: left !important;
     margin-left: 10% !important;
 }
 
@@ -120,13 +119,25 @@
     max-width: 50%;
     padding-left: 14px;
     position: relative;
-    top: 14px;
 }
+
+.ce-their-message-body {
+    text-align: left !important;
+}
+
+.dark>.ce-chat-engine>.ce-chat-feed-column>.ce-chat-feed>.ce-message-list>.ce-message-list-content>div>.ce-their-message>.ce-message-date-text {
+    color: lightgray !important;
+}
+
+.dark>.ce-chat-engine>.ce-chat-feed-column>.ce-chat-feed>.ce-message-list>.ce-message-list-content>div>.ce-their-message>.ce-their-message-sender-username {
+    color: lightgray !important;
+}
+
 
 .ce-custom-header-title {
     font-family: inherit !important;
     color: black;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -136,7 +147,7 @@
 
 .ce-custom-header-subtitle {
     color: rgb(153, 153, 153);
-    font-size: 11px;
+    font-size: 15px;
 }
 
 .ce-custom-header-icon-wrapper {
@@ -144,7 +155,6 @@
     max-width: 50%;
     position: relative;
     top: 14px;
-    float: right;
 }
 
 .ce-custom-header-icon {

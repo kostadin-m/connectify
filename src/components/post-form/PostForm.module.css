@@ -203,7 +203,7 @@
 
 @media (max-width:800px) {
     .formOption span {
-        max-width: 25vw !important;
+        max-width: 20vw !important;
     }
 
     .postForm {
@@ -223,6 +223,21 @@
 
     .formOption {
         margin-left: 5px !important;
+    }
+
+    .formOption span {
+        font-size: 0.6em;
+    }
+
+    .optionPicture {
+        width: 20px;
+        height: 20px;
+    }
+
+    .remove {
+        height: 20px;
+        width: 20px;
+        margin-left: 0px;
     }
 
     .formTop textarea {

@@ -293,10 +293,24 @@
 
 @media (max-width:575px) {
     .ce-chat-engine {
+        width: 100%;
         margin-left: 0 !important;
     }
 
     .custom-profile {
         margin-left: 70px;
+    }
+}
+
+@media (min-width:576px) and (max-width:1450px) {
+    .ce-chat-engine {
+        width: 105% !important;
+        margin-left: 0 !important;
+    }
+
+    .ce-chat-feed-column {
+        flex: none !important;
+        max-width: 70% !important;
+        width: 70% !important;
     }
 }

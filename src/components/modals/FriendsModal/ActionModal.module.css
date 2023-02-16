@@ -43,3 +43,9 @@
 .warning.light {
     color: rgb(114, 111, 111);
 }
+
+@media (max-width:500px) {
+    .buttonsContainer {
+        margin-left: 0;
+    }
+}

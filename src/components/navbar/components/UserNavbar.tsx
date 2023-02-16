@@ -14,6 +14,7 @@ import { NavFriends } from './NavFriends'
 import UserDropDown from './UserDropDown'
 import useComponentVisible from '../../../hooks/view-hooks/useComponentsVisible'
 import { useThemeContext } from '../../../hooks/view-hooks/useThemeContext'
+import { Link } from 'react-router-dom'
 
 
 type UserNavbarProps = { theme: string, user: UserObject }
@@ -27,6 +28,12 @@ export default function UserNavbar({ user }: UserNavbarProps) {
         ref: FriendsRef,
         isComponentVisible: showFriends,
         setIsComponentVisible: setShowFriends } = useComponentVisible(false, setFriendsClass, 580)
+
+    const [dropDownClass, setDropDownClass] = useState<CSSClassesState>('hidden')
+    const {
+        ref: DropDownRef,
+        isComponentVisible: showDropDown,
+        setIsComponentVisible: setShowDropdown } = useComponentVisible(false, setDropDownClass, 580)
 
     //Showing the Components only when they are hidden because useComponentVisible takes care of the closing
     const toggleFriends = () => {
@@ -42,11 +49,6 @@ export default function UserNavbar({ user }: UserNavbarProps) {
         }
     }
 
-    const [dropDownClass, setDropDownClass] = useState<CSSClassesState>('hidden')
-    const {
-        ref: DropDownRef,
-        isComponentVisible: showDropDown,
-        setIsComponentVisible: setShowDropdown } = useComponentVisible(false, setDropDownClass, 580)
 
     return (
         <>
@@ -55,7 +57,9 @@ export default function UserNavbar({ user }: UserNavbarProps) {
                     <img onClick={() => toggleFriends()} src={FriendsIcon} alt='chat icon' />
                 </li>}
             <li className='nav-item'>
-                <img src={Chat} className='nav-img' alt='chat icon' />
+                <Link style={{ height: '25px' }} to='/messages'>
+                    <img src={Chat} className='nav-img' alt='chat icon' />
+                </Link>
             </li>
             <li className='nav-item'>
                 <div onClick={toggleDropDown} className='user-dropdown-button'>

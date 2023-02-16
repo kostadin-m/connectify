@@ -37,10 +37,6 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
     return (
         <ModalWrapper title={`Are you sure you want to remove ${friend.displayName} from your friends list?`} theme={theme}>
             {response.isPending && <div className='spinner'></div>}
-            <h2>
-                Are you sure you want to remove Udsadasdsadasdasdasdasdasdasdasser from
-                your friends list?
-            </h2>
             <p className={`${styles.warning} ${styles[theme]}`}>
                 If you remove your friend you can add them again!
             </p>

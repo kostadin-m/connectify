@@ -110,6 +110,7 @@ export interface ICollectionState<T extends CollectionType> {
     isPending: boolean
 
 }
+
 export type ICollectionAction<T extends CollectionType> =
     { type: "IS_PENDING", payload?: null } |
     { type: "ADD_DOCUMENTS", payload: T[] | null } |
@@ -141,6 +142,7 @@ export interface CustomChatHeaderProps extends ChatHeaderProps {
     username: string;
     secret: string;
 }
+
 export interface CustomChatCardProps extends ChatCardProps {
     username: string;
     isActive: boolean;

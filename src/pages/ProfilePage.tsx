@@ -13,10 +13,9 @@ export default function ProfilePage() {
     const { document: user, error, isPending } = useDocument<UserDocument>('users', id!)
 
 
-    if (isPending) return (<div className="loader"></div>)
-
     return (
         <div className="page">
+            {isPending && <div className="loader"></div>}
             {error && <div className="error">{error}</div>}
             <div className="profile-page-item">
                 {user && <>

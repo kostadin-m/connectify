@@ -346,6 +346,10 @@
         width: 90vw !important;
     }
 
+    .nav-item a {
+        height: 20px !important;
+    }
+
     .navbar img {
         width: 20px;
         height: 20px;

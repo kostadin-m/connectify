@@ -15,7 +15,7 @@ export default function CustomChatHeader(props: CustomChatHeaderProps) {
     const otherMember: PersonObject | undefined = props.chat && getOtherUser(props.chat, props.username);
     return (
         <div className={`ce-custom-chat-header ${theme}`}>
-            {otherMember && (
+            {otherMember ? (
                 <div className="custom-profile">
                     <Avatar
                         className="ce-custom-header-avatar"
@@ -32,7 +32,7 @@ export default function CustomChatHeader(props: CustomChatHeaderProps) {
                         </div>
                     </div>
                 </div>
-            )}
+            ) : (<h2>No user</h2>)}
             <style>{`
       .ce-custom-header-avatar { display: inline-block; position: relative; top: 10px; margin-left: "48px";
                 }; border: 1px solid ${otherMember?.is_online ? "rgb(24, 144, 255)" : "#fa541c"

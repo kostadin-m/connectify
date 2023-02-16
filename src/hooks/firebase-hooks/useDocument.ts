@@ -8,25 +8,26 @@ export function useDocument<T>(collection: string, id: string | null) {
     const [document, setDocument] = useState<T>()
 
     useEffect(() => {
-        if (id) {
-            const ref = doc(db, collection, id)
-            setIsPending(true)
 
-            const unsub = onSnapshot(ref, (doc) => {
-                if (doc.data()) {
-                    setDocument({ ...doc.data(), id: doc.id } as T)
-                    setIsPending(false)
-                    setError(null)
-                } else {
-                    setError(`Project doesnt exist`)
-                }
-            }, (error) => {
-                setError(error.message)
+        const ref = doc(db, collection, id!)
+        setIsPending(true)
+
+        const unsub = onSnapshot(ref, (doc) => {
+            if (doc.data()) {
+                setDocument({ ...doc.data(), id: doc.id } as T)
                 setIsPending(false)
-            })
+                setError(null)
+            } else {
+                setIsPending(false)
+                setError(`Project doesnt exist`)
+            }
+        }, (error) => {
+            setError(error.message)
+            setIsPending(false)
+        })
 
-            return () => unsub()
-        }
+
+        return () => unsub()
 
     }, [collection, id])
 

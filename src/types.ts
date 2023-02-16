@@ -36,6 +36,7 @@ export interface IThemeContext {
 
 export interface UserObject {
     email: string
+    online: boolean
     displayName: string
     friends: NonNullable<string[]>
     location: string

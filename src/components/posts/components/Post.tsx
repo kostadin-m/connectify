@@ -23,6 +23,7 @@ import styles from '../Post.module.css'
 import { useDocument } from '../../../hooks/firebase-hooks/useDocument'
 import { useAuthContext } from '../../../hooks/firebase-hooks/useAuthContext'
 import { useFirestore } from '../../../hooks/firebase-hooks/useFirestore'
+import UserActionButton from '../../common/UserActionButton'
 
 interface PostProps {
     post: PostDocument
@@ -71,6 +72,11 @@ export default function Post({ post }: PostProps) {
                                     <p>{post.location}</p>
                                 </div>
                             </div>
+                            {user?.id !== creatorData.id &&
+                                <div style={{ marginTop: '5px', marginLeft: 'auto' }}>
+                                    <UserActionButton friend={creatorData} />
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className={styles.postMiddle}>

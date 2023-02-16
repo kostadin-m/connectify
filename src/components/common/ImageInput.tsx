@@ -1,11 +1,8 @@
 import { memo } from "react"
 import { handleFileChange } from "../../helpers/handleImageChange"
+import { IImageInput } from "../../types"
 
 
-interface IImageInput {
-    setImage: React.Dispatch<React.SetStateAction<File | null>>
-    setImageError: React.Dispatch<React.SetStateAction<string | null>>
-}
 
 
 function ImageInput({ setImage, setImageError }: IImageInput) {

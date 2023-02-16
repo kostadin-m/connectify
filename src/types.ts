@@ -6,6 +6,12 @@ export interface IContextProviderProps {
     children: React.ReactNode;
 }
 
+//Image Input Props
+export interface IImageInput {
+    setImage: React.Dispatch<React.SetStateAction<File | null>>
+    setImageError: React.Dispatch<React.SetStateAction<string | null>>
+}
+
 //CSS Classes State 
 export type CSSClassesState = 'hidden' | 'show'
 

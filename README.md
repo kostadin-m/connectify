@@ -6,7 +6,7 @@ I tried in this project to build an application similar to Facebook but certainl
 [twirrer.netlify.app](https://twirrer.netlify.app/)
 
 ## Project Screenshot
-![Connecity screenshot](./home.PNG)
+![Connecity screenshot](./home.png)
 ![Twirrer screenshot](./twirrer.PNG)
 
 ## Project Features:

@@ -1,9 +1,10 @@
-
-
 import { memo } from 'react'
+
 import { useDocument } from '../../../hooks/firebase-hooks/useDocument'
-import { CommentObject, UserObject } from '../../../types'
 import { formatDate } from '../../../helpers/formatDate'
+import { CommentObject, UserObject } from '../../../types'
+
+//styles
 import styles from '../Post.module.css'
 
 interface CommentContentProps {

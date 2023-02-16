@@ -4,6 +4,8 @@ import PostForm from '../components/post-form/PostForm'
 import UserWidget from '../components/user-widget/UserWidget'
 import Feed from '../components/posts/Feed'
 import FollowPeople from '../components/follow-people/FollowPeople'
+
+//custom hooks
 import { useIsMobile } from '../hooks/view-hooks/useIsMobile'
 import { useAuthContext } from '../hooks/firebase-hooks/useAuthContext'
 

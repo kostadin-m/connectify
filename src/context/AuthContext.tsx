@@ -3,8 +3,6 @@ import { createContext, useEffect, useMemo, useReducer, useRef, useState } from 
 import { auth, db } from "../firebase/config";
 import { Unsubscribe, onAuthStateChanged } from "firebase/auth";
 import { IContextProviderProps, IAuthState, IAuthActions, IAuthContext, UserObject } from "../types";
-import { getCurrentUserData } from "../helpers/getCurrentUserData"
-import { useDocument } from "../hooks/firebase-hooks/useDocument";
 import { DocumentSnapshot, doc, onSnapshot } from "firebase/firestore";
 
 

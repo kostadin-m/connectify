@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState, memo } from 'react';
+import { useState } from 'react';
 
-import { IPreviewImage } from 'src/types';
+import { IPreviewImage } from '../../types';
 
 export default function ImagePreview({ image, style }: IPreviewImage) {
     const [img, setImage] = useState<string | null>(null)

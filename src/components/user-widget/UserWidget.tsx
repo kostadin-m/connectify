@@ -4,7 +4,6 @@ import Likes from '../../assets/liked_icon.svg'
 
 //custom hooks
 import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
-import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
 
 //styles
 import styles from './UserWidget.module.css'

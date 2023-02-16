@@ -1,7 +1,6 @@
-import React from "react"
 import { memo } from "react"
 import { handleFileChange } from "../../helpers/handleImageChange"
-import { IImageInput } from "src/types"
+import { IImageInput } from "../../types"
 
 function ImageInput({ setImage, setImageError }: IImageInput) {
     return (

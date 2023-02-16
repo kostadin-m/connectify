@@ -1,9 +1,14 @@
+import { useParams } from "react-router-dom"
+
 //components
 import Friends from "../components/friends-widget/Friends"
 import UserWidget from "../components/user-widget/UserWidget"
 import Feed from "../components/posts/Feed"
-import { useParams } from "react-router-dom"
+
+//custom hooks
 import { useDocument } from "../hooks/firebase-hooks/useDocument"
+
+
 import { UserDocument } from "../types"
 
 

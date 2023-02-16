@@ -1,6 +1,5 @@
 import { memo, useState } from 'react'
 
-import Test from '../../../assets/test.jpg'
 //styles
 import styles from '../Post.module.css'
 

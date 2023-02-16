@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 //custom hooks
 import { useAuthContext } from './hooks/firebase-hooks/useAuthContext'
@@ -15,6 +15,7 @@ import EditProfile from './pages/EditProfile'
 
 //styles
 import './App.css'
+import NotFound from './pages/NotFound'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
@@ -27,12 +28,13 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path='/' element={user ? <Home /> : <Login />} />
-            <Route path='/signup' element={!user ? <SignUp /> : <Home />} />
-            <Route path='/login' element={!user ? <Login /> : <Home />} />
-            <Route path='/profile/:id' element={user ? <ProfilePage /> : <Login />} />
-            <Route path='/messages' element={user ? <Messages /> : <Login />} />
-            <Route path='/edit' element={user ? <EditProfile /> : <Login />} />
+            <Route path='/' element={user ? <Home /> : <Navigate to='/login' />} />
+            <Route path='/signup' element={!user ? <SignUp /> : <Navigate to='/' />} />
+            <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
+            <Route path='/profile/:id' element={user ? <ProfilePage /> : <Navigate to='/login' />} />
+            <Route path='/messages' element={user ? <Messages /> : <Navigate to='/login' />} />
+            <Route path='/edit' element={user ? <EditProfile /> : <Navigate to='/login' />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>}
     </div>

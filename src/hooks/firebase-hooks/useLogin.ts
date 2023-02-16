@@ -1,10 +1,7 @@
 import { useState } from "react"
-import { auth, db } from "../../firebase/config"
-import { doc, updateDoc } from "firebase/firestore"
+import { auth } from "../../firebase/config"
 import { signInWithEmailAndPassword, updateProfile } from "firebase/auth"
-import { useAuthContext } from "./useAuthContext"
 import { useEffect } from "react"
-import { getCurrentUserData } from "../../helpers/getCurrentUserData"
 
 export const useLogin = () => {
     const [isCancelled, setIsCancelled] = useState(false)

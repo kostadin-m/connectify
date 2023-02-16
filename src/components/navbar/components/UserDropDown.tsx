@@ -1,6 +1,5 @@
 import { useAuthContext } from '../../../hooks/firebase-hooks/useAuthContext'
 import { useLogout } from '../../../hooks/firebase-hooks/useLogout'
-import useComponentVisible from '../../../hooks/view-hooks/useComponentsVisible'
 import { useThemeContext } from '../../../hooks/view-hooks/useThemeContext'
 import { CSSClassesState } from '../../../types'
 import { Link } from 'react-router-dom'

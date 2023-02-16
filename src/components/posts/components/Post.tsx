@@ -10,7 +10,6 @@ import { CSSClassesState, PostDocument, PostObject, UserDocument } from '../../.
 
 //icons
 import Location from '../../../assets/location_icon.svg'
-import Test from '../../../assets/test.jpg'
 import Like from '../../../assets/likes_icon.svg'
 import Liked from '../../../assets/liked_icon.svg'
 import CommentsIcon from '../../../assets/comments_icon.svg'

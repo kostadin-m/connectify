@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import axios from "axios"
 
 //firebase
 import { db, auth } from "../../firebase/config"
@@ -11,7 +12,6 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 import { useAuthContext } from "./useAuthContext"
 import { checkError } from "../../helpers/checkError"
 import { UserDocument, UserObject } from "../../types"
-import axios from "axios"
 
 export const useSignUp = () => {
     const [isCancelled, setIsCancelled] = useState<boolean>(false)

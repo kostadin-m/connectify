@@ -1,10 +1,17 @@
-import { ChatCard } from "react-chat-engine-advanced";
+import { ChatCard, ChatCardProps, ChatObject } from "react-chat-engine-advanced";
 
 //helpers
 import { getOtherUser } from "../../helpers/getOtherChatUser";
 
-//types
-import { CustomChatCardProps } from "../../types";
+
+
+
+interface CustomChatCardProps extends ChatCardProps {
+    username: string;
+    isActive: boolean;
+    onChatCardClick: (chatId: number) => void;
+    chat?: ChatObject;
+}
 
 const CustomChatCard = (props: CustomChatCardProps) => {
     if (!props.chat) return <div />;

@@ -1,8 +1,25 @@
 import { useReducer, useEffect } from "react";
 import { db, timeStamp } from "../../firebase/config";
-import { addDoc, deleteDoc, doc, collection, setDoc, updateDoc } from "firebase/firestore";
-import { IDocumentAction, IDocumentState, CollectionType } from "../../types";
+import { addDoc, deleteDoc, doc, collection, updateDoc } from "firebase/firestore";
+import { CollectionType } from "../../types";
 import { checkError } from "../../helpers/checkError";
+
+
+interface IDocumentState {
+    success: boolean
+    error: string | null
+    isPending: boolean
+}
+
+type IDocumentAction =
+    { type: "IS_PENDING", payload?: null } |
+    { type: "ADD_DOCUMENT", payload?: null } |
+    { type: "SET_ERROR", payload: string } |
+    { type: 'UPDATED_DOCUMENT', payload?: null } |
+    { type: "DELETE", payload?: null }
+
+
+
 
 let initialState = {
     isPending: false,

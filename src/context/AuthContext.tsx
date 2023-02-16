@@ -2,8 +2,23 @@ import { createContext, useEffect, useMemo, useReducer, useRef, useState } from 
 
 import { auth, db } from "../firebase/config";
 import { Unsubscribe, onAuthStateChanged } from "firebase/auth";
-import { IContextProviderProps, IAuthState, IAuthActions, IAuthContext, UserObject } from "../types";
+import { IContextProviderProps, UserObject } from "../types";
 import { DocumentSnapshot, doc, onSnapshot } from "firebase/firestore";
+
+
+
+interface IAuthState {
+    user: UserObject | null,
+    authIsReady: boolean
+}
+
+type IAuthActions = { type: 'LOGIN' | 'AUTH_IS_READY', payload: UserObject | null } | { type: 'LOGOUT', payload?: null }
+
+
+
+interface IAuthContext extends IAuthState {
+    dispatch: (action: IAuthActions) => void
+}
 
 
 export const AuthContext = createContext<IAuthContext | undefined>(undefined)

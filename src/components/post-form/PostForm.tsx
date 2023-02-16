@@ -32,8 +32,8 @@ export default function PostForm() {
     const { response, addDocument } = useFirestore<PostObject>('posts')
     //Form State
     const [text, setText] = useState<string>('')
-    const [image, setImage] = useState<File | null>()
-    const [formError, setFormError] = useState<string | null>()
+    const [image, setImage] = useState<File | null>(null)
+    const [formError, setFormError] = useState<string | null>(null)
     const [location, setLocation] = useState<string>('')
 
     const [pending, setPending] = useState(false)

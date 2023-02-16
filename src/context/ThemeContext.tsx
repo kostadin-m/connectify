@@ -2,7 +2,23 @@
 import { createContext, useReducer } from "react";
 
 //interfaces
-import { IContextProviderProps, IThemeState, IThemeActions, IThemeContext } from "../types";
+import { IContextProviderProps } from "../types";
+
+
+interface IThemeState {
+    theme: string
+}
+
+interface IThemeActions {
+    type: 'TOGGLE_THEME'
+    payload: 'light' | 'dark'
+}
+
+
+interface IThemeContext {
+    theme: string
+    toggleTheme: () => void
+}
 
 
 export const ThemeContext = createContext<IThemeContext | undefined>(undefined)

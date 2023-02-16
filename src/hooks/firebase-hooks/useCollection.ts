@@ -1,10 +1,25 @@
 import { useReducer, useEffect, useRef } from "react"
 import { db } from "../../firebase/config"
 import { collection, onSnapshot, query, where } from "firebase/firestore"
+import { CollectionType } from "../../types"
 
-import { ICollectionState, ICollectionAction, CollectionType } from "../../types"
+
 
 const initialState = { document: null, error: null, isPending: false }
+
+
+interface ICollectionState<T extends CollectionType> {
+    document: T[] | null
+    error: string | null
+    isPending: boolean
+
+}
+
+type ICollectionAction<T extends CollectionType> =
+    { type: "IS_PENDING", payload?: null } |
+    { type: "ADD_DOCUMENTS", payload: T[] | null } |
+    { type: "ERROR", payload: string }
+
 
 const collectionReducer = <T extends CollectionType>(state: ICollectionState<T>, action: ICollectionAction<T>) => {
     switch (action.type) {

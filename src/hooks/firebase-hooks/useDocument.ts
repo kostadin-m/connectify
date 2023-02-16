@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { db } from "../../firebase/config"
 import { doc, onSnapshot } from "firebase/firestore"
 
+
+
 export function useDocument<T>(collection: string, id: string | null) {
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState<string | null>(null)

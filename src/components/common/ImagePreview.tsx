@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-import { IPreviewImage } from '../../types';
+interface IPreviewImage {
+    image: File
+    style: string
+}
+
 
 export default function ImagePreview({ image, style }: IPreviewImage) {
     const [img, setImage] = useState<string | null>(null)

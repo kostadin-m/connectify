@@ -1,4 +1,9 @@
-import { Avatar, PersonObject } from "react-chat-engine-advanced";
+import {
+    Avatar,
+    ChatHeaderProps,
+    ChatObject,
+    PersonObject
+} from "react-chat-engine-advanced";
 
 //helpers
 import { getOtherUser } from "../../helpers/getOtherChatUser";
@@ -7,7 +12,11 @@ import { getOtherUser } from "../../helpers/getOtherChatUser";
 import { useThemeContext } from "../../hooks/view-hooks/useThemeContext";
 
 //types
-import { CustomChatHeaderProps } from "../../types";
+export interface CustomChatHeaderProps extends ChatHeaderProps {
+    chat?: ChatObject;
+    username: string;
+    secret: string;
+}
 
 export default function CustomChatHeader(props: CustomChatHeaderProps) {
     const { theme } = useThemeContext()

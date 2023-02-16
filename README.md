@@ -12,11 +12,11 @@ I tried in this project to build an application similar to Facebook but certainl
 - Fully responsive design (100%).
 - Dark/Light theme.
 - English language.
-- RealTime Chats.
-- Friend requests.
-- SearchBar in the navbar
+- Messages system with chat engine and custom components.
+- Friends: send request, accept/decline request ,remove friend
+- Search in the navbar
 - SignUp/Login/Edit user profile
-- Create post,like comment
+- Posts: create, comment, like
 
 ## Technologies used in the project:
 ### 1- Backend:

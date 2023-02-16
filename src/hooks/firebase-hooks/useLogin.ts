@@ -1,10 +1,7 @@
 import { useState } from "react"
-import { auth, db } from "../../firebase/config"
-import { doc, updateDoc } from "firebase/firestore"
-import { signInWithEmailAndPassword, updateProfile } from "firebase/auth"
-import { useAuthContext } from "./useAuthContext"
+import { auth } from "../../firebase/config"
+import { signInWithEmailAndPassword } from "firebase/auth"
 import { useEffect } from "react"
-import { getCurrentUserData } from "../../helpers/getCurrentUserData"
 
 export const useLogin = () => {
     const [isCancelled, setIsCancelled] = useState(false)
@@ -19,10 +16,6 @@ export const useLogin = () => {
             if (!res) {
                 throw new Error('Could not complete Sign Up')
             }
-
-            const ref = doc(db, 'users', res.user.uid)
-            //update online state
-            await updateDoc(ref, { online: true })
 
             //dispatch login action
             if (!isCancelled) {

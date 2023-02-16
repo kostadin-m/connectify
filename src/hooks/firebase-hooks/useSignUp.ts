@@ -52,6 +52,7 @@ export const useSignUp = () => {
             formData.append("avatar", profileImg, profileImg.name);
 
 
+            //Creating user in chat engine
             await axios
                 .post("https://api.chatengine.io/users/", formData,
                     { headers: { "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1' } })
@@ -61,7 +62,6 @@ export const useSignUp = () => {
                 email,
                 displayName,
                 photoURL,
-                online: true,
                 friends: [],
                 location,
                 sentFriendRequests: [],

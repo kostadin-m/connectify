@@ -61,7 +61,6 @@ export const useSignUp = () => {
                 email,
                 displayName,
                 photoURL,
-                online: true,
                 friends: [],
                 location,
                 sentFriendRequests: [],

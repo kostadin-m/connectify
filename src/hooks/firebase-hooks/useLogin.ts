@@ -20,10 +20,6 @@ export const useLogin = () => {
                 throw new Error('Could not complete Sign Up')
             }
 
-            const ref = doc(db, 'users', res.user.uid)
-            //update online state
-            await updateDoc(ref, { online: true })
-
             //dispatch login action
             if (!isCancelled) {
                 setIsPending(false)

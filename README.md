@@ -7,7 +7,6 @@ I tried in this project to build an application similar to Facebook but certainl
 
 ## Project Screenshot
 ![Connecity screenshot](./home.png)
-![Twirrer screenshot](./twirrer.PNG)
 
 ## Project Features:
 - Fully responsive design (100%).

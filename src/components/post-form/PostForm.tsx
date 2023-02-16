@@ -36,10 +36,13 @@ export default function PostForm() {
     const [formError, setFormError] = useState<string | null>()
     const [location, setLocation] = useState<string>('')
 
+    const [pending, setPending] = useState(false)
+
     const { user } = useAuthContext()
     const { theme } = useThemeContext()
 
     const handlePostSubmit = async () => {
+        setPending(true)
         if (!image) {
             setFormError('Please choose an image!')
             return
@@ -66,6 +69,7 @@ export default function PostForm() {
             setImage(null)
             setLocation('')
         }
+        setPending(false)
     }
 
     return (
@@ -97,7 +101,7 @@ export default function PostForm() {
                             </div>
                             {location && <img style={{ position: 'relative' }} onClick={() => setLocation('')} className={styles.remove} src={Close} alt='close icon' />}
                         </div>
-                        <Button theme={theme} text={response.isPending ? 'Loading...' : `Share a post`} onClick={() => handlePostSubmit()} />
+                        <Button disabled={pending} theme={theme} text={pending ? 'Loading...' : `Share a post`} onClick={() => handlePostSubmit()} />
                     </div>
                 </div>
             </div>

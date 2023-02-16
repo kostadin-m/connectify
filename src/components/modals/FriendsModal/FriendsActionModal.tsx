@@ -7,6 +7,7 @@ import ModalWrapper from "../../common/ModalWrapper";
 import styles from "./ActionModal.module.css";
 import { useAuthContext } from "../../../hooks/firebase-hooks/useAuthContext";
 import { useFirestore } from "../../../hooks/firebase-hooks/useFirestore";
+import Button from "../../common/Button";
 
 interface Props {
     setActionModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -21,6 +22,7 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
 
 
     const closeModal = () => setActionModal(false);
+
     const removeFriend = async () => {
 
         const currentUserUpdatedFriendList = user?.friends.filter(userID => userID !== friend.id)
@@ -41,15 +43,10 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
                 If you remove your friend you can add them again!
             </p>
             <div className={styles.buttonsContainer}>
-                <button
-                    onClick={() => removeFriend()}
-                    className={`btn ${theme}`}>Remove Friend</button>
-                <button
-                    onClick={closeModal}
-                    className={`btn ${theme}`}
-                >
-                    No
-                </button>
+                <Button text={response.isPending ? 'Loading...' : 'Remove friend'}
+                    disabled={response.isPending} theme={theme} onClick={() => removeFriend()} />
+
+                <Button disabled={false} text="No" theme={theme} onClick={() => closeModal()} />
             </div>
             <img
                 className={`close-modal ${theme}`}

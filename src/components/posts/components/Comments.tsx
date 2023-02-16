@@ -53,7 +53,9 @@ function Comments({ theme, classname, post }: Props) {
 
                 <img className='profile-image' src={user?.photoURL} alt='current user icon' />
                 <TextArea value={comment} setValue={setComment} placeholder='Write a comment' theme={theme} />
-                <Button theme={theme}
+                <Button
+                    disabled={response.isPending}
+                    theme={theme}
                     onClick={() => handleAddComment()}
                     text={response.isPending ? 'Loading...' : "Post a comment"} />
             </div>

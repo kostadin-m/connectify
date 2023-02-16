@@ -3,12 +3,13 @@ import { memo } from "react"
 interface Props {
     text: string
     theme: string
+    disabled: boolean
     onClick: () => void
 }
 
-function Button({ text, theme, onClick }: Props) {
+function Button({ disabled, text, theme, onClick }: Props) {
     return (
-        <button onClick={onClick} className={`btn ${theme}`}>
+        <button disabled={disabled} onClick={onClick} className={`btn ${theme}`}>
             <span>{text}</span>
         </button>
     )

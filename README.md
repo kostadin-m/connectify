@@ -26,6 +26,7 @@ I tried in this project to build an application similar to Facebook but certainl
 ### 2- Frontend:
     - using 'React.js' to build the frontend of Connectify.
     - using 'React Hooks' to handle local state & 'React Context api' to handle global state in the app.
-    - using 'Axios' to execute all RestFull api requests in the app.
+    - using 'Axios' to execute RestFull api requests for chat engine.
+    - using 'firebase commands' to execute all  RESTful api requests for the app.
     - using 'Google React Places API' to execute the location search in the modal
     - using 'Chat Engine and its API' with custom components to create a nice looking and working chat that intergrades well with firebase

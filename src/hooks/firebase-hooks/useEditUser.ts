@@ -1,4 +1,4 @@
-import axios from "axios"
+
 
 //firebase
 import { deleteObject, uploadBytes, getDownloadURL, listAll, ref } from "firebase/storage"
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { checkError } from "../../helpers/checkError"
 import { collection, doc, updateDoc } from "firebase/firestore"
+import axios from "axios"
 
 type updateUserFile = {
     firstName: string,
@@ -69,7 +70,6 @@ export const useEditUser = (): editUserState => {
             if (updatedDocument.image) {
                 formData.append("avatar", updatedDocument.image, updatedDocument.image.name);
             }
-
             await axios.patch(`https://api.chatengine.io/users/me/`, formData, {
                 headers: {
                     "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1',
@@ -77,7 +77,6 @@ export const useEditUser = (): editUserState => {
                     'user-secret': user?.id
                 }
             }).catch((e) => setError(e))
-
 
             //Updating the user in the DB
             const updatedObject = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location }

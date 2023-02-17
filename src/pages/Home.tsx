@@ -16,7 +16,6 @@ export default function Home() {
 
     const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
 
-    console.log(isMobile)
     return (
         <div className="page">
             <div className='page-item'>

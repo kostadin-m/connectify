@@ -51,7 +51,6 @@ export const useSignUp = () => {
             formData.append("secret", firebaseUser.uid);
             formData.append("avatar", profileImg, profileImg.name);
 
-
             await axios
                 .post("https://api.chatengine.io/users/", formData,
                     { headers: { "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1' } })

@@ -1,3 +1,6 @@
+import 'vite/client'
+
+
 declare module '*.svg' {
     const content: any;
     export default content;
@@ -9,3 +12,4 @@ declare module "*.jpg" {
 declare module "*.module.css";
 declare module "*.module.scss";
 declare module 'react-places-autocomplete';
+declare module 'react-chat-engine'

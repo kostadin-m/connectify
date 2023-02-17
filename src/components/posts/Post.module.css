@@ -45,7 +45,12 @@
     vertical-align: top;
 }
 
-.userInfo a {
+.userNameLocation {
+    align-items: center;
+    display: flex;
+}
+
+.userNameLocation a {
     color: inherit;
     font-size: 0.9em;
     padding-left: 4px;
@@ -71,23 +76,28 @@
 }
 
 .timeAndLocation {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-left: 5px;
 }
 
-.timeAndLocation img {
-    padding-left: 4px;
-    filter: invert(65%);
-    width: 13px;
-    height: 13px;
+
+.location {
+    display: flex;
 }
 
-.timeAndLocation p {
+.userNameLocation img {
+    padding-left: 4px;
+    filter: invert(65%);
+    width: 17px;
+    height: 17px;
+}
+
+.userNameLocation p {
     color: lightgray;
 }
 
 .postText {
-    margin-top: 2px;
+    margin-top: 10px;
     padding-bottom: 5px;
     font-size: 0.85em;
     padding-left: 10px;
@@ -95,11 +105,11 @@
 }
 
 /*Theme Mode for Form Top */
-.user.dark>.userInfo>a {
+.user.dark>.userInfo a {
     color: lightgray;
 }
 
-.user.light>.userInfo>a {
+.user.light>.userInfo a {
     color: black;
 }
 
@@ -107,6 +117,7 @@
 
 .postMiddle img {
     position: relative;
+    object-fit: cover;
     border-radius: 5px;
     height: 580px;
     width: 100%;

@@ -63,7 +63,7 @@ export default function UserNavbar({ user }: UserNavbarProps) {
             </li>
             <li className='nav-item'>
                 <div onClick={toggleDropDown} className='user-dropdown-button'>
-                    <img src={user.photoURL || ''} className='user-dropdown-image' />
+                    <img src={user.photoURL || ''} className='profile-image' />
                     <p style={{ transform: dropDownClass === 'show' ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</p>
                 </div>
             </li>

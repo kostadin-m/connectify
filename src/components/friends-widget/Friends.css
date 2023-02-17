@@ -156,6 +156,8 @@
     }
 
     .box>.listFriends>.friend>.name {
+        margin-right: 0 !important;
+        text-align: center;
         min-width: none;
         max-width: none;
         min-height: 42px;
@@ -164,20 +166,22 @@
 
     }
 
+
+
     .box>.listFriends>.friend>img {
         height: 100px !important;
         width: 100px !important;
     }
 
     .box>.listFriends>.friend>.buttons>button {
-        margin-right: 40px;
+        margin-right: 47px;
         height: 40px !important;
         font-size: 0.9em;
     }
 
     .box>.listFriends>.friend>.buttons {
-        margin-top: 10px;
-        margin-left: 60px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .box>.listFriends>.friend>a {

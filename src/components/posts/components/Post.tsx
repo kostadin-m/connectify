@@ -22,7 +22,6 @@ import styles from '../Post.module.css'
 import { useDocument } from '../../../hooks/firebase-hooks/useDocument'
 import { useAuthContext } from '../../../hooks/firebase-hooks/useAuthContext'
 import { useFirestore } from '../../../hooks/firebase-hooks/useFirestore'
-import UserActionButton from '../../common/UserActionButton'
 
 interface PostProps {
     post: PostDocument
@@ -64,18 +63,15 @@ export default function Post({ post }: PostProps) {
                         <div className={`${styles.user} ${styles[theme]}`}>
                             <img className='profile-image' src={creatorData.photoURL} alt='' />
                             <div className={styles.userInfo}>
-                                <Link to={`/profile/${creatorData.id}`} >{creatorData.displayName}</Link>
-                                <div className={styles.timeAndLocation}>
-                                    <p className={styles.timestamp}>{formatDate(post.createdAt)}</p>
+                                <div className={styles.userNameLocation}>
+                                    <Link to={`/profile/${creatorData.id}`} >{creatorData.displayName}</Link>
                                     <img src={Location} alt='location icon' />
                                     <p>{post.location}</p>
                                 </div>
-                            </div>
-                            {user?.id !== creatorData.id &&
-                                <div style={{ marginTop: '5px', marginLeft: 'auto' }}>
-                                    <UserActionButton friend={creatorData} />
+                                <div className={styles.timeAndLocation}>
+                                    <p className={styles.timestamp}>{formatDate(post.createdAt)}</p>
                                 </div>
-                            }
+                            </div>
                         </div>
                     </div>
                     <div className={styles.postMiddle}>

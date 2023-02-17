@@ -191,6 +191,7 @@
 }
 
 .ce-message-form {
+    text-align: center !important;
     font-family: inherit;
     align-items: center;
     min-height: 35px;
@@ -257,6 +258,7 @@
 }
 
 .ce-message-form-input {
+    width: 100%;
     font-family: inherit !important;
     padding-top: 7px !important;
     border: 1px solid #1890ff !important;

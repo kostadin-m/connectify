@@ -115,6 +115,10 @@ body {
   background: var(--bg-color);
 }
 
+a {
+  text-decoration: none;
+}
+
 ul,
 li,
 p,

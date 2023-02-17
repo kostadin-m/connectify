@@ -21,12 +21,13 @@ body {
 
 /*App Layout*/
 .App {
+  min-height: 100dvh;
   z-index: 1;
   overflow-x: hidden;
   overflow-y: hidden;
   text-align: center;
   transition: all 0.4s ease;
-  min-height: 100vh;
+  min-width: 100vw;
 }
 
 /*App theme modes*/
@@ -118,7 +119,7 @@ body {
 
   border-radius: 15px;
   min-height: 300px;
-  max-height: 850px;
+  max-height: 800px;
   width: 600px;
   z-index: 1;
 }
@@ -193,7 +194,7 @@ body {
   font-size: 1.2em;
   border: 1px solid aqua;
   margin-top: 5px;
-  width: 400px;
+  width: 85%;
   height: 45px;
 }
 
@@ -318,6 +319,7 @@ body {
   cursor: pointer;
 }
 
+
 .btn:before {
   border-radius: 7px;
   content: "";
@@ -343,6 +345,7 @@ body {
   width: 43px !important;
   height: 43px !important;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 @media (max-width:799px) {
@@ -360,7 +363,7 @@ body {
     margin-top: 80px;
     width: 95vw;
     min-height: 300px;
-    max-height: 800px;
+    max-height: 1000px;
     margin-left: 2%;
   }
 
@@ -370,7 +373,6 @@ body {
 
   .input input {
     height: 50px;
-    width: 95%;
     margin-left: 0px;
   }
 
@@ -382,10 +384,6 @@ body {
     width: 90% !important
   }
 
-  .App {
-    height: 100%;
-    width: 100%;
-  }
 
   .btn {
     width: 75px !important;

@@ -9,6 +9,8 @@ import CustomChatCard from '../components/chat-components/CustomChatCard'
 import CustomChatHeader from '../components/chat-components/CustomChatHeader'
 import { useAuthContext } from '../hooks/firebase-hooks/useAuthContext'
 
+
+
 export default function Messages() {
     const { user } = useAuthContext()
 
@@ -17,7 +19,7 @@ export default function Messages() {
     const chatProps = useMultiChatLogic(projectID, `${user?.displayName}`, `${user?.id}`)
     const { theme } = useThemeContext()
     return (
-        <div className={theme} style={{ marginTop: '70px', height: 'calc(100vh - 70px)' }}>
+        <div className={theme} style={{ marginTop: '70px', height: 'calc(100dvh - 70px)' }}>
             <MultiChatSocket {...chatProps} />
             <MultiChatWindow
                 style={{ width: '95%' }}

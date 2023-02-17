@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+
+
 interface IPreviewImage {
     image: File
     style: string

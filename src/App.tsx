@@ -10,12 +10,12 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import ProfilePage from './pages/ProfilePage'
-import Messages from './pages/Messages'
 import EditProfile from './pages/EditProfile'
+import NotFound from './pages/NotFound'
+import Messages from './pages/Messages'
 
 //styles
 import './App.css'
-import NotFound from './pages/NotFound'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
@@ -32,8 +32,8 @@ function App() {
             <Route path='/signup' element={!user ? <SignUp /> : <Navigate to='/' />} />
             <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
             <Route path='/profile/:id' element={user ? <ProfilePage /> : <Navigate to='/login' />} />
-            <Route path='/messages' element={user ? <Messages /> : <Navigate to='/login' />} />
             <Route path='/edit' element={user ? <EditProfile /> : <Navigate to='/login' />} />
+            <Route path='/messages' element={user ? <Messages /> : <Navigate to='/login' />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>}

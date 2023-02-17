@@ -10,6 +10,8 @@ import styles from './UserWidget.module.css'
 import { PostDocument, UserDocument, UserObject } from '../../types'
 import { useCollection } from '../../hooks/firebase-hooks/useCollection'
 import { useEffect, useState } from 'react'
+import UserActionButton from '../common/UserActionButton'
+import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
 
 interface UserWidgetProps {
     user: UserObject | UserDocument
@@ -18,6 +20,7 @@ interface UserWidgetProps {
 export default function UserWidget({ user }: UserWidgetProps) {
     const { document, error, isPending } = useCollection<PostDocument>('posts', ['creatorID', '==', user.id])
     const [totalLikes, setTotalLikes] = useState(0)
+    const { user: currentUser } = useAuthContext()
     const { theme } = useThemeContext()
 
     useEffect(() => {
@@ -35,6 +38,7 @@ export default function UserWidget({ user }: UserWidgetProps) {
                     <h3>{user?.displayName}</h3>
                     <p className={styles.friends}>{user?.friends?.length} friends</p>
                 </div>
+                {currentUser?.id !== user.id && < UserActionButton friend={user} />}
             </div>
             <hr className={styles.hr} />
             <div className={`${styles.stats} ${styles[theme]}`}>

@@ -24,10 +24,10 @@ function UserList({ friendsIds }: Props) {
         <div key={friend.id} className={`friend ${theme}`}>
           <img className="profile-image" src={friend.photoURL!} alt="profile picture" />
           <p className='name'>{friend.displayName}</p>
-          <Link to={`/profile${friend.id}`} />
-          <div className={`buttons ${theme}`}>
-            <UserActionButton friend={friend} />
-          </div>
+          <Link to={`/profile/${friend.id}`} />
+
+          <UserActionButton friend={friend} />
+
         </div>
       ))}
     </div>

@@ -47,8 +47,15 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
             queryRef.current = _query
         }
     }
+    //checking if the query string is the same
+    if (queryRef.current && _query) {
+        if (queryRef.current[2] !== _query[2]) {
+            queryRef.current = _query
+        }
+    }
 
     useEffect(() => {
+        console.log('fetched')
         let ref = queryRef.current ?
             query(collection(db, _collection), where(queryRef.current[0], queryRef.current[1], queryRef.current[2])) :
             collection(db, _collection)

@@ -92,7 +92,7 @@ export default function PostForm() {
                         <label htmlFor='img' className={`${styles.formOption} ${styles[theme]}`}>
                             <ImageInput setImage={setImage} setImageError={setFormError} />
                             <img className={styles.optionPicture} src={AddImage} alt='add image picture'></img>
-                            <span>Photo or Video</span>
+                            <span>Photo</span>
                         </label>
                         <div className={styles[theme]} style={{ display: 'flex' }}>
                             <div className={`${styles.formOption} ${styles[theme]}`} onClick={() => setShowLocationModal(true)}>

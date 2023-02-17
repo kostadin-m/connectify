@@ -19,7 +19,7 @@ export default function Messages() {
     const chatProps = useMultiChatLogic(projectID, `${user?.displayName}`, `${user?.id}`)
     const { theme } = useThemeContext()
     return (
-        <div className={theme} style={{ marginTop: '70px', height: 'calc(100dvh - 70px)' }}>
+        <div className={theme} style={{ marginTop: '70px', height: 'calc(100dvh - 70px)', overflow: 'hidden' }}>
             <MultiChatSocket {...chatProps} />
             <MultiChatWindow
                 style={{ width: '95%' }}

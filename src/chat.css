@@ -85,7 +85,16 @@
     box-shadow: rgb(24 144 255 / 35%) 0px 2px 7px !important;
 }
 
+.ce-chat-feed-column {
+    overflow: hidden;
+}
+
+.ce-chat-feed {
+    overflow: hidden;
+}
+
 .ce-chat-list {
+    overflow: hidden;
     padding-top: 35px;
 }
 
@@ -216,6 +225,7 @@
     padding-left: 5px !important;
     padding-right: 5px !important;
     height: 35px !important;
+    width: 30px !important;
 }
 
 

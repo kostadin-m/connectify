@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom'
 type UserNavbarProps = { theme: string, user: UserObject }
 
 export default function UserNavbar({ user }: UserNavbarProps) {
-    const [isMobile] = useIsMobile()
+    const [isMobile] = useIsMobile(800)
     const { theme } = useThemeContext()
 
     const [friendsClass, setFriendsClass] = useState<CSSClassesState>('hidden')
@@ -53,7 +53,7 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     return (
         <>
             {isMobile &&
-                <li className='mobile nav-item'>
+                <li className='nav-item'>
                     <img onClick={() => toggleFriends()} src={FriendsIcon} alt='chat icon' />
                 </li>}
             <li className='nav-item'>

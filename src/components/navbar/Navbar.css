@@ -11,10 +11,6 @@
     transition: all 0.4s ease;
 }
 
-.mobile {
-    display: none !important;
-}
-
 .navbar a {
     text-decoration: none;
 }
@@ -371,11 +367,6 @@
     .user-dropdown-button {
         margin-right: 0;
     }
-
-    .mobile {
-        display: flex !important;
-    }
-
 
 }
 

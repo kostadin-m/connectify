@@ -11,8 +11,9 @@ import { useAuthContext } from '../hooks/firebase-hooks/useAuthContext'
 
 
 export default function Home() {
-    const [isMobile] = useIsMobile()
+    const [isMobile] = useIsMobile(1250)
     const { user } = useAuthContext()
+    console.log(isMobile)
 
     const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
 

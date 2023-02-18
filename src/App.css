@@ -21,13 +21,13 @@ body {
 
 /*App Layout*/
 .App {
+  min-width: 100%;
   min-height: 100dvh;
   z-index: 1;
   overflow-x: hidden;
   overflow-y: hidden;
   text-align: center;
   transition: all 0.4s ease;
-  min-width: 100vw;
 }
 
 /*App theme modes*/

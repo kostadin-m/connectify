@@ -8,8 +8,9 @@ interface Props {
 }
 
 export default function Feed({ id }: Props) {
-    const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null)
+    const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null, ['createdAt', 'desc'])
 
+    console.log(posts)
     if (isPending) return (<div className='loader'></div>)
     return (
         <div className='feed'>

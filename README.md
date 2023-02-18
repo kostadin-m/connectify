@@ -3,7 +3,7 @@
 I tried in this project to build an application similar to Facebook but certainly does not have all the features, but it contains the basic features such as (create account, edit profile, friend requests, mutual friends, messages,search for users,posts and comments).
 
 ## Live Demo
-[twirrer.netlify.app](https://twirrer.netlify.app/)
+[https://my-s-1f4d4.web.app/](https://my-s-1f4d4.web.app/)
 
 ## Project Screenshot
 ![Connecity screenshot](./home.png)

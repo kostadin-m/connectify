@@ -31,6 +31,7 @@
 }
 
 .user>img {
+    object-fit: cover;
     margin-left: 20px;
     height: 70px;
     width: 70px;

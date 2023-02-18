@@ -43,7 +43,7 @@ export default function CustomChatHeader(props: CustomChatHeaderProps) {
                 </div>
             ) : (<h2>No user</h2>)}
             <style>{`
-      .ce-custom-header-avatar { display: inline-block; position: relative; top: 10px; margin-left: "48px";
+      .ce-custom-header-avatar { display: inline-block; position: relative; top: 5px; margin-left: "48px";
                 }; border: 1px solid ${otherMember?.is_online ? "rgb(24, 144, 255)" : "#fa541c"
                 }; box-shadow: ${otherMember?.is_online
                     ? "rgb(24 144 255 / 35%)"

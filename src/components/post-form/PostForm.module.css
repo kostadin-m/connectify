@@ -58,6 +58,7 @@
 /* Image preview */
 
 .imagePreview {
+    object-fit: cover;
     padding-bottom: 5px;
     height: 580px;
     width: 100%;
@@ -203,7 +204,7 @@
 
 @media (max-width:800px) {
     .formOption span {
-        max-width: 20vw !important;
+        max-width: 24vw !important;
     }
 
     .postForm {
@@ -226,12 +227,12 @@
     }
 
     .formOption span {
-        font-size: 0.6em;
+        font-size: 0.8em;
     }
 
     .optionPicture {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
     }
 
     .remove {

@@ -7,7 +7,7 @@ I tried in this project to build an application similar to Facebook but certainl
 
 ## Project Screenshot
 ![Connecity screenshot](./home.png)
-![Connecity screenshot](./home-mobile.png)
+![Connecity mobile screenshot](./home-mobile.png)
 
 ## Project Features:
 - Fully responsive design (100%).

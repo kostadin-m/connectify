@@ -22,7 +22,8 @@
   },
   "include": [
     "src",
-    "rollup.config.js"
+    "rollup.config.js",
+    "setupTest.test.js"
   ],
   "references": [
     {

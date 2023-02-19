@@ -20,8 +20,10 @@ interface UserWidgetProps {
 export default function UserWidget({ user }: UserWidgetProps) {
     const { document, error, isPending } = useCollection<PostDocument>('posts', ['creatorID', '==', user.id])
     const [totalLikes, setTotalLikes] = useState(0)
-    const { user: currentUser } = useAuthContext()
+
+
     const { theme } = useThemeContext()
+    const { user: currentUser } = useAuthContext()
 
     useEffect(() => {
         setTotalLikes(0)

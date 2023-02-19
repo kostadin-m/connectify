@@ -171,6 +171,7 @@
     .box>.listFriends>.friend>img {
         height: 100px !important;
         width: 100px !important;
+        margin-left: 0 !important;
     }
 
     .box>.listFriends>.friend>.buttons>button {
@@ -186,9 +187,9 @@
 
     .box>.listFriends>.friend>a {
         border-radius: 15px;
-        bottom: 75px;
+        bottom: 1px;
         right: 0px;
-        height: 205px;
+        height: 215px;
         width: 190px;
     }
 }

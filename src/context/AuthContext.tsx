@@ -39,7 +39,7 @@ export const AuthContextProvider = ({ children }: IContextProviderProps) => {
     const [state, dispatch] = useReducer(authReducer, { user: null, authIsReady: false })
 
     useEffect(() => {
-        let snapshotUnsub: Unsubscribe
+        let snapshotUnsub: Unsubscribe = () => null
         const unsub = onAuthStateChanged(auth, async (user) => {
             const userRef = doc(db, 'users', user?.uid || 'aa')
             if (user) {

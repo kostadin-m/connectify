@@ -10,7 +10,7 @@ import useComponentVisible from "../../../hooks/view-hooks/useComponentsVisible"
 export default function UserSearch() {
   const [searchWrapperClass, setSearchWrapperClass] = useState<CSSClassesState>('hidden')
   const [searchedUser, setSearchedUser] = useState<string>('')
-  const [foundUsers, setFoundUsers] = useState<string[]>([])
+  const [foundUsers, setFoundUsers] = useState<UserDocument[]>([])
 
 
   const { user } = useAuthContext()
@@ -25,7 +25,7 @@ export default function UserSearch() {
 
     if (searchedUser.length > 0 && document && isComponentVisible) {
       const filteredSearch = document.filter(user => user.displayName.toLowerCase().startsWith(searchedUser.toLowerCase()))
-      setFoundUsers(filteredSearch.map(user => user.id))
+      setFoundUsers(filteredSearch.map(user => user))
     }
   }, [searchedUser, isComponentVisible])
 
@@ -40,7 +40,7 @@ export default function UserSearch() {
         onChange={(e) => setSearchedUser(e.target.value)}
         onFocus={() => { setIsComponentVisible(true); setSearchWrapperClass('show') }}
       />
-      {isOpened && foundUsers.length > 0 && <UserList friendsIds={foundUsers} />}
+      {isOpened && foundUsers.length > 0 && <UserList users={foundUsers} />}
       {isOpened && foundUsers.length === 0 && searchedUser.length > 0 && !isPending && <h4 className="error">No users found!</h4>}
     </div>
   )

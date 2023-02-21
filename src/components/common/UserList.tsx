@@ -1,32 +1,26 @@
 import { Link } from "react-router-dom";
 
-
 import { UserDocument } from "../../types";
 import { useThemeContext } from "../../hooks/view-hooks/useThemeContext";
-import { useCollection } from "../../hooks/firebase-hooks/useCollection";
-import { documentId } from "firebase/firestore";
 import { memo } from "react";
 import UserActionButton from "./UserActionButton";
 
 interface Props {
-  friendsIds: string[]
+  users: UserDocument[]
 }
 
-function UserList({ friendsIds }: Props) {
+function UserList({ users }: Props) {
   const { theme } = useThemeContext()
-
-
-  const { document } = useCollection<UserDocument>('users', [documentId(), 'in', friendsIds])
 
   return (
     <div className='listFriends'>
-      {document && document.map(friend => (
-        <div key={friend.id} className={`friend ${theme}`}>
-          <img className="profile-image" src={friend.photoURL!} alt="profile picture" />
-          <p className='name'>{friend.displayName}</p>
-          <Link to={`/profile/${friend.id}`} />
+      {document && users.map(user => (
+        <div key={user.id} className={`friend ${theme}`}>
+          <img className="profile-image" src={user.photoURL!} alt="profile picture" />
+          <p className='name'>{user.displayName}</p>
+          <Link to={`/profile/${user.id}`} />
 
-          <UserActionButton friend={friend} />
+          <UserActionButton friend={user} />
 
         </div>
       ))}

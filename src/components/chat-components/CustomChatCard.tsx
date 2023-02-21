@@ -19,7 +19,6 @@ const CustomChatCard = (props: CustomChatCardProps) => {
     const otherMember = getOtherUser(props.chat, props.username);
     const username = otherMember ? otherMember.username : "";
     const messageText = props.chat.last_message.text;
-    console.log(props.chat)
     const hasNotification =
         props.chat.last_message.sender_username !== props.username;
 

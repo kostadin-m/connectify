@@ -53,17 +53,18 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     return (
         <>
             {isMobile &&
-                <li className='nav-item'>
+                <li data-testid='user-nav' className='nav-item'>
                     <img onClick={() => toggleFriends()} src={FriendsIcon} alt='chat icon' />
                 </li>}
-            <li className='nav-item'>
+            <li data-testid='user-nav'
+                className='nav-item'>
                 <Link style={{ height: '25px' }} to='/messages'>
                     <img src={Chat} className='nav-img' alt='chat icon' />
                 </Link>
             </li>
-            <li className='nav-item'>
+            <li data-testid='user-nav' className='nav-item'>
                 <div onClick={toggleDropDown} className='user-dropdown-button'>
-                    <img src={user.photoURL || ''} className='profile-image' />
+                    <img src={user.photoURL || ''} className='profile-image' alt='navbar-profile-img' />
                     <p style={{ transform: dropDownClass === 'show' ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</p>
                 </div>
             </li>

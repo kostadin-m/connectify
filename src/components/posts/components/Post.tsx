@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { formatDate } from '../../../helpers/formatDate'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 import { useThemeContext } from '../../../hooks/view-hooks/useThemeContext'
@@ -40,10 +42,9 @@ export default function Post({ post }: PostProps) {
 
     const { document: creatorData, error } = useDocument<UserDocument>('users', post.creatorID)
     const { updateDocument, response } = useFirestore<PostDocument>('posts')
-
     useEffect(() => {
         setLikedByCurrentUser(post.likes.includes(user?.id!))
-    }, [post])
+    })
 
     if (error) return <p className='error'>{error}</p>
 
@@ -58,10 +59,10 @@ export default function Post({ post }: PostProps) {
     return (
         <>
             {creatorData &&
-                <div className={`${styles.post} ${styles[theme]}`}>
+                <div data-testid='post' className={`${styles.post} ${styles[theme]}`}>
                     <div className={styles.postTop}>
                         <div className={`${styles.user} ${styles[theme]}`}>
-                            <img className='profile-image' src={creatorData.photoURL} alt='' />
+                            <img className='profile-image' src={creatorData.photoURL} alt='profile-image' />
                             <div className={styles.userInfo}>
                                 <div className={styles.userNameLocation}>
                                     <Link to={`/profile/${creatorData.id}`} >{creatorData.displayName}</Link>
@@ -76,12 +77,18 @@ export default function Post({ post }: PostProps) {
                     </div>
                     <div className={styles.postMiddle}>
                         <p className={`${styles.postText} ${styles[theme]}`}>{post.postTitle}</p>
-                        <img src={post.photoURL} alt='post image' />
+                        <LazyLoadImage
+                            alt='post image'
+                            src={post.photoURL}
+                            width='100%'
+                            effect="blur"
+                            placeholderSrc={post.photoURL}
+                        />
                     </div>
                     <div className={`${styles.postBottom} ${styles[theme]}`}>
                         <img onClick={() => handleLike()}
                             className={`${styles.postImages} ${likedByCurrentUser ? styles.liked : undefined}`}
-                            src={likedByCurrentUser ? Liked : Like} alt='likes icon' />
+                            src={likedByCurrentUser ? Liked : Like} alt={likedByCurrentUser ? 'liked icon' : 'likes icon'} />
                         <p className={styles.likesCount}>{post.likes.length}</p>
                         <img onClick={toggleMount} className={styles.postImages} src={CommentsIcon} alt='comments icon' />
                         <p className={styles.likesCount}>{post.comments.length}</p>

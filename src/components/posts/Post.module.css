@@ -309,6 +309,10 @@
     display: flex;
 }
 
+.inputContainer>img {
+    margin-bottom: 7px;
+}
+
 /*Theme mode for comments and input*/
 
 .dark>.btn:hover,

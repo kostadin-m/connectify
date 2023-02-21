@@ -26,14 +26,14 @@ export default function Navbar() {
                     <Link to='/' >
                         <h2>connectify</h2>
                     </Link>
-                    {user?.firebaseUser && <UserSearch />}
+                    {user && <UserSearch />}
                 </li>
                 <li>
                 </li>
                 <li className='nav-item'>
                     <img className='light-mode' onClick={toggleTheme} src={LightMode} alt='light mode icon' />
                 </li>
-                {user?.firebaseUser ? <UserNavbar theme={theme} user={user} /> : <GuestNavbar />}
+                {user ? <UserNavbar theme={theme} user={user} /> : <GuestNavbar />}
             </ul>
         </nav>
     )

@@ -26,7 +26,7 @@ export interface UserObject {
     receivedFriendRequests: NonNullable<string[]>
     photoURL: string
     id: string
-    firebaseUser: User
+    firebaseUser?: User
 }
 
 //Firebase

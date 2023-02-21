@@ -15,8 +15,7 @@ export default function UserDropDown({ dropDownClass }: UserDropDownProps) {
     const { logout, error, isPending } = useLogout()
 
     return (
-        <div
-            className={`user-dropdown-menu ${dropDownClass} ${theme}`}>
+        <div data-testid='drop-down' className={`user-dropdown-menu ${dropDownClass} ${theme}`}>
             <Link to={`/profile/${user?.id}`}>My Profile</Link>
             <Link to='/edit'>Edit Profile</Link>
             <button onClick={logout} >Logout</button>

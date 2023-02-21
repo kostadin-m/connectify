@@ -37,7 +37,7 @@ function Comments({ theme, classname, post }: Props) {
 
 
     return (
-        <div className={`${styles.commentsContainer} ${styles[classname]}`}>
+        <div data-testid='comments' className={`${styles.commentsContainer} ${styles[classname]}`}>
             <hr className={`${styles.commentsHr} ${styles[theme]}`} />
             <h2>Comments</h2>
             <hr className={`${styles.commentsHr} ${styles[theme]}`} />

@@ -50,8 +50,8 @@ export default function UserWidget({ user }: UserWidgetProps) {
                 </div>
                 <div className={`${styles.stat} ${styles[theme]}`}>
                     <img src={Likes} alt='location icon' />
-                    {document && <p>{totalLikes}</p>}
-                    {isPending && <p>Loading...</p>}
+                    {document && <p>{totalLikes} likes</p>}
+                    {!document && !error && <p>Loading...</p>}
                     {error && <p className='error'>{error}</p>}
                 </div>
             </div>

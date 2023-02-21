@@ -22,7 +22,7 @@ function CommentContent({ comment, theme }: CommentContentProps) {
             {document && <div className={`${styles.comment} ${styles[theme]}`}>
                 <img className='profile-image' src={document.photoURL} alt='user icon' />
                 <div className={styles.commentContent}>
-                    <a href={`/${document.id}`}>{document.displayName}</a>
+                    <a href={`/profile/${document.id}`}>{document.displayName}</a>
                     <p>{comment.commentContent}</p>
                 </div>
                 <p>{formatDate(comment.createdAt)}</p>

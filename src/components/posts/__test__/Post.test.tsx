@@ -4,15 +4,22 @@ import { ThemeContextProvider } from "../../../context/ThemeContext"
 import { AuthContext } from "../../../context/AuthContext"
 import { BrowserRouter } from "react-router-dom"
 import { timeStamp } from "../../../firebase/config"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { UserDocument } from "../../../types"
+
 
 interface MockDocument {
     document: UserDocument | null,
     error: null | string,
     isPending: boolean
 }
+const mockFirestoreDocument = { response: { document: null, error: null, isPending: false }, updateDocument: async () => null, }
 
+vi.mock('../../../hooks/firebase-hooks/useFirestore', () => ({
+    useFirestore: () => {
+        return mockFirestoreDocument
+    }
+}))
 
 const mockDocument = { document: null, isPending: false, error: null } as MockDocument
 vi.mock('../../../hooks/firebase-hooks/useDocument', () => ({
@@ -38,12 +45,8 @@ const MockedComponent = ({ id }: { id: string }) => {
             <AuthContext.Provider value={{ authIsReady: true, user: userObject, dispatch: (() => null) }}>
                 <ThemeContextProvider>
                     <Post post={{
-                        postTitle: 'dadada',
+                        postTitle: 'dadada', location: 'dadada', creatorID: 'JdpMEbNtzLPtYEDT14ndw2FigIf2', createdAt, comments: [],
                         photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/postPictures%2FYzdXAuIouVZf7oKyAZ2cxmJnGS22%2F16766463953256920079019286481272.jpg?alt=media&token=08018f70-aa10-47c7-9c2b-7095380a07fa',
-                        location: 'dadada',
-                        creatorID: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-                        createdAt,
-                        comments: [],
                         likes: ['JdpMEbNtzLPtYEDT14ndw2FigIf2'],
                         id: 'BwRwbVnJ4qXE8OPSPB6i'
                     }} />
@@ -161,6 +164,24 @@ describe('Testing post component', async () => {
         fireEvent.click(commentsIcon)
 
         expect(comments).toHaveClass('_hidden_5a7bc9')
+    })
+    it('should change the likes icon  when clicked on', async () => {
+        mockDocument.document = {
+            displayName: 'KKM',
+            email: 'km@gmail.com',
+            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
+            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
+        } as UserDocument
+
+
+        render(<MockedComponent id='adda' />)
+
+        const likesIcon = screen.getByAltText(/likes icon/i) as HTMLImageElement
+
+        fireEvent.click(likesIcon)
+
+        waitFor(() => (expect(likesIcon.alt).toBe('liked icon')))
+
     })
 }
 )

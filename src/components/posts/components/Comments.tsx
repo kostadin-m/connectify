@@ -30,6 +30,7 @@ function Comments({ theme, classname, post }: Props) {
         }
         const commentsObject = { commentContent: comment, creatorID: user?.id, createdAt: timeStamp.fromDate(new Date()) }
         const updatedComments = { comments: [...post.comments, commentsObject] } as PostDocument
+
         await updateDocument(post.id, updatedComments)
 
         setComment('')
@@ -50,7 +51,7 @@ function Comments({ theme, classname, post }: Props) {
 
                 {response.error && <p className='error'>{response.error}</p>}
 
-                <img className='profile-image' src={user?.photoURL} alt='current user icon' />
+                <img className='profile-image' src={user?.photoURL} alt='current-user-icon' />
                 <TextArea value={comment} setValue={setComment} placeholder='Write a comment' theme={theme} />
                 <Button
                     disabled={response.isPending}

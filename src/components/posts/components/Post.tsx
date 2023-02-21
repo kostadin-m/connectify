@@ -52,8 +52,9 @@ export default function Post({ post }: PostProps) {
         const updatedLikes = likedByCurrentUser ?
             { likes: post.likes.filter((userLikedID) => userLikedID !== user?.id) } as PostDocument :
             { likes: [...post.likes, user?.id] } as PostDocument
-
         await updateDocument(post.id, updatedLikes)
+
+        setLikedByCurrentUser(true)
     }
 
     return (

@@ -24,7 +24,6 @@ const MockedUserNavbar = () => {
                     </ThemeContextProvider>
                 </AuthContext.Provider>
             </BrowserRouter>
-
         </>
     )
 }

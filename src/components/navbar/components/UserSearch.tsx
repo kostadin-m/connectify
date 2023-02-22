@@ -27,7 +27,7 @@ export default function UserSearch() {
       const filteredSearch = document.filter(user => user.displayName.toLowerCase().startsWith(searchedUser.toLowerCase()))
       setFoundUsers(filteredSearch.map(user => user))
     }
-  }, [searchedUser, isComponentVisible])
+  }, [searchedUser, isComponentVisible, document])
 
   const isOpened = searchWrapperClass === 'show' && isComponentVisible
 

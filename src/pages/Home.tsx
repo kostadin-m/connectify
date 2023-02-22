@@ -12,15 +12,20 @@ import PeopleYouMayKnow from '../components/people-you-may-know/PeopleYouMayKnow
 import { useIsMobile } from '../hooks/view-hooks/useIsMobile'
 import { useAuthContext } from '../hooks/firebase-hooks/useAuthContext'
 import { useCollection } from '../hooks/firebase-hooks/useCollection'
-
+import { memo, useRef } from 'react'
 
 export default function Home() {
     const [isMobile] = useIsMobile(1250)
     const { user } = useAuthContext()
-
     const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
 
-    const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), 'in', friends])
+    const friendsRef = useRef(friends)
+
+    if (friends.length !== friendsRef.current.length) {
+        friendsRef.current = friends
+    }
+
+    const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), 'in', friendsRef.current])
 
     return (
         <div className="page">

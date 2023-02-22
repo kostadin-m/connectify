@@ -76,7 +76,7 @@ export default function PostForm() {
         <div className={`${styles.postForm} ${styles[theme]}`}>
             <div className={`${styles.formWrapper} ${styles[theme]}`}>
                 <div className={`${styles.formTop} ${styles[theme]}`}>
-                    <img className='profile-image' src={user?.photoURL} alt='no user icon'></img>
+                    <img className='profile-image' src={user?.photoURL} alt='user icon'></img>
                     <TextArea value={text} setValue={setText} placeholder={`What's on your mind ${user?.displayName}?`} theme={theme} />
                 </div>
 
@@ -91,12 +91,12 @@ export default function PostForm() {
                     <div className={styles.formOptions}>
                         <label htmlFor='img' className={`${styles.formOption} ${styles[theme]}`}>
                             <ImageInput setImage={setImage} setImageError={setFormError} />
-                            <img className={styles.optionPicture} src={AddImage} alt='add image picture'></img>
+                            <img className={styles.optionPicture} src={AddImage} alt='picture icon'></img>
                             <span>Photo</span>
                         </label>
                         <div className={styles[theme]} style={{ display: 'flex' }}>
                             <div className={`${styles.formOption} ${styles[theme]}`} onClick={() => setShowLocationModal(true)}>
-                                <img className={styles.optionPicture} src={Location} alt='add image picture'></img>
+                                <img className={styles.optionPicture} src={Location} alt='location icon'></img>
                                 <span>{location ? location : "Location"}</span>
                             </div>
                             {location && <img style={{ position: 'relative' }} onClick={() => setLocation('')} className={styles.remove} src={Close} alt='close icon' />}

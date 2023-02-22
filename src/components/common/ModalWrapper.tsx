@@ -17,7 +17,7 @@ export default function ModalWrapper(props: Props) {
     }
   }, [])
   return ReactDOM.createPortal(
-    <div className={`modal`}>
+    <div data-testid='modal' className={`modal`}>
       <div className="overlay">
         <div className={`modal-content ${props.theme}`}>
           <h2>{props.title}</h2>

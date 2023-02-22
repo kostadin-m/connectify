@@ -2,9 +2,9 @@ import { screen, render, getByText } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import { ThemeContextProvider } from '../../../context/ThemeContext'
-import PeopkeYouMayKnow from '../PeopleYouMayKnow'
 import { UserDocument } from '../../../types'
 import { vi } from 'vitest'
+import PeopleYouMayKnow from '../PeopleYouMayKnow'
 
 
 interface MockCollectionState {
@@ -59,7 +59,7 @@ const MockComponent = () => {
             <BrowserRouter>
                 <AuthContext.Provider value={{ authIsReady: true, user: userObject, dispatch: (() => null) }} >
                     <ThemeContextProvider>
-                        <PeopkeYouMayKnow />
+                        <PeopleYouMayKnow />
                     </ThemeContextProvider>
                 </AuthContext.Provider>
             </BrowserRouter>

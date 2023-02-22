@@ -6,6 +6,7 @@ import './Friends.css'
 
 import UserList from '../common/UserList'
 import { UserDocument } from '../../types'
+import { memo } from 'react'
 
 interface FriendsProps {
     friends: UserDocument[]
@@ -13,7 +14,7 @@ interface FriendsProps {
     error: string | null
 }
 
-export default function Friends({ friends, isPending, error }: FriendsProps) {
+function Friends({ friends, isPending, error }: FriendsProps) {
     const { theme } = useThemeContext()
 
     return (
@@ -26,3 +27,4 @@ export default function Friends({ friends, isPending, error }: FriendsProps) {
         </div>
     )
 }
+export default memo(Friends)

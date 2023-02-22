@@ -13,8 +13,9 @@ import './PeopleYouMayKnow.css'
 import { UserDocument } from '../../types'
 import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
 import { documentId } from 'firebase/firestore'
+import { memo } from 'react'
 
-export default function PeopleYouMayKnow() {
+function PeopleYouMayKnow() {
   let usersWithMutualFriends = [] as UserDocument[]
 
   const { user } = useAuthContext()
@@ -39,6 +40,7 @@ export default function PeopleYouMayKnow() {
   }
 
 
+
   if (isPending) (<div className="loader"></div>)
   if (error) (<p className="error">{error}</p>)
 
@@ -50,3 +52,4 @@ export default function PeopleYouMayKnow() {
     </div>
   )
 }
+export default memo(PeopleYouMayKnow)

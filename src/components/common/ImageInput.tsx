@@ -8,6 +8,7 @@ import { IImageInput } from "../../types"
 function ImageInput({ setImage, setImageError }: IImageInput) {
     return (
         <input
+            data-testid='image input'
             style={{ display: 'none' }}
             type='file'
             id='img'

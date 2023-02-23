@@ -25,7 +25,7 @@ export default function ImagePreview({ image, style }: IPreviewImage) {
 
     return (
         <>
-            <img className={style} src={img ? img : ''} alt='post image preview' />
+            <img className={style} src={img ? img : ''} alt='image preview' />
         </>
     )
 }

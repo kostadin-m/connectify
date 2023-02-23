@@ -2,9 +2,10 @@ import { BrowserRouter } from "react-router-dom"
 import { AuthContext } from "../../../context/AuthContext"
 import { ThemeContextProvider } from "../../../context/ThemeContext"
 import PostForm from "../PostForm"
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import ReactDOM from "react-dom"
 import { vi } from "vitest"
+import userEvent from '@testing-library/user-event'
 
 
 const photoURL = 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2F6rwsEIfGG1fw3PzN7HxJQgtAh6V2%2F12359477-09D1-4128-91F9-AED8C985D733.jpeg?alt=media&token=ab328112-9654-4031-b4a1-bbb5561a4283'
@@ -77,5 +78,40 @@ describe('Tests for Post Form', async () => {
 
         waitFor(() => expect(modalComponent).toBeVisible())
     })
+
+    it('should show image preview when uploaded an image', async () => {
+        const { getByTestId } = render(<MockComponent />);
+        const fakeFile = new File(['hello'], 'hello.png', { type: 'image/png' });
+        const inputFile = getByTestId(/image input/i) as HTMLInputElement;
+        await act(async () => {
+            await waitFor(() => {
+                userEvent.upload(inputFile, fakeFile);
+            });
+        });
+        const imagePreview = screen.queryByAltText(/image preview/i)
+
+        waitFor(() => expect(imagePreview).toBeInTheDocument());
+    });
+    it('should close image image preview when clicked close icon', async () => {
+        const { getByTestId } = render(<MockComponent />);
+        const fakeFile = new File(['hello'], 'hello.png', { type: 'image/png' });
+        const inputFile = getByTestId(/image input/i) as HTMLInputElement;
+        await act(async () => {
+            await waitFor(() => {
+                userEvent.upload(inputFile, fakeFile);
+            });
+        });
+
+        const closeButton = screen.queryByAltText(/close icon/i) as HTMLDivElement
+        const imagePreview = screen.queryByAltText(/image preview/i)
+
+        await act(async () => {
+            await waitFor(() => {
+                userEvent.click(closeButton)
+            })
+        })
+
+        expect(imagePreview).not.toBeInTheDocument();
+    });
 
 })

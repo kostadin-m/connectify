@@ -13,20 +13,36 @@ interface MockDocument {
     error: null | string,
     isPending: boolean
 }
-const mockFirestoreDocument = { response: { document: null, error: null, isPending: false }, updateDocument: async () => null, }
 
+let mockDocument: MockDocument
+
+beforeEach(() => {
+    mockDocument = {
+        document: {
+            displayName: 'KKM',
+            email: 'km@gmail.com',
+            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
+            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
+        }, isPending: false, error: null
+    } as MockDocument
+
+})
+
+
+const mockFirestoreDocument = { response: { document: null, error: null, isPending: false }, updateDocument: async () => null, }
 vi.mock('../../../hooks/firebase-hooks/useFirestore', () => ({
     useFirestore: () => {
         return mockFirestoreDocument
     }
 }))
 
-const mockDocument = { document: null, isPending: false, error: null } as MockDocument
+
 vi.mock('../../../hooks/firebase-hooks/useDocument', () => ({
     useDocument: () => {
         return mockDocument
     }
 }))
+
 
 const MockedComponent = ({ id }: { id: string }) => {
     const createdAt = timeStamp.fromDate(new Date('December 17, 1995 03:24:00'))
@@ -59,12 +75,6 @@ const MockedComponent = ({ id }: { id: string }) => {
 
 describe('Testing post component', async () => {
     it('should not be liked if the post likes array doesnt contain the current id ', async () => {
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-        } as UserDocument
 
         render(<MockedComponent id='dadada' />)
 
@@ -76,12 +86,7 @@ describe('Testing post component', async () => {
         expect(userLiked).not.toBeInTheDocument()
     })
     it('should be liked if the post likes array contains the current id ', async () => {
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-        } as UserDocument
+
 
         render(<MockedComponent id='JdpMEbNtzLPtYEDT14ndw2FigIf2' />)
 
@@ -94,12 +99,7 @@ describe('Testing post component', async () => {
     })
     it('should contain the creator name and id', async () => {
 
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-        } as UserDocument
+
 
         render(<MockedComponent id='JdpMEbNtzLPtYEDT14ndw2FigIf2' />)
 
@@ -109,17 +109,11 @@ describe('Testing post component', async () => {
     )
     it('should contain the creator name and id and the right image src', async () => {
 
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-        } as UserDocument
         render(<MockedComponent id='JdpMEbNtzLPtYEDT14ndw2FigIf2' />)
 
         const profileImage = screen.getByAltText(/profile-image/i) as HTMLImageElement
 
-        expect(profileImage.src).toContain(mockDocument.document.photoURL)
+        expect(profileImage.src).toContain(mockDocument.document?.photoURL)
     }
     )
     it('should not render the post if there is no creatorDatat', async () => {
@@ -131,12 +125,6 @@ describe('Testing post component', async () => {
         expect(postComponent).not.toBeInTheDocument()
     })
     it('should not render comments initially', async () => {
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-        } as UserDocument
 
         render(<MockedComponent id='JdpMEbNtzLPtYEDT14ndw2FigIf2' />)
 
@@ -145,12 +133,7 @@ describe('Testing post component', async () => {
         expect(comments).not.toBeInTheDocument()
     })
     it('should toggle the comments when clicked on comments icon', async () => {
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-        } as UserDocument
+
 
         render(<MockedComponent id='JdpMEbNtzLPtYEDT14ndw2FigIf2' />)
 
@@ -166,13 +149,6 @@ describe('Testing post component', async () => {
         expect(comments).toHaveClass('_hidden_5a7bc9')
     })
     it('should change the likes icon  when clicked on', async () => {
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-        } as UserDocument
-
 
         render(<MockedComponent id='adda' />)
 

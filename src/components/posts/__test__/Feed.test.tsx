@@ -19,7 +19,15 @@ interface MockDocument {
 }
 
 
-const mockDocument = { document: null, isPending: false, error: null } as MockDocument
+const mockDocument = {
+    document: {
+        displayName: 'KKM',
+        email: 'km@gmail.com',
+        id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
+        photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
+
+    }, isPending: false, error: null
+} as MockDocument
 const mock = { document: null, error: null, isPending: false } as Mock
 vi.mock('../../../hooks/firebase-hooks/useCollection', () => ({
     useCollection: () => {
@@ -68,13 +76,6 @@ describe('Testing feed', async () => {
     it('should render two posts', async () => {
         mock.document = testPosts
 
-        mockDocument.document = {
-            displayName: 'KKM',
-            email: 'km@gmail.com',
-            id: 'JdpMEbNtzLPtYEDT14ndw2FigIf2',
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/my-s-1f4d4.appspot.com/o/thumbnails%2FJdpMEbNtzLPtYEDT14ndw2FigIf2%2FCBDB4D3E-1DD0-4107-992F-2EB4465F4ECF.jpeg?alt=media&token=6fb22e88-744e-4ba9-a6ae-3cdc2b0f1afb'
-
-        }
         render(<MockedComponent />)
 
         const posts = screen.queryAllByTestId(/post/i)

@@ -85,7 +85,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                         className="button" src={Accept} alt='accept request icon' />
                     <img
                         onClick={() => !response.isPending ? handleAcceptOrDenyActions('cancel') : null}
-                        className="button" src={Deny} alt='accept request icon' />
+                        className="button" src={Deny} alt='deny request icon' />
                 </>)
         }
 

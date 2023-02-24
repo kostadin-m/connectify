@@ -78,13 +78,11 @@ export default function Post({ post }: PostProps) {
                     </div>
                     <div className={styles.postMiddle}>
                         <p className={`${styles.postText} ${styles[theme]}`}>{post.postTitle}</p>
-                        <LazyLoadImage
-                            alt='post image'
+                        <img
+                            loading='lazy'
+                            className={styles.postImage}
                             src={post.photoURL}
-                            width='100%'
-                            effect="blur"
-                            placeholderSrc={post.photoURL}
-                        />
+                            alt="post image" />
                     </div>
                     <div className={`${styles.postBottom} ${styles[theme]}`}>
                         <img onClick={() => handleLike()}

@@ -4,7 +4,6 @@ export const getOtherUser = (
     chat: ChatObject,
     username: string
 ): PersonObject | undefined => {
-    console.log(username)
     const otherMember = chat.people.find(
         (member) => member.person.username !== username
     );

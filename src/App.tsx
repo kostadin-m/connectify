@@ -16,11 +16,11 @@ import Messages from './pages/Messages'
 
 //styles
 import './App.css'
+import { useEffect } from 'react'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
   const { theme } = useThemeContext()
-
 
   return (
     <div className={`App ${theme}`}>

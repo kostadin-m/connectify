@@ -19,9 +19,7 @@ function UserList({ users }: Props) {
           <img className="profile-image" src={user.photoURL!} alt="profile picture" />
           <p className='name'>{user.displayName}</p>
           <Link to={`/profile/${user.id}`} />
-
           <UserActionButton friend={user} />
-
         </div>
       ))}
     </div>

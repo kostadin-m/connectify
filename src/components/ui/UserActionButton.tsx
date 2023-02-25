@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 //types
-import { UserDocument } from "../../types"
+import { UserDocument } from "@types"
+
 //custom hooks
-import { useAuthContext } from "../../hooks/firebase-hooks/useAuthContext"
-import { useThemeContext } from "../../hooks/view-hooks/useThemeContext"
-import { useFirestore } from "../../hooks/firebase-hooks/useFirestore"
+import { useAuthContext, useThemeContext, useFirestore } from "@hooks"
+
 
 //icons
 import { AcceptRequest, CloseIcon, FriendsIcon, RemoveFriends } from '@assets'

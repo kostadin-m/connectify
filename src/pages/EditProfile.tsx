@@ -10,6 +10,7 @@ import FormInput from '@ui/FormInput'
 
 //custom hooks
 import { useThemeContext, useAuthContext, useEditUser } from "@hooks"
+import FormWrapper from "@ui/FormWrapper"
 
 
 export default function EditProfile() {
@@ -33,8 +34,7 @@ export default function EditProfile() {
     }
 
     return (
-        <div className={`form-box ${theme}`}>
-            <h2>Edit Profile</h2>
+        <FormWrapper theme={theme} title="Edit Profile">
             <form onSubmit={submit}>
                 <label htmlFor='img' className={`form-img ${theme}`}>
                     <ImageInput setImage={setImage} setImageError={setImageError} />
@@ -57,6 +57,6 @@ export default function EditProfile() {
 
                 <button className='form-btn'>{isPending ? 'Loading...' : 'Edit Profile'}</button>
             </form>
-        </div>
+        </FormWrapper>
     )
 }

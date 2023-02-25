@@ -4,14 +4,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthContext, useThemeContext } from '@hooks'
 
 //components
-import Navbar from './components/navbar/Navbar'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
-import ProfilePage from './pages/ProfilePage'
-import EditProfile from './pages/EditProfile'
-import NotFound from './pages/NotFound'
-import Messages from './pages/Messages'
+import { Navbar } from './components'
+import {
+  Home, EditProfile, Login, Messages,
+  NotFound, ProfilePage, SignUp
+} from './pages'
+
 
 //styles
 import './App.css'

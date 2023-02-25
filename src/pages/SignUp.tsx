@@ -1,15 +1,15 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
 //custom hooks
 import { useSignUp, useThemeContext } from '@hooks'
 
 //icons
 import { NoImage, ChooseImage } from '@assets'
+
 //components
 import ImageInput from '@ui/ImageInput'
 import ImagePreview from '@ui/ImagePreview'
 import FormInput from '@ui/FormInput'
+import FormWrapper from '@ui/FormWrapper'
 
 export default function SignUp() {
     const [error, isPending, signUp] = useSignUp()
@@ -33,8 +33,7 @@ export default function SignUp() {
     }
 
     return (
-        <div className={`form-box ${theme}`}>
-            <h2>Sign Up</h2>
+        <FormWrapper theme={theme} title='Sign Up'>
             <form onSubmit={(submit)}>
                 <label htmlFor='img' className={`form-img ${theme}`}>
                     <ImageInput setImage={setImage} setImageError={setImageError} />
@@ -57,6 +56,6 @@ export default function SignUp() {
                 {isPending && <div className='loader'></div>}
                 <button className='form-btn'>{isPending ? 'Loading...' : 'Sign Up'}</button>
             </form>
-        </div>
+        </FormWrapper>
     )
 }

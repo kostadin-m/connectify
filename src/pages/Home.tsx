@@ -8,11 +8,8 @@ import { UserDocument } from '@types'
 import { useIsMobile, useAuthContext, useCollection } from '@hooks'
 
 //components
-import Friends from '../components/friends-widget/Friends'
-import PostForm from '../components/post-form/PostForm'
-import UserWidget from '../components/user-widget/UserWidget'
-import Feed from '../components/posts/Feed'
-import PeopleYouMayKnow from '../components/people-you-may-know/PeopleYouMayKnow'
+import { Friends, PostForm, UserWidget, Feed, PeopleYouMayKnow } from '../components'
+
 
 
 export default function Home() {

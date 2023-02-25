@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { formatDate } from '../../../helpers/formatDate'
+import { formatDate } from '../../../helpers'
 
 import { useDocument } from '@hooks'
 import { CommentObject, UserObject } from '@types'

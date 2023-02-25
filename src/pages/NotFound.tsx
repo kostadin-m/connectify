@@ -1,12 +1,12 @@
 import { useThemeContext } from "@hooks"
+import FormWrapper from "@ui/FormWrapper"
 
 
 export default function NotFound() {
 
     const { theme } = useThemeContext()
     return (
-        <div className={`form-box ${theme}`}>
-            <h2>Page not Found</h2>
-        </div>
+        <FormWrapper theme={theme} title='Page Not Found'>
+        </FormWrapper>
     )
 }

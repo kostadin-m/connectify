@@ -1,6 +1,6 @@
 import { MultiChatSocket, MultiChatWindow, useMultiChatLogic } from 'react-chat-engine-advanced'
 //custom hooks
-import { useThemeContext } from '@hooks'
+import { useThemeContext, useAuthContext } from '@hooks'
 
 //styles
 import '../chat.css'
@@ -8,7 +8,6 @@ import '../chat.css'
 //custom components
 import CustomChatCard from '../components/chat-components/CustomChatCard'
 import CustomChatHeader from '../components/chat-components/CustomChatHeader'
-import { useAuthContext } from '../hooks/firebase-hooks/useAuthContext'
 
 
 

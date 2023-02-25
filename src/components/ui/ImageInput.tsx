@@ -1,6 +1,6 @@
 import { memo } from "react"
-import { handleFileChange } from "../../helpers/handleImageChange"
-import { IImageInput } from "../../types"
+import { handleFileChange } from "../../helpers"
+import { IImageInput } from "@types"
 
 
 

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { formatDate } from '../../../helpers/formatDate'
+
+//helper
+import { formatDate } from '../../../helpers'
 
 //custom hooks
 import { useThemeContext, useDelayToUnmount, useDocument, useAuthContext, useFirestore } from '@hooks'

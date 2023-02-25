@@ -1,19 +1,18 @@
+import { memo } from 'react'
+import { documentId } from 'firebase/firestore'
+
 //custom hooks
-import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
-import { useCollection } from '../../hooks/firebase-hooks/useCollection'
+import { useAuthContext, useCollection, useThemeContext } from '@hooks'
 
 //components
-import UserList from '../common/UserList'
+import UserList from '../ui/UserList'
 
 //styles
 import './PeopleYouMayKnow.css'
 
 
 //types
-import { UserDocument } from '../../types'
-import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
-import { documentId } from 'firebase/firestore'
-import { memo } from 'react'
+import { UserDocument } from '@types'
 
 function PeopleYouMayKnow() {
   let usersWithMutualFriends = [] as UserDocument[]

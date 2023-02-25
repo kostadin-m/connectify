@@ -1,17 +1,16 @@
 import { useState } from "react"
 
 //icons
-import ChooseImage from '../assets/choose_image.svg'
+import { ChooseImage } from '@assets'
 
 //components
-import ImagePreview from "../components/common/ImagePreview"
-import ImageInput from "../components/common/ImageInput"
-import FormInput from '../components/common/FormInput'
+import ImagePreview from "@ui/ImagePreview"
+import ImageInput from "@ui/ImageInput"
+import FormInput from '@ui/FormInput'
 
 //custom hooks
-import { useThemeContext } from "../hooks/view-hooks/useThemeContext"
-import { useAuthContext } from '../hooks/firebase-hooks/useAuthContext'
-import { useEditUser } from "../hooks/firebase-hooks/useEditUser"
+import { useThemeContext, useAuthContext, useEditUser } from "@hooks"
+
 
 export default function EditProfile() {
     const { user } = useAuthContext()

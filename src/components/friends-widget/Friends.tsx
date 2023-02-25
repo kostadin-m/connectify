@@ -1,11 +1,14 @@
-import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
+//custom hooks
+import { useThemeContext } from "@hooks"
 
+//types
+import { UserDocument } from '@types'
+//components
+import UserList from '@ui/UserList'
 
 //styles
 import './Friends.css'
 
-import UserList from '../common/UserList'
-import { UserDocument } from '../../types'
 import { memo } from 'react'
 
 interface FriendsProps {

@@ -2,28 +2,24 @@ import { useState } from 'react'
 
 //components
 import LocationModal from '../modals/LocationModal/LocationModal'
-import ImagePreview from '../common/ImagePreview'
-import Button from '../common/Button'
-import TextArea from '../common/TextArea'
-import ImageInput from '../common/ImageInput'
+import ImagePreview from '../ui/ImagePreview'
+import Button from '../ui/Button'
+import TextArea from '../ui/TextArea'
+import ImageInput from '../ui/ImageInput'
 
 //icons
-import Close from '../../assets/close_icon.svg'
-import Location from '../../assets/location_icon.svg'
-import AddImage from '../../assets/add_image.svg'
+import { CloseIcon, LocationIcon, AddImage } from '@assets'
 
 //styles
 import styles from './PostForm.module.css'
 
 //custom hooks
-import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
-import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
+import { useThemeContext, useAuthContext, useFirestore } from '@hooks'
 
 //firebase
 import { storage, timeStamp } from '../../firebase/config'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { useFirestore } from '../../hooks/firebase-hooks/useFirestore'
-import { PostObject } from '../../types'
+import { PostObject } from '@types'
 
 
 export default function PostForm() {
@@ -82,7 +78,7 @@ export default function PostForm() {
 
                 {formError && <p className='error'>{formError}</p>}
                 {image && <div className={styles[theme]}>
-                    <img onClick={() => setImage(null)} className={styles.remove} src={Close} alt='close icon' />
+                    <img onClick={() => setImage(null)} className={styles.remove} src={CloseIcon} alt='close icon' />
                     <ImagePreview image={image} style={styles.imagePreview} />
                 </div>}
 
@@ -96,10 +92,10 @@ export default function PostForm() {
                         </label>
                         <div className={styles[theme]} style={{ display: 'flex' }}>
                             <div className={`${styles.formOption} ${styles[theme]}`} onClick={() => setShowLocationModal(true)}>
-                                <img className={styles.optionPicture} src={Location} alt='location icon'></img>
+                                <img className={styles.optionPicture} src={LocationIcon} alt='location icon'></img>
                                 <span>{location ? location : "Location"}</span>
                             </div>
-                            {location && <img style={{ position: 'relative' }} onClick={() => setLocation('')} className={styles.remove} src={Close} alt='close icon' />}
+                            {location && <img style={{ position: 'relative' }} onClick={() => setLocation('')} className={styles.remove} src={CloseIcon} alt='close icon' />}
                         </div>
                         <Button disabled={pending} theme={theme} text={pending ? 'Loading...' : `Share a post`} onClick={() => handlePostSubmit()} />
                     </div>

@@ -2,11 +2,10 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 //custom hooks
-import { useThemeContext } from '../hooks/view-hooks/useThemeContext'
-import { useLogin } from "../hooks/firebase-hooks/useLogin"
+import { useThemeContext, useLogin } from '@hooks'
 
 //components
-import FormInput from '../components/common/FormInput'
+import FormInput from '@ui/FormInput'
 
 export default function Login() {
     const [email, setEmail] = useState('')

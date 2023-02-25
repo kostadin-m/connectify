@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 //custom hooks
-import { useAuthContext } from './hooks/firebase-hooks/useAuthContext'
-import { useThemeContext } from './hooks/view-hooks/useThemeContext'
+import { useAuthContext, useThemeContext } from '@hooks'
 
 //components
 import Navbar from './components/navbar/Navbar'
@@ -16,7 +15,6 @@ import Messages from './pages/Messages'
 
 //styles
 import './App.css'
-import { useEffect } from 'react'
 
 function App() {
   const { authIsReady, user } = useAuthContext()

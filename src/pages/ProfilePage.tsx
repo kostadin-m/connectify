@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 //components
@@ -6,11 +7,12 @@ import UserWidget from "../components/user-widget/UserWidget"
 import Feed from "../components/posts/Feed"
 
 //custom hooks
-import { useDocument } from "../hooks/firebase-hooks/useDocument"
+import { useDocument } from "@hooks"
 
+//types
+import { UserDocument } from "@types"
 
-import { UserDocument } from "../types"
-import { useEffect, useState } from "react"
+//firebase
 import { collection, documentId, onSnapshot, query, where } from "firebase/firestore"
 import { db } from "../firebase/config"
 

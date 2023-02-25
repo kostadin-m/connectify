@@ -1,5 +1,11 @@
-import { UserDocument } from '../types'
+import { useRef } from 'react'
 import { documentId } from 'firebase/firestore'
+
+//types
+import { UserDocument } from '@types'
+
+//custom hooks
+import { useIsMobile, useAuthContext, useCollection } from '@hooks'
 
 //components
 import Friends from '../components/friends-widget/Friends'
@@ -8,11 +14,6 @@ import UserWidget from '../components/user-widget/UserWidget'
 import Feed from '../components/posts/Feed'
 import PeopleYouMayKnow from '../components/people-you-may-know/PeopleYouMayKnow'
 
-//custom hooks
-import { useIsMobile } from '../hooks/view-hooks/useIsMobile'
-import { useAuthContext } from '../hooks/firebase-hooks/useAuthContext'
-import { useCollection } from '../hooks/firebase-hooks/useCollection'
-import { memo, useRef } from 'react'
 
 export default function Home() {
     const [isMobile] = useIsMobile(1250)

@@ -1,13 +1,18 @@
+// types
+import { UserDocument } from "@types";
+
 //icons
-import { UserDocument } from "../../../types";
-import Close from "../../../assets/close_icon.svg";
-import ModalWrapper from "../../common/ModalWrapper";
+import { CloseIcon } from "@assets";
+
+//custom hooks
+import { useAuthContext, useFirestore } from "@hooks";
+
+//components
+import Button from "@ui/Button";
+import ModalWrapper from "@ui/ModalWrapper";
 
 //styles
 import styles from "./ActionModal.module.css";
-import { useAuthContext } from "../../../hooks/firebase-hooks/useAuthContext";
-import { useFirestore } from "../../../hooks/firebase-hooks/useFirestore";
-import Button from "../../common/Button";
 
 interface Props {
     setActionModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -51,7 +56,7 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
             <img
                 className={`close-modal ${theme}`}
                 onClick={closeModal}
-                src={Close}
+                src={CloseIcon}
                 alt="closeIcon"
             />
         </ModalWrapper>

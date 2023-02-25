@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
-import { useCollection } from "../../../hooks/firebase-hooks/useCollection"
-import { CSSClassesState, UserDocument } from "../../../types"
-import UserList from "../../common/UserList"
 import { documentId } from "firebase/firestore"
-import { useAuthContext } from "../../../hooks/firebase-hooks/useAuthContext"
-import useComponentVisible from "../../../hooks/view-hooks/useComponentsVisible"
 
+
+// types
+import { CSSClassesState, UserDocument } from "@types"
+
+//custom hooks
+import { useAuthContext, useComponentsVisible, useCollection } from "@hooks"
+
+// components
+import UserList from "@ui/UserList"
 
 export default function UserSearch() {
   const [searchWrapperClass, setSearchWrapperClass] = useState<CSSClassesState>('hidden')
@@ -14,7 +18,7 @@ export default function UserSearch() {
 
 
   const { user } = useAuthContext()
-  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false, setSearchWrapperClass, 40)
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentsVisible(false, setSearchWrapperClass, 40)
   const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), '!=', user?.id])
 
   useEffect(() => {

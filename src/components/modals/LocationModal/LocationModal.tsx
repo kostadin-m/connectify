@@ -1,5 +1,5 @@
 //components
-import ModalWrapper from '../../../components/common/ModalWrapper'
+import ModalWrapper from '../../ui/ModalWrapper'
 
 //icons
 import Close from '../../../assets/close_icon.svg'

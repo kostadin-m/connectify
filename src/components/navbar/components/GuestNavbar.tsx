@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom"
 
 //components
-import SignIn from '../../../assets/sign_in_icon.svg'
-import Login from '../../../assets/login_icon.svg'
+import { SignInIcon, LoginIcon } from '@assets'
 
 export default function GuestNavbar() {
   return (
     <>
       <li className='nav-item'>
         < Link className='guest-button' to='/signup' >
-          <img src={SignIn} alt='sign in icon' />
+          <img src={SignInIcon} alt='sign in icon' />
           <p>Sign Up</p>
         </Link>
       </li>
       <li className='nav-item'>
         <Link className='guest-button' to='/login' >
-          <img src={Login} alt='login'></img>
+          <img src={LoginIcon} alt='login'></img>
           <p>Login</p>
         </Link>
       </li>

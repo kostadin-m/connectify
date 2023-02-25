@@ -5,11 +5,10 @@ import GuestNavbar from './components/GuestNavbar'
 import UserNavbar from './components/UserNavbar'
 
 //custom hooks
-import { useThemeContext } from '../../hooks/view-hooks/useThemeContext'
-import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
+import { useThemeContext, useAuthContext } from '@hooks'
 
 //icons
-import LightMode from '../../assets/light_mode_icon.svg'
+import { LightModeIcon } from '@assets'
 
 //styles
 import './Navbar.css'
@@ -31,7 +30,7 @@ export default function Navbar() {
                 <li>
                 </li>
                 <li className='nav-item'>
-                    <img className='light-mode' onClick={toggleTheme} src={LightMode} alt='light mode icon' />
+                    <img className='light-mode' onClick={toggleTheme} src={LightModeIcon} alt='light mode icon' />
                 </li>
                 {user ? <UserNavbar theme={theme} user={user} /> : <GuestNavbar />}
             </ul>

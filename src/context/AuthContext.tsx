@@ -1,9 +1,10 @@
-import { createContext, useEffect, useMemo, useReducer, useRef, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
-import { auth, db } from "../firebase/config";
 import { Unsubscribe, onAuthStateChanged } from "firebase/auth";
-import { IContextProviderProps, UserObject } from "../types";
+import { auth, db } from "../firebase/config";
 import { DocumentSnapshot, doc, onSnapshot } from "firebase/firestore";
+//types
+import { IContextProviderProps, UserObject } from "@types";
 
 
 

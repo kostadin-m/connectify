@@ -1,20 +1,18 @@
 import { useState } from 'react'
-import { CSSClassesState, UserObject } from '../../../types'
+import { Link } from 'react-router-dom'
 
+//types
+import { CSSClassesState, UserObject } from '@types'
 
 //icons
-import FriendsIcon from '../../../assets/friends.svg'
-import Chat from '../../../assets/chat_icon.svg'
+import { FriendsIcon, ChatIcon } from '@assets'
 
 //custom hooks
-import { useIsMobile } from '../../../hooks/view-hooks/useIsMobile'
+import { useIsMobile, useComponentsVisible, useThemeContext } from '@hooks'
 
 //components
 import { NavFriends } from './NavFriends'
 import UserDropDown from './UserDropDown'
-import useComponentVisible from '../../../hooks/view-hooks/useComponentsVisible'
-import { useThemeContext } from '../../../hooks/view-hooks/useThemeContext'
-import { Link } from 'react-router-dom'
 
 
 type UserNavbarProps = { theme: string, user: UserObject }
@@ -27,13 +25,13 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const {
         ref: FriendsRef,
         isComponentVisible: showFriends,
-        setIsComponentVisible: setShowFriends } = useComponentVisible(false, setFriendsClass, 580)
+        setIsComponentVisible: setShowFriends } = useComponentsVisible(false, setFriendsClass, 580)
 
     const [dropDownClass, setDropDownClass] = useState<CSSClassesState>('hidden')
     const {
         ref: DropDownRef,
         isComponentVisible: showDropDown,
-        setIsComponentVisible: setShowDropdown } = useComponentVisible(false, setDropDownClass, 580)
+        setIsComponentVisible: setShowDropdown } = useComponentsVisible(false, setDropDownClass, 580)
 
     //Showing the Components only when they are hidden because useComponentVisible takes care of the closing
     const toggleFriends = () => {
@@ -59,7 +57,7 @@ export default function UserNavbar({ user }: UserNavbarProps) {
             <li data-testid='user-nav'
                 className='nav-item'>
                 <Link style={{ height: '25px' }} to='/messages'>
-                    <img src={Chat} className='nav-img' alt='chat icon' />
+                    <img src={ChatIcon} className='nav-img' alt='chat icon' />
                 </Link>
             </li>
             <li data-testid='user-nav' className='nav-item'>

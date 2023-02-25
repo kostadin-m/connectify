@@ -2,20 +2,16 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 //custom hooks
-import { useSignUp } from '../hooks/firebase-hooks/useSignUp'
-import { useThemeContext } from '../hooks/view-hooks/useThemeContext'
+import { useSignUp, useThemeContext } from '@hooks'
 
 //icons
-import NoImage from '../assets/no_image.jpg'
-import ChooseImage from '../assets/choose_image.svg'
-
+import { NoImage, ChooseImage } from '@assets'
 //components
-import ImageInput from '../components/common/ImageInput'
-import ImagePreview from '../components/common/ImagePreview'
-import FormInput from '../components/common/FormInput'
+import ImageInput from '@ui/ImageInput'
+import ImagePreview from '@ui/ImagePreview'
+import FormInput from '@ui/FormInput'
 
 export default function SignUp() {
-    const navigate = useNavigate()
     const [error, isPending, signUp] = useSignUp()
     const { theme } = useThemeContext()
 

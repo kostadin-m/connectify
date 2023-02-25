@@ -1,29 +1,22 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { formatDate } from '../../../helpers/formatDate'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
+//custom hooks
+import { useThemeContext, useDelayToUnmount, useDocument, useAuthContext, useFirestore } from '@hooks'
 
-import { useThemeContext } from '../../../hooks/view-hooks/useThemeContext'
-import { useDelayToUnmount } from '../../../hooks//view-hooks/useDelayToUnmount'
-
-import { CSSClassesState, PostDocument, PostObject, UserDocument } from '../../../types'
+import { CSSClassesState, PostDocument, UserDocument } from '@types'
 
 //icons
-import Location from '../../../assets/location_icon.svg'
-import Like from '../../../assets/likes_icon.svg'
-import Liked from '../../../assets/liked_icon.svg'
-import CommentsIcon from '../../../assets/comments_icon.svg'
+import { LocationIcon, LikesIcon, LikedIcon, CommentsIcon } from '@assets'
+
 
 //components
 import Comments from './Comments'
 
 //styles
 import styles from '../Post.module.css'
-import { useDocument } from '../../../hooks/firebase-hooks/useDocument'
-import { useAuthContext } from '../../../hooks/firebase-hooks/useAuthContext'
-import { useFirestore } from '../../../hooks/firebase-hooks/useFirestore'
+
 
 interface PostProps {
     post: PostDocument
@@ -67,7 +60,7 @@ export default function Post({ post }: PostProps) {
                             <div className={styles.userInfo}>
                                 <div className={styles.userNameLocation}>
                                     <Link to={`/profile/${creatorData.id}`} >{creatorData.displayName}</Link>
-                                    <img src={Location} alt='location icon' />
+                                    <img src={LocationIcon} alt='location icon' />
                                     <p>{post.location}</p>
                                 </div>
                                 <div className={styles.timeAndLocation}>
@@ -87,7 +80,7 @@ export default function Post({ post }: PostProps) {
                     <div className={`${styles.postBottom} ${styles[theme]}`}>
                         <img onClick={() => handleLike()}
                             className={`${styles.postImages} ${likedByCurrentUser ? styles.liked : undefined}`}
-                            src={likedByCurrentUser ? Liked : Like} alt={likedByCurrentUser ? 'liked icon' : 'likes icon'} />
+                            src={likedByCurrentUser ? LikedIcon : LikesIcon} alt={likedByCurrentUser ? 'liked icon' : 'likes icon'} />
                         <p className={styles.likesCount}>{post.likes.length}</p>
                         <img onClick={toggleMount} className={styles.postImages} src={CommentsIcon} alt='comments icon' />
                         <p className={styles.likesCount}>{post.comments.length}</p>

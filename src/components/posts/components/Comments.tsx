@@ -4,13 +4,12 @@ import { memo, useState } from 'react'
 import styles from '../Post.module.css'
 
 //components
-import Button from '../../common/Button'
-import TextArea from '../../common/TextArea'
+import Button from '../../ui/Button'
+import TextArea from '../../ui/TextArea'
 import CommentContent from './CommentContent'
-import { PostDocument } from '../../../types'
-import { useAuthContext } from '../../../hooks/firebase-hooks/useAuthContext'
+import { PostDocument } from '@types'
+import { useAuthContext, useFirestore } from '@hooks'
 import { timeStamp } from '../../../firebase/config'
-import { useFirestore } from '../../../hooks/firebase-hooks/useFirestore'
 
 interface Props {
     theme: string

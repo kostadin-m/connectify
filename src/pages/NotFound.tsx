@@ -1,4 +1,4 @@
-import { useThemeContext } from "../hooks/view-hooks/useThemeContext"
+import { useThemeContext } from "@hooks"
 
 
 export default function NotFound() {

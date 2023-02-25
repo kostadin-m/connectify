@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES5",
     "useDefineForClassFields": true,
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ESNext"
+      "ES2020"
     ],
     "allowJs": false,
     "skipLibCheck": true,
@@ -14,20 +14,31 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "paths": {
-    "@assets/*": [
-      "src/assets/*"
-    ],
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@assets": [
+        "./src/assets",
+      ],
+      "@hooks": [
+        "./src/hooks"
+      ],
+      "@types": [
+        "./src/types.ts"
+      ],
+      "@ui/*": [
+        "./src/components/ui/*"
+      ]
+    },
   },
   "include": [
+    "**/*.ts",
+    "**/*.tsx",
     "src",
-    "rollup.config.js",
     "setupTest.test.js"
   ],
   "references": [

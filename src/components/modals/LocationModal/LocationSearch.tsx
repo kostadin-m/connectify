@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import PlacesAutocomplete, { } from 'react-places-autocomplete';
+import React, { useState } from 'react';
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 //icons
-import Location from '../../../assets/location_icon.svg'
+import { LocationIcon } from '@assets'
 
 //styles
 import styles from '../Modals.module.css'
-import React from 'react';
 
 interface Props {
     handleLocationSelect: (location: string) => void
@@ -16,7 +15,6 @@ interface Props {
 
 export default function LocationSearch({ handleLocationSelect, theme }: Props) {
     const [adress, setAdress] = useState('')
-    const [gmapsLoaded, setGmapsLoaded] = useState(false)
 
 
     return (
@@ -40,7 +38,7 @@ export default function LocationSearch({ handleLocationSelect, theme }: Props) {
                                     return (
                                         <div {...getSuggestionItemProps(suggestion)} key={suggestion.index} className={`${styles.dataItem} ${styles[theme]}`}>
                                             <div>
-                                                <img src={Location} alt='location img '></img>
+                                                <img src={LocationIcon} alt='location img '></img>
                                                 <span>{suggestion.description}</span>
                                             </div>
                                         </div>

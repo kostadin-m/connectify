@@ -1,8 +1,8 @@
 import { memo } from 'react'
-
-import { useDocument } from '../../../hooks/firebase-hooks/useDocument'
 import { formatDate } from '../../../helpers/formatDate'
-import { CommentObject, UserObject } from '../../../types'
+
+import { useDocument } from '@hooks'
+import { CommentObject, UserObject } from '@types'
 
 //styles
 import styles from '../Post.module.css'

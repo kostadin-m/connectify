@@ -2,7 +2,7 @@
 import { createContext, useReducer } from "react";
 
 //interfaces
-import { IContextProviderProps } from "../types";
+import { IContextProviderProps } from "@types";
 
 
 interface IThemeState {

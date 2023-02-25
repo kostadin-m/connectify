@@ -1,6 +1,6 @@
 //components
-import { useCollection } from '../../hooks/firebase-hooks/useCollection'
-import { PostDocument } from '../../types'
+import { useCollection } from '@hooks'
+import { PostDocument } from '@types'
 import Post from './components/Post'
 
 interface Props {

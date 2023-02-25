@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, SetStateAction } from 'react';
 import { CSSClassesState } from '../../types';
 
-export default function useComponentVisible(
+export default function useComponentsVisible(
     initialIsVisible: boolean,
     setClass: React.Dispatch<SetStateAction<CSSClassesState>>,
     timeout: number) {

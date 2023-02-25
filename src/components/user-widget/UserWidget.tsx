@@ -10,7 +10,7 @@ import styles from './UserWidget.module.css'
 import { PostDocument, UserDocument, UserObject } from '../../types'
 import { useCollection } from '../../hooks/firebase-hooks/useCollection'
 import { useEffect, useState } from 'react'
-import UserActionButton from '../common/UserActionButton'
+import UserActionButton from '../ui/UserActionButton'
 import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext'
 
 interface UserWidgetProps {

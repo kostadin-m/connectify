@@ -9,10 +9,8 @@ import { useThemeContext } from "../../hooks/view-hooks/useThemeContext"
 import { useFirestore } from "../../hooks/firebase-hooks/useFirestore"
 
 //icons
-import Accept from '../../assets/accept_request.svg'
-import Deny from '../../assets/close_icon.svg'
-import Friends from '../../assets/friends.svg'
-import RemoveFriend from '../../assets/remove_friends.svg'
+import { AcceptRequest, CloseIcon, FriendsIcon, RemoveFriends } from '@assets'
+
 
 //components
 import FriendsActionModal from "../modals/FriendsModal/FriendsActionModal"
@@ -70,9 +68,9 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
             setButton(null)
         } else if (user?.friends.includes(friend.id)) {
             setButton(
-                <img className="button" src={Friends} alt='friends icon'
-                    onMouseOver={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = RemoveFriend}
-                    onMouseOut={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = Friends}
+                <img className="button" src={FriendsIcon} alt='friends icon'
+                    onMouseOver={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = RemoveFriends}
+                    onMouseOut={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = FriendsIcon}
                     onClick={() => setShowFriendsActionModal(true)} />)
         }
 
@@ -82,10 +80,10 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                     <img
                         onClick={() =>
                             !response.isPending ? handleAcceptOrDenyActions('accept') : null}
-                        className="button" src={Accept} alt='accept request icon' />
+                        className="button" src={AcceptRequest} alt='accept request icon' />
                     <img
                         onClick={() => !response.isPending ? handleAcceptOrDenyActions('cancel') : null}
-                        className="button" src={Deny} alt='deny request icon' />
+                        className="button" src={CloseIcon} alt='deny request icon' />
                 </>)
         }
 

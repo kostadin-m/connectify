@@ -1,8 +1,9 @@
-import { useAuthContext } from '../../../hooks/firebase-hooks/useAuthContext'
-import { useLogout } from '../../../hooks/firebase-hooks/useLogout'
-import { useThemeContext } from '../../../hooks/view-hooks/useThemeContext'
-import { CSSClassesState } from '../../../types'
 import { Link } from 'react-router-dom'
+
+//custom hooks
+import { useAuthContext, useLogout, useThemeContext } from '@hooks'
+// types
+import { CSSClassesState } from '@types'
 
 interface UserDropDownProps {
     dropDownClass: CSSClassesState

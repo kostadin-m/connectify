@@ -1,8 +1,13 @@
 import { documentId } from "firebase/firestore"
-import { useAuthContext } from "../../../hooks/firebase-hooks/useAuthContext"
-import { useCollection } from "../../../hooks/firebase-hooks/useCollection"
-import { CSSClassesState, UserDocument } from "../../../types"
-import UserList from "../../common/UserList"
+
+//custom hooks
+import { useAuthContext, useCollection } from "@hooks"
+
+//types
+import { CSSClassesState, UserDocument } from "@types"
+
+//components
+import UserList from "@ui/UserList"
 
 interface NavFriendsProps {
     friendsClass: CSSClassesState

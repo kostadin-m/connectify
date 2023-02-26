@@ -11,8 +11,8 @@ export const handleFileChange =
         if (!selected.type.includes('image')) {
             return setImageError('Please select an image file!')
         }
-        if (selected.size > 10000000) {
-            return setImageError('Image File size must be less than 10mb')
+        if (selected.size > 1500000) {
+            return setImageError('Image File size must be less than 1.5mb')
         }
         setImage(selected)
     }

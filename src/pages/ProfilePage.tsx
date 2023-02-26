@@ -23,7 +23,7 @@ export default function ProfilePage() {
     const [friends, setFriends] = useState<UserDocument[]>([])
 
     useEffect(() => {
-        if (user) {
+        if (user && user.friends.length > 0) {
             const ref = query(collection(db, 'users'), where(documentId(), 'in', user?.friends))
             onSnapshot(ref, (snapshot) => {
                 if (snapshot) {
@@ -44,10 +44,11 @@ export default function ProfilePage() {
             {isPending && <div className="loader"></div>}
             {error && <div className="error">{error}</div>}
             <div className="profile-page-item">
-                {user && <>
-                    <UserWidget user={user} />
-                    <Friends friends={friends} error={error} isPending={isPending} />
-                </>
+                {user &&
+                    <>
+                        <UserWidget user={user} />
+                        <Friends friends={friends} error={error} isPending={isPending} />
+                    </>
                 }
             </div>
             <div className="profile-page-item">

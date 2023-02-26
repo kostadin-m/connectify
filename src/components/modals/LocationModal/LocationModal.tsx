@@ -1,10 +1,10 @@
 //components
-import ModalWrapper from '../../ui/ModalWrapper'
+import ModalWrapper from '@ui/ModalWrapper'
 
 //icons
-import Close from '../../../assets/close_icon.svg'
+import { CloseIcon } from '@assets'
 import LocationSearch from './LocationSearch'
-import { useAuthContext } from '../../../hooks/firebase-hooks/useAuthContext'
+import { useAuthContext } from '@hooks'
 
 interface Props {
     setLocation: React.Dispatch<React.SetStateAction<string>>
@@ -26,7 +26,7 @@ export default function LocationModal({ setLocation, setShowLocationModal, theme
         <ModalWrapper title={`Where are you currently at, ${user?.displayName}?`} theme={theme}>
             <LocationSearch theme={theme} handleLocationSelect={handleLocationSelect} />
             <img className={`close-modal ${theme}`} onClick={() => setShowLocationModal(false)}
-                src={Close} alt='closeIcon' />
+                src={CloseIcon} alt='closeIcon' />
         </ModalWrapper>
 
     )

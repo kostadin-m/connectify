@@ -4,7 +4,6 @@ import { useSignUp, useThemeContext } from '@hooks'
 
 //icons
 import { NoImage, ChooseImage } from '@assets'
-
 //components
 import ImageInput from '@ui/ImageInput'
 import ImagePreview from '@ui/ImagePreview'

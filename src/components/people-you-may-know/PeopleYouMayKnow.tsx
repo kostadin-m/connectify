@@ -5,7 +5,7 @@ import { documentId } from 'firebase/firestore'
 import { useAuthContext, useCollection, useThemeContext } from '@hooks'
 
 //components
-import UserList from '../ui/UserList'
+import UserList from '@ui/UserList'
 
 //styles
 import './PeopleYouMayKnow.css'

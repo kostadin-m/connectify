@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 
 import { Unsubscribe, onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "../firebase/config";
+import { db, auth } from "../firebase/config";
 import { DocumentSnapshot, doc, onSnapshot } from "firebase/firestore";
 //types
 import { IContextProviderProps, UserObject } from "@types";

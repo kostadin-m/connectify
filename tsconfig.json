@@ -31,7 +31,7 @@
         "./src/types.ts"
       ],
       "@ui/*": [
-        "./src/components/ui/*"
+        "src/components/ui/*"
       ]
     },
   },

@@ -1,4 +1,4 @@
-import { auth, db } from "../../firebase/config";
+import { db, auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
 import { collection, doc, updateDoc } from "firebase/firestore";
 import { useAuthContext } from "./useAuthContext";

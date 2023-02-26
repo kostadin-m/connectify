@@ -15,7 +15,7 @@ export default function Messages() {
     const { user } = useAuthContext()
 
 
-    const projectID = "cb4c38f1-a904-45fe-b638-a6b989f334bc"
+    const projectID = "4c6608ac-11b9-4e9e-abc1-c7bfeefa11eb"
     const chatProps = useMultiChatLogic(projectID, `${user?.displayName}`, `${user?.id}`)
     const { theme } = useThemeContext()
     return (

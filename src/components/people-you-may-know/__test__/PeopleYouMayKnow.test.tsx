@@ -1,4 +1,4 @@
-import { screen, render, getByText } from '@testing-library/react'
+import { screen, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext'
 import { ThemeContextProvider } from '../../../context/ThemeContext'

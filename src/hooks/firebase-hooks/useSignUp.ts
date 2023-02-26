@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 //firebase
-import { db, auth } from "../../firebase/config"
+import { db } from "../../firebase/config"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { setDoc, doc } from "firebase/firestore"
-import { storage } from '../../firebase/config'
+import { storage, auth } from '../../firebase/config'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 
 //custom hooks and helpers
@@ -14,6 +14,7 @@ import { checkError } from "../../helpers/checkError"
 import { UserDocument, UserObject } from "../../types"
 
 export const useSignUp = () => {
+
     const [isCancelled, setIsCancelled] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
     const [isPending, setIsPending] = useState<boolean>(false)
@@ -53,7 +54,7 @@ export const useSignUp = () => {
 
             await axios
                 .post("https://api.chatengine.io/users/", formData,
-                    { headers: { "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1' } })
+                    { headers: { "Private-Key": '60216072-4b9e-4ac8-b321-571aaf652fcb' } })
                 .catch((e) => setError(e.data.details));
 
             const userData = {

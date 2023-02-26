@@ -72,7 +72,7 @@ export const useEditUser = (): editUserState => {
             }
             await axios.patch(`https://api.chatengine.io/users/me/`, formData, {
                 headers: {
-                    "Private-Key": '419ce8c6-e52f-4fd2-9325-4a0b4b984bc1',
+                    "Private-Key": '60216072-4b9e-4ac8-b321-571aaf652fcb',
                     'user-name': user?.displayName,
                     'user-secret': user?.id
                 }
@@ -81,8 +81,6 @@ export const useEditUser = (): editUserState => {
             //Updating the user in the DB
             const updatedObject = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location }
             await updateDoc(documentRef, { ...updatedObject })
-
-
 
             //Updating the user in firebaseAuth
             if (user?.email !== updatedDocument.email) {

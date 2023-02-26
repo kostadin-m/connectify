@@ -7,10 +7,10 @@ import { ChooseImage } from '@assets'
 import ImagePreview from "@ui/ImagePreview"
 import ImageInput from "@ui/ImageInput"
 import FormInput from '@ui/FormInput'
+import FormWrapper from "@ui/FormWrapper"
 
 //custom hooks
 import { useThemeContext, useAuthContext, useEditUser } from "@hooks"
-import FormWrapper from "@ui/FormWrapper"
 
 
 export default function EditProfile() {

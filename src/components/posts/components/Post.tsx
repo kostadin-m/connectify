@@ -58,7 +58,7 @@ export default function Post({ post }: PostProps) {
                 <div data-testid='post' className={`${styles.post} ${styles[theme]}`}>
                     <div className={styles.postTop}>
                         <div className={`${styles.user} ${styles[theme]}`}>
-                            <img className='profile-image' src={creatorData.photoURL} alt='profile-image' />
+                            <img loading='lazy' className='profile-image' src={creatorData.photoURL} alt='profile-image' />
                             <div className={styles.userInfo}>
                                 <div className={styles.userNameLocation}>
                                     <Link to={`/profile/${creatorData.id}`} >{creatorData.displayName}</Link>

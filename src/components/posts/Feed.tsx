@@ -10,7 +10,9 @@ interface Props {
 export default function Feed({ id }: Props) {
     const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null, ['createdAt', 'desc'])
 
+
     if (isPending) return (<div data-testid='loader' className='loader'></div>)
+
     return (
         <div className='feed'>
             {error && <p className='error'>{error}</p>}

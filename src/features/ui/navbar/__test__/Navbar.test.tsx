@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { AuthContext } from "../../../context/AuthContext"
-import { ThemeContextProvider } from "../../../context/ThemeContext"
+import { AuthContext } from "../../../../context/AuthContext"
+import { ThemeContextProvider } from "../../../../context/ThemeContext"
 import Navbar from "../Navbar"
 import { BrowserRouter } from 'react-router-dom'
 

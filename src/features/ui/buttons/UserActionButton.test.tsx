@@ -1,10 +1,9 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import UserActionButton from './UserActionButton';
-import { UserDocument } from '../../types';
-import { useAuthContext } from '../../hooks/firebase-hooks/useAuthContext';
-import { useThemeContext } from '../../hooks/view-hooks/useThemeContext';
-import { useFirestore } from '../../hooks/firebase-hooks/useFirestore';
+import { UserDocument } from '@types';
+import { useAuthContext, useThemeContext, useFirestore } from '@hooks';
+
 import axios from 'axios';
 
 // Mocking dependencies

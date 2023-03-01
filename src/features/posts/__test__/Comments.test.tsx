@@ -1,4 +1,4 @@
-import { screen, render, getAllByText, fireEvent, waitFor } from '@testing-library/react'
+import { screen, render, fireEvent, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvider } from '../../../context/AuthContext'
 import { ThemeContextProvider } from '../../../context/ThemeContext'

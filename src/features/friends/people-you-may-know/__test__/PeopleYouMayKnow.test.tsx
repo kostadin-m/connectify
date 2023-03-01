@@ -1,8 +1,8 @@
 import { screen, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthContext } from '../../../context/AuthContext'
-import { ThemeContextProvider } from '../../../context/ThemeContext'
-import { UserDocument } from '../../../types'
+import { AuthContext } from '../../../../context/AuthContext'
+import { ThemeContextProvider } from '../../../../context/ThemeContext'
+import { UserDocument } from '@types'
 import { vi } from 'vitest'
 import PeopleYouMayKnow from '../PeopleYouMayKnow'
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 
 //components
 import LocationModal from '../modals/LocationModal/LocationModal'
@@ -22,7 +22,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { PostObject } from '@types'
 
 
-export default function PostForm() {
+function PostForm() {
     //Modal State
     const [showLocationModal, setShowLocationModal] = useState(false)
     const { response, addDocument } = useFirestore<PostObject>('posts')
@@ -106,3 +106,4 @@ export default function PostForm() {
         </div >
     )
 }
+export default memo(PostForm)

@@ -2,12 +2,13 @@
 import { useCollection } from '@hooks'
 import { PostDocument } from '@types'
 import Post from './components/Post'
+import { memo } from 'react'
 
 interface Props {
     id?: string | null
 }
 
-export default function Feed({ id }: Props) {
+function Feed({ id }: Props) {
     const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null, ['createdAt', 'desc'])
 
 
@@ -22,3 +23,4 @@ export default function Feed({ id }: Props) {
         </div>
     )
 }
+export default memo(Feed)

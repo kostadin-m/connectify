@@ -9,7 +9,7 @@ import { updateEmail, updateProfile } from "firebase/auth"
 import { useAuthContext } from "./useAuthContext"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { checkError } from "../../helpers/checkError"
+import { checkError } from "./utils/checkError"
 import { collection, doc, updateDoc } from "firebase/firestore"
 import axios from "axios"
 

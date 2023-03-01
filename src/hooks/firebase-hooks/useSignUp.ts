@@ -10,7 +10,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 
 //custom hooks and helpers
 import { useAuthContext } from "./useAuthContext"
-import { checkError } from "../../helpers/checkError"
+import { checkError } from "./utils/checkError"
 import { UserDocument, UserObject } from "../../types"
 
 export const useSignUp = () => {

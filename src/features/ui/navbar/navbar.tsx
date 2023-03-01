@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 
 //components
-import GuestNavbar from './components/GuestNavbar'
-import UserNavbar from './components/UserNavbar'
+import GuestNavbar from './components/guest-navbar'
+import UserNavbar from './components/user-navbar'
+import { UserSearch } from '@features/user'
 
 //custom hooks
 import { useThemeContext, useAuthContext } from '@hooks'
@@ -11,8 +12,7 @@ import { useThemeContext, useAuthContext } from '@hooks'
 import { LightModeIcon } from '@assets'
 
 //styles
-import './Navbar.css'
-import { UserSearch } from '@features/user'
+import './navbar.css'
 
 export default function Navbar() {
     const { theme, toggleTheme } = useThemeContext()

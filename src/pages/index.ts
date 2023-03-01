@@ -1,9 +1,9 @@
-import Home from "./Home";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import NotFound from "./NotFound";
-import ProfilePage from "./ProfilePage";
-import Messages from "./Messages";
-import EditProfile from "./EditProfile";
+import Home from "./home.";
+import Login from "./login";
+import SignUp from "./sign-up";
+import NotFound from "./not-found";
+import ProfilePage from "./profile-page";
+import Messages from "./messages";
+import EditProfile from "./edit-profile";
 
 export { Home, Login, SignUp, EditProfile, Messages, NotFound, ProfilePage }

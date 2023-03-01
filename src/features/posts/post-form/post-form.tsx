@@ -8,7 +8,7 @@ import { LocationModal, ImagePreview, ImageInput, TextArea, Button } from '@feat
 import { CloseIcon, LocationIcon, AddImage } from '@assets'
 
 //styles
-import styles from './PostForm.module.css'
+import styles from './post-form.module.css'
 
 //custom hooks
 import { useThemeContext, useAuthContext, useFirestore } from '@hooks'

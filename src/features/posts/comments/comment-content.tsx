@@ -5,7 +5,7 @@ import { useDocument } from '@hooks'
 import { CommentObject, UserObject } from '@types'
 
 //styles
-import styles from './Comments.module.css'
+import styles from './comments.module.css'
 
 interface CommentContentProps {
     comment: CommentObject

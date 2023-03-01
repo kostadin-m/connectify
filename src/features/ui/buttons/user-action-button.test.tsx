@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import UserActionButton from './UserActionButton';
+import UserActionButton from './user-action-button';
 import { UserDocument } from '@types';
 import { useAuthContext, useThemeContext, useFirestore } from '@hooks';
 

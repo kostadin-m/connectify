@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { AuthContext } from "../../../../context/AuthContext"
-import { ThemeContextProvider } from "../../../../context/ThemeContext"
-import Navbar from "../Navbar"
+import { AuthContext } from "../../../../context/auth-context"
+import { ThemeContextProvider } from "../../../../context/theme-context"
+import Navbar from "../navbar"
 import { BrowserRouter } from 'react-router-dom'
 
 const MockedUserNavbar = () => {

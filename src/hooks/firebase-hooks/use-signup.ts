@@ -9,8 +9,8 @@ import { storage, auth } from '../../firebase/config'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 
 //custom hooks and helpers
-import { useAuthContext } from "./useAuthContext"
-import { checkError } from "./utils/checkError"
+import { useAuthContext } from "./use-auth-context"
+import { checkError } from "./utils/check-error"
 import { UserDocument, UserObject } from "../../types"
 
 export const useSignUp = () => {

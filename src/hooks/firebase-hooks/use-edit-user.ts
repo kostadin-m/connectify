@@ -6,10 +6,10 @@ import { db, storage } from "../../firebase/config"
 import { updateEmail, updateProfile } from "firebase/auth"
 
 //types
-import { useAuthContext } from "./useAuthContext"
+import { useAuthContext } from "./use-auth-context"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { checkError } from "./utils/checkError"
+import { checkError } from "./utils/check-error"
 import { collection, doc, updateDoc } from "firebase/firestore"
 import axios from "axios"
 

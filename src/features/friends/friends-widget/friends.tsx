@@ -7,7 +7,7 @@ import { UserDocument } from '@types'
 import { UserList } from '@features/ui'
 
 //styles
-import './Friends.css'
+import './friends.css'
 
 import { memo } from 'react'
 

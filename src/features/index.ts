@@ -1,11 +1,11 @@
 import UserWidget from "./user/user-widget/UserWidget";
-import Navbar from "./ui/navbar/Navbar";
-import Friends from "./friends/friends-widget/Friends";
-import PeopleYouMayKnow from "./friends/people-you-may-know/PeopleYouMayKnow";
-import LocationModal from "./ui/modals/LocationModal/LocationModal";
-import FriendsActionModal from "./ui/modals/FriendsModal/FriendsActionModal";
-import CustomChatCard from "@features/chats/CustomChatCard";
-import CustomChatHeader from "@features/chats/CustomChatHeader";
+import Navbar from "./ui/navbar/navbar";
+import Friends from "./friends/friends-widget/friends";
+import PeopleYouMayKnow from "./friends/people-you-may-know/people-you-may-know";
+import LocationModal from "./ui/modals/location-modal/location-modal";
+import FriendsActionModal from "./ui/modals/friends-modal/friends-action-modal";
+import CustomChatCard from "@features/chats/custom-chat-card";
+import CustomChatHeader from "@features/chats/custom-chat-header";
 import { Feed, PostForm } from "@features/posts";
 
 

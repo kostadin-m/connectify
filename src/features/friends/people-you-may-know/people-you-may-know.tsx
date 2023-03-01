@@ -8,7 +8,7 @@ import { useAuthContext, useCollection, useThemeContext } from '@hooks'
 import { UserList } from '@features/ui'
 
 //styles
-import './PeopleYouMayKnow.css'
+import './people-you-may-know.css'
 
 
 //types

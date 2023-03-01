@@ -1,8 +1,8 @@
 import { screen, render, fireEvent, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthContextProvider } from '../../../context/AuthContext'
-import { ThemeContextProvider } from '../../../context/ThemeContext'
-import Comments from '../comments/Comments'
+import { AuthContextProvider } from '../../../context/auth-context'
+import { ThemeContextProvider } from '../../../context/theme-context'
+import Comments from '../comments/comments'
 import { timeStamp } from '../../../firebase/config'
 import { vi } from 'vitest'
 

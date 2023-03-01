@@ -14,10 +14,10 @@ import { LocationIcon, LikesIcon, LikedIcon, CommentsIcon } from '@assets'
 
 
 //components
-import Comments from '@features/posts/comments/Comments'
+import Comments from '@features/posts/comments/comments'
 
 //styles
-import styles from './Post.module.css'
+import styles from './post.module.css'
 
 
 interface PostProps {

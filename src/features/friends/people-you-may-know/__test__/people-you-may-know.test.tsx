@@ -1,10 +1,10 @@
 import { screen, render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthContext } from '../../../../context/AuthContext'
-import { ThemeContextProvider } from '../../../../context/ThemeContext'
+import { AuthContext } from '../../../../context/auth-context'
+import { ThemeContextProvider } from '../../../../context/theme-context'
 import { UserDocument } from '@types'
 import { vi } from 'vitest'
-import PeopleYouMayKnow from '../PeopleYouMayKnow'
+import PeopleYouMayKnow from '../people-you-may-know'
 
 
 interface MockCollectionState {

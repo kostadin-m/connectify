@@ -1,5 +1,5 @@
-import Friends from './friends-widget/Friends'
-import NavFriends from './nav-friends/NavFriends'
-import PeopleYouMayKnow from './people-you-may-know/PeopleYouMayKnow'
+import Friends from './friends-widget/friends'
+import NavFriends from './nav-friends/nav-friends'
+import PeopleYouMayKnow from './people-you-may-know/people-you-may-know'
 
 export { NavFriends, Friends, PeopleYouMayKnow }

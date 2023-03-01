@@ -7,7 +7,7 @@ import { useCollection } from '@hooks'
 import { PostDocument } from '@types'
 
 //components
-import Post from './Post'
+import Post from './post'
 
 interface Props {
     id?: string | null

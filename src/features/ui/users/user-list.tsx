@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 import { UserDocument } from "../../../types";
-import { useThemeContext } from "../../../hooks/view-hooks/useThemeContext";
+import { useThemeContext } from "../../../hooks/view-hooks/use-theme-context";
 import { memo } from "react";
-import UserActionButton from "../buttons/UserActionButton";
+import UserActionButton from "../buttons/user-action-button";
 
 interface Props {
   users: UserDocument[]

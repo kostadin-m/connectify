@@ -3,8 +3,8 @@ import App from './App'
 import './index.css'
 
 //context
-import { AuthContextProvider } from './context/AuthContext'
-import { ThemeContextProvider } from './context/ThemeContext'
+import { AuthContextProvider } from './context/auth-context'
+import { ThemeContextProvider } from './context/theme-context'
 
 
 //initializing google maps api

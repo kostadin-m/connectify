@@ -12,7 +12,7 @@ import { useIsMobile, useComponentsVisible, useThemeContext } from '@hooks'
 
 //components
 import { NavFriends } from '@features/friends'
-import UserDropDown from './UserDropDown'
+import UserDropDown from './user-dropdown'
 
 
 type UserNavbarProps = { theme: string, user: UserObject }

@@ -12,7 +12,7 @@ import { Button, ModalWrapper } from "@features/ui";
 
 
 //styles
-import styles from "./ActionModal.module.css";
+import styles from "./friends-action-modal.module.css";
 
 interface Props {
     setActionModal: React.Dispatch<React.SetStateAction<boolean>>

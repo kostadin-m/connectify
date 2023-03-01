@@ -1,7 +1,7 @@
 import { memo, useState } from 'react'
 
 //styles
-import styles from './Comments.module.css'
+import styles from './comments.module.css'
 
 //types
 import { PostDocument } from '@types'
@@ -13,7 +13,7 @@ import { timeStamp } from '../../../firebase/config'
 
 //components
 import { Button, TextArea } from '@features/ui'
-import CommentContent from './CommentContent'
+import CommentContent from './comment-content'
 
 interface Props {
     theme: string

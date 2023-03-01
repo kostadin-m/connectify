@@ -3,7 +3,7 @@ import { ModalWrapper } from '@features/ui'
 
 //icons
 import { CloseIcon } from '@assets'
-import LocationSearch from './LocationSearch'
+import LocationSearch from './location-search'
 import { useAuthContext } from '@hooks'
 
 interface Props {

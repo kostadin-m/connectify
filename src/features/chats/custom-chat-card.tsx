@@ -1,7 +1,7 @@
 import { ChatCard, ChatCardProps, ChatObject } from "react-chat-engine-advanced";
 
 //helpers
-import { getOtherUser } from "./utils/getOtherChatUser";
+import { getOtherUser } from "./utils/get-other-chat-user";
 
 interface CustomChatCardProps extends ChatCardProps {
     username: string;

@@ -6,7 +6,7 @@ import {
 } from "react-chat-engine-advanced";
 
 //helpers
-import { getOtherUser } from "./utils/getOtherChatUser";
+import { getOtherUser } from "./utils/get-other-chat-user";
 
 //custom hooks
 import { useThemeContext } from "@hooks";

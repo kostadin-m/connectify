@@ -56,18 +56,22 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
         }
     }
 
-
     useEffect(() => {
         dispatch({ type: "IS_PENDING" })
         let ref = query(collection(db, _collection))
 
         if (queryRef.current && orderRef.current) {
-            ref = query(collection(db, _collection),
-                where(queryRef.current[0], queryRef.current[1], queryRef.current[2]), orderBy(orderRef.current[0], orderRef.current[1]))
 
-        } else if (!queryRef.current && orderRef.current) {
+            ref = query(collection(db, _collection),
+                where(queryRef.current[0], queryRef.current[1], queryRef.current[2]),
+                orderBy(orderRef.current[0], orderRef.current[1]))
+        }
+        else if (!queryRef.current && orderRef.current) {
+
             ref = query(collection(db, _collection), orderBy(orderRef.current[0], orderRef.current[1]))
-        } else if (!orderRef.current && queryRef.current) {
+        }
+        else if (!orderRef.current && queryRef.current) {
+
             ref = query(collection(db, _collection),
                 where(queryRef.current[0], queryRef.current[1], queryRef.current[2]))
         }

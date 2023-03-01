@@ -30,8 +30,11 @@
       "@types": [
         "./src/types.ts"
       ],
-      "@ui/*": [
-        "src/components/ui/*"
+      "@features/*": [
+        "src/features/*",
+      ],
+      "@features": [
+        "src/features",
       ]
     },
   },

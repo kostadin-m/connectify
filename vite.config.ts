@@ -12,7 +12,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
       '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
-      '@ui': fileURLToPath(new URL('./src/components/ui', import.meta.url))
+      '@features': fileURLToPath(new URL('./src/features', import.meta.url))
     },
   },
   plugins: [react()],

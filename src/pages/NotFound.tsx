@@ -1,5 +1,6 @@
 import { useThemeContext } from "@hooks"
-import FormWrapper from "@ui/FormWrapper"
+
+import { FormWrapper } from "@features/ui"
 
 
 export default function NotFound() {

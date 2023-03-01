@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthContext, useThemeContext } from '@hooks'
 
 //components
-import { Navbar } from './components'
+import { Navbar } from '@features/ui'
 import {
   Home, EditProfile, Login, Messages,
   NotFound, ProfilePage, SignUp

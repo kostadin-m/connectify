@@ -6,8 +6,7 @@ import { useThemeContext, useAuthContext } from '@hooks'
 import '../chat.css'
 
 //custom components
-import CustomChatCard from '../components/chat-components/CustomChatCard'
-import CustomChatHeader from '../components/chat-components/CustomChatHeader'
+import { CustomChatCard, CustomChatHeader } from '@features/index'
 
 
 

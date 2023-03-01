@@ -1,14 +1,14 @@
 import { useState } from 'react'
+
 //custom hooks
 import { useSignUp, useThemeContext } from '@hooks'
 
 //icons
 import { NoImage, ChooseImage } from '@assets'
+
 //components
-import ImageInput from '@ui/ImageInput'
-import ImagePreview from '@ui/ImagePreview'
-import FormInput from '@ui/FormInput'
-import FormWrapper from '@ui/FormWrapper'
+import { ImageInput, ImagePreview, FormInput, FormWrapper } from '@features/ui'
+
 
 export default function SignUp() {
     const [error, isPending, signUp] = useSignUp()

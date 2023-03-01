@@ -4,10 +4,8 @@ import { useState } from "react"
 import { ChooseImage } from '@assets'
 
 //components
-import ImagePreview from "@ui/ImagePreview"
-import ImageInput from "@ui/ImageInput"
-import FormInput from '@ui/FormInput'
-import FormWrapper from "@ui/FormWrapper"
+import { ImagePreview, ImageInput, FormInput, FormWrapper } from '@features/ui'
+
 
 //custom hooks
 import { useThemeContext, useAuthContext, useEditUser } from "@hooks"

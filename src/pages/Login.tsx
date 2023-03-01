@@ -4,8 +4,8 @@ import { useState } from "react"
 import { useThemeContext, useLogin } from '@hooks'
 
 //components
-import FormInput from '@ui/FormInput'
-import FormWrapper from "@ui/FormWrapper"
+import { FormInput, FormWrapper } from "@features/ui"
+
 
 export default function Login() {
     const [email, setEmail] = useState('')

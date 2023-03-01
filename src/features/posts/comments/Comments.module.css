@@ -1,0 +1,190 @@
+/* Comments and input */
+
+@keyframes showComments {
+    from {
+        filter: blur(15px);
+        height: 0px;
+    }
+
+    to {
+        filter: blur(0);
+        height: 450px;
+    }
+}
+
+@keyframes hideComments {
+    from {
+        filter: blur(0);
+        height: 445px;
+    }
+
+    to {
+        filter: blur(15px);
+        height: 0px;
+    }
+}
+
+.commentsContainer {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.commentsContainer.hidden {
+    animation-name: hideComments;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-out;
+}
+
+.commentsContainer.show {
+    animation-name: showComments;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-out;
+}
+
+.commentsContainer h2 {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: lightgray;
+    padding-left: 13px;
+    text-align: left;
+}
+
+.commentsHr {
+    width: 97%;
+    height: 2px;
+    border: none;
+}
+
+.commentsHr.dark {
+    background-color: rgb(64, 63, 63);
+}
+
+.commentsHr.light {
+    background-color: rgb(193, 190, 190);
+}
+
+.comments {
+    height: 320px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.comment {
+    position: relative;
+    display: flex;
+    margin-top: 25px;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.commentContent {
+    text-align: left;
+    position: relative;
+    margin-left: 8px;
+    min-height: 50px;
+    max-width: 85%;
+    border-radius: 14px;
+}
+
+.commentContent p {
+    padding-bottom: 4px;
+    font-size: 0.8em;
+    margin-left: 6px;
+    margin-right: 5px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.commentContent a {
+    text-decoration: none;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 7px;
+    margin-top: 4px;
+}
+
+.commentContent a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.comment>p {
+    position: absolute;
+    top: 105%;
+    left: 8%;
+    padding-left: 2px;
+    font-size: 0.7em;
+}
+
+.inputContainer {
+    position: relative;
+    overflow: hidden;
+    width: 95%;
+    margin-left: 10px;
+    align-items: center;
+    display: flex;
+}
+
+.inputContainer>img {
+    margin-bottom: 7px;
+}
+
+/*Theme mode for comments and input*/
+
+.dark>.btn:hover,
+.light>.btn:hover {
+    cursor: pointer;
+    background-color: rgb(110, 109, 109);
+}
+
+
+.dark>.btn {
+    color: lightgray;
+    background-color: rgb(65, 64, 64);
+}
+
+.light>.btn {
+    color: black;
+    background-color: rgb(225, 223, 223);
+}
+
+.dark>p {
+    color: rgb(125, 123, 123);
+}
+
+.light>p {
+    color: rgb(179, 175, 175);
+}
+
+.dark>.commentContent a {
+    color: lightgray;
+}
+
+.light>.commentContent a {
+    color: black;
+}
+
+.dark>.commentContent {
+    background: rgb(77, 76, 76);
+}
+
+.light>.commentContent {
+    background: rgb(223, 219, 219);
+}
+
+.dark>.commentContent p {
+    color: lightgray
+}
+
+.light>.commentContent p {
+    color: black
+}
+
+@media (max-width:799px) {
+    .comment {
+        margin-left: 5px !important;
+    }
+}

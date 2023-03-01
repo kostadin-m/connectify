@@ -8,7 +8,7 @@ import { UserDocument } from '@types'
 import { useIsMobile, useAuthContext, useCollection } from '@hooks'
 
 //components
-import { Friends, PostForm, UserWidget, Feed, PeopleYouMayKnow } from '../components'
+import { Friends, PostForm, UserWidget, Feed, PeopleYouMayKnow } from '@features'
 
 
 

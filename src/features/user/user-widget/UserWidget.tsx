@@ -10,7 +10,7 @@ import { useThemeContext, useCollection, useAuthContext } from '@hooks'
 import styles from './UserWidget.module.css'
 
 //types
-import { PostDocument, UserDocument, UserObject } from '../../types'
+import { PostDocument, UserDocument, UserObject } from '../../../types'
 
 //components
 import { UserActionButton } from '@features/ui'

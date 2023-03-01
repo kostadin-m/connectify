@@ -12,7 +12,7 @@ import { LightModeIcon } from '@assets'
 
 //styles
 import './Navbar.css'
-import UserSearch from './components/UserSearch'
+import { UserSearch } from '@features/user'
 
 export default function Navbar() {
     const { theme, toggleTheme } = useThemeContext()

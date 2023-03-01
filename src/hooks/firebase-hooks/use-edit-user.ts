@@ -1,5 +1,3 @@
-
-
 //firebase
 import { deleteObject, uploadBytes, getDownloadURL, listAll, ref } from "firebase/storage"
 import { db, storage } from "../../firebase/config"

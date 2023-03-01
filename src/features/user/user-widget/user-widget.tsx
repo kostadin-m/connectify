@@ -7,7 +7,7 @@ import { useThemeContext, useCollection, useAuthContext } from '@hooks'
 
 //styles
 
-import styles from './UserWidget.module.css'
+import styles from './user-widget.module.css'
 
 //types
 import { PostDocument, UserDocument, UserObject } from '../../../types'

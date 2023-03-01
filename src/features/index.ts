@@ -1,4 +1,4 @@
-import UserWidget from "./user/user-widget/UserWidget";
+import UserWidget from "./user/user-widget/user-widget";
 import Navbar from "./ui/navbar/navbar";
 import Friends from "./friends/friends-widget/friends";
 import PeopleYouMayKnow from "./friends/people-you-may-know/people-you-may-know";

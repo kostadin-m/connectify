@@ -9,7 +9,7 @@ import { CSSClassesState, UserDocument } from "@types"
 import { useAuthContext, useComponentsVisible, useCollection } from "@hooks"
 
 // components
-import { UserList } from "@features/ui"
+import { UserList } from "@features"
 
 export default function UserSearch() {
     const [searchWrapperClass, setSearchWrapperClass] = useState<CSSClassesState>('hidden')

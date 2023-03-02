@@ -7,6 +7,8 @@ import ImageInput from "@features/ui/images/image-input";
 import ImagePreview from "@features/ui/images/image-preview";
 import { LocationModal, FriendsActionModal, ModalWrapper } from "@features/ui/modals";
 import Navbar from "@features/ui/navbar/navbar";
-import UserList from "@features/ui/users/user-list";
 
-export { Button, FormInput, FormWrapper, FriendsActionModal, ImageInput, ImagePreview, LocationModal, ModalWrapper, Navbar, TextArea, UserActionButton, UserList }
+export {
+    Button, FormInput, FormWrapper, FriendsActionModal,
+    ImageInput, ImagePreview, LocationModal, ModalWrapper, Navbar, TextArea, UserActionButton
+}

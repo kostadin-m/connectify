@@ -7,7 +7,7 @@ import { useAuthContext, useCollection } from "@hooks"
 import { CSSClassesState, UserDocument } from "@types"
 
 //components
-import UserList from "@features/ui/users/user-list"
+import { UserList } from "@features"
 
 interface NavFriendsProps {
     friendsClass: CSSClassesState

@@ -4,7 +4,7 @@ import { useThemeContext } from "@hooks"
 //types
 import { UserDocument } from '@types'
 //components
-import { UserList } from '@features/ui'
+import { UserList } from '@features'
 
 //styles
 import './friends.css'

@@ -110,18 +110,6 @@
     display: flex;
 }
 
-.textarea {
-    resize: none;
-    font-family: Poppins, sans-serif;
-    outline: none;
-    font-size: 0.9em;
-    padding-left: 5px;
-    width: 600px;
-    border: none;
-    transition: all 0.4s ease;
-}
-
-
 /* Theme Classes for Form Top */
 
 .formTop.light {

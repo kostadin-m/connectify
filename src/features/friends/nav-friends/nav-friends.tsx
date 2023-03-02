@@ -8,6 +8,7 @@ import { CSSClassesState, UserDocument } from "@types"
 
 //components
 import { UserList } from "@features"
+import { useRef } from "react"
 
 interface NavFriendsProps {
     friendsClass: CSSClassesState
@@ -17,8 +18,13 @@ export default function NavFriends({ friendsClass }: NavFriendsProps) {
     const { user } = useAuthContext()
 
     const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
+    const friendsRef = useRef(friends)
 
-    const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), 'in', friends])
+    if (friends.length !== friendsRef.current.length) {
+        friendsRef.current = friends
+    }
+
+    const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), 'in', friendsRef.current])
 
     return (
         <>

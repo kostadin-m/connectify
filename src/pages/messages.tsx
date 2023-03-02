@@ -3,10 +3,10 @@ import { MultiChatSocket, MultiChatWindow, useMultiChatLogic } from 'react-chat-
 import { useThemeContext, useAuthContext } from '@hooks'
 
 //styles
-import '../chat.css'
+import '@features/chats/chat.css'
 
 //custom components
-import { CustomChatCard, CustomChatHeader } from '@features/index'
+import { CustomChatCard, CustomChatHeader } from '@features'
 
 
 

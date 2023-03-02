@@ -12,7 +12,7 @@ import {
 
 
 //styles
-import './App.css'
+import './app.css'
 
 function App() {
   const { authIsReady, user } = useAuthContext()

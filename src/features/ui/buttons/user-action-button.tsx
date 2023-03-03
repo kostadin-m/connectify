@@ -11,7 +11,7 @@ import { useAuthContext, useThemeContext, useFirestore } from "@hooks"
 import { AcceptRequest, CloseIcon, FriendsIcon, RemoveFriends } from '@assets'
 
 //utils
-import { createChatRoom } from "./utils/create-chat"
+import { createChatRoom } from "@features/chats/utils"
 
 //components
 import { FriendsActionModal } from "@features/ui"

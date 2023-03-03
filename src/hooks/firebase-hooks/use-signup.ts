@@ -13,6 +13,7 @@ import { useAuthContext } from "@hooks"
 import { checkError } from "./utils/check-error"
 import { UserDocument, UserObject } from "../../types"
 import { uploadImage } from "./utils/upload-user-image"
+import { createChatEngineUser } from "@features/chats/utils"
 
 export const useSignUp = () => {
 
@@ -39,17 +40,6 @@ export const useSignUp = () => {
 
             await updateProfile(firebaseUser, { displayName, photoURL })
 
-            //Creating user in chat engine
-            let formData = new FormData()
-            formData.append("email", email);
-            formData.append("username", displayName);
-            formData.append("secret", firebaseUser.uid);
-            formData.append("avatar", profileImg, profileImg.name);
-
-            await axios
-                .post("https://api.chatengine.io/users/", formData,
-                    { headers: { "Private-Key": '60216072-4b9e-4ac8-b321-571aaf652fcb' } })
-
             const userData = {
                 email,
                 displayName,
@@ -60,6 +50,8 @@ export const useSignUp = () => {
                 receivedFriendRequests: [],
                 id: firebaseUser.uid,
             } as UserDocument
+
+            await createChatEngineUser(userData, profileImg)
 
             const storageRef = doc(db, 'users', res.user.uid)
             await setDoc(storageRef, userData)

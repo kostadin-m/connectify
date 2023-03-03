@@ -88,7 +88,7 @@ export const useEditUser = (): editUserState => {
             if (updatedDocument.image) {
                 await deletePreviousImage(user?.id!)
 
-                photoURL = await uploadImage(user?.id!, updatedDocument.image)
+                photoURL = await uploadImage("thumbnails", user?.id!, updatedDocument.image)
             }
 
             //Updating the user in ChatEngine

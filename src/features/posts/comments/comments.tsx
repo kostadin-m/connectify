@@ -28,9 +28,8 @@ function Comments({ theme, classname, post }: Props) {
     const { updateDocument, response } = useFirestore('posts')
 
     const handleAddComment = async () => {
-        if (!comment) {
-            return
-        }
+        if (!comment) return
+
         const commentsObject = { commentContent: comment, creatorID: user?.id, createdAt: timeStamp.fromDate(new Date()) }
         const updatedComments = { comments: [...post.comments, commentsObject] } as PostDocument
 

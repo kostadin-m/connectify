@@ -28,7 +28,6 @@ export default function SignUp() {
         if (!image) return setImageError('Please submit an image')
 
         await signUp(firstName, lastName, location, email, password, image)
-
     }
 
     return (

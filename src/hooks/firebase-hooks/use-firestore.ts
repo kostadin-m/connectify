@@ -52,7 +52,6 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
             dispatch(action)
         }
     }
-    //add a document 
     const addDocument = async (doc: T) => {
         dispatchIfMounted({ type: 'IS_PENDING' })
         try {
@@ -65,8 +64,6 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
             dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }
     }
-
-    // update existing document
     const updateDocument = async (id: string, updates: T) => {
         const documentRef = doc(ref, id)
         dispatchIfMounted({ type: 'IS_PENDING' })
@@ -78,8 +75,6 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
             dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }
     }
-
-    //delete document
     const deleteDocument = async (id: string) => {
         const documentRef = doc(ref, id)
         dispatchIfMounted({ type: 'IS_PENDING' })

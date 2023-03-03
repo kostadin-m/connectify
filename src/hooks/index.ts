@@ -10,8 +10,9 @@ import { useIsMobile } from "./view-hooks/use-is-mobile";
 import { useDelayToUnmount } from "./view-hooks/use-delay-to-unmount";
 import { useThemeContext } from "./view-hooks/use-theme-context";
 import useComponentsVisible from "./view-hooks/use-component-vissible";
+import { uploadImage } from "./firebase-hooks/utils/upload-user-image";
 
 export {
     useAuthContext, useCollection, useComponentsVisible, useDelayToUnmount, useDocument,
-    useEditUser, useFirestore, useIsMobile, useLogin, useLogout, useSignUp, useThemeContext
+    useEditUser, useFirestore, useIsMobile, useLogin, useLogout, useSignUp, useThemeContext, uploadImage
 }

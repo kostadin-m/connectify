@@ -27,10 +27,7 @@ export function useDocument<T>(collection: string, id: string | null) {
             setError(error.message)
             setIsPending(false)
         })
-
-
         return () => unsub()
-
     }, [collection, id])
 
 

@@ -8,7 +8,7 @@ import { setDoc, doc } from "firebase/firestore"
 import { auth } from '../../firebase/config'
 
 
-//custom hooks and helpers
+//custom hooks and utils
 import { useAuthContext } from "@hooks"
 import { checkError } from "./utils/check-error"
 import { UserDocument, UserObject } from "../../types"
@@ -28,16 +28,15 @@ export const useSignUp = () => {
         try {
             setIsCancelled(false)
             const res = await createUserWithEmailAndPassword(auth, email, password)
-
             const firebaseUser = res.user
+
             if (!res) {
                 throw new Error('Could not complete Sign Up')
             }
-            //upload user thumbnail
-            const photoURL = await uploadImage(firebaseUser.uid, profileImg)
 
-            // add Display Name to user
+            const photoURL = await uploadImage("thumbnails", firebaseUser.uid, profileImg)
             const displayName = `${firstName} ${lastName}`
+
             await updateProfile(firebaseUser, { displayName, photoURL })
 
             //Creating user in chat engine
@@ -64,11 +63,9 @@ export const useSignUp = () => {
             } as UserDocument
 
             const storageRef = doc(db, 'users', res.user.uid)
-            //create a user document  with the user Schema
             await setDoc(storageRef, userData)
             const userObject = { firebaseUser, ...userData } as UserObject
 
-            //dispatch login action with the user auth object and user schema object
             dispatch({ type: "LOGIN", payload: userObject })
 
             if (!isCancelled) {

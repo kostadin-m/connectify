@@ -8,7 +8,7 @@ import { checkError } from "./utils/check-error";
 type useLogoutState = { isPending: boolean, error: string | null, logout: () => Promise<void> }
 
 export const useLogout = (): useLogoutState => {
-    const { dispatch, user } = useAuthContext()
+    const { dispatch } = useAuthContext()
     const [error, setError] = useState<string | null>(null)
     const [isPending, setIsPending] = useState(false)
 

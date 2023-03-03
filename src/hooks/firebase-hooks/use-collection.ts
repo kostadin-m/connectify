@@ -31,17 +31,11 @@ const collectionReducer = <T extends CollectionType>(state: ICollectionState<T>,
     }
 }
 
-
-function checkQueryAndOrderRefs(
+function checkQueryOrOrderRefs(
     queryRef: React.MutableRefObject<any[] | null | undefined>,
     _query: any[] | null | undefined) {
 
-    if (!queryRef.current && !_query) {
-        return false
-    }
-    if (Array.isArray(queryRef.current?.[2]) && Array.isArray(_query?.[2])) {
-        return queryRef.current?.[2].length !== _query?.[2].length
-    }
+    if (!queryRef.current && !_query) return false
     return queryRef.current?.[2] !== _query?.[2]
 }
 
@@ -54,13 +48,8 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
     let queryRef = useRef(_query)
     let orderRef = useRef(_order)
 
-    if (checkQueryAndOrderRefs(queryRef, _query) === true) {
-        queryRef.current = _query
-    }
-
-    if (checkQueryAndOrderRefs(orderRef, _order) === true) {
-        orderRef.current = _order
-    }
+    if (checkQueryOrOrderRefs(queryRef, _query)) queryRef.current = _query
+    if (checkQueryOrOrderRefs(orderRef, _order)) orderRef.current = _order
 
     useEffect(() => {
         dispatch({ type: "IS_PENDING" })
@@ -72,21 +61,18 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
         queryConst = orderRef.current ? [...queryConst, orderBy(orderRef.current[0], orderRef.current[1])] : queryConst
 
         const unsub = onSnapshot(query(ref, ...queryConst), (snapshot) => {
-            //Get The Data from the Collection
             let data: T[] = []
             snapshot.docs.forEach(doc => {
                 const id = doc.id
                 data.push({ ...doc.data(), id } as T)
             })
-            //update state
+
             dispatch({ type: 'ADD_DOCUMENTS', payload: data })
 
         }, (error) => {
 
             dispatch({ type: "ERROR", payload: error.message })
-
         })
-
         return () => unsub()
     }, [_collection, queryRef.current])
     return { ...state }

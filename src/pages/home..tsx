@@ -19,9 +19,8 @@ export default function Home() {
 
     const friendsRef = useRef(friends)
 
-    if (friends.length !== friendsRef.current.length) {
-        friendsRef.current = friends
-    }
+    if (friends.length !== friendsRef.current.length) friendsRef.current = friends
+
 
     const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), 'in', friendsRef.current])
 

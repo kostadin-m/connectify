@@ -30,7 +30,6 @@ export default function ProfilePage() {
                         result.push({ ...doc.data(), id: doc.id } as UserDocument)
                     })
                     setFriends(result)
-
                 }
             })
         }

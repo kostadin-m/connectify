@@ -63,45 +63,39 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
     }
 
     useEffect(() => {
-        if (user?.id === friend.id) {
-            setButton(null)
-        } else if (user?.friends.includes(friend.id)) {
-            setButton(
-                <img className="button" src={FriendsIcon} alt='friends icon'
-                    onMouseOver={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = RemoveFriends}
-                    onMouseOut={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = FriendsIcon}
-                    onClick={() => setShowFriendsActionModal(true)} />)
-        }
+        if (user?.id === friend.id) return setButton(null)
 
-        else if (user?.receivedFriendRequests.includes(friend.id)) {
-            setButton(
-                <>
-                    <img
-                        onClick={() =>
-                            !response.isPending ? handleAcceptOrDenyActions('accept') : null}
-                        className="button" src={AcceptRequest} alt='accept request icon' />
-                    <img
-                        onClick={() => !response.isPending ? handleAcceptOrDenyActions('cancel') : null}
-                        className="button" src={CloseIcon} alt='deny request icon' />
-                </>)
-        }
+        if (user?.friends.includes(friend.id)) return setButton(
+            <img className="button" src={FriendsIcon} alt='friends icon'
+                onMouseOver={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = RemoveFriends}
+                onMouseOut={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = FriendsIcon}
+                onClick={() => setShowFriendsActionModal(true)} />
+        )
 
-        else if (user?.sentFriendRequests.includes(friend.id)) {
-            setButton(
-                <button
-                    onClick={() => !response.isPending ? handleCancelRequests() : null}
-                    className={`btn ${theme}`}>{!response.isPending ? 'Cancel Request' : "Loading..."}
-                </button>)
-        }
+        if (user?.receivedFriendRequests.includes(friend.id)) return setButton(
+            <>
+                <img
+                    onClick={() =>
+                        !response.isPending ? handleAcceptOrDenyActions('accept') : null}
+                    className="button" src={AcceptRequest} alt='accept request icon' />
+                <img
+                    onClick={() => !response.isPending ? handleAcceptOrDenyActions('cancel') : null}
+                    className="button" src={CloseIcon} alt='deny request icon' />
+            </>
+        )
 
-        else if (!user?.friends.includes(friend.id)
-            && !user?.sentFriendRequests.includes(friend.id)
-            && !user?.receivedFriendRequests.includes(friend.id))
-            setButton(
-                <button disabled={response.isPending}
-                    onClick={() => handleAddFriend()}
-                    className={`btn ${theme}`}>{response.isPending ? 'Loading...' : `Add Friend`}
-                </button>)
+        if (user?.sentFriendRequests.includes(friend.id)) return setButton(
+            <button
+                onClick={() => !response.isPending ? handleCancelRequests() : null}
+                className={`btn ${theme}`}>{!response.isPending ? 'Cancel Request' : "Loading..."}
+            </button>
+        )
+
+        if (!user?.friends.includes(friend.id)) return setButton(
+            <button disabled={response.isPending}
+                onClick={() => handleAddFriend()}
+                className={`btn ${theme}`}>{response.isPending ? 'Loading...' : `Add Friend`}
+            </button>)
 
     }, [user?.friends, user?.sentFriendRequests, user?.receivedFriendRequests, response])
 

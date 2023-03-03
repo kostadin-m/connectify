@@ -46,8 +46,6 @@ export default function UserNavbar({ user }: UserNavbarProps) {
             setDropDownClass('show')
         }
     }
-
-
     return (
         <>
             {isMobile &&

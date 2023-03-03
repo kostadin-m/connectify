@@ -11,26 +11,23 @@ import { CloseIcon, LocationIcon, AddImage } from '@assets'
 import styles from './post-form.module.css'
 
 //custom hooks
-import { useThemeContext, useAuthContext, useFirestore } from '@hooks'
+import { useThemeContext, useAuthContext, useFirestore, uploadImage } from '@hooks'
 
 //firebase
-import { storage, timeStamp } from '../../../firebase/config'
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { timeStamp } from '../../../firebase/config'
 import { PostObject } from '@types'
 
 
 function PostForm() {
-    //Modal State
     const [showLocationModal, setShowLocationModal] = useState(false)
-    const { response, addDocument } = useFirestore<PostObject>('posts')
-    //Form State
+
     const [text, setText] = useState<string>('')
     const [image, setImage] = useState<File | null>(null)
     const [formError, setFormError] = useState<string | null>(null)
     const [location, setLocation] = useState<string>('')
-
     const [pending, setPending] = useState(false)
 
+    const { response, addDocument } = useFirestore<PostObject>('posts')
     const { user } = useAuthContext()
     const { theme } = useThemeContext()
 
@@ -40,10 +37,9 @@ function PostForm() {
             setFormError('Please choose an image!')
             return
         }
+        const photoURL = await uploadImage('postPictures', user?.id!, image)
+
         const createdAt = timeStamp.fromDate(new Date())
-        const imageRef = ref(storage, `postPictures/${user?.id!}/${image.name}`)
-        await uploadBytes(imageRef, image)
-        const photoURL = await getDownloadURL(imageRef)
 
         const postObject = {
             postTitle: text,

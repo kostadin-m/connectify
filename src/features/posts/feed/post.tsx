@@ -24,22 +24,19 @@ interface PostProps {
     post: PostDocument
 }
 
-
 export default function Post({ post }: PostProps) {
     const [commentsClass, setCommentsClass] = useState<CSSClassesState>('hidden')
     const [showComments, setShowComments] = useState(false)
     const [likedByCurrentUser, setLikedByCurrentUser] = useState(false)
 
-    //custom hooks
     const { user } = useAuthContext()
     const { theme } = useThemeContext()
     const { toggleMount } = useDelayToUnmount(commentsClass, setShowComments, setCommentsClass)
 
     const { document: creatorData, error } = useDocument<UserDocument>('users', post.creatorID)
     const { updateDocument, response } = useFirestore<PostDocument>('posts')
-    useEffect(() => {
-        setLikedByCurrentUser(post.likes.includes(user?.id!))
-    })
+
+    useEffect(() => setLikedByCurrentUser(post.likes.includes(user?.id!)))
 
     if (error) return <p className='error'>{error}</p>
 

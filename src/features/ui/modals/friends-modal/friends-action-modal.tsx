@@ -24,8 +24,6 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
     const { updateDocument, response } = useFirestore<UserDocument>('users')
     const { user } = useAuthContext()
 
-
-
     const closeModal = () => setActionModal(false);
 
     const removeFriend = async () => {
@@ -39,7 +37,6 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
         closeModal()
 
     }
-
 
     return (
         <ModalWrapper title={`Are you sure you want to remove ${friend.displayName} from your friends list?`} theme={theme}>

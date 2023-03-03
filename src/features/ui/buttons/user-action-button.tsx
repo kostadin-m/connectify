@@ -26,6 +26,16 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
     const { updateDocument, response } = useFirestore<UserDocument>('users')
     const [showFriendsActionModal, setShowFriendsActionModal] = useState(false)
 
+    const friendIsNotCurrentUser = user?.id !== friend.id
+
+    const isFriend = user?.friends.includes(friend.id) && friendIsNotCurrentUser
+
+    const hasRecievedFriendRequestFromOtherUser = user?.receivedFriendRequests.includes(friend.id) && friendIsNotCurrentUser
+
+    const hasFriendRequestFromCurrentUser = user?.sentFriendRequests.includes(friend.id) && friendIsNotCurrentUser
+
+    const notAFriendOfCurrentUser = !user?.friends.includes(friend.id) && friendIsNotCurrentUser
+
     const handleAddFriend = async () => {
         await updateDocument(friend.id, { receivedFriendRequests: [...friend.receivedFriendRequests, user?.id] } as UserDocument)
         await updateDocument(user?.id!, { sentFriendRequests: [...user?.sentFriendRequests!, friend.id] } as UserDocument)
@@ -63,15 +73,15 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
     return (
         <div className={`buttons ${theme}`}>
             {showFriendsActionModal && <FriendsActionModal setActionModal={setShowFriendsActionModal} theme={theme} friend={friend} />}
-            {user?.friends.includes(friend.id)
-                &&
+
+            {isFriend ?
                 <img className="button" src={FriendsIcon} alt='friends icon'
                     onMouseOver={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = RemoveFriends}
                     onMouseOut={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = FriendsIcon}
                     onClick={() => setShowFriendsActionModal(true)} />
-            }
-            {user?.receivedFriendRequests.includes(friend.id)
-                &&
+                : null}
+            {hasRecievedFriendRequestFromOtherUser
+                ?
                 <>
                     <img
                         onClick={() =>
@@ -80,24 +90,21 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                     <img
                         onClick={() => !response.isPending ? handleAcceptOrDenyActions('cancel') : null}
                         className="button" src={CloseIcon} alt='deny request icon' />
-                </>}
+                </> : null}
 
-            {user?.sentFriendRequests.includes(friend.id)
-                &&
+            {hasFriendRequestFromCurrentUser
+                ?
                 <button
                     onClick={() => !response.isPending ? handleCancelRequests() : null}
                     className={`btn ${theme}`}>{!response.isPending ? 'Cancel Request' : "Loading..."}
-                </button>}
+                </button> : null}
 
-            {!user?.friends.includes(friend.id) &&
-                !user?.sentFriendRequests.includes(friend.id) &&
-                !user?.receivedFriendRequests.includes(friend.id) &&
-                user?.id !== friend.id
-                &&
+            {notAFriendOfCurrentUser
+                ?
                 <button disabled={response.isPending}
                     onClick={() => handleAddFriend()}
                     className={`btn ${theme}`}>{response.isPending ? 'Loading...' : `Add Friend`}
-                </button>}
+                </button> : null}
         </div>
     )
 }

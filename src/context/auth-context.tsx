@@ -45,16 +45,13 @@ export const AuthContextProvider = ({ children }: IContextProviderProps) => {
             if (!user) return dispatch({ type: 'AUTH_IS_READY', payload: null })
 
             const userRef = doc(db, 'users', user.uid)
-
             snapshotUnsub = onSnapshot(userRef, (snapshot: DocumentSnapshot) => {
-                if (!snapshot.data()) return
-
                 const userSnapshotData = { firebaseUser: user, ...snapshot.data(), id: snapshot.id }
                 dispatch({ type: 'AUTH_IS_READY', payload: userSnapshotData as UserObject })
             })
         })
         return () => { unsub(), snapshotUnsub() }
-    }, [state.user?.id])
+    }, [])
 
     return (
         <AuthContext.Provider value={{ ...state, dispatch } as IAuthContext}>

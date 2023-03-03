@@ -2,7 +2,10 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 //components
-import { Friends, UserWidget, Feed } from "@features"
+import { Friends } from "@features/friends"
+import { UserWidget } from "@features/user"
+import { Feed } from "@features/posts"
+
 
 //custom hooks
 import { useDocument } from "@hooks"

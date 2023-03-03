@@ -11,7 +11,9 @@ import { CloseIcon, LocationIcon, AddImage } from '@assets'
 import styles from './post-form.module.css'
 
 //custom hooks
-import { useThemeContext, useAuthContext, useFirestore, uploadImage } from '@hooks'
+import { useThemeContext, useAuthContext, useFirestore } from '@hooks'
+
+import { uploadImage } from '@features/ui/images'
 
 //firebase
 import { timeStamp } from '../../../firebase/config'

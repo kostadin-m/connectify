@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
 
 //firebase
 import { db } from "../../firebase/config"
@@ -12,7 +11,7 @@ import { auth } from '../../firebase/config'
 import { useAuthContext } from "@hooks"
 import { checkError } from "./utils/check-error"
 import { UserDocument, UserObject } from "../../types"
-import { uploadImage } from "./utils/upload-user-image"
+import { uploadImage } from "@features/ui/images"
 import { createChatEngineUser } from "@features/chats/utils"
 
 export const useSignUp = () => {

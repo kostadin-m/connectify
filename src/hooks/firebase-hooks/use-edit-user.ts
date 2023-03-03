@@ -3,8 +3,7 @@ import { useEffect, useState } from "react"
 
 
 //firebase
-import { deleteObject, listAll, ref } from "firebase/storage"
-import { db, storage } from "../../firebase/config"
+import { db } from "../../firebase/config"
 import { updateEmail, updateProfile } from "firebase/auth"
 import { collection, doc, updateDoc } from "firebase/firestore"
 
@@ -12,9 +11,9 @@ import { collection, doc, updateDoc } from "firebase/firestore"
 import { useAuthContext } from "./use-auth-context"
 
 // utils
-import { uploadImage } from "./utils/upload-user-image"
 import { checkError } from "./utils/check-error"
 import { editChatEngineUser } from "@features/chats/utils/chat-engine-api"
+import { deletePreviousImage, uploadImage } from "@features/ui/images"
 
 //types
 type updateUserFile = {
@@ -29,15 +28,6 @@ type editUserState = {
     isPending: boolean,
     error: null | string,
     editUser: (updatedDocument: updateUserFile) => Promise<void>
-}
-
-async function deletePreviousImage(userID: string) {
-    listAll(ref(storage, `thumbnails/${userID}/`)).then((listResults) => {
-        const promises = listResults.items.map((item) => {
-            return deleteObject(item);
-        })
-        Promise.all(promises);
-    })
 }
 
 

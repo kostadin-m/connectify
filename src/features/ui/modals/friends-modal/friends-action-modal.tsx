@@ -8,7 +8,9 @@ import { CloseIcon } from "@assets";
 import { useAuthContext, useFirestore } from "@hooks";
 
 //components
-import { Button, ModalWrapper } from "@features/ui";
+import { Button } from "@features/ui";
+import ModalWrapper from "../modal-wrapper";
+
 
 
 //styles

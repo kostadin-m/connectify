@@ -9,10 +9,10 @@ import { auth } from '../../firebase/config'
 
 //custom hooks and utils
 import { useAuthContext } from "@hooks"
-import { checkError } from "./utils/check-error"
+import { checkError } from "../utils/check-error"
 import { UserDocument, UserObject } from "../../types"
 import { uploadImage } from "@features/ui/images"
-import { createChatEngineUser } from "@features/chats/utils"
+import { createChatEngineUser } from "@features/chats"
 
 export const useSignUp = () => {
 

@@ -2,7 +2,7 @@ import { useReducer, useEffect } from "react";
 import { db, timeStamp } from "../../firebase/config";
 import { addDoc, deleteDoc, doc, collection, updateDoc } from "firebase/firestore";
 import { CollectionType } from "../../types";
-import { checkError } from "./utils/check-error";
+import { checkError } from "../utils/check-error";
 
 
 interface IDocumentState {

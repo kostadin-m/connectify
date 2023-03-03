@@ -2,7 +2,7 @@ import { auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
 import { useAuthContext } from "./use-auth-context";
 import { useEffect, useState } from "react";
-import { checkError } from "./utils/check-error";
+import { checkError } from "../utils/check-error";
 
 
 type useLogoutState = { isPending: boolean, error: string | null, logout: () => Promise<void> }

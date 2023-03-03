@@ -11,7 +11,7 @@ import { collection, doc, updateDoc } from "firebase/firestore"
 import { useAuthContext } from "./use-auth-context"
 
 // utils
-import { checkError } from "./utils/check-error"
+import { checkError } from "../utils/check-error"
 import { editChatEngineUser } from "@features/chats/utils/chat-engine-api"
 import { deletePreviousImage, uploadImage } from "@features/ui/images"
 

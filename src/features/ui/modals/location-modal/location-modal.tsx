@@ -1,5 +1,5 @@
 //components
-import { ModalWrapper } from '@features/ui'
+import ModalWrapper from '../modal-wrapper'
 
 //icons
 import { CloseIcon } from '@assets'

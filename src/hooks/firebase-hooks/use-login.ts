@@ -16,12 +16,10 @@ export const useLogin = () => {
             if (!res) {
                 throw new Error('Could not complete Sign Up')
             }
-
             if (!isCancelled) {
                 setIsPending(false)
                 setError(null)
             }
-
         } catch (error) {
             if (!isCancelled) {
                 setIsPending(false)
@@ -31,7 +29,6 @@ export const useLogin = () => {
                 setError(message)
             }
         }
-
     }
     useEffect(() => {
         return () => {

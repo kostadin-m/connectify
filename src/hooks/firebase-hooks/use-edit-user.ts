@@ -43,8 +43,7 @@ async function deletePreviousImage(userID: string) {
 async function updateChatEngineUser(
     user: UserDocument,
     displayName: string,
-    updatedDocument: updateUserFile,
-    setError: React.Dispatch<React.SetStateAction<string | null>>) {
+    updatedDocument: updateUserFile,) {
 
     let formData = new FormData()
     formData.append("email", updatedDocument.email);
@@ -60,9 +59,8 @@ async function updateChatEngineUser(
             'user-name': user?.displayName,
             'user-secret': user?.id
         }
-    }).catch((e) => setError(e))
+    })
 }
-
 
 export const useEditUser = (): editUserState => {
     const [isPending, setIsPending] = useState(false)
@@ -84,27 +82,17 @@ export const useEditUser = (): editUserState => {
             const displayName = `${updatedDocument.firstName} ${updatedDocument.lastName}`
             let photoURL = user?.photoURL
 
-
             if (updatedDocument.image) {
                 await deletePreviousImage(user?.id!)
-
                 photoURL = await uploadImage("thumbnails", user?.id!, updatedDocument.image)
             }
+            await updateChatEngineUser(user!, displayName, updatedDocument)
 
-            //Updating the user in ChatEngine
-            await updateChatEngineUser(user!, displayName, updatedDocument, setError)
-
-            //Updating the user in the DB
             const updatedObject = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location }
             await updateDoc(documentRef, { ...updatedObject })
 
-            //Updating the user in firebaseAuth
-            if (user?.email !== updatedDocument.email) {
-                await updateEmail(user?.firebaseUser!, updatedDocument.email)
-            }
-            if (user?.displayName !== displayName || user.photoURL !== photoURL) {
-                await updateProfile(user?.firebaseUser!, { displayName, photoURL })
-            }
+            if (user?.email !== updatedDocument.email) await updateEmail(user?.firebaseUser!, updatedDocument.email)
+            if (user?.displayName !== displayName || user.photoURL !== photoURL) await updateProfile(user?.firebaseUser!, { displayName, photoURL })
 
             if (mounted) {
                 setIsPending(false)

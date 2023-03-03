@@ -49,7 +49,6 @@ export const useSignUp = () => {
             await axios
                 .post("https://api.chatengine.io/users/", formData,
                     { headers: { "Private-Key": '60216072-4b9e-4ac8-b321-571aaf652fcb' } })
-                .catch((e) => setError(e.data.details));
 
             const userData = {
                 email,

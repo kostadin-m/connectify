@@ -5,10 +5,13 @@ import { useAuthContext, useThemeContext } from '@hooks'
 
 //components
 import { Navbar } from '@features/ui'
-import {
-  Home, EditProfile, Login, Messages,
-  NotFound, ProfilePage, SignUp
-} from './pages'
+import Home from './pages/home.'
+import EditProfile from './pages/edit-profile'
+import SignUp from './pages/sign-up'
+import Login from './pages/login'
+import ProfilePage from './pages/profile-page'
+import Messages from './pages/messages'
+import NotFound from './pages/not-found'
 
 
 //styles

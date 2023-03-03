@@ -55,7 +55,6 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
             }
             )
         }
-
     }
 
     const handleCancelRequests = async () => {

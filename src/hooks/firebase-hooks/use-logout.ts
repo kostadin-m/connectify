@@ -1,6 +1,5 @@
-import { db, auth } from "../../firebase/config";
+import { auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
-import { collection, doc, updateDoc } from "firebase/firestore";
 import { useAuthContext } from "./use-auth-context";
 import { useEffect, useState } from "react";
 import { checkError } from "./utils/check-error";
@@ -19,15 +18,8 @@ export const useLogout = (): useLogoutState => {
         setError(null)
         setIsPending(true)
         try {
-            const collectionRef = collection(db, 'users')
-            const ref = doc(collectionRef, user?.id)
-            //update online state
-            await updateDoc(ref, { online: false })
-
-            //sign out the user
             await signOut(auth)
 
-            //dispatch logout action
             dispatch({ type: "LOGOUT" })
 
             if (mounted) {

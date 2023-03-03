@@ -19,7 +19,7 @@ export default function UserSearch() {
 
     const { user } = useAuthContext()
     const { ref, isComponentVisible, setIsComponentVisible } = useComponentsVisible(false, setSearchWrapperClass, 40)
-    const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), '!=', user?.id])
+    const { document, isPending } = useCollection<UserDocument>('users', [documentId(), '!=', user?.id])
 
     useEffect(() => {
         setFoundUsers([])
@@ -34,7 +34,6 @@ export default function UserSearch() {
     }, [searchedUser, isComponentVisible, document])
 
     const isOpened = searchWrapperClass === 'show' && isComponentVisible
-
 
     return (
         <div ref={ref} className={`input-wrapper ${searchWrapperClass} `}>

@@ -2,13 +2,8 @@ import { useReducer, useEffect, useRef } from "react"
 import { db } from "../../firebase/config"
 import { QueryConstraint, collection, onSnapshot, orderBy, query, where } from "firebase/firestore"
 import { CollectionType } from "../../types"
-import { debug } from "console"
-import { Query } from "firebase-admin/database"
-
-
 
 const initialState = { document: null, error: null, isPending: false }
-
 
 interface ICollectionState<T extends CollectionType> {
     document: T[] | null

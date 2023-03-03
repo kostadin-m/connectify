@@ -18,9 +18,6 @@ type IDocumentAction =
     { type: 'UPDATED_DOCUMENT', payload?: null } |
     { type: "DELETE", payload?: null }
 
-
-
-
 let initialState = {
     isPending: false,
     error: null,

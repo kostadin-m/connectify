@@ -5,11 +5,11 @@ import axios from "axios"
 import { db } from "../../firebase/config"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { setDoc, doc } from "firebase/firestore"
-import { storage, auth } from '../../firebase/config'
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
+import { auth } from '../../firebase/config'
+
 
 //custom hooks and helpers
-import { useAuthContext } from "./use-auth-context"
+import { useAuthContext } from "@hooks"
 import { checkError } from "./utils/check-error"
 import { UserDocument, UserObject } from "../../types"
 import { uploadImage } from "./utils/upload-user-image"
@@ -76,7 +76,6 @@ export const useSignUp = () => {
                 setError(null)
             }
 
-
         } catch (error) {
             if (!isCancelled) {
                 setIsPending(false)
@@ -86,7 +85,6 @@ export const useSignUp = () => {
         }
 
     }
-
     useEffect(() => {
         return () => setIsCancelled(true)
 

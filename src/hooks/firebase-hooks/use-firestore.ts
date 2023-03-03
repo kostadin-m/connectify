@@ -55,11 +55,13 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
     const addDocument = async (doc: T) => {
         dispatchIfMounted({ type: 'IS_PENDING' })
         try {
+
             const createdAt = timeStamp.fromDate(new Date())
             await addDoc(ref, { ...doc, createdAt })
             dispatchIfMounted({ type: "ADD_DOCUMENT" })
 
         } catch (error) {
+
             const message = checkError(error)
             dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }
@@ -68,9 +70,12 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
         const documentRef = doc(ref, id)
         dispatchIfMounted({ type: 'IS_PENDING' })
         try {
+
             await updateDoc(documentRef, { ...updates })
             dispatchIfMounted({ type: "UPDATED_DOCUMENT" })
+
         } catch (error) {
+
             const message = checkError(error)
             dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }
@@ -79,10 +84,12 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
         const documentRef = doc(ref, id)
         dispatchIfMounted({ type: 'IS_PENDING' })
         try {
-            await deleteDoc(documentRef)
 
+            await deleteDoc(documentRef)
             dispatchIfMounted({ type: "DELETE" })
+
         } catch (error) {
+
             const message = checkError(error)
             dispatchIfMounted({ type: 'SET_ERROR', payload: message })
         }

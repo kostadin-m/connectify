@@ -2,6 +2,7 @@ import { useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { useEffect } from "react"
 import { auth } from '../../firebase/config'
+import { checkError } from "src/hooks/utils/check-error"
 
 export const useLogin = () => {
     const [isCancelled, setIsCancelled] = useState(false)
@@ -16,24 +17,18 @@ export const useLogin = () => {
             if (!res) {
                 throw new Error('Could not complete Sign Up')
             }
-            if (!isCancelled) {
-                setIsPending(false)
-                setError(null)
-            }
+            if (!isCancelled) setIsPending(false); setError(null)
+
         } catch (error) {
             if (!isCancelled) {
                 setIsPending(false)
-                let message = 'Unknown Error'
-                if (error instanceof Error) message = error.message
-                console.log(message)
+                const message = checkError(error)
                 setError(message)
             }
         }
     }
     useEffect(() => {
-        return () => {
-            setIsCancelled(true)
-        }
+        return () => { setIsCancelled(true) }
     }, [])
 
     return { error, isPending, login }

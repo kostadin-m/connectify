@@ -24,9 +24,8 @@ export async function createChatEngineUser({ email, displayName, id }: UserDocum
     formData.append("secret", id);
     formData.append("avatar", profileImg, profileImg.name);
 
-    await axios
-        .post("https://api.chatengine.io/users/", formData,
-            { headers: { "Private-Key": PRIVATE_KEY } })
+    await axios.post("https://api.chatengine.io/users/", formData,
+        { headers: { "Private-Key": PRIVATE_KEY } })
 }
 
 interface UpdatedUserProps {
@@ -40,9 +39,7 @@ export async function editChatEngineUser(currentUser: UserDocument, { email, dis
     formData.append("email", email);
     formData.append("username", displayName);
 
-    if (image) {
-        formData.append("avatar", image, image.name);
-    }
+    if (image) formData.append("avatar", image, image.name);
 
     await axios.patch(`https://api.chatengine.io/users/me/`, formData, {
         headers: {

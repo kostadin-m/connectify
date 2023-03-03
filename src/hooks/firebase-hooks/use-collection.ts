@@ -66,13 +66,10 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
                 const id = doc.id
                 data.push({ ...doc.data(), id } as T)
             })
-
             dispatch({ type: 'ADD_DOCUMENTS', payload: data })
 
-        }, (error) => {
-
-            dispatch({ type: "ERROR", payload: error.message })
-        })
+        }, (error) => dispatch({ type: "ERROR", payload: error.message })
+        )
         return () => unsub()
     }, [_collection, queryRef.current])
     return { ...state }

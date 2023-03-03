@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 
@@ -14,6 +13,7 @@ import { useAuthContext } from "./use-auth-context"
 import { checkError } from "../utils/check-error"
 import { editChatEngineUser } from "@features/chats/utils/chat-engine-api"
 import { deletePreviousImage, uploadImage } from "@features/ui/images"
+import { UserDocument } from "@types"
 
 //types
 type updateUserFile = {
@@ -30,6 +30,13 @@ type editUserState = {
     editUser: (updatedDocument: updateUserFile) => Promise<void>
 }
 
+const editUserInTheDatabase = async (user: UserDocument) => {
+    const collectionRef = collection(db, 'users')
+    const documentRef = doc(collectionRef, user?.id)
+
+    await updateDoc(documentRef, user)
+}
+
 
 export const useEditUser = (): editUserState => {
     const [isPending, setIsPending] = useState(false)
@@ -38,15 +45,9 @@ export const useEditUser = (): editUserState => {
 
     let mounted = true
 
-    const collectionRef = collection(db, 'users')
-    const documentRef = doc(collectionRef, user?.id)
-
-    const navigate = useNavigate()
 
     const editUser = async (updatedDocument: updateUserFile) => {
-        if (mounted) {
-            setIsPending(true)
-        }
+        if (mounted) { setIsPending(true) }
         try {
             const displayName = `${updatedDocument.firstName} ${updatedDocument.lastName}`
             let photoURL = user?.photoURL
@@ -58,28 +59,23 @@ export const useEditUser = (): editUserState => {
 
             await editChatEngineUser(user!, { ...updatedDocument, displayName })
 
-            const updatedObject = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location }
-            await updateDoc(documentRef, updatedObject)
+            const updatedUser = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location } as UserDocument
+            await editUserInTheDatabase(updatedUser)
 
             if (user?.email !== updatedDocument.email) await updateEmail(user?.firebaseUser!, updatedDocument.email)
             if (user?.displayName !== displayName) await updateProfile(user?.firebaseUser!, { displayName })
             if (user?.photoURL !== photoURL) await updateProfile(user?.firebaseUser!, { photoURL })
 
-            if (mounted) {
-                setIsPending(false)
-                navigate('/')
-            }
+            if (mounted) { setIsPending(false) }
+
         } catch (error) {
             const message = checkError(error)
-            if (mounted) {
-                setError(message)
-            }
+
+            if (mounted) { setError(message) }
         }
     }
     useEffect(() => {
-        return () => {
-            mounted = false
-        }
+        return () => { mounted = false }
     }, [mounted])
 
     return { error, isPending, editUser }

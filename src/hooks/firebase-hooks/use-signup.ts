@@ -8,18 +8,22 @@ import { auth } from '../../firebase/config'
 
 
 //custom hooks and utils
-import { useAuthContext } from "@hooks"
 import { checkError } from "../utils/check-error"
-import { UserDocument, UserObject } from "../../types"
+import { UserDocument } from "../../types"
 import { uploadImage } from "@features/ui/images"
 import { createChatEngineUser } from "@features/chats"
+
+
+const addUserToDataBase = async (user: UserDocument) => {
+    const storageRef = doc(db, 'users', user.id)
+    await setDoc(storageRef, user)
+}
 
 export const useSignUp = () => {
 
     const [isCancelled, setIsCancelled] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
     const [isPending, setIsPending] = useState<boolean>(false)
-    const { dispatch } = useAuthContext()
 
 
     const signUp = async (firstName: string, lastName: string, location: string, email: string, password: string, profileImg: File) => {
@@ -51,17 +55,9 @@ export const useSignUp = () => {
             } as UserDocument
 
             await createChatEngineUser(userData, profileImg)
+            await addUserToDataBase(userData)
 
-            const storageRef = doc(db, 'users', res.user.uid)
-            await setDoc(storageRef, userData)
-            const userObject = { firebaseUser, ...userData } as UserObject
-
-            dispatch({ type: "LOGIN", payload: userObject })
-
-            if (!isCancelled) {
-                setIsPending(false)
-                setError(null)
-            }
+            if (!isCancelled) setIsPending(false); setError(null)
 
         } catch (error) {
             if (!isCancelled) {

@@ -15,17 +15,13 @@ export const useLogout = (): useLogoutState => {
     let mounted = true
 
     const logout = async () => {
-        setError(null)
-        setIsPending(true)
+        if (mounted) setError(null); setIsPending(true)
         try {
-            await signOut(auth)
 
+            await signOut(auth)
             dispatch({ type: "LOGOUT" })
 
-            if (mounted) {
-                setError(null)
-                setIsPending(false)
-            }
+            if (mounted) setError(null); setIsPending(false)
 
         } catch (error) {
             if (mounted) {
@@ -33,7 +29,6 @@ export const useLogout = (): useLogoutState => {
                 setError(message)
                 setIsPending(false)
             }
-
         }
     }
     useEffect(() => {

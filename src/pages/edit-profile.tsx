@@ -9,12 +9,14 @@ import { ImagePreview, ImageInput, FormInput, FormWrapper } from '@features/ui'
 
 //custom hooks
 import { useThemeContext, useAuthContext, useEditUser } from "@hooks"
+import { useNavigate } from "react-router-dom"
 
 
 export default function EditProfile() {
     const { user } = useAuthContext()
     const { theme } = useThemeContext()
     const { isPending, editUser, error } = useEditUser()
+    const navigate = useNavigate()
 
     const [firstName, setFirstName] = useState<string>(user?.displayName?.split(' ')[0]!)
     const [lastName, setLastName] = useState<string>(user?.displayName?.split(' ')[1]!)

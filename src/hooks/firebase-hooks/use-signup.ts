@@ -12,6 +12,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 import { useAuthContext } from "./use-auth-context"
 import { checkError } from "./utils/check-error"
 import { UserDocument, UserObject } from "../../types"
+import { uploadImage } from "./utils/upload-user-image"
 
 export const useSignUp = () => {
 
@@ -33,17 +34,11 @@ export const useSignUp = () => {
                 throw new Error('Could not complete Sign Up')
             }
             //upload user thumbnail
-            const imageRef = ref(storage, `thumbnails/${firebaseUser.uid}/${profileImg.name}`)
-            await uploadBytes(imageRef, profileImg)
-            const photoURL = await getDownloadURL(imageRef)
-
-            const displayName = `${firstName} ${lastName}`
+            const photoURL = await uploadImage(firebaseUser.uid, profileImg)
 
             // add Display Name to user
+            const displayName = `${firstName} ${lastName}`
             await updateProfile(firebaseUser, { displayName, photoURL })
-
-            //create user schema
-
 
             //Creating user in chat engine
             let formData = new FormData()

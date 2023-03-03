@@ -1,16 +1,22 @@
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import axios from "axios"
+
 //firebase
 import { deleteObject, uploadBytes, getDownloadURL, listAll, ref } from "firebase/storage"
 import { db, storage } from "../../firebase/config"
 import { updateEmail, updateProfile } from "firebase/auth"
+import { collection, doc, updateDoc } from "firebase/firestore"
+
+//custom hooks
+import { useAuthContext } from "./use-auth-context"
+
+// utils
+import { checkError } from "./utils/check-error"
+import { uploadImage } from "./utils/upload-user-image"
+import { UserDocument } from "@types"
 
 //types
-import { useAuthContext } from "./use-auth-context"
-import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { checkError } from "./utils/check-error"
-import { collection, doc, updateDoc } from "firebase/firestore"
-import axios from "axios"
-
 type updateUserFile = {
     firstName: string,
     lastName: string,
@@ -23,6 +29,38 @@ type editUserState = {
     isPending: boolean,
     error: null | string,
     editUser: (updatedDocument: updateUserFile) => Promise<void>
+}
+
+async function deletePreviousImage(userID: string) {
+    listAll(ref(storage, `thumbnails/${userID}/`)).then((listResults) => {
+        const promises = listResults.items.map((item) => {
+            return deleteObject(item);
+        })
+        Promise.all(promises);
+    })
+}
+
+async function updateChatEngineUser(
+    user: UserDocument,
+    displayName: string,
+    updatedDocument: updateUserFile,
+    setError: React.Dispatch<React.SetStateAction<string | null>>) {
+
+    let formData = new FormData()
+    formData.append("email", updatedDocument.email);
+    formData.append("username", displayName);
+
+    if (updatedDocument.image) {
+        formData.append("avatar", updatedDocument.image, updatedDocument.image.name);
+    }
+
+    await axios.patch(`https://api.chatengine.io/users/me/`, formData, {
+        headers: {
+            "Private-Key": '60216072-4b9e-4ac8-b321-571aaf652fcb',
+            'user-name': user?.displayName,
+            'user-secret': user?.id
+        }
+    }).catch((e) => setError(e))
 }
 
 
@@ -48,33 +86,13 @@ export const useEditUser = (): editUserState => {
 
 
             if (updatedDocument.image) {
-                //Delete the old picture from Firebase Storage
-                listAll(ref(storage, `thumbnails/${user?.id}/`)).then((listResults) => {
-                    const promises = listResults.items.map((item) => {
-                        return deleteObject(item);
-                    })
-                    Promise.all(promises);
-                })
-                //Updating the user pic in Firebase Storage
-                const imageRef = ref(storage, `thumbnails/${user?.id}/${updatedDocument.image.name}`)
-                await uploadBytes(imageRef, updatedDocument.image)
-                photoURL = await getDownloadURL(imageRef)
+                await deletePreviousImage(user?.id!)
+
+                photoURL = await uploadImage(user?.id!, updatedDocument.image)
             }
 
             //Updating the user in ChatEngine
-            let formData = new FormData()
-            formData.append("email", updatedDocument.email);
-            formData.append("username", displayName);
-            if (updatedDocument.image) {
-                formData.append("avatar", updatedDocument.image, updatedDocument.image.name);
-            }
-            await axios.patch(`https://api.chatengine.io/users/me/`, formData, {
-                headers: {
-                    "Private-Key": '60216072-4b9e-4ac8-b321-571aaf652fcb',
-                    'user-name': user?.displayName,
-                    'user-secret': user?.id
-                }
-            }).catch((e) => setError(e))
+            await updateChatEngineUser(user!, displayName, updatedDocument, setError)
 
             //Updating the user in the DB
             const updatedObject = { displayName, photoURL, email: updatedDocument.email, location: updatedDocument.location }
@@ -87,7 +105,6 @@ export const useEditUser = (): editUserState => {
             if (user?.displayName !== displayName || user.photoURL !== photoURL) {
                 await updateProfile(user?.firebaseUser!, { displayName, photoURL })
             }
-
 
             if (mounted) {
                 setIsPending(false)

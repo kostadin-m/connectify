@@ -17,12 +17,10 @@ export const useLogin = () => {
                 throw new Error('Could not complete Sign Up')
             }
 
-            //dispatch login action
             if (!isCancelled) {
                 setIsPending(false)
                 setError(null)
             }
-
 
         } catch (error) {
             if (!isCancelled) {
@@ -35,14 +33,11 @@ export const useLogin = () => {
         }
 
     }
-
     useEffect(() => {
         return () => {
             setIsCancelled(true)
         }
     }, [])
-
-
 
     return { error, isPending, login }
 

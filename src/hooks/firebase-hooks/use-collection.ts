@@ -1,8 +1,9 @@
 import { useReducer, useEffect, useRef } from "react"
 import { db } from "../../firebase/config"
-import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore"
+import { QueryConstraint, collection, onSnapshot, orderBy, query, where } from "firebase/firestore"
 import { CollectionType } from "../../types"
 import { debug } from "console"
+import { Query } from "firebase-admin/database"
 
 
 
@@ -35,6 +36,21 @@ const collectionReducer = <T extends CollectionType>(state: ICollectionState<T>,
     }
 }
 
+
+function checkQueryAndOrderRefs(
+    queryRef: React.MutableRefObject<any[] | null | undefined>,
+    _query: any[] | null | undefined) {
+
+    if (!queryRef.current && !_query) {
+        return false
+    }
+    if (Array.isArray(queryRef.current?.[2]) && Array.isArray(_query?.[2])) {
+        return queryRef.current?.[2].length !== _query?.[2].length
+    }
+    return queryRef.current?.[2] !== _query?.[2]
+}
+
+
 export const useCollection = <T extends CollectionType>(_collection: string, _query?: any[] | null, _order?: any[]): ICollectionState<T> => {
     const [state, dispatch] = useReducer
         <React.Reducer<ICollectionState<T>, ICollectionAction<T>>>
@@ -43,40 +59,24 @@ export const useCollection = <T extends CollectionType>(_collection: string, _qu
     let queryRef = useRef(_query)
     let orderRef = useRef(_order)
 
-    //comparing the two arrays so we can enter the useEffect if there is a change in the inside array when using the documentID query!
-    if (queryRef.current && _query && Array.isArray(queryRef.current[2]) && Array.isArray(_query[2])) {
-        if (queryRef.current[2].length !== _query[2].length) {
-            queryRef.current = _query
-        }
+    if (checkQueryAndOrderRefs(queryRef, _query) === true) {
+        queryRef.current = _query
     }
-    //checking if the query string is the same
-    if (queryRef.current && _query) {
-        if (queryRef.current[2] !== _query[2]) {
-            queryRef.current = _query
-        }
+
+    if (checkQueryAndOrderRefs(orderRef, _order) === true) {
+        orderRef.current = _order
     }
 
     useEffect(() => {
         dispatch({ type: "IS_PENDING" })
-        let ref = query(collection(db, _collection))
+        let ref = collection(db, _collection)
 
-        if (queryRef.current && orderRef.current) {
+        let queryConst: QueryConstraint[] = []
 
-            ref = query(collection(db, _collection),
-                where(queryRef.current[0], queryRef.current[1], queryRef.current[2]),
-                orderBy(orderRef.current[0], orderRef.current[1]))
-        }
-        else if (!queryRef.current && orderRef.current) {
+        queryConst = queryRef.current ? [where(queryRef.current[0], queryRef.current[1], queryRef.current[2])] : queryConst
+        queryConst = orderRef.current ? [...queryConst, orderBy(orderRef.current[0], orderRef.current[1])] : queryConst
 
-            ref = query(collection(db, _collection), orderBy(orderRef.current[0], orderRef.current[1]))
-        }
-        else if (!orderRef.current && queryRef.current) {
-
-            ref = query(collection(db, _collection),
-                where(queryRef.current[0], queryRef.current[1], queryRef.current[2]))
-        }
-
-        const unsub = onSnapshot(ref, (snapshot) => {
+        const unsub = onSnapshot(query(ref, ...queryConst), (snapshot) => {
             //Get The Data from the Collection
             let data: T[] = []
             snapshot.docs.forEach(doc => {

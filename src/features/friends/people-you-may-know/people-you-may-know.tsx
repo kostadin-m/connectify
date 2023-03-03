@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { documentId } from 'firebase/firestore'
 
 //custom hooks
@@ -15,30 +15,32 @@ import './people-you-may-know.css'
 import { UserDocument } from '@types'
 
 function PeopleYouMayKnow() {
-  let usersWithMutualFriends = [] as UserDocument[]
+
+  const [usersWithMutualFriends, setUsersWithMutualFriends] = useState<UserDocument[]>([])
 
   const { user } = useAuthContext()
   const { theme } = useThemeContext()
 
   const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), '!=', user?.id!])
 
-  if (document) {
-    const notFriendsOfCurrentUser =
-      (friends: string[]) => friends.some((friendID => friendID !== user?.id || friends.length === 0))
+  const notFriendsOfCurrentUser =
+    (friends: string[]) => friends.some((friendID => friendID !== user?.id || friends.length === 0))
 
-    const hasMutualFriends =
-      (friends: string[]) => friends.some((friendID) =>
-        user?.friends.some(currentUserFriendID => friendID === currentUserFriendID && friends.length > 0))
+  const hasMutualFriends =
+    (friends: string[]) => friends.some((friendID) =>
+      user?.friends.some(currentUserFriendID => friendID === currentUserFriendID && friends.length > 0))
 
-    const areNotInRequests = (userID: string) =>
-      !user?.sentFriendRequests.includes(userID) && !user?.receivedFriendRequests.includes(userID)
+  const areNotInRequests = (userID: string) =>
+    !user?.sentFriendRequests.includes(userID) && !user?.receivedFriendRequests.includes(userID)
 
+  useEffect(() => {
+    if (!document) return
 
-    const filteredDocument = document.filter(userDoc => notFriendsOfCurrentUser(userDoc.friends) && hasMutualFriends(userDoc.friends) && areNotInRequests(userDoc.id))
-    filteredDocument.forEach((user) => usersWithMutualFriends.push(user))
-  }
-
-
+    setUsersWithMutualFriends(document.filter(userDoc =>
+      notFriendsOfCurrentUser(userDoc.friends) &&
+      hasMutualFriends(userDoc.friends) &&
+      areNotInRequests(userDoc.id)))
+  }, [document])
 
   if (isPending) (<div className="loader"></div>)
   if (error) (<p className="error">{error}</p>)

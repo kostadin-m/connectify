@@ -27,11 +27,10 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
     const { theme } = useThemeContext()
     const { updateDocument, response } = useFirestore<UserDocument>('users')
 
-    const friendIsNotCurrentUser = user?.id !== friend.id
     const isFriend = user?.friends.includes(friend.id)
     const hasRecievedFriendRequestFromOtherUser = user?.receivedFriendRequests.includes(friend.id)
     const hasFriendRequestFromCurrentUser = user?.sentFriendRequests.includes(friend.id)
-    const notAFriendOfCurrentUser = !user?.friends.includes(friend.id) && friendIsNotCurrentUser
+    const notAFriendOfCurrentUser = !isFriend && !hasFriendRequestFromCurrentUser && !hasRecievedFriendRequestFromOtherUser
 
     const handleAddFriend = async () => {
         await updateDocument(friend.id, { receivedFriendRequests: [...friend.receivedFriendRequests, user?.id] } as UserDocument)
@@ -84,7 +83,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                     className={`btn ${theme}`}>{!response.isPending ? 'Cancel Request' : "Loading..."}
                 </button> : null}
 
-            {notAFriendOfCurrentUser
+            {notAFriendOfCurrentUser && user?.id !== friend.id
                 ?
                 <button disabled={response.isPending}
                     onClick={() => handleAddFriend()}

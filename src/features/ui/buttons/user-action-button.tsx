@@ -1,5 +1,4 @@
 import { useState } from "react"
-import axios from "axios"
 
 //types
 import { UserDocument } from "@types"
@@ -11,6 +10,8 @@ import { useAuthContext, useThemeContext, useFirestore } from "@hooks"
 //icons
 import { AcceptRequest, CloseIcon, FriendsIcon, RemoveFriends } from '@assets'
 
+//utils
+import { createChatRoom } from "./utils/create-chat"
 
 //components
 import { FriendsActionModal } from "@features/ui"
@@ -20,20 +21,16 @@ interface UserActionButtonProps {
 }
 
 export default function UserActionButton({ friend }: UserActionButtonProps) {
-    const { user } = useAuthContext()
-    const { theme } = useThemeContext()
-
-    const { updateDocument, response } = useFirestore<UserDocument>('users')
     const [showFriendsActionModal, setShowFriendsActionModal] = useState(false)
 
+    const { user } = useAuthContext()
+    const { theme } = useThemeContext()
+    const { updateDocument, response } = useFirestore<UserDocument>('users')
+
     const friendIsNotCurrentUser = user?.id !== friend.id
-
-    const isFriend = user?.friends.includes(friend.id) && friendIsNotCurrentUser
-
-    const hasRecievedFriendRequestFromOtherUser = user?.receivedFriendRequests.includes(friend.id) && friendIsNotCurrentUser
-
-    const hasFriendRequestFromCurrentUser = user?.sentFriendRequests.includes(friend.id) && friendIsNotCurrentUser
-
+    const isFriend = user?.friends.includes(friend.id)
+    const hasRecievedFriendRequestFromOtherUser = user?.receivedFriendRequests.includes(friend.id)
+    const hasFriendRequestFromCurrentUser = user?.sentFriendRequests.includes(friend.id)
     const notAFriendOfCurrentUser = !user?.friends.includes(friend.id) && friendIsNotCurrentUser
 
     const handleAddFriend = async () => {
@@ -42,27 +39,15 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
 
     };
 
-    const handleAcceptOrDenyActions = async (type: 'accept' | 'cancel') => {
+    const handleAcceptOrDenyActions = async (type: 'accept' | 'deny') => {
         await updateDocument(user?.id!, { receivedFriendRequests: user?.receivedFriendRequests.filter(id => id !== friend.id)! } as UserDocument)
         await updateDocument(friend?.id!, { sentFriendRequests: friend.sentFriendRequests.filter(id => id !== user?.id) } as UserDocument)
 
-        if (type === 'accept') {
-            await updateDocument(friend.id, { friends: [...friend.friends, user?.id] } as UserDocument)
-            await updateDocument(user?.id!, { friends: [...user?.friends!, friend.id] } as UserDocument)
+        if (type === 'deny') return
 
-            const headers = {
-                'project-id': 'cb4c38f1-a904-45fe-b638-a6b989f334bc',
-                'user-name': user?.displayName,
-                'user-secret': user?.id
-            }
-
-            const data = { 'usernames': [user?.displayName, friend.displayName], 'is_direct_chat': true }
-
-            await axios.put('https://api.chatengine.io/chats/', data, {
-                headers
-            }
-            )
-        }
+        await updateDocument(friend.id, { friends: [...friend.friends, user?.id] } as UserDocument)
+        await updateDocument(user?.id!, { friends: [...user?.friends!, friend.id] } as UserDocument)
+        await createChatRoom(user!, friend)
     }
 
     const handleCancelRequests = async () => {
@@ -88,7 +73,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                             !response.isPending ? handleAcceptOrDenyActions('accept') : null}
                         className="button" src={AcceptRequest} alt='accept request icon' />
                     <img
-                        onClick={() => !response.isPending ? handleAcceptOrDenyActions('cancel') : null}
+                        onClick={() => !response.isPending ? handleAcceptOrDenyActions('deny') : null}
                         className="button" src={CloseIcon} alt='deny request icon' />
                 </> : null}
 

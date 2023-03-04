@@ -38,9 +38,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
     const hasFriendRequestFromCurrentUser = user?.sentFriendRequests.includes(friend.id)
     const notAFriendOfCurrentUser = !isFriend && !hasFriendRequestFromCurrentUser && !hasRecievedFriendRequestFromOtherUser
 
-
     const functionParams = { user, friend, updateDocument } as friendsFunctionParams
-
 
     return (
         <>
@@ -82,25 +80,34 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
 }
 
 async function handleAddFriend({ user, friend, updateDocument }: friendsFunctionParams) {
+    const updatedFriendReceivedRequests = { receivedFriendRequests: [...friend.receivedFriendRequests, user?.id] } as UserDocument
+    const updatedCurrentUserSentRequests = { sentFriendRequests: [...user?.sentFriendRequests!, friend.id] } as UserDocument
 
-    await updateDocument(friend.id, { receivedFriendRequests: [...friend.receivedFriendRequests, user?.id] } as UserDocument)
-    await updateDocument(user?.id!, { sentFriendRequests: [...user?.sentFriendRequests!, friend.id] } as UserDocument)
-
+    await updateDocument(friend.id, updatedFriendReceivedRequests)
+    await updateDocument(user?.id!, updatedCurrentUserSentRequests)
 };
 
 async function handleAcceptOrDenyRequests(type: 'accept' | 'deny', { user, friend, updateDocument }: friendsFunctionParams) {
+    const updatedCurrentUserReceivedRequests = { receivedFriendRequests: user?.receivedFriendRequests.filter(id => id !== friend.id)! } as UserDocument
+    const updatedFriendSentRequests = { sentFriendRequests: friend.sentFriendRequests.filter(id => id !== user?.id) } as UserDocument
 
-    await updateDocument(user?.id!, { receivedFriendRequests: user?.receivedFriendRequests.filter(id => id !== friend.id)! } as UserDocument)
-    await updateDocument(friend?.id!, { sentFriendRequests: friend.sentFriendRequests.filter(id => id !== user?.id) } as UserDocument)
+    await updateDocument(user?.id!, updatedCurrentUserReceivedRequests)
+    await updateDocument(friend?.id!, updatedFriendSentRequests)
 
     if (type === 'deny') return
 
-    await updateDocument(friend.id, { friends: [...friend.friends, user?.id] } as UserDocument)
-    await updateDocument(user?.id!, { friends: [...user?.friends!, friend.id] } as UserDocument)
+    const updatedCurrentUserFriends = { friends: [...friend.friends, user?.id] } as UserDocument
+    const updatedFriendFriends = { friends: [...user?.friends!, friend.id] } as UserDocument
+
+    await updateDocument(friend.id, updatedCurrentUserFriends)
+    await updateDocument(user?.id!, updatedFriendFriends)
     await createChatRoom(user!, friend)
 }
 
 async function handleCancelRequests({ user, friend, updateDocument }: friendsFunctionParams) {
-    await updateDocument(user?.id!, { sentFriendRequests: user?.sentFriendRequests.filter(id => id !== friend.id)! } as UserDocument)
-    await updateDocument(friend?.id!, { receivedFriendRequests: friend.receivedFriendRequests.filter(id => id !== user?.id) } as UserDocument)
+    const updatedCurrentUserSentRequests = { sentFriendRequests: user?.sentFriendRequests.filter(id => id !== friend.id)! } as UserDocument
+    const updatedFriendReceivedRequests = { receivedFriendRequests: friend.receivedFriendRequests.filter(id => id !== user?.id) } as UserDocument
+
+    await updateDocument(user?.id!, updatedCurrentUserSentRequests)
+    await updateDocument(friend?.id!, updatedFriendReceivedRequests)
 }

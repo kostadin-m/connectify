@@ -1,25 +1,32 @@
 import { Link } from "react-router-dom";
 
-import { UserDocument } from "../../../types";
 import { useThemeContext } from "../../../hooks/view-hooks/use-theme-context";
 import { memo } from "react";
 import UserActionButton from "../../ui/buttons/user-action-button";
 
 import styles from './user-list.module.css'
+import { useCollection } from "@hooks";
+import { documentId } from "firebase/firestore";
+import { UserDocument } from "@types";
 
 interface Props {
-  users: UserDocument[]
+  userIDS: string[]
   listSideways?: boolean
 }
 
-function UserList({ users, listSideways = false }: Props) {
+function UserList({ userIDS, listSideways = false }: Props) {
   const { theme } = useThemeContext()
+
+  const { document, error, isPending } = useCollection<UserDocument>('users', [documentId(), 'in', userIDS])
 
   const sideways = listSideways ? styles.sideways : ''
 
+  if (error) return (<h4 className="error">{error}</h4>)
+
   return (
     <div className={`${styles.listFriends} ${sideways}`}>
-      {document && users.map(user => (
+      {isPending && <h4>Loading...</h4>}
+      {document && document.map(user => (
         <div key={user.id} className={`${styles.friend} ${sideways} ${styles[theme]}`}>
           <img className="profile-image" src={user.photoURL!} alt="profile picture" />
           <p className={`${styles.name} ${sideways}`}>{user.displayName}</p>

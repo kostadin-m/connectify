@@ -16,7 +16,7 @@ import { UserDocument } from '@types'
 
 function PeopleYouMayKnow() {
 
-  const [usersWithMutualFriends, setUsersWithMutualFriends] = useState<UserDocument[]>([])
+  const [usersWithMutualFriends, setUsersWithMutualFriends] = useState<string[]>([])
 
   const { user } = useAuthContext()
   const { theme } = useThemeContext()
@@ -37,10 +37,12 @@ function PeopleYouMayKnow() {
   useEffect(() => {
     if (!document) return
 
-    setUsersWithMutualFriends(document.filter(userDoc =>
+    const filteredDocument = document.filter(userDoc =>
       notFriendsOfCurrentUser(userDoc.friends) &&
       hasMutualFriends(userDoc.friends) &&
-      areNotInRequests(userDoc.id)))
+      areNotInRequests(userDoc.id))
+
+    setUsersWithMutualFriends(filteredDocument.map((user) => user.id))
   }, [document])
 
   if (isPending) (<div className="loader"></div>)
@@ -50,7 +52,7 @@ function PeopleYouMayKnow() {
     <div className={`box ${theme}`}>
       <h2>People you may know</h2>
       {usersWithMutualFriends.length > 0 ?
-        <UserList listSideways={isMobile} users={usersWithMutualFriends} /> :
+        <UserList listSideways={isMobile} userIDS={usersWithMutualFriends} /> :
         <h4 className='error'>No people with mutual friends!</h4>}
     </div>
   )

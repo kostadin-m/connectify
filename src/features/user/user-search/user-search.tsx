@@ -14,7 +14,7 @@ import { UserList } from "@features/user"
 export default function UserSearch() {
     const [searchWrapperClass, setSearchWrapperClass] = useState<CSSClassesState>('hidden')
     const [searchedUser, setSearchedUser] = useState<string>('')
-    const [foundUsers, setFoundUsers] = useState<UserDocument[]>([])
+    const [foundUsers, setFoundUsers] = useState<string[]>([])
 
 
     const { user } = useAuthContext()
@@ -28,7 +28,8 @@ export default function UserSearch() {
         if (searchedUser.length === 0 || !document || !isComponentVisible) return
 
         const filteredSearch = document.filter(user => user.displayName.toLowerCase().startsWith(searchedUser.toLowerCase()))
-        setFoundUsers(filteredSearch.map(user => user))
+
+        setFoundUsers(filteredSearch.map(user => user.id))
 
     }, [searchedUser, isComponentVisible, document])
 
@@ -42,7 +43,7 @@ export default function UserSearch() {
                 onChange={(e) => setSearchedUser(e.target.value)}
                 onFocus={() => { setIsComponentVisible(true); setSearchWrapperClass('show') }}
             />
-            {isOpened && foundUsers.length > 0 && <UserList users={foundUsers} />}
+            {isOpened && foundUsers.length > 0 && <UserList userIDS={foundUsers} />}
             {isOpened && foundUsers.length === 0 && searchedUser.length > 0 && !isPending && <h4 className="error">No users found!</h4>}
         </div>
     )

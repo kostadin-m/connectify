@@ -39,8 +39,6 @@ export const useSignUp = () => {
             const photoURL = await uploadImage("thumbnails", firebaseUser.uid, profileImg)
             const displayName = `${firstName} ${lastName}`
 
-            await updateProfile(firebaseUser, { displayName, photoURL })
-
             const userData = {
                 email,
                 displayName,
@@ -51,9 +49,9 @@ export const useSignUp = () => {
                 receivedFriendRequests: [],
                 id: firebaseUser.uid,
             } as UserDocument
-
-            await createChatEngineUser(userData, profileImg)
             await addUserToDataBase(userData)
+            await updateProfile(firebaseUser, { displayName, photoURL })
+            await createChatEngineUser(userData, profileImg)
 
             if (!isCancelled) setIsPending(false); setError(null)
 
@@ -64,7 +62,6 @@ export const useSignUp = () => {
                 setError(message)
             }
         }
-
     }
     useEffect(() => {
         return () => setIsCancelled(true)

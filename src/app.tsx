@@ -5,7 +5,7 @@ import { useAuthContext, useThemeContext } from '@hooks'
 
 //components
 import { Navbar } from '@features/ui'
-import Home from './pages/home.'
+import Home from './pages/home'
 import EditProfile from './pages/edit-profile'
 import SignUp from './pages/sign-up'
 import Login from './pages/login'

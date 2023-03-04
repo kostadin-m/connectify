@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 
-import { Unsubscribe, onAuthStateChanged } from "firebase/auth";
+import { Unsubscribe, User, onAuthStateChanged } from "firebase/auth";
 import { db, auth } from "../firebase/config";
 import { DocumentSnapshot, doc, onSnapshot } from "firebase/firestore";
 //types
@@ -35,6 +35,16 @@ export const authReducer = (state: IAuthState, action: IAuthActions) => {
         default: return state
     }
 }
+const createUserSnapshot = (user: User, dispatch: React.Dispatch<IAuthActions>) => {
+    const userRef = doc(db, 'users', user.uid)
+    const unsub = onSnapshot(userRef, (snapshot: DocumentSnapshot) => {
+        if (!snapshot.data()) return
+        const userSnapshotData = { firebaseUser: user, ...snapshot.data(), id: snapshot.id }
+        dispatch({ type: 'AUTH_IS_READY', payload: userSnapshotData as UserObject })
+    })
+    return unsub
+}
+
 
 export const AuthContextProvider = ({ children }: IContextProviderProps) => {
     const [state, dispatch] = useReducer(authReducer, { user: null, authIsReady: false })
@@ -43,13 +53,7 @@ export const AuthContextProvider = ({ children }: IContextProviderProps) => {
         let snapshotUnsub: Unsubscribe = () => null
         const unsub = onAuthStateChanged(auth, async (user) => {
             if (!user) return dispatch({ type: 'AUTH_IS_READY', payload: null })
-
-            const userRef = doc(db, 'users', user.uid)
-            snapshotUnsub = onSnapshot(userRef, (snapshot: DocumentSnapshot) => {
-                if (!snapshot.data()) return
-                const userSnapshotData = { firebaseUser: user, ...snapshot.data(), id: snapshot.id }
-                dispatch({ type: 'AUTH_IS_READY', payload: userSnapshotData as UserObject })
-            })
+            snapshotUnsub = createUserSnapshot(user, dispatch)
         })
         return () => { unsub(), snapshotUnsub() }
     }, [])

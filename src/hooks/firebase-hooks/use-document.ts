@@ -10,7 +10,6 @@ export function useDocument<T>(collection: string, id: string | null) {
     const [document, setDocument] = useState<T>()
 
     useEffect(() => {
-
         const ref = doc(db, collection, id!)
         setIsPending(true)
 

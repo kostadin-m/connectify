@@ -2,9 +2,6 @@ import { memo } from "react"
 import { handleFileChange } from "./utils/handle-image-change"
 import { IImageInput } from "@types"
 
-
-
-
 function ImageInput({ setImage, setImageError }: IImageInput) {
     return (
         <input

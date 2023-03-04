@@ -8,15 +8,13 @@ export const useDelayToUnmount = (
     const timeoutRef = useRef<number | undefined>()
 
     function toggleMount() {
-
         if (elementClass === 'show') {
             timeoutRef.current = window.setTimeout(() => setShowElement(false), 580)
-            setElementClass('hidden')
-        } else {
-            setElementClass('show')
-            setShowElement(true)
-            window.clearTimeout(timeoutRef.current)
+            return setElementClass('hidden')
         }
+        setElementClass('show')
+        setShowElement(true)
+        window.clearTimeout(timeoutRef.current)
     }
     return { toggleMount }
 }

@@ -3,8 +3,7 @@ import { useContext } from "react";
 
 export const useAuthContext = () => {
     const context = useContext(AuthContext)
-    if (!context) {
-        throw new Error('Context must be used inside a Context Provider')
-    }
+    if (!context) throw new Error('Context must be used inside a Context Provider')
+
     return context
 }

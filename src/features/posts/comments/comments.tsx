@@ -38,7 +38,6 @@ function Comments({ theme, classname, post }: Props) {
         setComment('')
     }
 
-
     return (
         <div data-testid='comments' className={`${styles.commentsContainer} ${styles[classname]}`}>
             <hr className={`${styles.commentsHr} ${styles[theme]}`} />

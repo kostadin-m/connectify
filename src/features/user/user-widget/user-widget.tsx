@@ -29,9 +29,9 @@ export default function UserWidget({ user }: UserWidgetProps) {
 
     useEffect(() => {
         setTotalLikes(0)
-        if (document) {
-            document.forEach(post => setTotalLikes((prevLikes) => prevLikes + post.likes.length))
-        }
+        if (!document) return
+
+        document.forEach(post => setTotalLikes((prevLikes) => prevLikes + post.likes.length))
     }, [document])
 
     return (

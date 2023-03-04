@@ -35,14 +35,10 @@ function PostForm() {
 
     const handlePostSubmit = async () => {
         setPending(true)
-        if (!image) {
-            setFormError('Please choose an image!')
-            return
-        }
+        if (!image) return setFormError('Please choose an image!')
+
         const photoURL = await uploadImage('postPictures', user?.id!, image)
-
         const createdAt = timeStamp.fromDate(new Date())
-
         const postObject = {
             postTitle: text,
             photoURL,
@@ -56,9 +52,9 @@ function PostForm() {
         await addDocument(postObject)
 
         if (!response.error) {
-            setText('')
-            setImage(null)
             setLocation('')
+            setImage(null)
+            setText('')
         }
         setPending(false)
     }

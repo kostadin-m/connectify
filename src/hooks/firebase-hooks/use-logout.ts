@@ -17,8 +17,8 @@ export const useLogout = (): useLogoutState => {
     const logout = async () => {
         if (mounted) setError(null); setIsPending(true)
         try {
-
             await signOut(auth)
+
             dispatch({ type: "LOGOUT" })
 
             if (mounted) setError(null); setIsPending(false)

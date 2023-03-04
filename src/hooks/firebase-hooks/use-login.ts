@@ -14,9 +14,9 @@ export const useLogin = () => {
         setError(null)
         try {
             const res = await signInWithEmailAndPassword(auth, email, password)
-            if (!res) {
-                throw new Error('Could not complete Sign Up')
-            }
+
+            if (!res) throw new Error('Could not complete Sign Up')
+
             if (!isCancelled) setIsPending(false); setError(null)
 
         } catch (error) {

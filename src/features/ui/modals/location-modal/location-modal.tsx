@@ -15,7 +15,6 @@ interface Props {
 export default function LocationModal({ setLocation, setShowLocationModal, theme }: Props) {
     const { user } = useAuthContext()
 
-
     const handleLocationSelect = (location: string) => {
         setLocation(location)
         setShowLocationModal(false)

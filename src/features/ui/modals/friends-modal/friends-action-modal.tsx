@@ -26,7 +26,6 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
     const closeModal = () => setActionModal(false);
 
     const removeFriend = async () => {
-
         const currentUserUpdatedFriendList = user?.friends.filter(userID => userID !== friend.id)
         const friendUpdatedFriendList = friend.friends.filter(userID => userID !== user?.id)
 
@@ -34,7 +33,6 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
         await updateDocument(user?.id!, { friends: currentUserUpdatedFriendList } as UserDocument)
 
         closeModal()
-
     }
 
     return (

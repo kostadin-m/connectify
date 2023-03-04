@@ -16,10 +16,8 @@ interface Props {
 export default function LocationSearch({ handleLocationSelect, theme }: Props) {
     const [adress, setAdress] = useState('')
 
-
     return (
         <div>
-
             < PlacesAutocomplete
                 value={adress}
                 onChange={setAdress}

@@ -20,6 +20,7 @@ export default function ModalWrapper({ children, theme, title, setViewModal }: P
       document.body.classList.remove('active-modal')
     }
   }, [])
+
   return ReactDOM.createPortal(
     <div data-testid='modal' className={styles.modal}>
       <div className={styles.overlay}>

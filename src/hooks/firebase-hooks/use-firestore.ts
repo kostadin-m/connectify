@@ -47,11 +47,8 @@ export const useFirestore = <T extends CollectionType>(_collection: string) => {
     let mounted = true
     const ref = collection(db, _collection)
 
-    const dispatchIfMounted = (action: IDocumentAction) => {
-        if (mounted) {
-            dispatch(action)
-        }
-    }
+    const dispatchIfMounted = (action: IDocumentAction) => mounted ? dispatch(action) : null
+
     const addDocument = async (doc: T) => {
         dispatchIfMounted({ type: 'IS_PENDING' })
         try {

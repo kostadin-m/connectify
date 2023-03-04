@@ -34,9 +34,7 @@ export const useSignUp = () => {
             const res = await createUserWithEmailAndPassword(auth, email, password)
             const firebaseUser = res.user
 
-            if (!res) {
-                throw new Error('Could not complete Sign Up')
-            }
+            if (!res) throw new Error('Could not complete Sign Up')
 
             const photoURL = await uploadImage("thumbnails", firebaseUser.uid, profileImg)
             const displayName = `${firstName} ${lastName}`

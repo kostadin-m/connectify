@@ -20,6 +20,12 @@ interface UserActionButtonProps {
     friend: UserDocument
 }
 
+interface friendsFunctionParams {
+    user: UserDocument
+    friend: UserDocument
+    updateDocument: (id: string, updates: UserDocument) => Promise<void>
+}
+
 export default function UserActionButton({ friend }: UserActionButtonProps) {
     const [showFriendsActionModal, setShowFriendsActionModal] = useState(false)
 
@@ -32,27 +38,9 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
     const hasFriendRequestFromCurrentUser = user?.sentFriendRequests.includes(friend.id)
     const notAFriendOfCurrentUser = !isFriend && !hasFriendRequestFromCurrentUser && !hasRecievedFriendRequestFromOtherUser
 
-    const handleAddFriend = async () => {
-        await updateDocument(friend.id, { receivedFriendRequests: [...friend.receivedFriendRequests, user?.id] } as UserDocument)
-        await updateDocument(user?.id!, { sentFriendRequests: [...user?.sentFriendRequests!, friend.id] } as UserDocument)
 
-    };
+    const functionParams = { user, friend, updateDocument } as friendsFunctionParams
 
-    const handleAcceptOrDenyActions = async (type: 'accept' | 'deny') => {
-        await updateDocument(user?.id!, { receivedFriendRequests: user?.receivedFriendRequests.filter(id => id !== friend.id)! } as UserDocument)
-        await updateDocument(friend?.id!, { sentFriendRequests: friend.sentFriendRequests.filter(id => id !== user?.id) } as UserDocument)
-
-        if (type === 'deny') return
-
-        await updateDocument(friend.id, { friends: [...friend.friends, user?.id] } as UserDocument)
-        await updateDocument(user?.id!, { friends: [...user?.friends!, friend.id] } as UserDocument)
-        await createChatRoom(user!, friend)
-    }
-
-    const handleCancelRequests = async () => {
-        await updateDocument(user?.id!, { sentFriendRequests: user?.sentFriendRequests.filter(id => id !== friend.id)! } as UserDocument)
-        await updateDocument(friend?.id!, { receivedFriendRequests: friend.receivedFriendRequests.filter(id => id !== user?.id) } as UserDocument)
-    }
 
     return (
         <>
@@ -69,26 +57,50 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                 <>
                     <img
                         onClick={() =>
-                            !response.isPending ? handleAcceptOrDenyActions('accept') : null}
+                            !response.isPending ? handleAcceptOrDenyRequests('accept', functionParams) : null}
                         className="button" src={AcceptRequest} alt='accept request icon' />
                     <img
-                        onClick={() => !response.isPending ? handleAcceptOrDenyActions('deny') : null}
+                        onClick={() => !response.isPending ? handleAcceptOrDenyRequests('deny', functionParams) : null}
                         className="button" src={CloseIcon} alt='deny request icon' />
                 </> : null}
 
             {hasFriendRequestFromCurrentUser
                 ?
                 <button
-                    onClick={() => !response.isPending ? handleCancelRequests() : null}
+                    onClick={() => !response.isPending ? handleCancelRequests(functionParams) : null}
                     className={`btn ${theme}`}>{!response.isPending ? 'Cancel Request' : "Loading..."}
                 </button> : null}
 
             {notAFriendOfCurrentUser && user?.id !== friend.id
                 ?
                 <button disabled={response.isPending}
-                    onClick={() => handleAddFriend()}
+                    onClick={() => handleAddFriend(functionParams)}
                     className={`btn ${theme}`}>{response.isPending ? 'Loading...' : `Add Friend`}
                 </button> : null}
         </>
     )
+}
+
+async function handleAddFriend({ user, friend, updateDocument }: friendsFunctionParams) {
+
+    await updateDocument(friend.id, { receivedFriendRequests: [...friend.receivedFriendRequests, user?.id] } as UserDocument)
+    await updateDocument(user?.id!, { sentFriendRequests: [...user?.sentFriendRequests!, friend.id] } as UserDocument)
+
+};
+
+async function handleAcceptOrDenyRequests(type: 'accept' | 'deny', { user, friend, updateDocument }: friendsFunctionParams) {
+
+    await updateDocument(user?.id!, { receivedFriendRequests: user?.receivedFriendRequests.filter(id => id !== friend.id)! } as UserDocument)
+    await updateDocument(friend?.id!, { sentFriendRequests: friend.sentFriendRequests.filter(id => id !== user?.id) } as UserDocument)
+
+    if (type === 'deny') return
+
+    await updateDocument(friend.id, { friends: [...friend.friends, user?.id] } as UserDocument)
+    await updateDocument(user?.id!, { friends: [...user?.friends!, friend.id] } as UserDocument)
+    await createChatRoom(user!, friend)
+}
+
+async function handleCancelRequests({ user, friend, updateDocument }: friendsFunctionParams) {
+    await updateDocument(user?.id!, { sentFriendRequests: user?.sentFriendRequests.filter(id => id !== friend.id)! } as UserDocument)
+    await updateDocument(friend?.id!, { receivedFriendRequests: friend.receivedFriendRequests.filter(id => id !== user?.id) } as UserDocument)
 }

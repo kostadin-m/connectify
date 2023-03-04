@@ -10,7 +10,7 @@ import { useAuthContext, useThemeContext, useFirestore } from "@hooks"
 import { AcceptRequest, CloseIcon, FriendsIcon, RemoveFriends } from '@assets'
 
 //components
-import { FriendsActionModal } from "@features/ui"
+import { Button, FriendsActionModal } from "@features/ui"
 import { acceptOrDenyRequest, addFriend, cancelRequest } from "@features/friends"
 
 interface UserActionButtonProps {
@@ -41,6 +41,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                     onMouseOut={(e: React.SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = FriendsIcon}
                     onClick={() => setShowFriendsActionModal(true)} />
                 : null}
+
             {hasRecievedFriendRequestFromOtherUser
                 ?
                 <>
@@ -55,17 +56,21 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
 
             {hasFriendRequestFromCurrentUser
                 ?
-                <button
-                    onClick={() => !response.isPending ? cancelRequest(functionParams) : null}
-                    className={`btn ${theme}`}>{!response.isPending ? 'Cancel Request' : "Loading..."}
-                </button> : null}
+                <Button
+                    disabled={response.isPending}
+                    onClick={() => cancelRequest(functionParams)}
+                    text={!response.isPending ? 'Cancel Request' : "Loading..."}
+                    theme={theme} />
+                : null}
 
             {notAFriendOfCurrentUser && user?.id !== friend.id
                 ?
-                <button disabled={response.isPending}
+                <Button
+                    disabled={response.isPending}
                     onClick={() => addFriend(functionParams)}
-                    className={`btn ${theme}`}>{response.isPending ? 'Loading...' : `Add Friend`}
-                </button> : null}
+                    text={!response.isPending ? 'Add friend' : "Loading..."}
+                    theme={theme} />
+                : null}
         </>
     )
 }

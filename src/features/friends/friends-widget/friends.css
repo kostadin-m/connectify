@@ -1,7 +1,7 @@
 .friend>a {
     position: absolute;
     min-height: 60px;
-    width: 20vw;
+    width: inherit;
     text-decoration: none;
 }
 

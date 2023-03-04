@@ -1,0 +1,70 @@
+@keyframes changeOpacity {
+    from {
+        opacity: 0;
+        filter: blur(13px);
+        transform: translateX(-5%);
+    }
+
+    to {
+        filter: blur(0);
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.friends {
+    overflow-y: hidden;
+    text-align: left;
+    animation-name: changeOpacity;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    position: fixed;
+    margin-top: 240px;
+    border-radius: 15px;
+    width: 400px;
+    min-height: 320px;
+    max-height: 320px;
+    transition: all 0.4s ease;
+}
+
+.friends.dark {
+    background-color: rgb(24 24 24)
+}
+
+.friends.light {
+    background-color: white;
+}
+
+.friends>h2 {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.dark>h2 {
+    color: white
+}
+
+@media (max-width:800px) {
+    .friends {
+        margin-bottom: 10px;
+        margin-left: 5px;
+        margin-top: 0px;
+        width: 97vw;
+        position: relative;
+    }
+}
+
+@media (800px <=width <=1200px) {
+    .friends {
+        width: 36vw;
+        margin-top: 230px;
+    }
+}
+
+@media (1250px <=width <=1400px) {
+    .friend>a {
+        width: 28vw;
+    }
+}

@@ -7,21 +7,21 @@ import { UserDocument } from '@types'
 import { UserList } from '@features/user'
 
 //styles
-import './friends.css'
+import styles from './friends.module.css'
 
 import { memo } from 'react'
 
 interface FriendsProps {
     friends: UserDocument[]
-    isPending: boolean
-    error: string | null
+    isPending?: boolean
+    error?: string | null
 }
 
 function Friends({ friends, isPending, error }: FriendsProps) {
     const { theme } = useThemeContext()
 
     return (
-        <div className={`friends ${theme}`}>
+        <div className={`${styles.friends} ${styles[theme]}`}>
             <h2>Friend List</h2>
             {friends.length > 0 && <UserList users={friends} />}
             {error && <p className='error'>{error}</p>}

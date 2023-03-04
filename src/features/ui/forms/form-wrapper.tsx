@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './forms.module.css'
 
 interface IFormWrapperProps {
     children: React.ReactNode
@@ -8,7 +9,7 @@ interface IFormWrapperProps {
 
 export default function FormWrapper({ children, title, theme }: IFormWrapperProps) {
     return (
-        <div className={`form-box ${theme}`}>
+        <div className={`${styles.formBox} ${styles[theme]}`}>
             <h2>{title}</h2>
             {children}
         </div>

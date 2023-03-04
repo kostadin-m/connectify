@@ -42,13 +42,15 @@ export default function UserWidget({ user }: UserWidgetProps) {
                     <h3>{user?.displayName}</h3>
                     <p className={styles.friends}>{user?.friends?.length} friends</p>
                 </div>
-                {currentUser?.id !== user.id && < UserActionButton friend={user} />}
+                {currentUser?.id !== user.id && <div className={`${styles.buttons} ${styles[theme]}`}>
+                    <UserActionButton friend={user} />
+                </div>}
             </div>
             <hr className={styles.hr} />
             <div className={`${styles.stats} ${styles[theme]}`}>
                 <div className={`${styles.stat} ${styles[theme]}`}>
                     <img src={LocationIcon} alt='location icon' />
-                    <p>{user.location.length > 0 ? user.location : 'Not specified'}</p>
+                    <p>{user.location?.length > 0 ? user.location : 'Not specified'}</p>
                 </div>
                 <div className={`${styles.stat} ${styles[theme]}`}>
                     <img src={LikesIcon} alt='location icon' />

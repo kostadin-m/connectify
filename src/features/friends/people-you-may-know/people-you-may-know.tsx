@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from 'react'
 import { documentId } from 'firebase/firestore'
 
 //custom hooks
-import { useAuthContext, useCollection, useThemeContext } from '@hooks'
+import { useAuthContext, useCollection, useIsMobile, useThemeContext } from '@hooks'
 
 //components
 import { UserList } from '@features/user'
@@ -20,6 +20,7 @@ function PeopleYouMayKnow() {
 
   const { user } = useAuthContext()
   const { theme } = useThemeContext()
+  const [isMobile] = useIsMobile(1250)
 
   const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), '!=', user?.id!])
 
@@ -48,7 +49,7 @@ function PeopleYouMayKnow() {
   return (
     <div className={`box ${theme}`}>
       <h2>People you may know</h2>
-      {usersWithMutualFriends.length > 0 && <UserList users={usersWithMutualFriends} />}
+      {usersWithMutualFriends.length > 0 && <UserList listSideways={isMobile} users={usersWithMutualFriends} />}
       {usersWithMutualFriends.length === 0 && <h4 className='error'>No people with mutual friends!</h4>}
     </div>
   )

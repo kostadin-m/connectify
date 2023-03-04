@@ -57,7 +57,11 @@ export default function EditProfile() {
                 {error && <p>{error}</p>}
                 {isPending && <div className="loader"></div>}
 
-                <button className='form-btn'>{isPending ? 'Loading...' : 'Edit Profile'}</button>
+                <button
+                    disabled={isPending}
+                    className={`form-btn ${theme}`}>
+                    {isPending ? 'Loading...' : 'Edit Profile'}
+                </button>
             </form>
         </FormWrapper>
     )

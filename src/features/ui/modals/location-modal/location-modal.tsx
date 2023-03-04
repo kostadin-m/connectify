@@ -2,7 +2,6 @@
 import ModalWrapper from '../modal-wrapper'
 
 //icons
-import { CloseIcon } from '@assets'
 import LocationSearch from './location-search'
 import { useAuthContext } from '@hooks'
 
@@ -23,10 +22,8 @@ export default function LocationModal({ setLocation, setShowLocationModal, theme
     }
 
     return (
-        <ModalWrapper title={`Where are you currently at, ${user?.displayName}?`} theme={theme}>
+        <ModalWrapper title={`Where are you currently at, ${user?.displayName}?`} theme={theme} setViewModal={setShowLocationModal}>
             <LocationSearch theme={theme} handleLocationSelect={handleLocationSelect} />
-            <img className={`close-modal ${theme}`} onClick={() => setShowLocationModal(false)}
-                src={CloseIcon} alt='closeIcon' />
         </ModalWrapper>
 
     )

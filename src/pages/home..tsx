@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { documentId } from 'firebase/firestore'
+import { useState } from 'react'
+
 
 //types
 import { UserDocument } from '@types'
@@ -11,26 +11,22 @@ import { useIsMobile, useAuthContext, useCollection } from '@hooks'
 import { PostForm, Feed } from '@features/posts'
 import { UserWidget } from '@features/user'
 import { Friends, PeopleYouMayKnow } from '@features/friends'
-
-
+import { getFriends } from '@features/friends/utils/get-friends'
 
 export default function Home() {
     const [isMobile] = useIsMobile(1250)
     const { user } = useAuthContext()
-    const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
+    const [friends, setFriends] = useState<UserDocument[]>([])
 
-    const friendsRef = useRef(friends)
+    const friendsIds: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
 
-    if (friends.length !== friendsRef.current.length) friendsRef.current = friends
-
-
-    const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), 'in', friendsRef.current])
+    getFriends(friendsIds, setFriends)
 
     return (
         <div className="page">
             <div className='page-item'>
                 <UserWidget user={user!} />
-                {document && <Friends isPending={isPending} friends={document} error={error} />}
+                <Friends friends={friends} />
 
             </div>
             <div className='page-item'>

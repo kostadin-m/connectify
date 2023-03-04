@@ -5,7 +5,7 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import { LocationIcon } from '@assets'
 
 //styles
-import styles from '../modals.module.css'
+import styles from './location-modal.module.css'
 
 interface Props {
     handleLocationSelect: (location: string) => void

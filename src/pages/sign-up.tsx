@@ -52,7 +52,11 @@ export default function SignUp() {
 
                 {error && <p className='error'>{error}</p>}
                 {isPending && <div className='loader'></div>}
-                <button className='form-btn'>{isPending ? 'Loading...' : 'Sign Up'}</button>
+                <button
+                    disabled={isPending}
+                    className={`form-btn ${theme}`}>
+                    {isPending ? 'Loading...' : 'Sign Up'}
+                </button>
             </form>
         </FormWrapper>
     )

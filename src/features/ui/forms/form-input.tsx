@@ -1,6 +1,8 @@
 import React from "react"
 import { memo } from "react"
 
+import styles from './forms.module.css'
+
 //custom hooks
 import { useThemeContext } from "@hooks"
 
@@ -18,7 +20,7 @@ interface Props {
 function Input({ value, setValue, label, type, optional = false }: Props) {
     const { theme } = useThemeContext()
     return (
-        <div className={`input ${theme}`}>
+        <div className={`${styles.input} ${styles[theme]}`}>
             <label>{label}
                 <input
                     required={optional ? false : true}

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useThemeContext, useLogin } from '@hooks'
 
 //components
-import { FormInput, FormWrapper } from "@features/ui"
+import { Button, FormInput, FormWrapper } from "@features/ui"
 
 
 export default function Login() {
@@ -26,7 +26,11 @@ export default function Login() {
                 <FormInput value={password} setValue={setPassword} label='Password' type='password' />
                 {error && <p className="error">{error}</p>}
                 {isPending && <div className="loader"></div>}
-                <button className='form-btn form-btn1'>{isPending ? 'Loading...' : 'Login'}</button>
+                <button
+                    disabled={isPending}
+                    className={`form-btn ${theme}`}>
+                    {isPending ? 'Loading...' : 'Login'}
+                </button>
             </form>
         </FormWrapper>
     )

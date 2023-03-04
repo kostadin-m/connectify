@@ -92,7 +92,11 @@ function PostForm() {
                             </div>
                             {location && <img style={{ position: 'relative' }} onClick={() => setLocation('')} className={styles.remove} src={CloseIcon} alt='close icon' />}
                         </div>
-                        <Button disabled={pending} theme={theme} text={pending ? 'Loading...' : `Share a post`} onClick={() => handlePostSubmit()} />
+                        <Button
+                            disabled={pending}
+                            theme={theme}
+                            text={pending ? 'Loading...' : `Share a post`}
+                            onClick={() => handlePostSubmit()} />
                     </div>
                 </div>
             </div>

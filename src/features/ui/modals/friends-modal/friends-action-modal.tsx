@@ -1,9 +1,6 @@
 // types
 import { UserDocument } from "@types";
 
-//icons
-import { CloseIcon } from "@assets";
-
 //custom hooks
 import { useAuthContext, useFirestore } from "@hooks";
 
@@ -41,7 +38,10 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
     }
 
     return (
-        <ModalWrapper title={`Are you sure you want to remove ${friend.displayName} from your friends list?`} theme={theme}>
+        <ModalWrapper title={`Are you sure you want to remove ${friend.displayName} from your friends list?`}
+            theme={theme}
+            setViewModal={setActionModal}>
+
             {response.isPending && <div className='spinner'></div>}
             <p className={`${styles.warning} ${styles[theme]}`}>
                 If you remove your friend you can add them again!
@@ -52,12 +52,6 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
 
                 <Button disabled={false} text="No" theme={theme} onClick={() => closeModal()} />
             </div>
-            <img
-                className={`close-modal ${theme}`}
-                onClick={closeModal}
-                src={CloseIcon}
-                alt="closeIcon"
-            />
         </ModalWrapper>
     );
 }

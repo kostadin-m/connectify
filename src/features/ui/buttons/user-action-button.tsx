@@ -55,7 +55,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
     }
 
     return (
-        <div className={`buttons ${theme}`}>
+        <>
             {showFriendsActionModal && <FriendsActionModal setActionModal={setShowFriendsActionModal} theme={theme} friend={friend} />}
 
             {isFriend ?
@@ -89,6 +89,6 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
                     onClick={() => handleAddFriend()}
                     className={`btn ${theme}`}>{response.isPending ? 'Loading...' : `Add Friend`}
                 </button> : null}
-        </div>
+        </>
     )
 }

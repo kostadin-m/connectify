@@ -1,5 +1,7 @@
 import { memo, Dispatch, SetStateAction } from "react";
 
+import styles from './forms.module.css'
+
 
 interface Props {
     value: string
@@ -20,7 +22,7 @@ function TextArea({ value, setValue, placeholder, theme }: Props) {
             onInput={autoResize}
             value={value}
             placeholder={placeholder}
-            className={`textarea ${theme}`}
+            className={`${styles.textarea} ${styles[theme]}`}
             onChange={(e) => setValue(e.target.value)}
         />
     )

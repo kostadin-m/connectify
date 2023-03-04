@@ -1,4 +1,25 @@
-/*Post Box */
+@keyframes slideFromBelow {
+    from {
+        filter: blur(13px);
+        opacity: 0;
+        transform: translateY(1%);
+    }
+
+    to {
+        filter: blur(0);
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+.feed {
+    animation-name: slideFromBelow;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 @keyframes changeOpacity {
     from {
         filter: blur(13px);

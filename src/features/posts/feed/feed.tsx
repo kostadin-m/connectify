@@ -6,6 +6,9 @@ import { useCollection } from '@hooks'
 //types
 import { PostDocument } from '@types'
 
+//styles
+import styles from './post.module.css'
+
 //components
 import Post from './post'
 
@@ -20,7 +23,7 @@ function Feed({ id }: Props) {
     if (isPending) return (<div data-testid='loader' className='loader'></div>)
 
     return (
-        <div className='feed'>
+        <div className={styles.feed}>
             {error && <p className='error'>{error}</p>}
             {posts && posts.length === 0 ?
                 <h1>No posts here!</h1> :

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 
 //components
@@ -13,9 +13,8 @@ import { useDocument } from "@hooks"
 //types
 import { UserDocument } from "@types"
 
-//firebase
-import { collection, documentId, onSnapshot, query, where } from "firebase/firestore"
-import { db } from "../firebase/config"
+//utils
+import { getFriends } from "@features/friends/utils/get-friends"
 
 
 export default function ProfilePage() {
@@ -23,19 +22,7 @@ export default function ProfilePage() {
     const { document: user, error, isPending } = useDocument<UserDocument>('users', id!)
     const [friends, setFriends] = useState<UserDocument[]>([])
 
-    useEffect(() => {
-        if (!user || user.friends.length <= 0) return
-        const ref = query(collection(db, 'users'), where(documentId(), 'in', user?.friends))
-        const unsub = onSnapshot(ref, (snapshot) => {
-            if (!snapshot) return
-
-            const result = [] as UserDocument[]
-            snapshot.docs.forEach((doc) => result.push({ ...doc.data(), id: doc.id } as UserDocument))
-
-            setFriends(result)
-        })
-        return () => unsub()
-    }, [user])
+    getFriends(user?.friends!, setFriends)
 
     return (
         <div className="page">

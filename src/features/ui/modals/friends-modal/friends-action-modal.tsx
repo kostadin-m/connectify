@@ -12,6 +12,7 @@ import ModalWrapper from "../modal-wrapper";
 
 //styles
 import styles from "./friends-action-modal.module.css";
+import { removeFriend } from "@features/friends";
 
 interface Props {
     setActionModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -25,14 +26,12 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
 
     const closeModal = () => setActionModal(false);
 
-    const removeFriend = async () => {
-        const currentUserUpdatedFriendList = user?.friends.filter(userID => userID !== friend.id)
-        const friendUpdatedFriendList = friend.friends.filter(userID => userID !== user?.id)
+    const submit = async () => {
+        await removeFriend({ user, friend, updateDocument })
 
-        await updateDocument(friend.id, { friends: friendUpdatedFriendList } as UserDocument)
-        await updateDocument(user?.id!, { friends: currentUserUpdatedFriendList } as UserDocument)
-
+        if (response.error) return
         closeModal()
+
     }
 
     return (
@@ -46,7 +45,7 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
             </p>
             <div className={styles.buttonsContainer}>
                 <Button text={response.isPending ? 'Loading...' : 'Remove friend'}
-                    disabled={response.isPending} theme={theme} onClick={() => removeFriend()} />
+                    disabled={response.isPending} theme={theme} onClick={() => submit()} />
 
                 <Button disabled={false} text="No" theme={theme} onClick={() => closeModal()} />
             </div>

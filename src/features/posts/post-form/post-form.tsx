@@ -52,8 +52,9 @@ function PostForm() {
         await addDocument(postObject)
 
 
-        if (response.error) return
         setPending(false)
+        if (response.error) return
+
         setLocation('')
         setImage(null)
         setText('')

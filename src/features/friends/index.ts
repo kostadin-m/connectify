@@ -1,6 +1,5 @@
-import Friends from "@features/friends/friends-widget/friends";
-import NavFriends from "@features/friends/nav-friends/nav-friends";
-import PeopleYouMayKnow from "@features/friends/people-you-may-know/people-you-may-know";
-import { cancelRequest, acceptOrDenyRequest, addFriend, removeFriend } from "@features/friends/utils/handle-friends-action";
+export { default as Friends } from "@features/friends/friends-widget/friends";
+export { default as NavFriends } from "@features/friends/nav-friends/nav-friends";
+export { default as PeopleYouMayKnow } from "@features/friends/people-you-may-know/people-you-may-know";
+export { cancelRequest, acceptOrDenyRequest, addFriend, removeFriend } from "@features/friends/services/friends-service";
 
-export { Friends, NavFriends, PeopleYouMayKnow, acceptOrDenyRequest, addFriend, cancelRequest, removeFriend, }

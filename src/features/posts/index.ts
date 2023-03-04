@@ -1,8 +1,7 @@
-import Post from "@features/posts/feed/post";
-import Feed from "@features/posts/feed/feed";
-import PostForm from "@features/posts/post-form/post-form";
-import Comments from "@features/posts/comments/comments";
-import CommentContent from "@features/posts/comments/comment-content";
-import { formatDate } from "@features/posts/utils/format-date";
+export { default as Post } from "@features/posts/feed/post";
+export { default as Feed } from "@features/posts/feed/feed";
+export { default as PostForm } from "@features/posts/post-form/post-form";
+export { default as Comments } from "@features/posts/comments/comments";
+export { default as CommentContent } from "@features/posts/comments/comment-content";
+export { formatDate } from "@features/posts/utils/format-date";
 
-export { CommentContent, Comments, Feed, Post, PostForm, formatDate }

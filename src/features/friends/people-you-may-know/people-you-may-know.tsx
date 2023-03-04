@@ -37,12 +37,11 @@ function PeopleYouMayKnow() {
   useEffect(() => {
     if (!document) return
 
-    const filteredDocument = document.filter(userDoc =>
+    setUsersWithMutualFriends(document.filter(userDoc =>
       notFriendsOfCurrentUser(userDoc.friends) &&
       hasMutualFriends(userDoc.friends) &&
       areNotInRequests(userDoc.id))
-
-    setUsersWithMutualFriends(filteredDocument.map((user) => user.id))
+      .map(user => user.id))
   }, [document])
 
   if (isPending) (<div className="loader"></div>)

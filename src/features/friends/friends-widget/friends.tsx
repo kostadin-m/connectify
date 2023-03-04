@@ -1,8 +1,6 @@
 //custom hooks
 import { useThemeContext } from "@hooks"
 
-//types
-import { UserDocument } from '@types'
 //components
 import { UserList } from '@features/user'
 

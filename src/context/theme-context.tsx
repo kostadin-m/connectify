@@ -3,7 +3,6 @@ import { createContext, useReducer } from "react";
 //types
 import { IContextProviderProps } from "@types";
 
-
 interface IThemeState {
     theme: string
 }
@@ -13,14 +12,10 @@ interface IThemeActions {
     payload: 'light' | 'dark'
 }
 
-
 interface IThemeContext {
     theme: string
     toggleTheme: () => void
 }
-
-
-export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
 
 export function themeReducer(state: IThemeState, action: IThemeActions) {
     switch (action.type) {
@@ -30,6 +25,7 @@ export function themeReducer(state: IThemeState, action: IThemeActions) {
     }
 }
 
+export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
 export const ThemeContextProvider = ({ children }: IContextProviderProps) => {
     if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'light')
     const [state, dispatch] = useReducer(themeReducer, { theme: localStorage.getItem('theme')! })

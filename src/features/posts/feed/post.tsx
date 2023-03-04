@@ -46,7 +46,7 @@ export default function Post({ post }: PostProps) {
             { likes: [...post.likes, user?.id] } as PostDocument
         await updateDocument(post.id, updatedLikes)
 
-        setLikedByCurrentUser(true)
+        if (!response.error) setLikedByCurrentUser(true)
     }
 
     return (

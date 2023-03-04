@@ -1,4 +1,3 @@
-
 //custom hooks
 import { useAuthContext } from "@hooks"
 
@@ -20,6 +19,7 @@ export default function NavFriends({ friendsClass }: NavFriendsProps) {
 
     return (
         <div className={`nav-friends ${friendsClass}`}>
+            <h2>Friend List</h2>
             {friendsIds.length > 0 ? <UserList userIDS={friendsIds} /> : <h4 className="error">No Friends</h4>}
         </div>
     )

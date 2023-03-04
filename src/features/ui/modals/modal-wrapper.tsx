@@ -12,13 +12,10 @@ interface Props {
 }
 
 export default function ModalWrapper({ children, theme, title, setViewModal }: Props) {
-
   useEffect(() => {
     document.body.classList.add('active-modal')
 
-    return () => {
-      document.body.classList.remove('active-modal')
-    }
+    return () => document.body.classList.remove('active-modal')
   }, [])
 
   return ReactDOM.createPortal(

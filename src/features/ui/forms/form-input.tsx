@@ -6,8 +6,6 @@ import styles from './forms.module.css'
 //custom hooks
 import { useThemeContext } from "@hooks"
 
-
-
 interface Props {
     value: string
     setValue: React.Dispatch<React.SetStateAction<string>>

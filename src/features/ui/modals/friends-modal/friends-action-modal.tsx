@@ -31,7 +31,6 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
 
         if (response.error) return
         closeModal()
-
     }
 
     return (

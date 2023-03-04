@@ -34,8 +34,7 @@ function Comments({ theme, classname, post }: Props) {
         const updatedComments = { comments: [...post.comments, commentsObject] } as PostDocument
 
         await updateDocument(post.id, updatedComments)
-
-        setComment('')
+        if (!response.error) setComment('')
     }
 
     return (

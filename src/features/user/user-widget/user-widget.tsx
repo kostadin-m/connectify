@@ -20,10 +20,9 @@ interface UserWidgetProps {
 }
 
 export default function UserWidget({ user }: UserWidgetProps) {
-    const { document, error, isPending } = useCollection<PostDocument>('posts', ['creatorID', '==', user.id])
     const [totalLikes, setTotalLikes] = useState(0)
 
-
+    const { document, error, isPending } = useCollection<PostDocument>('posts', ['creatorID', '==', user.id])
     const { theme } = useThemeContext()
     const { user: currentUser } = useAuthContext()
 
@@ -33,6 +32,8 @@ export default function UserWidget({ user }: UserWidgetProps) {
 
         document.forEach(post => setTotalLikes((prevLikes) => prevLikes + post.likes.length))
     }, [document])
+
+    if (isPending) return (<div className='loader'></div>)
 
     return (
         <div className={`${styles.widgetBox} ${styles[theme]}`}>

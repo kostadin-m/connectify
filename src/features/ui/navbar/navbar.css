@@ -214,6 +214,14 @@
     background-color: rgb(24 24 24) !important;
 }
 
+.nav-friends>h2 {
+    margin-top: 5px;
+}
+
+.dark>.nav-friends>h2 {
+    color: white;
+}
+
 @keyframes showElement {
     from {
         opacity: 0;

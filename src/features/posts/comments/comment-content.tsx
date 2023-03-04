@@ -13,7 +13,6 @@ interface CommentContentProps {
 }
 
 function CommentContent({ comment, theme }: CommentContentProps) {
-
     const { document, error, isPending } = useDocument<UserObject>('users', comment.creatorID)
 
     return (

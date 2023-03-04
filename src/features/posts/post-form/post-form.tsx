@@ -51,12 +51,12 @@ function PostForm() {
 
         await addDocument(postObject)
 
-        if (!response.error) {
-            setLocation('')
-            setImage(null)
-            setText('')
-        }
+
+        if (response.error) return
         setPending(false)
+        setLocation('')
+        setImage(null)
+        setText('')
     }
 
     return (

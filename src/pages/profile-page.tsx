@@ -24,20 +24,18 @@ export default function ProfilePage() {
     const [friends, setFriends] = useState<UserDocument[]>([])
 
     useEffect(() => {
-        if (user && user.friends.length > 0) {
-            const ref = query(collection(db, 'users'), where(documentId(), 'in', user?.friends))
-            onSnapshot(ref, (snapshot) => {
-                if (snapshot) {
-                    const result = [] as UserDocument[]
-                    snapshot.docs.forEach((doc) => {
-                        result.push({ ...doc.data(), id: doc.id } as UserDocument)
-                    })
-                    setFriends(result)
-                }
-            })
-        }
-    }, [user])
+        if (!user || user.friends.length <= 0) return
+        const ref = query(collection(db, 'users'), where(documentId(), 'in', user?.friends))
+        const unsub = onSnapshot(ref, (snapshot) => {
+            if (!snapshot) return
 
+            const result = [] as UserDocument[]
+            snapshot.docs.forEach((doc) => result.push({ ...doc.data(), id: doc.id } as UserDocument))
+
+            setFriends(result)
+        })
+        return () => unsub()
+    }, [user])
 
     return (
         <div className="page">

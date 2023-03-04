@@ -23,14 +23,13 @@ export default function UserSearch() {
 
     useEffect(() => {
         setFoundUsers([])
-        if (searchWrapperClass === 'hidden') {
-            setSearchedUser('')
-        }
+        if (searchWrapperClass === 'hidden') setSearchedUser('')
 
-        if (searchedUser.length > 0 && document && isComponentVisible) {
-            const filteredSearch = document.filter(user => user.displayName.toLowerCase().startsWith(searchedUser.toLowerCase()))
-            setFoundUsers(filteredSearch.map(user => user))
-        }
+        if (searchedUser.length === 0 || !document || !isComponentVisible) return
+
+        const filteredSearch = document.filter(user => user.displayName.toLowerCase().startsWith(searchedUser.toLowerCase()))
+        setFoundUsers(filteredSearch.map(user => user))
+
     }, [searchedUser, isComponentVisible, document])
 
     const isOpened = searchWrapperClass === 'show' && isComponentVisible

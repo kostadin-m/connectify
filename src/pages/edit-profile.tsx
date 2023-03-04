@@ -31,6 +31,8 @@ export default function EditProfile() {
     const submit = async (e: React.FormEvent) => {
         e.preventDefault()
         await editUser(doc)
+
+        if (!error) navigate('/')
     }
 
     return (

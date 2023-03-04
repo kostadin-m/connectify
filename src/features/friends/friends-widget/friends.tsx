@@ -23,10 +23,9 @@ function Friends({ friends, isPending, error }: FriendsProps) {
     return (
         <div className={`${styles.friends} ${styles[theme]}`}>
             <h2>Friend List</h2>
-            {friends.length > 0 && <UserList users={friends} />}
+            {friends.length > 0 ? <UserList users={friends} /> : <h4 className='error'>No Friends</h4>}
             {error && <p className='error'>{error}</p>}
             {isPending && <h4>Loading Friends...</h4>}
-            {friends.length === 0 && <h4 className='error'>No Friends</h4>}
         </div>
     )
 }

@@ -8,7 +8,8 @@ import { CSSClassesState, UserDocument } from "@types"
 
 //components
 import { UserList } from "@features/user"
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import { getFriends } from "@features/friends/utils/get-friends"
 
 interface NavFriendsProps {
     friendsClass: CSSClassesState
@@ -17,23 +18,16 @@ interface NavFriendsProps {
 export default function NavFriends({ friendsClass }: NavFriendsProps) {
     const { user } = useAuthContext()
 
-    const friends: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
-    const friendsRef = useRef(friends)
+    const friendsIds: string[] = [...user?.sentFriendRequests!, ...user?.receivedFriendRequests!, ...user?.friends!]
 
-    if (friends.length !== friendsRef.current.length) {
-        friendsRef.current = friends
-    }
+    const [friends, setFriends] = useState<UserDocument[]>([])
 
-    const { document, isPending, error } = useCollection<UserDocument>('users', [documentId(), 'in', friendsRef.current])
+    getFriends(friendsIds, setFriends)
 
     return (
-        <>
-            <div className={`nav-friends ${friendsClass}`}>
-                {document && document.length > 0 ? <UserList users={document} /> : <h4 className="error">No Friends</h4>}
-                {isPending && <p>Loading...</p>}
-                {error && <p className='error'>{error}</p>}
-            </div>
-        </>
+        <div className={`nav-friends ${friendsClass}`}>
+            {friends.length > 0 ? <UserList users={friends} /> : <h4 className="error">No Friends</h4>}
+        </div>
     )
 
 }

@@ -49,8 +49,9 @@ function PeopleYouMayKnow() {
   return (
     <div className={`box ${theme}`}>
       <h2>People you may know</h2>
-      {usersWithMutualFriends.length > 0 && <UserList listSideways={isMobile} users={usersWithMutualFriends} />}
-      {usersWithMutualFriends.length === 0 && <h4 className='error'>No people with mutual friends!</h4>}
+      {usersWithMutualFriends.length > 0 ?
+        <UserList listSideways={isMobile} users={usersWithMutualFriends} /> :
+        <h4 className='error'>No people with mutual friends!</h4>}
     </div>
   )
 }

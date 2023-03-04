@@ -27,7 +27,6 @@ export default function Home() {
             <div className='page-item'>
                 <UserWidget user={user!} />
                 <Friends friends={friends} />
-
             </div>
             <div className='page-item'>
                 <PostForm />

@@ -13,6 +13,7 @@ import { UserDocument } from "@types"
 
 export default function ProfilePage() {
     const { id } = useParams()
+
     const { document: user, error, isPending } = useDocument<UserDocument>('users', id!)
 
     return (

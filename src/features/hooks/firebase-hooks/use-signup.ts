@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react"
 
 //firebase
-import { db } from "../../firebase/config"
+import { db, auth } from "@firebase-config"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { setDoc, doc } from "firebase/firestore"
-import { auth } from '../../firebase/config'
 
+import { UserDocument } from "@types"
 
 //custom hooks and utils
 import { checkError } from "../utils/check-error"
-import { UserDocument } from "../../types"
-import { uploadImage } from "@features/ui/images"
-import { createChatEngineUser } from "@features/chats"
+import { uploadImage } from "@features/services/image-services"
+import { createChatEngineUser } from "@features/services/chat-engine-services"
 
 
 const addUserToDataBase = async (user: UserDocument) => {

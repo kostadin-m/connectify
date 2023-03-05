@@ -5,15 +5,15 @@ import { LocationModal, ImagePreview, ImageInput, TextArea, Button } from '@feat
 
 
 //icons
-import { CloseIcon, LocationIcon, AddImage } from '@assets'
+import { CloseIcon, LocationIcon, AddImage } from '@features/assets'
 
 //styles
 import styles from './post-form.module.css'
 
 //custom hooks
-import { useThemeContext, useAuthContext, useFirestore } from '@hooks'
+import { useThemeContext, useAuthContext, useFirestore } from '@features/hooks'
 
-import { uploadImage } from '@features/ui/images'
+import { uploadImage } from '@features/services/image-services'
 
 //firebase
 import { timeStamp } from '../../../firebase/config'

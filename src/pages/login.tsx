@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 //custom hooks
-import { useThemeContext, useLogin } from '@hooks'
+import { useThemeContext, useLogin } from '@features/hooks'
 
 //components
 import { Button, FormInput, FormWrapper } from "@features/ui"

@@ -1,6 +1,6 @@
 import { MultiChatSocket, MultiChatWindow, useMultiChatLogic } from 'react-chat-engine-advanced'
 //custom hooks
-import { useThemeContext, useAuthContext } from '@hooks'
+import { useThemeContext, useAuthContext } from '@features/hooks'
 
 //styles
 import '@features/chats/chat.css'

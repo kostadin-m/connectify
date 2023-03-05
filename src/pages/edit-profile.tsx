@@ -1,14 +1,14 @@
 import { useState } from "react"
 
 //icons
-import { ChooseImage } from '@assets'
+import { ChooseImage } from '@features/assets'
 
 //components
 import { ImagePreview, ImageInput, FormInput, FormWrapper } from '@features/ui'
 
 
 //custom hooks
-import { useThemeContext, useAuthContext, useEditUser } from "@hooks"
+import { useThemeContext, useAuthContext, useEditUser } from "@features/hooks"
 import { useNavigate } from "react-router-dom"
 
 

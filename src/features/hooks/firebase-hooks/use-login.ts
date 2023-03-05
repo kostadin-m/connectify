@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { useEffect } from "react"
-import { auth } from '../../firebase/config'
+import { auth } from '@firebase-config'
 import { checkError } from "../utils/check-error"
 
 export const useLogin = () => {

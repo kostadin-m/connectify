@@ -22,10 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "@assets": [
-        "./src/assets",
-      ],
-      "@hooks": [
-        "./src/hooks"
+        "src/features/assets",
       ],
       "@types": [
         "./src/types.ts"
@@ -35,6 +32,9 @@
       ],
       "@features": [
         "src/features",
+      ],
+      "@firebase-config": [
+        "src/firebase/config.ts"
       ]
     },
   },
@@ -42,7 +42,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src",
-    "setupTest.test.js"
+    "setupTest.test.js",
+    "src/firebase"
   ],
   "references": [
     {

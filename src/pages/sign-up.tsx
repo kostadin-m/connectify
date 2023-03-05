@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 //custom hooks
-import { useSignUp, useThemeContext } from '@hooks'
+import { useSignUp, useThemeContext } from '@features/hooks'
 
 //icons
-import { NoImage, ChooseImage } from '@assets'
+import { NoImage, ChooseImage } from '@features/assets'
 
 //components
 import { ImageInput, ImagePreview, FormInput, FormWrapper } from '@features/ui'

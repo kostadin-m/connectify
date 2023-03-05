@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from 'react'
 import { documentId } from 'firebase/firestore'
 
 //custom hooks
-import { useAuthContext, useCollection, useIsMobile, useThemeContext } from '@hooks'
+import { useAuthContext, useCollection, useIsMobile, useThemeContext } from '@features/hooks'
 
 //components
 import { UserList } from '@features/user'

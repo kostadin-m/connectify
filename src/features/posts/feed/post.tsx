@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react'
 import { formatDate } from '../utils/format-date'
 
 //custom hooks
-import { useThemeContext, useDelayToUnmount, useDocument, useAuthContext, useFirestore } from '@hooks'
+import { useThemeContext, useDelayToUnmount, useDocument, useAuthContext, useFirestore } from '@features/hooks'
 
 import { CSSClassesState, PostDocument, UserDocument } from '@types'
 
 //icons
-import { LocationIcon, LikesIcon, LikedIcon, CommentsIcon } from '@assets'
+import { LocationIcon, LikesIcon, LikedIcon, CommentsIcon } from '@features/assets'
 
 
 //components

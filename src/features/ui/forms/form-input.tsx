@@ -4,7 +4,7 @@ import { memo } from "react"
 import styles from './forms.module.css'
 
 //custom hooks
-import { useThemeContext } from "@hooks"
+import { useThemeContext } from "@features/hooks"
 
 interface Props {
     value: string

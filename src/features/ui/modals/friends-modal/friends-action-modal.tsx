@@ -2,7 +2,7 @@
 import { UserDocument } from "@types";
 
 //custom hooks
-import { useAuthContext, useFirestore } from "@hooks";
+import { useAuthContext, useFirestore } from "@features/hooks";
 
 //components
 import { Button } from "@features/ui";
@@ -12,7 +12,7 @@ import ModalWrapper from "../modal-wrapper";
 
 //styles
 import styles from "./friends-action-modal.module.css";
-import { removeFriend } from "@features/friends";
+import { removeFriend } from "@features/services/friends-services";
 
 interface Props {
     setActionModal: React.Dispatch<React.SetStateAction<boolean>>

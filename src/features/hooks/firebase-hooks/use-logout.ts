@@ -1,4 +1,4 @@
-import { auth } from "../../firebase/config";
+import { auth } from "@firebase-config";
 import { signOut } from "firebase/auth";
 import { useAuthContext } from "./use-auth-context";
 import { useEffect, useState } from "react";

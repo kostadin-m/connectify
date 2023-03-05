@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import UserActionButton from './user-action-button';
 import { UserDocument } from '@types';
-import { useAuthContext, useThemeContext, useFirestore } from '@hooks';
+import { useAuthContext, useThemeContext, useFirestore } from '@features/hooks';
 
 import axios from 'axios';
 

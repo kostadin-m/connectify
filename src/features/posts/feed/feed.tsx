@@ -1,7 +1,7 @@
 import { memo } from 'react'
 
 //hooks
-import { useCollection } from '@hooks'
+import { useCollection } from '@features/hooks'
 
 //types
 import { PostDocument } from '@types'

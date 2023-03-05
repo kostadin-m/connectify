@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
-import { AuthContextProvider } from '../../../context/auth-context'
-import { ThemeContextProvider } from '../../../context/theme-context'
+import { AuthContextProvider } from '../../context/auth-context'
+import { ThemeContextProvider } from '../../context/theme-context'
 import { UserDocument } from '../../../types'
 import UserWidget from '../user-widget/user-widget'
 import { render, screen, } from '@testing-library/react'

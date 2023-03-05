@@ -1,5 +1,5 @@
 //custom hooks
-import { useAuthContext } from "@hooks"
+import { useAuthContext } from "@features/hooks"
 
 //types
 import { CSSClassesState } from "@types"

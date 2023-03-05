@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { formatDate } from '../utils/format-date'
 
-import { useDocument } from '@hooks'
+import { useDocument } from '@features/hooks'
 import { CommentObject, UserObject } from '@types'
 
 //styles

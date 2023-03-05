@@ -7,7 +7,7 @@ import styles from './comments.module.css'
 import { PostDocument } from '@types'
 
 //custom hooks
-import { useAuthContext, useFirestore } from '@hooks'
+import { useAuthContext, useFirestore } from '@features/hooks'
 
 import { timeStamp } from '../../../firebase/config'
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 
 //icons
-import { LocationIcon } from '@assets'
+import { LocationIcon } from '@features/assets'
 
 //styles
 import styles from './location-modal.module.css'

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 
 //firebase
-import { db } from "../../firebase/config"
+import { db } from "@firebase-config"
 import { updateEmail, updateProfile } from "firebase/auth"
 import { collection, doc, updateDoc } from "firebase/firestore"
 
@@ -11,8 +11,8 @@ import { useAuthContext } from "./use-auth-context"
 
 // utils
 import { checkError } from "../utils/check-error"
-import { editChatEngineUser } from "@features/chats/utils/chat-engine-api"
-import { deletePreviousImage, uploadImage } from "@features/ui/images"
+import { editChatEngineUser } from "@features/services/chat-engine-services"
+import { deletePreviousImage, uploadImage } from "@features/services/image-services"
 import { UserDocument } from "@types"
 
 //types

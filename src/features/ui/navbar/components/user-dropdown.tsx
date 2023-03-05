@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 //custom hooks
-import { useAuthContext, useLogout, useThemeContext } from '@hooks'
+import { useAuthContext, useLogout, useThemeContext } from '@features/hooks'
 // types
 import { CSSClassesState } from '@types'
 

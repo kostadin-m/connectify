@@ -1,6 +1,6 @@
 import { SetStateAction, useRef } from "react"
 
-import { CSSClassesState } from "../../types"
+import { CSSClassesState } from "@types"
 
 export const useDelayToUnmount = (
     elementClass: CSSClassesState,

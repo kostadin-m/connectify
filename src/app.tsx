@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 //custom hooks
-import { useAuthContext, useThemeContext } from '@hooks'
+import { useAuthContext, useThemeContext } from '@features/hooks'
 
 //components
 import { Navbar } from '@features/ui'

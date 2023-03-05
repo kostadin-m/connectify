@@ -2,7 +2,7 @@ import { createContext, useEffect, useReducer } from "react";
 
 //firebase
 import { Unsubscribe, User, onAuthStateChanged } from "firebase/auth";
-import { db, auth } from "../firebase/config";
+import { db, auth } from "../../firebase/config";
 import { DocumentSnapshot, doc, onSnapshot } from "firebase/firestore";
 
 //types

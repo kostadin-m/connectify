@@ -2,56 +2,51 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 //types
-import { CSSClassesState, UserObject } from '@types'
+import { UserObject } from '@types'
 
 //icons
-import { FriendsIcon, ChatIcon } from '@assets'
+import { FriendsIcon, ChatIcon } from '@features/assets'
 
 //custom hooks
-import { useIsMobile, useComponentsVisible, useThemeContext } from '@hooks'
+import { useIsMobile, useClickedOutside, useThemeContext } from '@features/hooks'
 
 //components
 import { NavFriends } from '@features/friends'
 import UserDropDown from './user-dropdown'
 
-
-type UserNavbarProps = { theme: string, user: UserObject }
+interface UserNavbarProps {
+    theme: string
+    user: UserObject
+}
 
 export default function UserNavbar({ user }: UserNavbarProps) {
     const [isMobile] = useIsMobile(800)
     const { theme } = useThemeContext()
 
-    const [friendsClass, setFriendsClass] = useState<CSSClassesState>('hidden')
-    const {
-        ref: FriendsRef,
-        isComponentVisible: showFriends,
-        setIsComponentVisible: setShowFriends } = useComponentsVisible(false, setFriendsClass, 580)
+    const [friends, setShowFriends] = useState<boolean>(false)
+    const { ref: FriendsRef } = useClickedOutside(setShowFriends)
 
-    const [dropDownClass, setDropDownClass] = useState<CSSClassesState>('hidden')
-    const {
-        ref: DropDownRef,
-        isComponentVisible: showDropDown,
-        setIsComponentVisible: setShowDropdown } = useComponentsVisible(false, setDropDownClass, 580)
+    const [showDropDown, setShowDropDown] = useState<boolean>(false)
+    const { ref: DropDownRef } = useClickedOutside(setShowDropDown)
 
-    //Showing the Components only when they are hidden because useComponentVisible takes care of the closing
+    const dropDownClass = showDropDown ? 'show' : 'hidden'
+    const friendsClass = friends ? 'show' : 'hidden'
+
     const toggleFriends = () => {
-        if (!showFriends) return
-
+        if (friends) return
         setShowFriends(true)
-        setFriendsClass('show')
     }
     const toggleDropDown = () => {
         if (showDropDown) return
-
-        setShowDropdown(true)
-        setDropDownClass('show')
+        setShowDropDown(true)
     }
+
     return (
         <>
-            {isMobile &&
+            {isMobile ?
                 <li data-testid='user-nav' className='nav-item'>
                     <img onClick={() => toggleFriends()} src={FriendsIcon} alt='chat icon' />
-                </li>}
+                </li> : null}
             <li data-testid='user-nav'
                 className='nav-item'>
                 <Link style={{ height: '25px' }} to='/messages'>
@@ -61,11 +56,19 @@ export default function UserNavbar({ user }: UserNavbarProps) {
             <li data-testid='user-nav' className='nav-item'>
                 <div onClick={toggleDropDown} className='user-dropdown-button'>
                     <img src={user.photoURL || ''} className='profile-image' alt='navbar-profile-img' />
-                    <p style={{ transform: dropDownClass === 'show' ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</p>
+                    <p style={{ transform: dropDownClass === 'show' ? 'rotate(0deg)' : 'rotate(180deg)' }}>▼</p>
                 </div>
             </li>
-            {showDropDown && <div ref={DropDownRef}><UserDropDown dropDownClass={dropDownClass} /></div>}
-            {showFriends && <div className={theme} ref={FriendsRef}><NavFriends friendsClass={friendsClass} /></div>}
+            {showDropDown ?
+                <div ref={DropDownRef}>
+                    <UserDropDown dropDownClass={dropDownClass} />
+                </div>
+                : null}
+            {friends ?
+                <div className={theme} ref={FriendsRef}>
+                    <NavFriends friendsClass={friendsClass} />
+                </div>
+                : null}
         </>
     )
 }

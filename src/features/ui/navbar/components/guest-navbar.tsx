@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 //components
-import { SignInIcon, LoginIcon } from '@assets'
+import { SignInIcon, LoginIcon } from '@features/assets'
 
 export default function GuestNavbar() {
   return (

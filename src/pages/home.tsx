@@ -1,5 +1,5 @@
 //custom hooks
-import { useIsMobile, useAuthContext, useCollection } from '@hooks'
+import { useIsMobile, useAuthContext } from '@features/hooks'
 
 //components
 import { PostForm, Feed } from '@features/posts'

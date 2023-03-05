@@ -1,4 +1,4 @@
-import { createChatRoom } from "@features/chats"
+import { createChatRoom } from "./chat-engine-services"
 import { UserDocument, UserObject } from "@types"
 
 interface friendsFunctionParams {

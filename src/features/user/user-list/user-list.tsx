@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 
-import { useThemeContext } from "../../../hooks/view-hooks/use-theme-context";
+import { useThemeContext, useCollection } from "@features/hooks";
 import { memo } from "react";
 import UserActionButton from "../../ui/buttons/user-action-button";
 
 import styles from './user-list.module.css'
-import { useCollection } from "@hooks";
 import { documentId } from "firebase/firestore";
 import { UserDocument } from "@types";
 

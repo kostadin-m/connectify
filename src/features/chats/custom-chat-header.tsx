@@ -9,7 +9,7 @@ import {
 import { getOtherUser } from "./utils/get-other-chat-user";
 
 //custom hooks
-import { useThemeContext } from "@hooks";
+import { useThemeContext } from "@features/hooks";
 
 //types
 export interface CustomChatHeaderProps extends ChatHeaderProps {

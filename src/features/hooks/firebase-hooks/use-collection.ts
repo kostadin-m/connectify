@@ -1,7 +1,7 @@
 import { useReducer, useEffect, useRef } from "react"
-import { db } from "../../firebase/config"
+import { db } from "@firebase-config"
 import { QueryConstraint, collection, onSnapshot, orderBy, query, where } from "firebase/firestore"
-import { CollectionType } from "../../types"
+import { CollectionType } from "@types"
 
 const initialState = { document: null, error: null, isPending: false }
 

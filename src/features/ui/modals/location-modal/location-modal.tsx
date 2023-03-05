@@ -3,7 +3,7 @@ import ModalWrapper from '../modal-wrapper'
 
 //icons
 import LocationSearch from './location-search'
-import { useAuthContext } from '@hooks'
+import { useAuthContext } from '@features/hooks'
 
 interface Props {
     setLocation: React.Dispatch<React.SetStateAction<string>>

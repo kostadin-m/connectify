@@ -6,10 +6,10 @@ import UserNavbar from './components/user-navbar'
 import { UserSearch } from '@features/user'
 
 //custom hooks
-import { useThemeContext, useAuthContext } from '@hooks'
+import { useThemeContext, useAuthContext } from '@features/hooks'
 
 //icons
-import { LightModeIcon } from '@assets'
+import { LightModeIcon } from '@features/assets'
 
 //styles
 import './navbar.css'

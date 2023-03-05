@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 //types
@@ -32,20 +32,17 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const dropDownClass = showDropDown ? 'show' : 'hidden'
     const friendsClass = friends ? 'show' : 'hidden'
 
-    const toggleFriends = () => {
-        if (friends) return
-        setShowFriends(true)
-    }
-    const toggleDropDown = () => {
-        if (showDropDown) return
-        setShowDropDown(true)
+    const checkClick = (e: React.MouseEvent<HTMLElement>, toggleElement: Dispatch<SetStateAction<boolean>>) => {
+        const clickedElement = e.target
+        if (!(clickedElement instanceof HTMLAnchorElement)) return
+        setTimeout(() => toggleElement(false), 20)
     }
 
     return (
         <>
             {isMobile ?
                 <li data-testid='user-nav' className='nav-item'>
-                    <img onClick={() => toggleFriends()} src={FriendsIcon} alt='chat icon' />
+                    <img onClick={() => setShowFriends(!friends)} src={FriendsIcon} alt='chat icon' />
                 </li> : null}
             <li data-testid='user-nav'
                 className='nav-item'>
@@ -54,18 +51,18 @@ export default function UserNavbar({ user }: UserNavbarProps) {
                 </Link>
             </li>
             <li data-testid='user-nav' className='nav-item'>
-                <div onClick={toggleDropDown} className='user-dropdown-button'>
+                <div onClick={() => setShowDropDown(!showDropDown)} className='user-dropdown-button'>
                     <img src={user.photoURL || ''} className='profile-image' alt='navbar-profile-img' />
                     <p style={{ transform: dropDownClass === 'show' ? 'rotate(0deg)' : 'rotate(180deg)' }}>▼</p>
                 </div>
             </li>
             {showDropDown ?
-                <div ref={DropDownRef}>
+                <div ref={DropDownRef} onClick={(e) => checkClick(e, setShowDropDown)}>
                     <UserDropDown dropDownClass={dropDownClass} />
                 </div>
                 : null}
             {friends ?
-                <div className={theme} ref={FriendsRef}>
+                <div className={theme} ref={FriendsRef} onClick={(e) => checkClick(e, setShowFriends)}>
                     <NavFriends friendsClass={friendsClass} />
                 </div>
                 : null}

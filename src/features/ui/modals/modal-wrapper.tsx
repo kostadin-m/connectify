@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import ReactDOM from "react-dom"
 
 import styles from './modal-wrapper.module.css'
-import { CloseIcon } from "@features/assets"
+import { CloseIcon } from "@assets"
 
 interface Props {
   children: React.ReactNode

@@ -5,7 +5,7 @@ import { LocationModal, ImagePreview, ImageInput, TextArea, Button } from '@feat
 
 
 //icons
-import { CloseIcon, LocationIcon, AddImage } from '@features/assets'
+import { CloseIcon, LocationIcon, AddImage } from '@assets'
 
 //styles
 import styles from './post-form.module.css'

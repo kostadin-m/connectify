@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 //icons
-import { ChooseImage } from '@features/assets'
+import { ChooseImage } from '@assets'
 
 //components
 import { ImagePreview, ImageInput, FormInput, FormWrapper } from '@features/ui'

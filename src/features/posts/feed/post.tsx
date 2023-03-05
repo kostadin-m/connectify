@@ -10,7 +10,7 @@ import { useThemeContext, useDelayToUnmount, useDocument, useAuthContext, useFir
 import { CSSClassesState, PostDocument, UserDocument } from '@types'
 
 //icons
-import { LocationIcon, LikesIcon, LikedIcon, CommentsIcon } from '@features/assets'
+import { LocationIcon, LikesIcon, LikedIcon, CommentsIcon } from '@assets'
 
 
 //components

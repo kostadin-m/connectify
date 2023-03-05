@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useSignUp, useThemeContext } from '@features/hooks'
 
 //icons
-import { NoImage, ChooseImage } from '@features/assets'
+import { NoImage, ChooseImage } from '@assets'
 
 //components
 import { ImageInput, ImagePreview, FormInput, FormWrapper } from '@features/ui'

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { UserObject } from '@types'
 
 //icons
-import { FriendsIcon, ChatIcon } from '@features/assets'
+import { FriendsIcon, ChatIcon } from '@assets'
 
 //custom hooks
 import { useIsMobile, useClickedOutside, useThemeContext } from '@features/hooks'

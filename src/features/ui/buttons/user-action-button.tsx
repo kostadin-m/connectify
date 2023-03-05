@@ -8,7 +8,7 @@ import { useAuthContext, useThemeContext, useFirestore } from "@features/hooks"
 import { acceptOrDenyRequest, addFriend, cancelRequest } from "@features/services/friends-services"
 
 //icons
-import { AcceptRequest, CloseIcon, FriendsIcon, RemoveFriends } from '@features/assets'
+import { AcceptRequest, CloseIcon, FriendsIcon, RemoveFriends } from '@assets'
 
 //components
 import { Button, FriendsActionModal } from "@features/ui"

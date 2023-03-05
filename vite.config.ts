@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@assets': fileURLToPath(new URL('./src/features/assets', import.meta.url)),
+      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
       '@features': fileURLToPath(new URL('./src/features', import.meta.url)),
       "@firebase-config": fileURLToPath(new URL('./src/firebase/config.ts', import.meta.url))
     },

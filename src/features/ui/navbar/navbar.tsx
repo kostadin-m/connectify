@@ -9,7 +9,7 @@ import { UserSearch } from '@features/user'
 import { useThemeContext, useAuthContext } from '@features/hooks'
 
 //icons
-import { LightModeIcon } from '@features/assets'
+import { LightModeIcon } from '@assets'
 
 //styles
 import './navbar.css'

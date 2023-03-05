@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 //icons
-import { LocationIcon, LikesIcon } from '@features/assets'
+import { LocationIcon, LikesIcon } from '@assets'
 
 //custom hooks
 import { useThemeContext, useCollection, useAuthContext } from '@features/hooks'

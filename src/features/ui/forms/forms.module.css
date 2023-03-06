@@ -24,7 +24,7 @@
     background-color: rgb(40, 40, 40);
 }
 
-.forBox.light {
+.formBox.light {
     background-color: white;
 }
 
@@ -42,7 +42,6 @@
     top: 0px;
     left: 0px;
     font-size: 16px;
-    color: #fff;
     transition: all 0.5s ease-in-out;
 }
 
@@ -53,7 +52,18 @@
     width: 100%;
     padding: 8px 0 5px 0;
     font-size: 16px;
-    color: #fff;
+}
+
+.dark>.input {
+    color: white;
+}
+
+.dark>.label {
+    color: white;
+}
+
+.light>.label {
+    color: black;
 }
 
 .input:focus {

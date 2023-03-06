@@ -40,6 +40,8 @@ export default function Post({ post }: PostProps) {
 
     if (error) return <p className='error'>{error}</p>
 
+    const hasLocation = post.location.length > 0
+
     const handleLike = async () => {
         const updatedLikes = likedByCurrentUser ?
             { likes: post.likes.filter((userLikedID) => userLikedID !== user?.id) } as PostDocument :
@@ -57,10 +59,13 @@ export default function Post({ post }: PostProps) {
                         <div className={`${styles.user} ${styles[theme]}`}>
                             <img loading='lazy' className='profile-image' src={creatorData.photoURL} alt='profile-image' />
                             <div className={styles.userInfo}>
-                                <div className={styles.userNameLocation}>
+                                <div className={`${styles.userNameLocation} ${styles[theme]}`}>
                                     <Link to={`/profile/${creatorData.id}`} >{creatorData.displayName}</Link>
-                                    <img src={LocationIcon} alt='location icon' />
-                                    <p>{post.location}</p>
+                                    {hasLocation ?
+                                        <>
+                                            <img src={LocationIcon} alt='location icon' />
+                                            <p>{post.location}</p>
+                                        </> : null}
                                 </div>
                                 <div className={styles.timeAndLocation}>
                                     <p className={styles.timestamp}>{formatDate(post.createdAt)}</p>

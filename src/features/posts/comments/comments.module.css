@@ -122,8 +122,8 @@
 .inputContainer {
     position: relative;
     overflow: hidden;
-    width: 99%;
-    margin-left: 5px;
+    width: 98%;
+    margin-left: 3px;
     align-items: center;
     text-align: center;
     display: flex;

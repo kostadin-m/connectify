@@ -57,7 +57,7 @@
 /* Post Top*/
 .postTop {
     justify-content: left;
-    padding: 10px;
+    padding: 5px;
     height: 35px;
 }
 
@@ -92,12 +92,13 @@
 }
 
 .userInfo p {
-    color: lightgray;
+    color: rgb(141, 137, 137);
     font-size: 0.7em;
 }
 
+
 .timeAndLocation {
-    margin-top: 10px;
+    margin-top: 3px;
     margin-left: 5px;
 }
 
@@ -108,21 +109,23 @@
 
 .userNameLocation img {
     padding-left: 4px;
-    filter: invert(65%);
+    filter: invert(45%);
     width: 17px;
     height: 17px;
 }
 
 .userNameLocation p {
-    color: lightgray;
+    color: rgb(141, 137, 137);
 }
 
 .postText {
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 5px;
     padding-bottom: 5px;
     font-size: 0.85em;
-    padding-left: 10px;
+    padding-left: 5px;
     text-align: left;
+    overflow-wrap: break-word;
 }
 
 /*Theme Mode for Form Top */

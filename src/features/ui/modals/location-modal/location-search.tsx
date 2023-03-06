@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import PlacesAutocomplete, { PropTypes, Suggestion } from 'react-places-autocomplete';
+import React, { useState } from 'react';
+import PlacesAutocomplete, { Suggestion } from 'react-places-autocomplete';
 
 //icons
 import { LocationIcon } from '@assets'
 
 //styles
 import styles from './location-modal.module.css'
+import WithAutoComplete from '@features/ui/modals/location-modal/hocs/with-autocomplete';
 
 interface Props {
     handleLocationSelect: (location: string) => void
@@ -48,27 +49,5 @@ export default function LocationSearch({ handleLocationSelect, theme }: Props) {
                     </WithAutoComplete>)}
             </PlacesAutocomplete >
         </div>
-    )
-}
-
-interface IAutoComplete {
-    loading: boolean
-    suggestions: readonly Suggestion[]
-    adress: string
-    children: React.ReactNode
-    setLocations: React.Dispatch<React.SetStateAction<readonly Suggestion[]>>
-
-}
-
-function WithAutoComplete({ children, loading, suggestions, adress, setLocations }: IAutoComplete) {
-    useEffect(() => {
-        if (!adress) return setLocations([])
-        setLocations(suggestions)
-    }, [adress, loading])
-
-    return (
-        <>
-            {children}
-        </>
     )
 }

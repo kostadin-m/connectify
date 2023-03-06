@@ -3,21 +3,21 @@
 const fitlerList = ['ForYou', 'Friends']
 
 import styles from './post-filter.module.css'
-import { useThemeContext } from "@features/hooks"
 
 interface Props {
     currentFilter: string
     changeFilter: (filter: string) => void
+    theme: string
 }
 
-export default function PostFilter({ currentFilter, changeFilter }: Props) {
+export default function PostFilter({ currentFilter, changeFilter, theme }: Props) {
 
-    const { theme } = useThemeContext()
+
 
     return (
         <div className={`${styles.postFilter} ${styles[theme]}`}>
             {fitlerList.map((filter) => (
-                <button
+                <button key={filter}
                     className={`${styles.filterButton} ${filter === currentFilter ? styles.active : ''}`}
                     onClick={() => changeFilter(filter)}>
                     {filter}

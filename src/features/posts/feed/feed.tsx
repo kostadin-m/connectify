@@ -1,7 +1,7 @@
 import { memo, useState } from 'react'
 
 //hooks
-import { useCollection } from '@features/hooks'
+import { useCollection, useThemeContext } from '@features/hooks'
 
 //types
 import { PostDocument } from '@types'
@@ -22,20 +22,21 @@ function Feed({ id }: Props) {
     const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null, ['createdAt', 'desc'])
     const [currentFilter, setCurrentFilter] = useState<string>('ForYou')
 
-
-    if (isPending) return (<div data-testid='loader' className='loader'></div>)
+    const { theme } = useThemeContext()
 
     const isHomePage = !id
 
     const changeFitler = (newFilter: string) => setCurrentFilter(newFilter)
 
-    const filteredPosts = posts ? filterPosts(currentFilter, posts) : null
+    const filteredPosts = filterPosts(currentFilter, posts!)
+
+    if (isPending) return (<div data-testid='loader' className='loader'></div>)
 
     return (
         <div className={styles.feed}>
             {error && <p className='error'>{error}</p>}
-            {posts && isHomePage ? <PostFilter currentFilter={currentFilter} changeFilter={changeFitler} /> : null}
-            {filteredPosts && filteredPosts.length === 0 ?
+            {posts && isHomePage ? <PostFilter theme={theme} currentFilter={currentFilter} changeFilter={changeFitler} /> : null}
+            {filteredPosts.length === 0 ?
                 <h1>No posts here!</h1> :
                 filteredPosts && filteredPosts.map((post) => (<Post key={post.id} post={post} />))}
         </div>

@@ -8,8 +8,8 @@ export interface IContextProviderProps {
 
 //Image Input Props
 export interface IImageInput {
-    setImage: React.Dispatch<React.SetStateAction<File | null>>
-    setImageError: React.Dispatch<React.SetStateAction<string | null>>
+    changeImage: (value: File | null) => void
+    changeImageError: (value: string | null) => void
 }
 
 //CSS Classes State 

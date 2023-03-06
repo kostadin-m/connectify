@@ -6,14 +6,16 @@ interface IAutoComplete {
     suggestions: readonly Suggestion[]
     adress: string
     children: React.ReactNode
-    setLocations: React.Dispatch<React.SetStateAction<readonly Suggestion[]>>
+    changeLocations: (suggesstions: readonly Suggestion[]) => void
 
 }
 
-export default function WithAutoComplete({ children, loading, suggestions, adress, setLocations }: IAutoComplete) {
+export default function WithAutoComplete({ children, loading, suggestions, adress, changeLocations }: IAutoComplete) {
     useEffect(() => {
-        if (!adress) return setLocations([])
-        setLocations(suggestions)
+        if (!adress) return changeLocations([])
+        changeLocations(suggestions)
+
+        return () => { changeLocations([]) }
     }, [adress, loading])
 
     return (

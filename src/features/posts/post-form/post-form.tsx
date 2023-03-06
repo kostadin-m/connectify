@@ -29,9 +29,17 @@ function PostForm() {
     const [location, setLocation] = useState<string>('')
     const [pending, setPending] = useState(false)
 
+
     const { response, addDocument } = useFirestore<PostObject>('posts')
     const { user } = useAuthContext()
     const { theme } = useThemeContext()
+
+    //Callbacks for child components
+    const changeText = (value: string) => setText(value)
+    const changeLocation = (value: string) => setLocation(value)
+    const closeModal = () => setShowLocationModal(false)
+    const changeFormError = (value: string | null) => setFormError(value)
+    const changeImage = (value: File | null) => setImage(value)
 
     const handlePostSubmit = async () => {
         setPending(true)
@@ -51,7 +59,6 @@ function PostForm() {
 
         await addDocument(postObject)
 
-
         setPending(false)
         if (response.error) return
 
@@ -65,7 +72,7 @@ function PostForm() {
             <div className={`${styles.formWrapper} ${styles[theme]}`}>
                 <div className={`${styles.formTop} ${styles[theme]}`}>
                     <img className='profile-image' src={user?.photoURL} alt='user icon'></img>
-                    <TextArea value={text} setValue={setText} placeholder={`What's on your mind ${user?.displayName}?`} theme={theme} />
+                    <TextArea value={text} setValue={changeText} placeholder={`What's on your mind ${user?.displayName}?`} theme={theme} />
                 </div>
 
                 {formError && <p className='error'>{formError}</p>}
@@ -78,7 +85,7 @@ function PostForm() {
                 <div className={`${styles.formBottom} ${styles[theme]}`}>
                     <div className={styles.formOptions}>
                         <label htmlFor='img' className={`${styles.formOption} ${styles[theme]}`}>
-                            <ImageInput setImage={setImage} setImageError={setFormError} />
+                            <ImageInput changeImage={changeImage} changeImageError={changeFormError} />
                             <img className={styles.optionPicture} src={AddImage} alt='picture icon'></img>
                             <span>Photo</span>
                         </label>
@@ -98,7 +105,7 @@ function PostForm() {
                 </div>
             </div>
             {/* Modals */}
-            {showLocationModal && <LocationModal setLocation={setLocation} setShowLocationModal={setShowLocationModal} theme={theme} />}
+            {showLocationModal && <LocationModal changeLocation={changeLocation} closeModal={closeModal} theme={theme} />}
         </div >
     )
 }

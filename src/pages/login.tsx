@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 
 //custom hooks
 import { useThemeContext, useLogin } from '@features/hooks'
 
 //components
-import { Button, FormInput, FormWrapper } from "@features/ui"
+import { FormInput, FormWrapper } from "@features/ui"
 
 
 export default function Login() {
@@ -14,6 +14,12 @@ export default function Login() {
 
     const { theme } = useThemeContext()
 
+
+
+    const handleChange = (setValue: Dispatch<SetStateAction<string>>, value: string) => {
+        setValue(value)
+    }
+
     const submit = async (e: React.FormEvent) => {
         e.preventDefault()
         await login(email, password)
@@ -22,8 +28,8 @@ export default function Login() {
     return (
         <FormWrapper title="Login" theme={theme}>
             <form onSubmit={submit}>
-                <FormInput value={email} setValue={setEmail} label='Email' type='email' />
-                <FormInput value={password} setValue={setPassword} label='Password' type='password' />
+                <FormInput value={email} setValue={handleChange.bind(null, setEmail)} label='Email' type='email' />
+                <FormInput value={password} setValue={handleChange.bind(null, setPassword)} label='Password' type='password' />
                 {error && <p className="error">{error}</p>}
                 {isPending && <div className="loader"></div>}
                 <button

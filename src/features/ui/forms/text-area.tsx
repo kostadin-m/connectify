@@ -5,7 +5,7 @@ import styles from './forms.module.css'
 
 interface Props {
     value: string
-    setValue: Dispatch<SetStateAction<string>>
+    setValue: (value: string) => void
     placeholder: string
     theme: string
 }

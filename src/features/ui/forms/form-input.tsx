@@ -8,7 +8,7 @@ import { useThemeContext } from "@features/hooks"
 
 interface Props {
     value: string
-    setValue: React.Dispatch<React.SetStateAction<string>>
+    setValue: (value: string) => void
     label: string
     type?: string
     optional?: boolean

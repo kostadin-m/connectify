@@ -8,10 +8,10 @@ interface Props {
   children: React.ReactNode
   theme: string
   title: string
-  setViewModal: React.Dispatch<React.SetStateAction<boolean>>
+  closeModal: () => void
 }
 
-export default function ModalWrapper({ children, theme, title, setViewModal }: Props) {
+export default function ModalWrapper({ children, theme, title, closeModal }: Props) {
   useEffect(() => {
     document.body.classList.add('active-modal')
 
@@ -24,7 +24,7 @@ export default function ModalWrapper({ children, theme, title, setViewModal }: P
         <div className={`${styles.modalContent} ${styles[theme]}`}>
           <h2>{title}</h2>
           {children}
-          <img className={`${styles.closeModal} ${styles[theme]}`} onClick={() => setViewModal(false)} src={CloseIcon} />
+          <img className={`${styles.closeModal} ${styles[theme]}`} onClick={() => closeModal()} src={CloseIcon} />
         </div>
       </div>
     </div>, document.getElementById('root')!

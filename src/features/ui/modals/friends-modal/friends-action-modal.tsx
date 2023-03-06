@@ -15,16 +15,15 @@ import styles from "./friends-action-modal.module.css";
 import { removeFriend } from "@features/services/friends-services";
 
 interface Props {
-    setActionModal: React.Dispatch<React.SetStateAction<boolean>>
+    closeModal: () => void
     theme: string
     friend: UserDocument
 }
 
-export default function FriendsActionModal({ setActionModal, theme, friend }: Props) {
+export default function FriendsActionModal({ closeModal, theme, friend }: Props) {
     const { updateDocument, response } = useFirestore<UserDocument>('users')
     const { user } = useAuthContext()
 
-    const closeModal = () => setActionModal(false);
 
     const submit = async () => {
         await removeFriend({ user, friend, updateDocument })
@@ -36,7 +35,7 @@ export default function FriendsActionModal({ setActionModal, theme, friend }: Pr
     return (
         <ModalWrapper title={`Are you sure you want to remove ${friend.displayName} from your friends list?`}
             theme={theme}
-            setViewModal={setActionModal}>
+            closeModal={closeModal}>
 
             {response.isPending && <div className='spinner'></div>}
             <p className={`${styles.warning} ${styles[theme]}`}>

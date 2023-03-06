@@ -21,6 +21,8 @@ interface UserActionButtonProps {
 export default function UserActionButton({ friend }: UserActionButtonProps) {
     const [showFriendsActionModal, setShowFriendsActionModal] = useState(false)
 
+    const closeModal = () => setShowFriendsActionModal(!showFriendsActionModal)
+
     const { user } = useAuthContext()
     const { theme } = useThemeContext()
     const { updateDocument, response } = useFirestore<UserDocument>('users')
@@ -34,7 +36,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
 
     return (
         <>
-            {showFriendsActionModal && <FriendsActionModal setActionModal={setShowFriendsActionModal} theme={theme} friend={friend} />}
+            {showFriendsActionModal && <FriendsActionModal closeModal={closeModal} theme={theme} friend={friend} />}
 
             {isFriend ?
                 <img className="button" src={FriendsIcon} alt='friends icon'

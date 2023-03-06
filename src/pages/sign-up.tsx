@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 //custom hooks
 import { useSignUp, useThemeContext } from '@features/hooks'
@@ -23,6 +23,12 @@ export default function SignUp() {
     const [image, setImage] = useState<File | null>(null)
     const [imageError, setImageError] = useState<string | null>(null)
 
+    const handleChange = (setValue: Dispatch<SetStateAction<string>>, value: string) => setValue(value)
+    const changeImageError = (value: string | null) => setImageError(value)
+    const changeImage = (value: File | null) => setImage(value)
+
+
+
     const submit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (!image) return setImageError('Please submit an image')
@@ -34,7 +40,7 @@ export default function SignUp() {
         <FormWrapper theme={theme} title='Sign Up'>
             <form onSubmit={(submit)}>
                 <label htmlFor='img' className={`form-img ${theme}`}>
-                    <ImageInput setImage={setImage} setImageError={setImageError} />
+                    <ImageInput changeImage={changeImage} changeImageError={changeImageError} />
                     {image ?
                         <ImagePreview image={image} style='image' />
                         :
@@ -44,11 +50,12 @@ export default function SignUp() {
                 </label>
                 {imageError && <div className='error'>{imageError}</div>}
 
-                <FormInput value={firstName} setValue={setFirstName} label='First name' />
-                <FormInput value={lastName} setValue={setLastName} label='Last name' />
-                <FormInput value={location} setValue={setLocation} label='Location - 𝘰𝘱𝘵𝘪𝘰𝘯𝘢𝘭' optional={true} />
-                <FormInput value={email} setValue={setEmail} label='Email' type='email' />
-                <FormInput value={password} setValue={setPassword} label='Password' type='password' />
+
+                <FormInput value={firstName} setValue={handleChange.bind(null, setFirstName)} label='First name' />
+                <FormInput value={lastName} setValue={handleChange.bind(null, setLastName)} label='Last name' />
+                <FormInput value={location} setValue={handleChange.bind(null, setLocation)} label='Location - 𝘰𝘱𝘵𝘪𝘰𝘯𝘢𝘭' optional={true} />
+                <FormInput value={email} setValue={handleChange.bind(null, setEmail)} label='Email' type='email' />
+                <FormInput value={password} setValue={handleChange.bind(null, setPassword)} label='Password' type='password' />
 
                 {error && <p className='error'>{error}</p>}
                 {isPending && <div className='loader'></div>}

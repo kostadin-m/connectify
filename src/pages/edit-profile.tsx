@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 
 //icons
 import { ChooseImage } from '@assets'
@@ -28,6 +28,13 @@ export default function EditProfile() {
 
     const doc = { firstName, lastName, location, email, image }
 
+    const changeImageError = (value: string | null) => setImageError(value)
+    const changeImage = (value: File | null) => setImage(value)
+
+    const handleChange = (setValue: Dispatch<SetStateAction<string>>, value: string) => {
+        setValue(value)
+    }
+
     const submit = async (e: React.FormEvent) => {
         e.preventDefault()
         await editUser(doc)
@@ -39,7 +46,7 @@ export default function EditProfile() {
         <FormWrapper theme={theme} title="Edit Profile">
             <form onSubmit={submit}>
                 <label htmlFor='img' className={`form-img ${theme}`}>
-                    <ImageInput setImage={setImage} setImageError={setImageError} />
+                    <ImageInput changeImage={changeImage} changeImageError={changeImageError} />
                     {image ?
                         <ImagePreview image={image} style='image' />
                         :
@@ -49,10 +56,10 @@ export default function EditProfile() {
                 </label>
                 {imageError && <div className='error'>{imageError}</div>}
 
-                <FormInput value={firstName} setValue={setFirstName} label='First name' />
-                <FormInput value={lastName} setValue={setLastName} label='Last name' />
-                <FormInput value={location} setValue={setLocation} label='Location - 𝘰𝘱𝘵𝘪𝘰𝘯𝘢𝘭' optional={true} />
-                <FormInput value={email} setValue={setEmail} label='Email' type='email' />
+                <FormInput value={firstName} setValue={handleChange.bind(null, setFirstName)} label='First name' />
+                <FormInput value={lastName} setValue={handleChange.bind(null, setLastName)} label='Last name' />
+                <FormInput value={location} setValue={handleChange.bind(null, setLocation)} label='Location - 𝘰𝘱𝘵𝘪𝘰𝘯𝘢𝘭' optional={true} />
+                <FormInput value={email} setValue={handleChange.bind(null, setEmail)} label='Email' type='email' />
 
                 {error && <p>{error}</p>}
                 {isPending && <div className="loader"></div>}

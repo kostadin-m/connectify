@@ -6,7 +6,7 @@ I tried in this project to build an application similar to Facebook but certainl
 [Connectify App](https://my-s-1f4d4.web.app/)
 
 ## Project Screenshot
-![Connecity screenshot](./home.png)
+![Connecity  PC Screenshot](./home.png)
 ![Connecity mobile screenshot](./home-mobile.png)
 
 ## Project Features:

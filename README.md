@@ -6,8 +6,8 @@ I tried in this project to build an application similar to Facebook but certainl
 [Connectify App](https://my-s-1f4d4.web.app/)
 
 ## Project Screenshot
-![Connecity  PC Screenshot](./home.png)
-![Connecity Mobile screenshot](./home-mobile.png)
+![Connecity](./home.png)
+![Connecity](./home-mobile.png)
 
 ## Project Features:
 - Fully responsive design (100%).

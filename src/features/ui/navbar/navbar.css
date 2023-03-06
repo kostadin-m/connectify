@@ -141,14 +141,6 @@
     background-color: lightgray !important;
 }
 
-.dark>.navbar-content>.title>.input-wrapper {
-    background-color: rgb(70, 70, 70);
-}
-
-.light>.navbar-content>.title>.input-wrapper {
-    background-color: white !important;
-}
-
 .dark>.navbar-content>.title>.input-wrapper>.nav-input {
     filter: invert(70%);
 }

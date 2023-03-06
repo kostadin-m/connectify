@@ -34,25 +34,20 @@ export default function LocationModal({ setLocation, setShowLocationModal, theme
         <ModalWrapper title={`Where are you currently at, ${user?.displayName}?`} theme={theme} setViewModal={setShowLocationModal}>
             <PlacesAutocomplete value={adress} onChange={setAdress} onSelect={(value: string) => handleLocationSelect(value)}>
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-
                     <WithAutoComplete adress={adress} suggestions={suggestions} loading={loading} setLocations={setLocations}>
                         <div className={`${styles.search} ${styles[theme]}`}>
                             <input {...getInputProps({
                                 placeholder: 'Search Places ...'
                             })} />
                             {loading ? <div className={styles.loading}>Loading...</div> : null}
-                            {locations.length > 0 ?
-                                <div className={styles.dataResult}>
-                                    {locations.map(suggestion => (
-                                        <div {...getSuggestionItemProps(suggestion)}
-                                            key={suggestion.index}
-                                            className={`${styles.dataItem} ${styles[theme]}`}>
-                                            <div>
-                                                <img src={LocationIcon} alt='location img'></img>
-                                                <span>{suggestion.description}</span>
-                                            </div>
-                                        </div>))}
-                                </div> : <div className={styles.dataResult}></div>}
+                            <div className={styles.dataResult}>
+                                {locations.map(suggestion => (
+                                    <div {...getSuggestionItemProps(suggestion)} className={`${styles.dataItem} ${styles[theme]}`}
+                                        key={suggestion.index}>
+                                        <img src={LocationIcon} alt='location img'></img>
+                                        <span>{suggestion.description}</span>
+                                    </div>))}
+                            </div>
                         </div>
                     </WithAutoComplete>)}
             </PlacesAutocomplete >

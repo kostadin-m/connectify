@@ -57,58 +57,68 @@ body {
   padding: 10px;
 }
 
-.form-btn {
+
+.btn {
+  align-items: center;
+  background-color: aqua;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
   cursor: pointer;
-  position: relative;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.btn:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
+.form-btn.btn {
   font-size: 1.5em;
-  font-weight: bold;
-  border-radius: 10px;
-  border: 2px solid aqua;
-  background: none;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 5px;
+  margin-bottom: 20px;
   height: 70px;
   width: 240px;
   overflow: hidden;
 }
 
-.btn {
-  position: relative;
-  border: 1px solid aqua;
-  background: none;
-  color: black;
+.button.btn {
+  font-size: 0.8em;
   margin-left: auto;
-  font-weight: bold;
   width: 82px;
   height: 35px;
   border-radius: 8px;
-  align-items: center;
   display: flex;
-  cursor: pointer;
-}
-
-.btn:before,
-.form-btn::before {
-  border-radius: 7px;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: aqua;
-  transition: all 0.5s;
-  z-index: -1;
-}
-
-.btn:hover:before,
-.form-btn:hover:before {
-  width: 100%;
-}
-
-.btn.dark,
-.form-btn.dark {
-  color: white;
 }
 
 .profile-image {
@@ -123,14 +133,6 @@ body {
     margin-right: 0px;
     padding: 0px;
     margin: 0px;
-  }
-
-  .btn {
-    width: 75px !important;
-  }
-
-  .btn span {
-    font-size: 0.8em;
   }
 
   .profile-page-item {

@@ -16,7 +16,7 @@
 
 .formBox h2 {
     color: aqua;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 2em;
 }
 
@@ -28,41 +28,45 @@
     background-color: white;
 }
 
+.inputContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    margin-top: 25px;
+    width: 90%;
+    margin-left: 25px;
+}
+
+.label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    color: #fff;
+    transition: all 0.5s ease-in-out;
+}
+
 .input {
-    margin-left: 16%;
-    text-align: center;
-    margin-top: 15px;
+    border: 0;
+    border-bottom: 1px solid #555;
+    background: transparent;
+    width: 100%;
+    padding: 8px 0 5px 0;
+    font-size: 16px;
+    color: #fff;
 }
 
-.input label {
-    font-weight: bold;
-    text-align: left;
+.input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid aqua;
 }
 
-.input input {
-    border-radius: 10px;
-    font-size: 1.2em;
-    border: 1px solid aqua;
-    margin-top: 5px;
-    width: 85%;
-    height: 45px;
+.input:focus+.label,
+.input:not(:placeholder-shown)+.label {
+    top: -12px;
+    font-size: 15px;
 }
-
-
-.input input {
-    height: 50px;
-    margin-left: 0px;
-}
-
-.dark input {
-    color: lightgray;
-    background: rgb(70, 70, 70);
-}
-
-.dark label {
-    color: lightgray;
-}
-
 
 .textarea {
     resize: none;
@@ -88,29 +92,10 @@
         max-height: 1000px;
         margin-left: 2%;
     }
-
-    .input {
-        margin-left: 4%;
-    }
-
-    .input input {
-        height: 50px;
-        margin-left: 0px;
-    }
 }
 
 @media (min-width:800px) and (max-width:1250px) {
-
     .formBox {
         width: 70vw;
-    }
-
-    .input {
-        margin-left: 20px;
-    }
-
-    .input input {
-        height: 50px;
-        width: 95%;
     }
 }

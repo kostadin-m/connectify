@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { memo } from "react"
 
 import styles from './forms.module.css'
@@ -17,16 +17,18 @@ interface Props {
 
 function Input({ value, setValue, label, type, optional = false }: Props) {
     const { theme } = useThemeContext()
+
     return (
-        <div className={`${styles.input} ${styles[theme]}`}>
-            <label>{label}
-                <input
-                    required={optional ? false : true}
-                    type={!type ? 'text' : type}
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                />
-            </label>
+        <div className={`${styles.inputContainer} ${styles[theme]}`}>
+            <input
+                className={styles.input}
+                placeholder=" "
+                required={optional ? false : true}
+                type={!type ? 'text' : type}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+            />
+            <label className={styles.label}>{label}</label>
         </div>
     )
 }

@@ -15,7 +15,7 @@ export default function ModalWrapper({ children, theme, title, setViewModal }: P
   useEffect(() => {
     document.body.classList.add('active-modal')
 
-    return () => document.body.classList.remove('active-modal')
+    return () => { document.body.classList.remove('active-modal') }
   }, [])
 
   return ReactDOM.createPortal(

@@ -30,7 +30,7 @@ export default function LocationSearch({ handleLocationSelect, theme }: Props) {
                         {loading && <div className={styles.loading}>Loading...</div>}
 
                         {!loading &&
-                            suggestions.length > 0 &&
+                            suggestions.length > 0 ?
                             <div className={styles.dataResult}>
                                 {suggestions.map(suggestion => {
                                     return (
@@ -43,7 +43,7 @@ export default function LocationSearch({ handleLocationSelect, theme }: Props) {
                                     );
                                 })}
 
-                            </div>}
+                            </div> : <div className={styles.dataResult}></div>}
                     </div>
                 )}
             </PlacesAutocomplete >

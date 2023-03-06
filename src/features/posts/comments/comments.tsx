@@ -58,7 +58,7 @@ function Comments({ theme, classname, post }: Props) {
                     disabled={response.isPending}
                     theme={theme}
                     onClick={() => handleAddComment()}
-                    text={response.isPending ? 'Loading...' : "Post a comment"} />
+                    text={response.isPending ? 'Loading...' : "Comment"} />
             </div>
         </div>
     )

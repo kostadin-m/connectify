@@ -28,7 +28,7 @@ export default function Login() {
                 {isPending && <div className="loader"></div>}
                 <button
                     disabled={isPending}
-                    className={`form-btn ${theme}`}>
+                    className={`form-btn btn ${theme}`}>
                     {isPending ? 'Loading...' : 'Login'}
                 </button>
             </form>

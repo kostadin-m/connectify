@@ -1,15 +1,15 @@
 .buttonsContainer {
     display: flex;
-    margin-top: 80px;
+    margin-top: 20px;
     align-items: center;
     text-align: center;
-    margin-left: 40px;
+    margin-left: 60%;
 }
 
 .buttonsContainer button {
-    height: 80px !important;
-    width: 200px !important;
-    font-size: 1.4em;
+    height: 50px !important;
+    width: 120px !important;
+    font-size: 1.1em;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -23,19 +23,19 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const [isMobile] = useIsMobile(800)
     const { theme } = useThemeContext()
 
+
     const [friends, setShowFriends] = useState<boolean>(false)
-    const { ref: FriendsRef } = useClickedOutside(setShowFriends)
+    const friendsClass = friends ? 'show' : 'hidden'
 
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
     const { ref: DropDownRef } = useClickedOutside(setShowDropDown)
-
     const dropDownClass = showDropDown ? 'show' : 'hidden'
-    const friendsClass = friends ? 'show' : 'hidden'
 
-    const checkClick = (e: React.MouseEvent<HTMLElement>, toggleElement: Dispatch<SetStateAction<boolean>>) => {
+
+    const CloseIfAnchorClicked = (e: React.MouseEvent<HTMLElement>, toggleElement: Dispatch<SetStateAction<boolean>>) => {
         const clickedElement = e.target
         if (!(clickedElement instanceof HTMLAnchorElement)) return
-        setTimeout(() => toggleElement(false), 20)
+        setTimeout(() => toggleElement(false), 30)
     }
 
     return (
@@ -57,12 +57,12 @@ export default function UserNavbar({ user }: UserNavbarProps) {
                 </div>
             </li>
             {showDropDown ?
-                <div ref={DropDownRef} onClick={(e) => checkClick(e, setShowDropDown)}>
+                <div ref={DropDownRef} onClick={(e) => CloseIfAnchorClicked(e, setShowDropDown)}>
                     <UserDropDown dropDownClass={dropDownClass} />
                 </div>
                 : null}
             {friends ?
-                <div className={theme} ref={FriendsRef} onClick={(e) => checkClick(e, setShowFriends)}>
+                <div className={theme} onClick={(e) => CloseIfAnchorClicked(e, setShowFriends)}>
                     <NavFriends friendsClass={friendsClass} />
                 </div>
                 : null}

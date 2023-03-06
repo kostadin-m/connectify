@@ -1,6 +1,6 @@
 .modal,
 .overlay {
-    z-index: 1;
+    z-index: 2;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -31,8 +31,9 @@
     padding: 14px 28px;
     border-radius: 15px;
     width: 500px;
-    min-height: 350px;
+    min-height: 50px;
     max-height: 350px;
+    z-index: 2;
 }
 
 .closeModal {
@@ -51,11 +52,7 @@
 }
 
 .modalContent.dark>h2 {
-    color: lightgray;
-}
-
-.modalContent.light>h2 {
-    color: black;
+    color: white;
 }
 
 .closeModal.dark {

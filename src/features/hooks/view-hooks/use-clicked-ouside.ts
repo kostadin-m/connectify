@@ -11,10 +11,14 @@ export default function useClickedOutside(
         timeoutRef.current = window.setTimeout(() => setIsVissible(false), 20)
     };
     useEffect(() => {
-        document.addEventListener('click', handleClickOutside, true);
+        if (!document.body.classList.contains('active-modal')) {
+            document.addEventListener('click', handleClickOutside, true);
+            return
+        }
 
+        document.removeEventListener('click', handleClickOutside, true)
         return () => document.removeEventListener('click', handleClickOutside, true);
-    }, []);
+    }, [document.body.classList.length]);
 
     return { ref };
 }

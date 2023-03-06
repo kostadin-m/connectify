@@ -54,7 +54,7 @@ export default function SignUp() {
                 {isPending && <div className='loader'></div>}
                 <button
                     disabled={isPending}
-                    className={`form-btn ${theme}`}>
+                    className={`form-btn btn ${theme}`}>
                     {isPending ? 'Loading...' : 'Sign Up'}
                 </button>
             </form>

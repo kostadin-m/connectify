@@ -10,7 +10,7 @@ export default function Button({ disabled, text, theme, onClick }: Props) {
         <button
             disabled={disabled}
             onClick={onClick}
-            className={`btn ${theme}`}>
+            className={`btn button ${theme}`}>
             <span>{text}</span>
         </button>
     )

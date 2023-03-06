@@ -92,7 +92,7 @@ function PostForm() {
                         <Button
                             disabled={pending}
                             theme={theme}
-                            text={pending ? 'Loading...' : `Share a post`}
+                            text={pending ? 'Loading...' : `Share`}
                             onClick={() => handlePostSubmit()} />
                     </div>
                 </div>

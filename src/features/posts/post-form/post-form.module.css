@@ -16,7 +16,6 @@
 
 .postForm {
     position: relative;
-    z-index: 1;
     animation-name: changeOpacity;
     animation-duration: 0.5s;
     animation-timing-function: ease-out;

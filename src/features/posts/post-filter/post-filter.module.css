@@ -1,0 +1,25 @@
+.postFilter {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.filterButton {
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    transition: all 0.3s ease;
+    font-size: 1.4em;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.dark>.filterButton {
+    color: lightgray;
+}
+
+.filterButton:hover,
+.filterButton.active {
+    text-shadow: horizontal-shadow vertical-shadow blur white;
+    color: aqua;
+    font-weight: bold;
+
+}

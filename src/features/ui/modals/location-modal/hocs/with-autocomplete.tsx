@@ -6,16 +6,16 @@ interface IAutoComplete {
     suggestions: readonly Suggestion[]
     adress: string
     children: React.ReactNode
-    changeLocations: (suggesstions: readonly Suggestion[]) => void
+    onLocationListChange: (suggesstions: readonly Suggestion[]) => void
 
 }
 
-export default function WithAutoComplete({ children, loading, suggestions, adress, changeLocations }: IAutoComplete) {
+export default function WithAutoComplete({ children, loading, suggestions, adress, onLocationListChange }: IAutoComplete) {
     useEffect(() => {
-        if (!adress) return changeLocations([])
-        changeLocations(suggestions)
+        if (!adress) return onLocationListChange([])
+        onLocationListChange(suggestions)
 
-        return () => { changeLocations([]) }
+        return () => { onLocationListChange([]) }
     }, [adress, loading])
 
     return (

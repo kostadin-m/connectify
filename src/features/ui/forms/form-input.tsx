@@ -8,14 +8,14 @@ import { useThemeContext } from "@features/hooks"
 
 interface Props {
     value: string
-    setValue: (value: string) => void
+    onChange: (value: string) => void
     label: string
     type?: string
     optional?: boolean
 
 }
 
-function Input({ value, setValue, label, type, optional = false }: Props) {
+function Input({ value, onChange, label, type, optional = false }: Props) {
     const { theme } = useThemeContext()
 
     return (
@@ -26,7 +26,7 @@ function Input({ value, setValue, label, type, optional = false }: Props) {
                 required={optional ? false : true}
                 type={!type ? 'text' : type}
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => onChange(e.target.value)}
             />
             <label className={styles.label}>{label}</label>
         </div>

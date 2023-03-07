@@ -16,27 +16,27 @@ import styles from './location-modal.module.css'
 
 interface Props {
     changeLocation: (location: string) => void
-    closeModal: () => void
+    onModalClose: () => void
     theme: string
 }
 
-export default function LocationModal({ changeLocation, closeModal, theme }: Props) {
+export default function LocationModal({ changeLocation, onModalClose, theme }: Props) {
     const { user } = useAuthContext()
     const [adress, setAdress] = useState('')
     const [locations, setLocations] = useState<readonly Suggestion[]>([])
 
-    const handleLocationChange = (suggestions: readonly Suggestion[]) => setLocations(suggestions)
+    const onLocationListChange = (suggestions: readonly Suggestion[]) => setLocations(suggestions)
 
     const handleLocationSelect = (location: string) => {
         changeLocation(location)
-        closeModal()
+        onModalClose()
     }
 
     return (
-        <ModalWrapper title={`Where are you currently at, ${user?.displayName}?`} theme={theme} closeModal={closeModal}>
+        <ModalWrapper title={`Where are you currently at, ${user?.displayName}?`} theme={theme} onModalClose={onModalClose}>
             <PlacesAutocomplete value={adress} onChange={setAdress} onSelect={(value: string) => handleLocationSelect(value)}>
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <WithAutoComplete adress={adress} suggestions={suggestions} loading={loading} changeLocations={handleLocationChange}>
+                    <WithAutoComplete adress={adress} suggestions={suggestions} loading={loading} onLocationListChange={onLocationListChange}>
                         <div className={`${styles.search} ${styles[theme]}`}>
                             <input {...getInputProps({
                                 placeholder: 'Search Places ...'

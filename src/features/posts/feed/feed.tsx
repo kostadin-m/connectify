@@ -12,7 +12,7 @@ import styles from './post.module.css'
 //components
 import Post from './post'
 import PostFilter from '@features/posts/post-filter/post-filter'
-import { filterPosts } from '@features/posts/post-filter/utils/filterPosts'
+import { useFitlerPosts } from '@features/posts/post-filter/hooks/use-filter-posts'
 
 interface Props {
     id?: string | null
@@ -21,14 +21,13 @@ interface Props {
 function Feed({ id }: Props) {
     const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null, ['createdAt', 'desc'])
     const [currentFilter, setCurrentFilter] = useState<string>('ForYou')
+    const [filteredPosts] = useFitlerPosts(currentFilter, posts!)
 
     const { theme } = useThemeContext()
 
     const isHomePage = !id
 
     const changeFitler = (newFilter: string) => setCurrentFilter(newFilter)
-
-    const filteredPosts = filterPosts(currentFilter, posts!)
 
     if (isPending) return (<div data-testid='loader' className='loader'></div>)
 

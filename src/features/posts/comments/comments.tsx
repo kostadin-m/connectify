@@ -24,6 +24,8 @@ interface Props {
 function Comments({ theme, classname, post }: Props) {
     const [comment, setComment] = useState('')
 
+    const onChange = (value: string) => setComment(value)
+
     const { user } = useAuthContext()
     const { updateDocument, response } = useFirestore('posts')
 
@@ -32,7 +34,6 @@ function Comments({ theme, classname, post }: Props) {
 
         const commentsObject = { commentContent: comment, creatorID: user?.id, createdAt: timeStamp.fromDate(new Date()) }
         const updatedComments = { comments: [...post.comments, commentsObject] } as PostDocument
-
         await updateDocument(post.id, updatedComments)
 
         if (!response.error) setComment('')
@@ -53,7 +54,7 @@ function Comments({ theme, classname, post }: Props) {
                 {response.error && <p className='error'>{response.error}</p>}
 
                 <img className='profile-image' src={user?.photoURL} alt='current-user-icon' />
-                <TextArea value={comment} setValue={setComment} placeholder='Write a comment' theme={theme} />
+                <TextArea value={comment} onChange={onChange} placeholder='Write a comment' theme={theme} />
                 <Button
                     disabled={response.isPending}
                     theme={theme}
@@ -63,6 +64,4 @@ function Comments({ theme, classname, post }: Props) {
         </div>
     )
 }
-
-
 export default memo(Comments)

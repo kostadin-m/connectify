@@ -23,14 +23,12 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const [isMobile] = useIsMobile(800)
     const { theme } = useThemeContext()
 
-
     const [friends, setShowFriends] = useState<boolean>(false)
     const friendsClass = friends ? 'show' : 'hidden'
 
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
     const { ref: DropDownRef } = useClickedOutside(setShowDropDown)
     const dropDownClass = showDropDown ? 'show' : 'hidden'
-
 
     const CloseIfAnchorClicked = (e: React.MouseEvent<HTMLElement>, toggleElement: Dispatch<SetStateAction<boolean>>) => {
         const clickedElement = e.target

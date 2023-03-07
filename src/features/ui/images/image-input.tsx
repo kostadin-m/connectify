@@ -2,7 +2,7 @@ import { memo } from "react"
 import { IImageInput } from "@types"
 
 export const handleFileChange =
-    (changeImage: IImageInput['changeImage'], changeImageError: IImageInput['changeImageError'], selected: File) => {
+    (changeImage: IImageInput['onImageChange'], changeImageError: IImageInput['onImageErrorChange'], selected: File) => {
         changeImage(null)
         changeImageError(null)
 
@@ -15,14 +15,14 @@ export const handleFileChange =
         changeImage(selected)
     }
 
-function ImageInput({ changeImage, changeImageError }: IImageInput) {
+function ImageInput({ onImageChange, onImageErrorChange }: IImageInput) {
     return (
         <input
             data-testid='image input'
             style={{ display: 'none' }}
             type='file'
             id='img'
-            onChange={(e) => handleFileChange(changeImage, changeImageError, e.target.files?.[0]!)} />
+            onChange={(e) => handleFileChange(onImageChange, onImageErrorChange, e.target.files?.[0]!)} />
     )
 }
 export default memo(ImageInput)

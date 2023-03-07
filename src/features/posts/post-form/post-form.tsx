@@ -34,12 +34,10 @@ function PostForm() {
     const { user } = useAuthContext()
     const { theme } = useThemeContext()
 
-    //Callbacks for child components
-    const changeText = (value: string) => setText(value)
+    const onTextChange = (value: string) => setText(value)
     const changeLocation = (value: string) => setLocation(value)
-    const closeModal = () => setShowLocationModal(false)
-    const changeFormError = (value: string | null) => setFormError(value)
-    const changeImage = (value: File | null) => setImage(value)
+    const onImageErrorChange = (value: string | null) => setFormError(value)
+    const onImageChange = (value: File | null) => setImage(value)
 
     const handlePostSubmit = async () => {
         setPending(true)
@@ -60,11 +58,11 @@ function PostForm() {
         await addDocument(postObject)
 
         setPending(false)
-        if (response.error) return
-
-        setLocation('')
-        setImage(null)
-        setText('')
+        if (!response.error) {
+            setLocation('')
+            setImage(null)
+            setText('')
+        }
     }
 
     return (
@@ -72,7 +70,7 @@ function PostForm() {
             <div className={`${styles.formWrapper} ${styles[theme]}`}>
                 <div className={`${styles.formTop} ${styles[theme]}`}>
                     <img className='profile-image' src={user?.photoURL} alt='user icon'></img>
-                    <TextArea value={text} setValue={changeText} placeholder={`What's on your mind ${user?.displayName}?`} theme={theme} />
+                    <TextArea value={text} onChange={onTextChange} placeholder={`What's on your mind ${user?.displayName}?`} theme={theme} />
                 </div>
 
                 {formError && <p className='error'>{formError}</p>}
@@ -82,10 +80,11 @@ function PostForm() {
                 </div>}
 
                 <hr className={styles.formHr} />
+
                 <div className={`${styles.formBottom} ${styles[theme]}`}>
                     <div className={styles.formOptions}>
                         <label htmlFor='img' className={`${styles.formOption} ${styles[theme]}`}>
-                            <ImageInput changeImage={changeImage} changeImageError={changeFormError} />
+                            <ImageInput onImageChange={onImageChange} onImageErrorChange={onImageErrorChange} />
                             <img className={styles.optionPicture} src={AddImage} alt='picture icon'></img>
                             <span>Photo</span>
                         </label>
@@ -94,18 +93,18 @@ function PostForm() {
                                 <img className={styles.optionPicture} src={LocationIcon} alt='location icon'></img>
                                 <span>{location ? location : "Location"}</span>
                             </div>
-                            {location && <img style={{ position: 'relative' }} onClick={() => setLocation('')} className={styles.remove} src={CloseIcon} alt='close icon' />}
+                            {location ?
+                                <img style={{ position: 'relative' }}
+                                    onClick={() => setLocation('')}
+                                    className={styles.remove}
+                                    src={CloseIcon} alt='close icon' />
+                                : null}
                         </div>
-                        <Button
-                            disabled={pending}
-                            theme={theme}
-                            text={pending ? 'Loading...' : `Share`}
-                            onClick={() => handlePostSubmit()} />
+                        <Button disabled={pending} theme={theme} text={pending ? 'Loading...' : `Share`} onClick={() => handlePostSubmit()} />
                     </div>
                 </div>
             </div>
-            {/* Modals */}
-            {showLocationModal && <LocationModal changeLocation={changeLocation} closeModal={closeModal} theme={theme} />}
+            {showLocationModal && <LocationModal changeLocation={changeLocation} onModalClose={() => setShowLocationModal(false)} theme={theme} />}
         </div >
     )
 }

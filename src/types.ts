@@ -8,8 +8,8 @@ export interface IContextProviderProps {
 
 //Image Input Props
 export interface IImageInput {
-    changeImage: (value: File | null) => void
-    changeImageError: (value: string | null) => void
+    onImageChange: (value: File | null) => void
+    onImageErrorChange: (value: string | null) => void
 }
 
 //CSS Classes State 

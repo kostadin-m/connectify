@@ -8,7 +8,24 @@
     margin-left: 10px;
 }
 
+@keyframes changeOpacity {
+    from {
+        filter: blur(13px);
+        opacity: 0;
+
+    }
+
+    to {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+
 .box {
+    animation-name: changeOpacity;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-out;
     display: block;
     overflow-x: hidden;
     overflow-y: hidden;

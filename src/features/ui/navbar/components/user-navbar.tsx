@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 //types
@@ -14,6 +14,7 @@ import { useIsMobile, useThemeContext } from '@features/hooks'
 import { NavFriends } from '@features/friends'
 import UserDropDown from './user-dropdown'
 import AlertClickedOutside from '@features/ui/navbar/hocs/alert-clicked-outside'
+import { closeIfClickedOnAnchor } from '@features/ui/navbar/utils'
 
 interface UserNavbarProps {
     theme: string
@@ -25,14 +26,10 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const { theme } = useThemeContext()
 
     const [friends, setShowFriends] = useState<boolean>(false)
-
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
 
-    const CloseIfAnchorClicked = (e: React.MouseEvent<HTMLElement>, toggleElement: Dispatch<SetStateAction<boolean>>) => {
-        const clickedElement = e.target
-        if (!(clickedElement instanceof HTMLAnchorElement)) return
-        setTimeout(() => toggleElement(false), 30)
-    }
+    const closeFriends = () => setShowFriends(false)
+    const closeDropdown = () => setShowDropDown(false)
 
     return (
         <>
@@ -54,14 +51,15 @@ export default function UserNavbar({ user }: UserNavbarProps) {
                 </div>
             </li>
             {showDropDown ?
-                <AlertClickedOutside onAlert={() => setShowDropDown(false)}>
-                    <div className={theme} onClick={(e) => CloseIfAnchorClicked(e, setShowFriends)}></div>
-                    <UserDropDown />
+                <AlertClickedOutside onAlert={closeDropdown}>
+                    <div className={theme} onClick={(e) => closeIfClickedOnAnchor(e, closeDropdown)}>
+                        <UserDropDown />
+                    </div>
                 </AlertClickedOutside>
                 : null}
             {friends ?
-                <AlertClickedOutside onAlert={() => setShowFriends(false)}>
-                    <div className={theme} onClick={(e) => CloseIfAnchorClicked(e, setShowFriends)}>
+                <AlertClickedOutside onAlert={closeFriends}>
+                    <div className={theme} onClick={(e) => closeIfClickedOnAnchor(e, closeFriends)}>
                         <NavFriends />
                     </div>
                 </AlertClickedOutside>

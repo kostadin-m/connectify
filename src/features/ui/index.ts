@@ -8,4 +8,5 @@ export { default as ImagePreview } from "@features/ui/images/image-preview";
 export { default as LocationModal } from "@features/ui/modals/location-modal/location-modal";
 export { default as FriendsActionModal } from "@features/ui/modals/friends-modal/friends-action-modal";
 export { default as Navbar } from "@features/ui/navbar/navbar";
+export { default as Loader } from '@features/ui/loader/loader'
 

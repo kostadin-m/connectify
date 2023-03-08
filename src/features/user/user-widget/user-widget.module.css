@@ -2,26 +2,24 @@
     from {
         filter: blur(13px);
         opacity: 0;
-        transform: translateX(-10%);
+
     }
 
     to {
         filter: blur(0);
         opacity: 1;
-        transform: translateX(0%);
     }
 }
 
 .widgetBox {
     animation-name: changeOpacity;
-    animation-duration: 0.5s;
+    animation-duration: 0.8s;
     animation-timing-function: ease-out;
     position: fixed;
     border-radius: 15px;
     width: 400px;
     min-height: 200px;
     margin-bottom: 15px;
-    transition: all 0.4s ease;
 }
 
 .user {

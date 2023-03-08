@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthContext, useThemeContext } from '@features/hooks'
 
 //components
-import { Navbar } from '@features/ui'
+import { Loader, Navbar } from '@features/ui'
 import Home from './pages/home'
 import EditProfile from './pages/edit-profile'
 import SignUp from './pages/sign-up'
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      {!authIsReady ? <div className='loader'></div> :
+      {!authIsReady ? <Loader /> :
         <BrowserRouter>
           <Navbar />
           <Routes>

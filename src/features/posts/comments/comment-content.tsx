@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { Suspense, memo } from 'react'
 import { formatDate } from '../utils/format-date'
 
 import { useDocument } from '@features/hooks'
@@ -13,20 +13,22 @@ interface CommentContentProps {
 }
 
 function CommentContent({ comment, theme }: CommentContentProps) {
-    const { document, error, isPending } = useDocument<UserObject>('users', comment.creatorID)
+    const { document, error } = useDocument<UserObject>('users', comment.creatorID)
 
     return (
         <>
-            {isPending && <div>Loading...</div>}
             {error && <p className='error'>{error}</p>}
-            {document && <div className={`${styles.comment} ${styles[theme]}`}>
-                <img className='profile-image' src={document.photoURL} alt='user icon' />
-                <div className={styles.commentContent}>
-                    <a href={`/profile/${document.id}`}>{document.displayName}</a>
-                    <p>{comment.commentContent}</p>
-                </div>
-                <p>{formatDate(comment.createdAt)}</p>
-            </div>}
+            <Suspense fallback={<div>Loading...</div>}>
+                {document ?
+                    <div className={`${styles.comment} ${styles[theme]}`}>
+                        <img className='profile-image' src={document.photoURL} alt='user icon' />
+                        <div className={styles.commentContent}>
+                            <a href={`/profile/${document.id}`}>{document.displayName}</a>
+                            <p>{comment.commentContent}</p>
+                        </div>
+                        <p>{formatDate(comment.createdAt)}</p>
+                    </div> : null}
+            </Suspense>
         </>
     )
 }

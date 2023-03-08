@@ -8,6 +8,7 @@ import { useAuthContext, useCollection, useThemeContext } from "@features/hooks"
 // components
 import { UserList } from "@features/user"
 import AlertClickedOutside from "@features/ui/navbar/hocs/alert-clicked-outside"
+import { closeIfClickedOnAnchor } from "@features/ui/navbar/utils"
 
 export default function UserSearch() {
     const [searchedUser, setSearchedUser] = useState<string>('')
@@ -17,6 +18,8 @@ export default function UserSearch() {
     const { theme } = useThemeContext()
     const { user } = useAuthContext()
     const { document, isPending } = useCollection<UserDocument>('users', [documentId(), '!=', user?.id])
+
+    const closeSearch = () => setShowSearch(false)
 
     const searchWrapperClass = showSearch ? 'show' : 'hidden'
     const isOpened = searchWrapperClass === 'show' && showSearch
@@ -31,17 +34,11 @@ export default function UserSearch() {
     }, [searchedUser, showSearch, document])
 
 
-    const closeIfClickedOnAnchor = (e: React.MouseEvent<HTMLElement>) => {
-        const clicked = e.target
-        if (!(clicked instanceof HTMLAnchorElement)) return
-        setTimeout(() => setShowSearch(false))
-    }
-
     return (
         <AlertClickedOutside onAlert={() => setShowSearch(false)}>
             <div
                 className={`input-wrapper ${searchWrapperClass} ${theme}`}
-                onClick={closeIfClickedOnAnchor}>
+                onClick={(e) => closeIfClickedOnAnchor(e, closeSearch)}>
                 <input
                     className={`nav-input ${theme}`} type='text' placeholder='Search Users'
                     value={searchedUser}

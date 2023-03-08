@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import ReactDOM from "react-dom"
 
 import styles from './modal-wrapper.module.css'
 import { CloseIcon } from "@assets"
@@ -17,7 +18,7 @@ export default function ModalWrapper({ children, theme, title, onModalClose }: P
     return () => { document.body.classList.remove('active-modal') }
   }, [])
 
-  return (
+  return ReactDOM.createPortal(
     <div data-testid='modal' className={styles.modal}>
       <div className={styles.overlay}>
         <div className={`${styles.modalContent} ${styles[theme]}`}>
@@ -26,6 +27,6 @@ export default function ModalWrapper({ children, theme, title, onModalClose }: P
           <img className={`${styles.closeModal} ${styles[theme]}`} onClick={() => onModalClose()} src={CloseIcon} />
         </div>
       </div>
-    </div>
+    </div>, document.getElementById('root')!
   );
 }

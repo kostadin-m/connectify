@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { Suspense, memo, useState } from 'react'
 
 //hooks
 import { useCollection, useThemeContext } from '@features/hooks'
@@ -12,14 +12,17 @@ import styles from './post.module.css'
 //components
 import Post from './post'
 import PostFilter from '@features/posts/post-filter/post-filter'
-import { useFitlerPosts } from '@features/posts/post-filter/hooks/use-filter-posts'
+import { useFitlerPosts } from '@features/posts/hooks/use-filter-posts'
+import { Loader } from '@features/ui'
 
 interface Props {
     id?: string | null
 }
 
 function Feed({ id }: Props) {
-    const { document: posts, isPending, error } = useCollection<PostDocument>('posts', id ? ['creatorID', '==', id] : null, ['createdAt', 'desc'])
+    const collectionQuery = id ? ['creatorID', '==', id] : null
+
+    const { document: posts, error } = useCollection<PostDocument>('posts', collectionQuery, ['createdAt', 'desc'])
     const [currentFilter, setCurrentFilter] = useState<string>('ForYou')
     const [filteredPosts] = useFitlerPosts(currentFilter, posts!)
 
@@ -29,15 +32,14 @@ function Feed({ id }: Props) {
 
     const changeFitler = (newFilter: string) => setCurrentFilter(newFilter)
 
-    if (isPending) return (<div data-testid='loader' className='loader'></div>)
-
     return (
         <div className={styles.feed}>
             {error && <p className='error'>{error}</p>}
-            {posts && isHomePage ? <PostFilter theme={theme} currentFilter={currentFilter} changeFilter={changeFitler} /> : null}
-            {filteredPosts.length === 0 ?
-                <h1>No posts here!</h1> :
-                filteredPosts && filteredPosts.map((post) => (<Post key={post.id} post={post} />))}
+            {isHomePage ? <PostFilter theme={theme} currentFilter={currentFilter} changeFilter={changeFitler} /> : null}
+            <Suspense fallback={<Loader />}>
+                {filteredPosts?.map((post) => (<Post key={post.id} post={post} />))}
+            </Suspense>
+            {filteredPosts?.length === 0 ? <h1>No posts here!</h1> : null}
         </div>
     )
 }

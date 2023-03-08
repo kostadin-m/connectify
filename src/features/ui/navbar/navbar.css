@@ -54,7 +54,11 @@
 }
 
 .title h2 {
-    color: aqua;
+    color: purple;
+}
+
+.title h2:hover {
+    color: rgb(60, 0, 60)
 }
 
 .navbar img {
@@ -172,9 +176,6 @@
     margin-right: 12px;
 }
 
-.title h2:hover {
-    color: aquamarine;
-}
 
 /*Nav Friends for mobile devices*/
 .nav-friends {
@@ -285,7 +286,7 @@
 .user-dropdown-menu button:hover,
 .user-dropdown-menu a:hover {
     background-color: rgb(128, 123, 123);
-    color: aqua !important
+    color: purple !important
 }
 
 .user-dropdown-menu.dark button,
@@ -326,6 +327,8 @@
 
 @media (max-width:800px) {
     .input-wrapper.show {
+        margin-top: 0px !important;
+        top: 0px;
         left: 0px !important;
         position: absolute;
         transition: all 0.2s;
@@ -349,11 +352,9 @@
     .user-dropdown-button {
         margin-right: 0;
     }
-
 }
 
 @media(max-width:1450px) {
-
     .nav-item {
         margin-top: 4px;
         margin-right: 10px;

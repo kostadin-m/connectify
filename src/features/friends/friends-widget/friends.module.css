@@ -2,29 +2,27 @@
     from {
         opacity: 0;
         filter: blur(13px);
-        transform: translateX(-5%);
+
     }
 
     to {
         filter: blur(0);
         opacity: 1;
-        transform: translateX(0%);
     }
 }
 
 .friends {
+    animation-name: changeOpacity;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-out;
     overflow-y: hidden;
     text-align: left;
-    animation-name: changeOpacity;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-out;
     position: fixed;
     margin-top: 240px;
     border-radius: 15px;
     width: 400px;
     min-height: 320px;
     max-height: 320px;
-    transition: all 0.4s ease;
 }
 
 .friends.dark {

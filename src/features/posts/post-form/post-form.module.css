@@ -3,21 +3,20 @@
 @keyframes changeOpacity {
     from {
         opacity: 0;
-        filter: blur(13px);
-        transform: translateX(-5%);
+        filter: blur(14px);
+
     }
 
     to {
-        filter: blur(0);
         opacity: 1;
-        transform: translateX(0%);
+        filter: blur(0);
     }
 }
 
 .postForm {
     position: relative;
     animation-name: changeOpacity;
-    animation-duration: 0.5s;
+    animation-duration: 0.8s;
     animation-timing-function: ease-out;
     margin-bottom: 15px;
     margin-left: 50px;

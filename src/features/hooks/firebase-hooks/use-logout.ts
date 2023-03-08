@@ -8,31 +8,31 @@ import { checkError } from "../utils/check-error";
 type useLogoutState = { isPending: boolean, error: string | null, logout: () => Promise<void> }
 
 export const useLogout = (): useLogoutState => {
-	const { dispatch } = useAuthContext()
-	const [error, setError] = useState<string | null>(null)
-	const [isPending, setIsPending] = useState(false)
+  const { dispatch } = useAuthContext()
+  const [error, setError] = useState<string | null>(null)
+  const [isPending, setIsPending] = useState(false)
 
-	let mounted = true
+  let mounted = true
 
-	const logout = async () => {
-		if (mounted) setError(null); setIsPending(true)
-		try {
-			await signOut(auth)
+  const logout = async () => {
+    if (mounted) setError(null); setIsPending(true)
+    try {
+      await signOut(auth)
 
-			dispatch({ type: "LOGOUT" })
+      dispatch({ type: "LOGOUT" })
 
-			if (mounted) setError(null); setIsPending(false)
-		} catch (error) {
-			if (mounted) {
-				const message = checkError(error)
-				setError(message)
-				setIsPending(false)
-			}
-		}
-	}
-	useEffect(() => {
-		return () => { mounted = true }
-	}, [mounted])
+      if (mounted) setError(null); setIsPending(false)
+    } catch (error) {
+      if (mounted) {
+        const message = checkError(error)
+        setError(message)
+        setIsPending(false)
+      }
+    }
+  }
+  useEffect(() => {
+    return () => { mounted = true }
+  }, [mounted])
 
-	return { error, isPending, logout }
+  return { error, isPending, logout }
 }

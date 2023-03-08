@@ -4,42 +4,42 @@ import { createContext, useReducer } from "react";
 import { IContextProviderProps } from "@types";
 
 interface IThemeState {
-	theme: string
+  theme: string
 }
 
 interface IThemeActions {
-	type: 'TOGGLE_THEME'
-	payload: 'light' | 'dark'
+  type: 'TOGGLE_THEME'
+  payload: 'light' | 'dark'
 }
 
 interface IThemeContext {
-	theme: 'dark' | 'light'
-	toggleTheme: () => void
+  theme: 'dark' | 'light'
+  toggleTheme: () => void
 }
 
 export function themeReducer(state: IThemeState, action: IThemeActions) {
-	switch (action.type) {
-		case "TOGGLE_THEME":
-			return { ...state, theme: action.payload }
-		default: return state
-	}
+  switch (action.type) {
+    case "TOGGLE_THEME":
+      return { ...state, theme: action.payload }
+    default: return state
+  }
 }
 
 export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
 
 export const ThemeContextProvider = ({ children }: IContextProviderProps) => {
-	if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'light')
-	const [state, dispatch] = useReducer(themeReducer, { theme: localStorage.getItem('theme')! })
+  if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'light')
+  const [state, dispatch] = useReducer(themeReducer, { theme: localStorage.getItem('theme')! })
 
-	const toggleTheme = () => {
-		const payload = state.theme === 'light' ? 'dark' : 'light'
-		localStorage.setItem('theme', payload)
-		dispatch({ type: "TOGGLE_THEME", payload: payload })
-	}
+  const toggleTheme = () => {
+    const payload = state.theme === 'light' ? 'dark' : 'light'
+    localStorage.setItem('theme', payload)
+    dispatch({ type: "TOGGLE_THEME", payload: payload })
+  }
 
-	return (
-		<ThemeContext.Provider value={{ ...state, toggleTheme } as IThemeContext}>
-			{children}
-		</ThemeContext.Provider >
-	)
+  return (
+    <ThemeContext.Provider value={{ ...state, toggleTheme } as IThemeContext}>
+      {children}
+    </ThemeContext.Provider >
+  )
 }

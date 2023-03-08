@@ -2,21 +2,19 @@ import { Link } from 'react-router-dom'
 
 //custom hooks
 import { useAuthContext, useLogout, useThemeContext } from '@features/hooks'
-// types
-import { CSSClassesState } from '@types'
+import { Dispatch, SetStateAction } from 'react'
 
-interface UserDropDownProps {
-    dropDownClass: CSSClassesState
-}
 
-export default function UserDropDown({ dropDownClass }: UserDropDownProps) {
+
+export default function UserDropDown() {
     const { theme } = useThemeContext()
     const { user } = useAuthContext()
+
 
     const { logout, error, isPending } = useLogout()
 
     return (
-        <div data-testid='drop-down' className={`user-dropdown-menu ${dropDownClass} ${theme}`}>
+        <div data-testid='drop-down' className={`user-dropdown-menu ${theme}`}>
             <Link to={`/profile/${user?.id}`}>My Profile</Link>
             <Link to='/edit'>Edit Profile</Link>
             <button onClick={logout} >Logout</button>

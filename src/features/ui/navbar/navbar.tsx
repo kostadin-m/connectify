@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 //components
 import GuestNavbar from './components/guest-navbar'
 import UserNavbar from './components/user-navbar'
-import { UserSearch } from '@features/user'
+import UserSearch from './components/user-search'
 
 //custom hooks
 import { useThemeContext, useAuthContext } from '@features/hooks'

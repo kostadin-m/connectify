@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 //types
@@ -8,11 +8,12 @@ import { UserObject } from '@types'
 import { FriendsIcon, ChatIcon } from '@assets'
 
 //custom hooks
-import { useIsMobile, useClickedOutside, useThemeContext } from '@features/hooks'
+import { useIsMobile, useThemeContext } from '@features/hooks'
 
 //components
 import { NavFriends } from '@features/friends'
 import UserDropDown from './user-dropdown'
+import AlertClickedOutside from '@features/ui/navbar/hocs/alert-clicked-outside'
 
 interface UserNavbarProps {
     theme: string
@@ -24,11 +25,8 @@ export default function UserNavbar({ user }: UserNavbarProps) {
     const { theme } = useThemeContext()
 
     const [friends, setShowFriends] = useState<boolean>(false)
-    const friendsClass = friends ? 'show' : 'hidden'
 
     const [showDropDown, setShowDropDown] = useState<boolean>(false)
-    const { ref: DropDownRef } = useClickedOutside(setShowDropDown)
-    const dropDownClass = showDropDown ? 'show' : 'hidden'
 
     const CloseIfAnchorClicked = (e: React.MouseEvent<HTMLElement>, toggleElement: Dispatch<SetStateAction<boolean>>) => {
         const clickedElement = e.target
@@ -52,18 +50,21 @@ export default function UserNavbar({ user }: UserNavbarProps) {
             <li data-testid='user-nav' className='nav-item'>
                 <div onClick={() => setShowDropDown(!showDropDown)} className='user-dropdown-button'>
                     <img src={user.photoURL || ''} className='profile-image' alt='navbar-profile-img' />
-                    <p style={{ transform: dropDownClass === 'show' ? 'rotate(0deg)' : 'rotate(180deg)' }}>▼</p>
+                    <p style={{ transform: showDropDown ? 'rotate(0deg)' : 'rotate(180deg)' }}>▼</p>
                 </div>
             </li>
             {showDropDown ?
-                <div ref={DropDownRef} onClick={(e) => CloseIfAnchorClicked(e, setShowDropDown)}>
-                    <UserDropDown dropDownClass={dropDownClass} />
-                </div>
+                <AlertClickedOutside onAlert={() => setShowDropDown(false)}>
+                    <div className={theme} onClick={(e) => CloseIfAnchorClicked(e, setShowFriends)}></div>
+                    <UserDropDown />
+                </AlertClickedOutside>
                 : null}
             {friends ?
-                <div className={theme} onClick={(e) => CloseIfAnchorClicked(e, setShowFriends)}>
-                    <NavFriends friendsClass={friendsClass} />
-                </div>
+                <AlertClickedOutside onAlert={() => setShowFriends(false)}>
+                    <div className={theme} onClick={(e) => CloseIfAnchorClicked(e, setShowFriends)}>
+                        <NavFriends />
+                    </div>
+                </AlertClickedOutside>
                 : null}
         </>
     )

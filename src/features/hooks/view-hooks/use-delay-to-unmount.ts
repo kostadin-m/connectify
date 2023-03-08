@@ -1,11 +1,12 @@
-import { SetStateAction, useRef } from "react"
+import { SetStateAction, useRef, useState } from "react"
 
 import { CSSClassesState } from "@types"
 
 export const useDelayToUnmount = (
-    elementClass: CSSClassesState,
-    setShowElement: React.Dispatch<SetStateAction<boolean>>, setElementClass: React.Dispatch<SetStateAction<CSSClassesState>>) => {
+    setShowElement: React.Dispatch<SetStateAction<boolean>>) => {
     const timeoutRef = useRef<number | undefined>()
+
+    const [elementClass, setElementClass] = useState<CSSClassesState>('hidden')
 
     function toggleMount() {
         if (elementClass === 'show') {
@@ -17,5 +18,5 @@ export const useDelayToUnmount = (
         setShowElement(true)
         window.clearTimeout(timeoutRef.current)
     }
-    return { toggleMount }
+    return { toggleMount, elementClass }
 }

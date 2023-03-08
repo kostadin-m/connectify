@@ -28,9 +28,8 @@ export default function LikesAndCommentsIcons({ post }: Props) {
         await updateDocument(post.id, updatedLikes)
     }
 
-    const [commentsClass, setCommentsClass] = useState<CSSClassesState>('hidden')
     const [showComments, setShowComments] = useState(false)
-    const { toggleMount } = useDelayToUnmount(commentsClass, setShowComments, setCommentsClass)
+    const { toggleMount, elementClass: commentsClass } = useDelayToUnmount(setShowComments)
 
     return (
         <>

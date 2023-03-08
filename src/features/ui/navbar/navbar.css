@@ -75,6 +75,7 @@
 /*Search Users Input*/
 .input-wrapper.hidden {
     position: absolute;
+    bottom: 10px;
     left: 122px;
     border-radius: 15px;
     margin-left: 35px;
@@ -90,17 +91,17 @@
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     vertical-align: top;
-    margin-top: 297px;
+    margin-top: 320px;
     height: 350px;
     width: 420px;
 }
 
 
-.dark>.navbar-content>.title>.input-wrapper.show {
+.input-wrapper.show.dark {
     background-color: rgb(24 24 24) !important;
 }
 
-.light>.navbar-content>.title>.input-wrapper.show {
+.input-wrapper.show.light {
     background-color: white;
 }
 
@@ -132,20 +133,20 @@
 }
 
 /*Themes for user Search*/
-.dark>.navbar-content>.title>.input-wrapper.show>.nav-input {
+.input-wrapper.show>.nav-input.dark {
     background-color: rgb(255, 255, 255) !important;
 }
 
 
-.light>.navbar-content>.title>.input-wrapper.show>.nav-input {
+.input-wrapper.show>.nav-input.dark {
     background-color: lightgray !important;
 }
 
-.dark>.navbar-content>.title>.input-wrapper>.nav-input {
+.input-wrapper>.nav-input.dark {
     filter: invert(70%);
 }
 
-.light>.navbar-content>.title>.input-wrapper {
+.input-wrapper.light {
     background-color: lightgray;
 }
 
@@ -176,21 +177,10 @@
 }
 
 /*Nav Friends for mobile devices*/
-
-
-.nav-friends.show {
+.nav-friends {
     animation-name: showElement;
     animation-duration: 0.7s;
     animation-timing-function: ease-out;
-}
-
-.nav-friends.hidden {
-    animation-name: hideElement;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-out;
-}
-
-.nav-friends {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     opacity: 1;
     border-radius: 15px;
@@ -266,6 +256,9 @@
 }
 
 .user-dropdown-menu {
+    animation-name: showElement;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     position: absolute;
@@ -306,18 +299,6 @@
 
 .user-dropdown-menu.dark {
     background-color: rgb(24 24 24)
-}
-
-.user-dropdown-menu.show {
-    animation-name: showElement;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-out;
-}
-
-.user-dropdown-menu.hidden {
-    animation-name: hideElement;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-out;
 }
 
 @media (max-width:600px) {

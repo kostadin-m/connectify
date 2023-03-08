@@ -9,5 +9,4 @@ export { useLogout } from "./firebase-hooks/use-logout";
 export { useIsMobile } from "./view-hooks/use-is-mobile";
 export { useDelayToUnmount } from "./view-hooks/use-delay-to-unmount";
 export { useThemeContext } from "./view-hooks/use-theme-context";
-export { default as useClickedOutside } from "./view-hooks/use-clicked-ouside";
 

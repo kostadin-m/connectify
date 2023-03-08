@@ -28,8 +28,8 @@ export default function Login() {
     return (
         <FormWrapper title="Login" theme={theme}>
             <form onSubmit={submit}>
-                <FormInput value={email} setValue={handleChange.bind(null, setEmail)} label='Email' type='email' />
-                <FormInput value={password} setValue={handleChange.bind(null, setPassword)} label='Password' type='password' />
+                <FormInput value={email} onChange={handleChange.bind(null, setEmail)} label='Email' type='email' />
+                <FormInput value={password} onChange={handleChange.bind(null, setPassword)} label='Password' type='password' />
                 {error && <p className="error">{error}</p>}
                 {isPending && <div className="loader"></div>}
                 <button

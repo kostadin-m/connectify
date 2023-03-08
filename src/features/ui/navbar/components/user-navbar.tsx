@@ -41,7 +41,8 @@ export default function UserNavbar({ user }: UserNavbarProps) {
             {isMobile ?
                 <li data-testid='user-nav' className='nav-item'>
                     <img onClick={() => setShowFriends(!friends)} src={FriendsIcon} alt='chat icon' />
-                </li> : null}
+                </li>
+                : null}
             <li data-testid='user-nav'
                 className='nav-item'>
                 <Link style={{ height: '25px' }} to='/messages'>

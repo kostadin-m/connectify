@@ -5,7 +5,7 @@ import { LocationModal, ImagePreview, ImageInput, TextArea, Button } from '@feat
 
 
 //icons
-import { CloseIcon, LocationIcon, AddImage } from '@assets'
+import { LocationIcon, AddImage } from '@assets'
 
 //styles
 import styles from './post-form.module.css'
@@ -18,6 +18,8 @@ import { uploadImage } from '@features/services/image-services'
 //firebase
 import { timeStamp } from '../../../firebase/config'
 import { PostObject } from '@types'
+import CleanStateComponent from '@features/posts/post-form/components/clean-state'
+
 
 
 function PostForm() {
@@ -72,15 +74,14 @@ function PostForm() {
                     <img className='profile-image' src={user?.photoURL} alt='user icon'></img>
                     <TextArea value={text} onChange={onTextChange} placeholder={`What's on your mind ${user?.displayName}?`} theme={theme} />
                 </div>
-
                 {formError && <p className='error'>{formError}</p>}
-                {image && <div className={styles[theme]}>
-                    <img onClick={() => setImage(null)} className={styles.remove} src={CloseIcon} alt='close icon' />
-                    <ImagePreview image={image} style={styles.imagePreview} />
-                </div>}
-
+                {image ?
+                    <>
+                        <CleanStateComponent onRemove={() => onImageChange(null)} />
+                        <ImagePreview image={image} style={styles.imagePreview} />
+                    </>
+                    : null}
                 <hr className={styles.formHr} />
-
                 <div className={`${styles.formBottom} ${styles[theme]}`}>
                     <div className={styles.formOptions}>
                         <label htmlFor='img' className={`${styles.formOption} ${styles[theme]}`}>
@@ -88,18 +89,13 @@ function PostForm() {
                             <img className={styles.optionPicture} src={AddImage} alt='picture icon'></img>
                             <span>Photo</span>
                         </label>
-                        <div className={styles[theme]} style={{ display: 'flex' }}>
-                            <div className={`${styles.formOption} ${styles[theme]}`} onClick={() => setShowLocationModal(true)}>
-                                <img className={styles.optionPicture} src={LocationIcon} alt='location icon'></img>
-                                <span>{location ? location : "Location"}</span>
-                            </div>
-                            {location ?
-                                <img style={{ position: 'relative' }}
-                                    onClick={() => setLocation('')}
-                                    className={styles.remove}
-                                    src={CloseIcon} alt='close icon' />
-                                : null}
+                        <div className={`${styles.formOption} ${styles[theme]}`} onClick={() => setShowLocationModal(true)}>
+                            <img className={styles.optionPicture} src={LocationIcon} alt='location icon'></img>
+                            <span>{location ? location : "Location"}</span>
                         </div>
+                        {location ?
+                            <CleanStateComponent onRemove={() => setLocation('')} position='relative' />
+                            : null}
                         <Button disabled={pending} theme={theme} text={pending ? 'Loading...' : `Share`} onClick={() => handlePostSubmit()} />
                     </div>
                 </div>

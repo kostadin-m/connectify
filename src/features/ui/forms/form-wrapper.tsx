@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './forms.module.css'
 
 interface IFormWrapperProps {
-    children: React.ReactNode
+    children?: React.ReactNode
     title: string
     theme: string
 }

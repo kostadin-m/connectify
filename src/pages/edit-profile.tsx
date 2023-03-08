@@ -46,7 +46,7 @@ export default function EditProfile() {
         <FormWrapper theme={theme} title="Edit Profile">
             <form onSubmit={submit}>
                 <label htmlFor='img' className={`form-img ${theme}`}>
-                    <ImageInput changeImage={changeImage} changeImageError={changeImageError} />
+                    <ImageInput onImageChange={changeImage} onImageErrorChange={changeImageError} />
                     {image ?
                         <ImagePreview image={image} style='image' />
                         :
@@ -56,10 +56,10 @@ export default function EditProfile() {
                 </label>
                 {imageError && <div className='error'>{imageError}</div>}
 
-                <FormInput value={firstName} setValue={handleChange.bind(null, setFirstName)} label='First name' />
-                <FormInput value={lastName} setValue={handleChange.bind(null, setLastName)} label='Last name' />
-                <FormInput value={location} setValue={handleChange.bind(null, setLocation)} label='Location - 𝘰𝘱𝘵𝘪𝘰𝘯𝘢𝘭' optional={true} />
-                <FormInput value={email} setValue={handleChange.bind(null, setEmail)} label='Email' type='email' />
+                <FormInput value={firstName} onChange={handleChange.bind(null, setFirstName)} label='First name' />
+                <FormInput value={lastName} onChange={handleChange.bind(null, setLastName)} label='Last name' />
+                <FormInput value={location} onChange={handleChange.bind(null, setLocation)} label='Location - 𝘰𝘱𝘵𝘪𝘰𝘯𝘢𝘭' optional={true} />
+                <FormInput value={email} onChange={handleChange.bind(null, setEmail)} label='Email' type='email' />
 
                 {error && <p>{error}</p>}
                 {isPending && <div className="loader"></div>}

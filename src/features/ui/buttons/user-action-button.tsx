@@ -36,7 +36,7 @@ export default function UserActionButton({ friend }: UserActionButtonProps) {
 
     return (
         <>
-            {showFriendsActionModal && <FriendsActionModal closeModal={closeModal} theme={theme} friend={friend} />}
+            {showFriendsActionModal && <FriendsActionModal onModalClose={closeModal} theme={theme} friend={friend} />}
 
             {isFriend ?
                 <img className="button" src={FriendsIcon} alt='friends icon'

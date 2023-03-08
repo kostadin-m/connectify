@@ -15,12 +15,12 @@ import styles from "./friends-action-modal.module.css";
 import { removeFriend } from "@features/services/friends-services";
 
 interface Props {
-    closeModal: () => void
+    onModalClose: () => void
     theme: string
     friend: UserDocument
 }
 
-export default function FriendsActionModal({ closeModal, theme, friend }: Props) {
+export default function FriendsActionModal({ onModalClose, theme, friend }: Props) {
     const { updateDocument, response } = useFirestore<UserDocument>('users')
     const { user } = useAuthContext()
 
@@ -29,13 +29,13 @@ export default function FriendsActionModal({ closeModal, theme, friend }: Props)
         await removeFriend({ user, friend, updateDocument })
 
         if (response.error) return
-        closeModal()
+        onModalClose()
     }
 
     return (
         <ModalWrapper title={`Are you sure you want to remove ${friend.displayName} from your friends list?`}
             theme={theme}
-            closeModal={closeModal}>
+            onModalClose={onModalClose}>
 
             {response.isPending && <div className='spinner'></div>}
             <p className={`${styles.warning} ${styles[theme]}`}>
@@ -45,7 +45,7 @@ export default function FriendsActionModal({ closeModal, theme, friend }: Props)
                 <Button text={response.isPending ? 'Loading...' : 'Remove friend'}
                     disabled={response.isPending} theme={theme} onClick={() => submit()} />
 
-                <Button disabled={false} text="No" theme={theme} onClick={() => closeModal()} />
+                <Button disabled={false} text="No" theme={theme} onClick={() => onModalClose()} />
             </div>
         </ModalWrapper>
     );

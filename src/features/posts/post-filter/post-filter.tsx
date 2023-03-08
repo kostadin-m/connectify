@@ -11,9 +11,6 @@ interface Props {
 }
 
 export default function PostFilter({ currentFilter, changeFilter, theme }: Props) {
-
-
-
     return (
         <div className={`${styles.postFilter} ${styles[theme]}`}>
             {fitlerList.map((filter) => (

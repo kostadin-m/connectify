@@ -78,12 +78,12 @@
 
 .remove:hover {
     scale: 1.2;
+    filter: invert(60%)
 }
 
-.dark>.remove {
+.remove.dark {
     filter: invert(100%);
 }
-
 
 .title {
     text-align: left;

@@ -13,7 +13,7 @@
 }
 
 .formBox h2 {
-    color: aqua;
+    color: #D18CE0;
     margin-top: 10px;
     font-size: 2em;
 }
@@ -67,7 +67,7 @@
 .input:focus {
     border: none;
     outline: none;
-    border-bottom: 1px solid aqua;
+    border-bottom: 1px solid #D18CE0;
 }
 
 .input:focus+.label,

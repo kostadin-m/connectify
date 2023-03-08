@@ -16,7 +16,7 @@
 .filterButton:hover,
 .filterButton.active {
     text-shadow: horizontal-shadow vertical-shadow blur white;
-    color: purple;
+    color: #D18CE0;
     font-weight: bold;
 
 }

@@ -3,13 +3,13 @@ import { Timestamp } from "firebase/firestore";
 
 //Context Provider
 export interface IContextProviderProps {
-    children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 //Image Input Props
 export interface IImageInput {
-    onImageChange: (value: File | null) => void
-    onImageErrorChange: (value: string | null) => void
+	onImageChange: (value: File | null) => void
+	onImageErrorChange: (value: string | null) => void
 }
 
 //CSS Classes State 
@@ -18,15 +18,15 @@ export type CSSClassesState = 'hidden' | 'show'
 //User Data in the auth
 
 export interface UserObject {
-    email: string
-    displayName: string
-    friends: NonNullable<string[]>
-    location: string
-    sentFriendRequests: NonNullable<string[]>
-    receivedFriendRequests: NonNullable<string[]>
-    photoURL: string
-    id: string
-    firebaseUser?: User
+	email: string
+	displayName: string
+	friends: NonNullable<string[]>
+	location: string
+	sentFriendRequests: NonNullable<string[]>
+	receivedFriendRequests: NonNullable<string[]>
+	photoURL: string
+	id: string
+	firebaseUser?: User
 }
 
 //Firebase
@@ -42,21 +42,21 @@ type NonNullable<T> = Exclude<T, null | undefined>
 export type UserDocument = Omit<UserObject, 'firebaseUser'>
 
 export interface CommentObject {
-    creatorID: string
-    createdAt: Timestamp
-    commentContent: string
+	creatorID: string
+	createdAt: Timestamp
+	commentContent: string
 }
 export interface PostObject {
-    postTitle: string,
-    photoURL: string,
-    creatorID: string,
-    location: string,
-    createdAt: Timestamp,
-    comments: CommentObject[],
-    likes: string[]
+	postTitle: string,
+	photoURL: string,
+	creatorID: string,
+	location: string,
+	createdAt: Timestamp,
+	comments: CommentObject[],
+	likes: string[]
 }
 export interface PostDocument extends PostObject {
-    id: string
+	id: string
 }
 
 

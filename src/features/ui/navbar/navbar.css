@@ -54,11 +54,11 @@
 }
 
 .title h2 {
-    color: purple;
+    color: #D18CE0;
 }
 
 .title h2:hover {
-    color: rgb(60, 0, 60)
+    color: #b356c8
 }
 
 .navbar img {
@@ -286,7 +286,7 @@
 .user-dropdown-menu button:hover,
 .user-dropdown-menu a:hover {
     background-color: rgb(128, 123, 123);
-    color: purple !important
+    color: #D18CE0 !important
 }
 
 .user-dropdown-menu.dark button,

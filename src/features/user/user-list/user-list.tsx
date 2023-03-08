@@ -9,33 +9,33 @@ import { documentId } from "firebase/firestore";
 import { UserDocument } from "@types";
 
 interface Props {
-    userIDS: string[]
-    listSideways?: boolean
+	userIDS: string[]
+	listSideways?: boolean
 }
 
 function UserList({ userIDS, listSideways = false }: Props) {
-    const { theme } = useThemeContext()
+	const { theme } = useThemeContext()
 
-    const { document, error, isPending } = useCollection<UserDocument>('users', [documentId(), 'in', userIDS])
+	const { document, error, isPending } = useCollection<UserDocument>('users', [documentId(), 'in', userIDS])
 
-    const sideways = listSideways ? styles.sideways : ''
+	const sideways = listSideways ? styles.sideways : ''
 
-    if (error) return (<h4 className="error">{error}</h4>)
+	if (error) return (<h4 className="error">{error}</h4>)
 
-    return (
-        <div className={`${styles.listFriends} ${sideways}`}>
-            {isPending && <h4>Loading...</h4>}
-            {document && document.map(user => (
-                <div key={user.id} className={`${styles.friend} ${sideways} ${styles[theme]}`}>
-                    <img className="profile-image" src={user.photoURL!} alt="profile picture" />
-                    <p className={`${styles.name} ${sideways}`}>{user.displayName}</p>
-                    <Link to={`/profile/${user.id}`} />
-                    <div className={`${styles.buttons} ${styles[theme]} ${sideways}`}>
-                        <UserActionButton friend={user} />
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
+	return (
+		<div className={`${styles.listFriends} ${sideways}`}>
+			{isPending && <h4>Loading...</h4>}
+			{document && document.map(user => (
+				<div key={user.id} className={`${styles.friend} ${sideways} ${styles[theme]}`}>
+					<img className="profile-image" src={user.photoURL!} alt="profile picture" />
+					<p className={`${styles.name} ${sideways}`}>{user.displayName}</p>
+					<Link to={`/profile/${user.id}`} />
+					<div className={`${styles.buttons} ${styles[theme]} ${sideways}`}>
+						<UserActionButton friend={user} />
+					</div>
+				</div>
+			))}
+		</div>
+	);
 }
 export default memo(UserList)
